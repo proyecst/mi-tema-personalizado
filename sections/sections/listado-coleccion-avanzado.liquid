@@ -1,0 +1,85 @@
+{% comment %}
+  ==============================================================
+  SECTION: Listado Avanzado de Colección
+  Responsabilidad: Obtener datos, configurar el estilo de la grilla.
+  ==============================================================
+{% endcomment %}
+
+{%- liquid
+  assign selected_collection = section.settings.featured_collection
+  assign max_products = section.settings.product_limit
+  assign style_grid = section.settings.grid_style
+-%}
+
+<section class="section-advanced-list" style="padding: 60px 0;">
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 40px;">{{ section.settings.section_heading }}</h2>
+
+    {% if selected_collection != blank %}
+      
+      <div class="product-grid product-grid--{{ style_grid }}">
+        
+        {% comment %} Bucle para pasar cada producto al componente (Snippet) {% endcomment %}
+        {% for product in selected_collection.products limit: max_products %}
+          
+          {% render 'product-card', 
+            product_card_product: product,        /* PASA el objeto producto al snippet */
+            show_badge: true,                     /* PASA configuración de la sección al snippet */
+            grid_style: style_grid                /* PASA el estilo de grilla al snippet */
+          %}
+          
+        {% endfor %}
+        
+      </div>
+
+    {% else %}
+      {% render 'setup-message', message: 'Por favor, selecciona una colección y un límite de productos en la configuración.' %}
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Listado Profesional de Productos",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Título de la Sección",
+      "default": "Nuestros Productos Destacados"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Seleccionar Colección"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 2,
+      "max": 12,
+      "step": 2,
+      "label": "Número de Productos a Mostrar",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "grid_style",
+      "label": "Estilo de la Grilla",
+      "options": [
+        {"value": "simple", "label": "Simple"},
+        {"value": "border", "label": "Con Borde"}
+      ],
+      "default": "simple"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Listado Avanzado",
+      "category": "Colecciones"
+    }
+  ]
+}
+{% endschema %}
