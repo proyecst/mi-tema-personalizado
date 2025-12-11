@@ -1,13 +1,13 @@
 {% comment %}
-  ==============================================================
-  COMPONENT: Tarjeta de Producto (Product Card)
-  Patrón de Diseño: Modular / Componente.
-  
-  Propiedades esperadas (pasadas al render):
- - product_card_product (objeto Liquid del producto)
-  - show_badge (booleano: mostrar etiqueta de oferta/agotado)
-  - grid_style (string: 'grid-style-1' o 'grid-style-2' para CSS)
-  ==============================================================
+   ==============================================================
+   COMPONENT: Tarjeta de Producto (Product Card)
+   Patrón de Diseño: Modular / Componente.
+
+   Propiedades esperadas (pasadas al render):
+  - product_card_product (objeto Liquid del producto)
+   - show_badge (booleano: mostrar etiqueta de oferta/agotado)
+   - grid_style (string: 'grid-style-1' o 'grid-style-2' para CSS)
+   ==============================================================
 {% endcomment %}
 {% doc %}
   Tarjeta de producto reutilizable.
@@ -24,17 +24,17 @@
   assign product = product_card_product
 
   if product == blank
-    assign product = nil
+    assign product = null
   endif
 
   assign on_sale = false
-  if product != nil and product.compare_at_price > product.price
+  if product != null and product.compare_at_price > product.price
     assign on_sale = true
   endif
 
   assign badge_text = ''
   if show_badge
-    if product == nil or product.available == false
+    if product == null or product.available == false
       assign badge_text = 'Agotado'
     elsif on_sale
       assign badge_text = 'Oferta'
@@ -42,45 +42,67 @@
   endif
 -%}
 
-{% if product != nil %}
-<div 
-  class="product-card {{ grid_style }}"
-  data-product-id="{{ product.id }}"
->
-  <a href="{{ product.url | within: collection }}" class="product-card__link" aria-label="{{ product.title | escape }}">
-
-    {% if badge_text != blank %}
-      <span class="product-card__badge product-card__badge--{{ badge_text | handle }}">
-        {{ badge_text }}
-      </span>
-    {% endif %}
-
-    <div class="product-card__image-wrapper">
-      {% if product.featured_image != blank %}
-        {{ product.featured_image | image_url: width: 600 | image_tag }}
-      {% else %}
-        {{ 'product-1' | placeholder_svg_tag: 'product-card__placeholder' }}
+{% if product != null %}
+  <div
+    class="product-card {{ grid_style }}"
+    data-product-id="{{ product.id }}"
+  >
+    <a
+      href="{{ product.url | within: collection }}"
+      class="product-card__link"
+      aria-label="{{ product.title | escape }}"
+    >
+      {% if badge_text != blank %}
+        <span class="product-card__badge product-card__badge--{{ badge_text | handle }}">
+          {{ badge_text }}
+        </span>
       {% endif %}
-    </div>
 
-    <h3 class="product-card__title">{{ product.title }}</h3>
-    
-    <div class="product-card__price">
-      <span class="price-current">{{ product.price | money }}</span>
-      {% if on_sale %}
-        <span class="price-compare">{{ product.compare_at_price | money }}</span>
-      {% endif %}
-    </div>
-  </a>
+      <div class="product-card__image-wrapper">
+        {% if product.featured_image != blank %}
+          {{ product.featured_image | image_url: width: 600 | image_tag }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'product-card__placeholder' }}
+        {% endif %}
+      </div>
 
-  {% render 'product-add-to-cart-quick', product: product %}
+      <h3 class="product-card__title">{{ product.title }}</h3>
 
-</div>
+      <div class="product-card__price">
+        <span class="price-current">{{ product.price | money }}</span>
+        {% if on_sale %}
+          <span class="price-compare">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+      </div>
+    </a>
+
+    {% render 'product-add-to-cart-quick', product: product %}
+  </div>
 {% endif %}
 
 {% stylesheet %}
-  .product-card { display:block; text-decoration:none; color:inherit; }
-  .product-card__title { font-size:1rem; margin:0.5rem 0 0; }
-  .product-card__image { width:100%; height:auto; display:block; }
-  .product-card__badge { position:absolute; top:0.5rem; left:0.5rem; background:#000; color:#fff; padding:0.25rem 0.5rem; border-radius:3px; font-size:0.75rem; }
+  .product-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .product-card__title {
+    font-size: 1rem;
+    margin: 0.5rem 0 0;
+  }
+  .product-card__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .product-card__badge {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+  }
 {% endstylesheet %}
