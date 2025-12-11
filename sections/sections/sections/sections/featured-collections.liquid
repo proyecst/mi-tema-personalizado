@@ -1,0 +1,106 @@
+<section class="featured-collections-section section-{{ section.id }}">
+  <div class="page-width">
+    
+    {% if section.settings.title != blank %}
+      <h2 class="title text-center">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+
+    <div class="collections-grid grid grid--3-col">
+      
+      {% for block in section.blocks %}
+        {% assign collection = block.settings.featured_collection %}
+        
+        {% if collection != blank %}
+          <div class="collections-grid__item grid__item" {{ block.shopify_attributes }}>
+            <a href="{{ collection.url }}" class="collection-card">
+              
+              {% assign image = collection.featured_image %}
+              {% if image != blank %}
+                <div class="collection-card__image-wrapper">
+                    {% comment %} Imagen responsiva usando la etiqueta 'image_tag' de Shopify {% endcomment %}
+                    {{ image | image_url: width: 600 | image_tag: 
+                        loading: 'lazy', 
+                        alt: image.alt, 
+                        class: 'collection-card__image',
+                        sizes: "(max-width: 749px) 100vw, 33vw"
+                    }}
+                </div>
+              {% else %}
+                <div class="collection-card__image-wrapper no-image">
+                    <p>Imagen no disponible</p>
+                </div>
+              {% endif %}
+              
+              <div class="collection-card__info">
+                <h3 class="collection-card__title">{{ collection.title }}</h3>
+                <span class="collection-card__cta">Ver {{ collection.products_count }} productos →</span>
+              </div>
+            </a>
+          </div>
+        {% else %}
+            {% comment %} Contenido para cuando no hay colección seleccionada en el editor {% endcomment %}
+            <div class="collections-grid__item grid__item placeholder-card" {{ block.shopify_attributes }}>
+                <p>Arrastra aquí una Colección</p>
+            </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    {% if section.settings.cta_link != blank and section.settings.cta_text != blank %}
+        <div class="text-center mt-40">
+            <a href="{{ section.settings.cta_link }}" class="button">{{ section.settings.cta_text }}</a>
+        </div>
+    {% endif %}
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Colecciones Destacadas",
+  "tag": "section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Encabezado de la sección",
+      "default": "Encuentra el Smartwatch Perfecto"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón inferior (Opcional)",
+      "default": "Ver todas las colecciones"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Enlace del botón inferior"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Colección",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "featured_collection",
+          "label": "Seleccionar Colección"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Colecciones Destacadas",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}
