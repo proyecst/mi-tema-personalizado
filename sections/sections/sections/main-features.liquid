@@ -1,0 +1,91 @@
+<section class="main-features-dark">
+  <div class="page-width">
+    <div class="features-header center">
+      <h2>Tecnología de Vanguardia</h2>
+      <p>Diseñados para el rendimiento, creados para tu estilo de vida.</p>
+    </div>
+    
+    <div class="features-icon-grid">
+      {% for block in section.blocks %}
+        <div class="feature-icon-card">
+          <div class="icon-wrapper">
+             {% if block.settings.svg_code != blank %}
+                {{ block.settings.svg_code }}
+             {% else %}
+                <img src="{{ block.settings.icon_img | image_url: width: 100 }}" alt="Feature">
+             {% endif %}
+          </div>
+          <h3>{{ block.settings.title }}</h3>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="center cta-wrapper">
+      <a href="/collections/all" class="btn-premium">Explorar Funciones</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .main-features-dark { background: #000; color: #fff; padding: 80px 0; }
+  .features-header h2 { font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
+  .features-header p { color: #888; margin-bottom: 50px; }
+
+  .features-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  @media (min-width: 750px) {
+    .features-icon-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .feature-icon-card { text-align: center; padding: 20px; }
+  
+  .icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-wrapper svg { width: 100%; height: auto; fill: #ff4d00; } /* El color naranja destaca en el negro */
+  .icon-wrapper img { width: 100%; filter: invert(1); }
+
+  .feature-icon-card h3 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
+
+  .btn-premium {
+    display: inline-block;
+    padding: 15px 40px;
+    background: #ff4d00;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-top: 40px;
+    transition: 0.3s;
+  }
+  .btn-premium:hover { transform: scale(1.05); background: #e64500; }
+</style>
+
+{% schema %}
+{
+  "name": "Características Tech",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Característica",
+      "settings": [
+        { "type": "html", "id": "svg_code", "label": "Código SVG" },
+        { "type": "image_picker", "id": "icon_img", "label": "Imagen Alternativa" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Pantalla AMOLED" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Características Tech" } ]
+}
+{% endschema %}

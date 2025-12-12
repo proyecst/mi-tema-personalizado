@@ -1,0 +1,56 @@
+<section class="featured-series page-width">
+  <div class="series-container">
+    {% for block in section.blocks %}
+      <div class="series-card" {{ block.shopify_attributes }}>
+        <div class="series-image">
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+        <div class="series-overlay">
+          <h2>{{ block.settings.title }}</h2>
+          <p>{{ block.settings.description }}</p>
+          <a href="{{ block.settings.link }}" class="button button--secondary">{{ block.settings.btn_text }}</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+  .series-container { display: flex; flex-direction: column; gap: 20px; padding: 40px 0; }
+  .series-card { position: relative; height: 450px; border-radius: 20px; overflow: hidden; display: flex; align-items: center; }
+  .series-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+  .series-image img { width: 100%; height: 100%; object-fit: cover; }
+  .series-overlay { position: relative; z-index: 2; padding: 60px; max-width: 500px; color: #fff; }
+  .series-overlay h2 { font-size: 3rem; margin: 0; color: #fff; }
+  .series-overlay p { margin: 15px 0 25px; font-size: 1.2rem; }
+  
+  @media (max-width: 749px) {
+    .series-card { height: 350px; }
+    .series-overlay { padding: 30px; }
+    .series-overlay h2 { font-size: 1.8rem; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Series Destacadas",
+  "blocks": [
+    {
+      "type": "series",
+      "name": "Serie",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen de Fondo" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Serie AMOLED" },
+        { "type": "text", "id": "description", "label": "Descripción", "default": "Poder visual en tu muñeca." },
+        { "type": "url", "id": "link", "label": "Enlace" },
+        { "type": "text", "id": "btn_text", "label": "Texto Botón", "default": "Ver Serie" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Series Destacadas" }]
+}
+{% endschema %}

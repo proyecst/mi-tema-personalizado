@@ -1,0 +1,61 @@
+<section class="trust-bar" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }};">
+  <div class="page-width">
+    <div class="trust-bar__container">
+      {% for block in section.blocks %}
+        <div class="trust-bar__item" {{ block.shopify_attributes }}>
+          <div class="trust-bar__icon">
+            {% if block.settings.icon_svg != blank %}
+              {{ block.settings.icon_svg }}
+            {% elsif block.settings.icon_image != blank %}
+              <img src="{{ block.settings.icon_image | image_url: width: 50 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% endif %}
+          </div>
+          <div class="trust-bar__content">
+            <span class="trust-bar__title">{{ block.settings.title }}</span>
+            <span class="trust-bar__sub">{{ block.settings.sub_title }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-bar { padding: 20px 0; border-bottom: 1px solid #eee; }
+  .trust-bar__container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+  .trust-bar__item { display: flex; align-items: center; gap: 12px; flex: 1 1 200px; }
+  .trust-bar__icon { width: 30px; height: 30px; display: flex; align-items: center; }
+  .trust-bar__icon svg { width: 100%; height: auto; fill: currentColor; }
+  .trust-bar__icon img { width: 100%; height: auto; object-fit: contain; }
+  .trust-bar__content { display: flex; flex-direction: column; }
+  .trust-bar__title { font-weight: bold; font-size: 14px; text-transform: uppercase; }
+  .trust-bar__sub { font-size: 12px; opacity: 0.8; }
+  
+  @media (max-width: 749px) {
+    .trust-bar__container { justify-content: center; }
+    .trust-bar__item { flex: 1 1 40%; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Barra de Confianza",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Texto", "default": "#000000" }
+  ],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Punto de Confianza",
+      "settings": [
+        { "type": "html", "id": "icon_svg", "label": "Icono SVG (opcional)" },
+        { "type": "image_picker", "id": "icon_image", "label": "Icono Imagen" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Envío Gratis" },
+        { "type": "text", "id": "sub_title", "label": "Subtítulo", "default": "En pedidos mayores a $50" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Barra de Confianza" }]
+}
+{% endschema %}

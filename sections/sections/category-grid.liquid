@@ -201,3 +201,106 @@
     }
   }
 </style>
+
+<div class="cat-grid-wrapper page-width">
+  <h2 class="section-title center">{{ section.settings.title }}</h2>
+  <div class="cat-grid-container">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link }}" class="cat-card" {{ block.shopify_attributes }}>
+        <div class="cat-card__image">
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+        <div class="cat-card__content">
+          <h3>{{ block.settings.category_name }}</h3>
+          <span class="cat-card__cta">Ver ahora</span>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .cat-grid-wrapper { padding: 50px 20px; }
+  .section-title { margin-bottom: 40px; font-size: 2.5rem; font-weight: 700; }
+  
+  .cat-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Móvil: 2 columnas */
+    gap: 20px;
+  }
+
+  @media (min-width: 750px) {
+    .cat-grid-container { grid-template-columns: repeat(4, 1fr); } /* Tablet: 4 columnas */
+  }
+
+  @media (min-width: 1200px) {
+    .cat-grid-container { grid-template-columns: repeat(6, 1fr); } /* Desktop: 6 columnas */
+  }
+
+  .cat-card {
+    text-decoration: none;
+    color: #000;
+    background: #f9f9f9;
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid transparent;
+  }
+
+  .cat-card:hover {
+    background: #ffffff;
+    border-color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  }
+
+  .cat-card__image img {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    mix-blend-mode: multiply; /* Ideal para productos con fondo blanco */
+  }
+
+  .cat-card__content h3 {
+    font-size: 1rem;
+    margin: 15px 0 5px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .cat-card__cta {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ff4d00; /* Naranja Kieslect */
+    font-weight: bold;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Categorías Grid",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título de Sección", "default": "Explora por Categoría" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoría",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen de Categoría" },
+        { "type": "text", "id": "category_name", "label": "Nombre", "default": "Smartwatch" },
+        { "type": "url", "id": "link", "label": "Enlace" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Categorías Grid" } ]
+}
+{% endschema %}
