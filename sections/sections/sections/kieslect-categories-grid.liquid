@@ -1,0 +1,36 @@
+<section class="kieslect-categories">
+  <h2 class="kieslect-section-title">{{ section.settings.title }}</h2>
+  <div class="category-grid">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link }}" class="category-card">
+        <img src="{{ block.settings.image | img_url: '600x600' }}" alt="{{ block.settings.text }}">
+        <div class="category-overlay">
+          <h3>{{ block.settings.text }}</h3>
+          <span>{{ section.settings.cta_text }} →</span>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kieslect Categories",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "Categorías Destacadas" },
+    { "type": "text", "id": "cta_text", "label": "Texto CTA", "default": "Explorar" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoría",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "text", "label": "Nombre de Categoría" },
+        { "type": "url", "id": "link", "label": "Enlace" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Kieslect Categories Grid" }]
+}
+{% endschema %}
