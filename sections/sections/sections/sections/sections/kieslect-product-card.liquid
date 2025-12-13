@@ -1,0 +1,31 @@
+<div class="k-product-card">
+  <a href="{{ product.url }}">
+    <div class="k-product-image">
+      <img src="{{ product.featured_image | img_url: '400x400' }}" alt="{{ product.title }}">
+      {% if product.compare_at_price > product.price %}
+        <span class="sale-tag">OFERTA</span>
+      {% endif %}
+    </div>
+    <div class="k-product-info">
+      <h3>{{ product.title }}</h3>
+      <div class="k-price-box">
+        <span class="k-price">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}
+          <span class="k-old-price">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+      </div>
+      <button class="btn-add-quick">RECLUTAR</button>
+    </div>
+  </a>
+</div>
+
+<style>
+  .k-product-card { border: 1px solid #eee; padding: 15px; transition: 0.3s; background: #fff; }
+  .k-product-card:hover { border-color: #ed1d24; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+  .k-product-image { position: relative; margin-bottom: 15px; }
+  .sale-tag { position: absolute; top: 10px; left: 10px; background: #ed1d24; color: white; padding: 2px 10px; font-size: 10px; font-weight: bold; }
+  .k-product-info h3 { font-size: 16px; margin: 0 0 10px; color: #000; }
+  .k-price { color: #ed1d24; font-weight: bold; font-size: 18px; }
+  .k-old-price { text-decoration: line-through; color: #999; margin-left: 10px; font-size: 14px; }
+  .btn-add-quick { width: 100%; margin-top: 15px; padding: 10px; background: #000; color: #fff; border: none; cursor: pointer; }
+</style>

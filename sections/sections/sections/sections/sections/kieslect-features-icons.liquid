@@ -1,0 +1,34 @@
+<div class="features-icons-section">
+  <div class="container feature-grid">
+    <div class="feature-item">
+      <img src="https://cdn.shopify.com/s/files/1/your-path/amoled-icon.png" alt="AMOLED">
+      <h3>Pantalla AMOLED</h3>
+    </div>
+    <div class="feature-item">
+      <img src="https://cdn.shopify.com/s/files/1/your-path/battery-icon.png" alt="Batería">
+      <h3>Larga Duración</h3>
+    </div>
+    <div class="feature-item">
+      <img src="https://cdn.shopify.com/s/files/1/your-path/call-icon.png" alt="Llamadas">
+      <h3>Llamadas Bluetooth</h3>
+    </div>
+    <div class="feature-item">
+      <img src="https://cdn.shopify.com/s/files/1/your-path/sport-icon.png" alt="Deportes">
+      <h3>100+ Modos</h3>
+    </div>
+  </div>
+</div>
+
+<style>
+  .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; padding: 50px 0; }
+  .feature-item img { width: 50px; margin-bottom: 15px; }
+  .feature-item h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+  @media (max-width: 768px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+
+{% schema %}
+{
+  "name": "Kieslect Features Icons",
+  "presets": [{ "name": "Kieslect Features Icons" }]
+}
+{% endschema %}
