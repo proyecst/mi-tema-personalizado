@@ -1,0 +1,80 @@
+{% comment %}
+    Snippet para la tarjeta de producto individual.
+    Se usa en: listado-coleccion-avanzado.liquid
+{% endcomment %}
+
+<div class="product-card-item {% if grid_style == 'border' %}product-card--border{% endif %}">
+  <a href="{{ product_card_product.url }}" class="product-card__link">
+    
+    <div class="product-card__image-wrapper">
+      {% if product_card_product.featured_media != blank %}
+        {{ product_card_product.featured_media | image_url: width: 600 | image_tag: 
+          loading: 'lazy', 
+          class: 'product-card__img',
+          alt: product_card_product.featured_media.alt | escape 
+        }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+
+      {% if show_badge and product_card_product.compare_at_price > product_card_product.price %}
+        <span class="badge badge--sale">OFERTA</span>
+      {% endif %}
+    </div>
+
+    <div class="product-card__info">
+      <span class="product-card__vendor">{{ product_card_product.vendor }}</span>
+      <h3 class="product-card__title">{{ product_card_product.title }}</h3>
+      
+      <div class="product-card__prices">
+        <span class="price-item price-item--current">
+          {{ product_card_product.price | money }}
+        </span>
+        {% if product_card_product.compare_at_price > product_card_product.price %}
+          <span class="price-item price-item--old">
+            {{ product_card_product.compare_at_price | money }}
+          </span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</div>
+
+<style>
+  .product-card-item {
+    position: relative;
+    background: #fff;
+    transition: transform 0.3s ease;
+  }
+  .product-card--border {
+    border: 1px solid #e8e8e8;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  .product-card-item:hover {
+    transform: translateY(-5px);
+  }
+  .product-card__link {
+    text-decoration: none;
+    color: #000;
+  }
+  .product-card__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+  }
+  .product-card__info {
+    padding: 15px 5px;
+    text-align: center;
+  }
+  .product-card__vendor {
+    font-size: 0.75rem;
+    color: #777;
+    text-transform: uppercase;
+  }
+  .product-card__title {
+    font-size: 1rem;
+    margin: 5px 0;
+    font-weight: 600;
