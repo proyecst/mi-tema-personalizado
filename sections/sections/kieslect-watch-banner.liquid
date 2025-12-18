@@ -1,27 +1,24 @@
 {%- style -%}
   .watch-banner-{{ section.id }} {
     position: relative;
-    height: 80vh; /* Ocupa casi toda la pantalla para lucir el reloj */
+    height: 80vh;
     display: flex;
     align-items: center;
     background-color: #000;
     overflow: hidden;
   }
-
   .watch-banner-bg-{{ section.id }} {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
   }
-
   .watch-banner-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 100%);
     z-index: 2;
   }
-
   .watch-banner-content {
     position: relative;
     z-index: 3;
@@ -29,7 +26,6 @@
     padding-left: 10%;
     max-width: 600px;
   }
-
   .watch-banner-content h2 {
     font-size: 4rem;
     font-weight: 800;
@@ -39,7 +35,6 @@
     letter-spacing: -1px;
     color: #fff;
   }
-
   .watch-badge {
     background: {{ section.settings.accent_color }};
     padding: 5px 15px;
@@ -49,7 +44,6 @@
     margin-bottom: 20px;
     display: inline-block;
   }
-
   .watch-btn {
     margin-top: 30px;
     padding: 18px 45px;
@@ -59,13 +53,12 @@
     font-weight: bold;
     border-radius: 100px;
     transition: 0.3s;
+    display: inline-block;
   }
-
   .watch-btn:hover {
     background: {{ section.settings.accent_color }};
     color: #fff;
   }
-
   @media (max-width: 768px) {
     .watch-banner-content { padding-left: 20px; text-align: center; }
     .watch-banner-content h2 { font-size: 2.5rem; }
@@ -75,10 +68,14 @@
 
 <div class="watch-banner-{{ section.id }}">
   {% if section.settings.image != blank %}
-    <img src="{{ section.settings.image | img_url: '2000x' }}" class="watch-banner-bg-{{ section.id }}">
+    {{ section.settings.image | image_url: width: 2000 | image_tag: 
+      class: 'watch-banner-bg-{{ section.id }}', 
+      loading: 'eager', 
+      widths: '400, 800, 1200, 1600, 2000',
+      alt: section.settings.image.alt | escape 
+    }}
   {% endif %}
   <div class="watch-banner-overlay"></div>
-  
   <div class="watch-banner-content">
     {% if section.settings.badge != blank %}
       <span class="watch-badge">{{ section.settings.badge }}</span>
@@ -93,13 +90,13 @@
 {
   "name": "Banner Relojes Premium",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Imagen del Reloj (Horizontal)" },
-    { "type": "text", "id": "badge", "label": "Etiqueta (Ej: NUEVO)", "default": "NUEVA EDICIÓN" },
+    { "type": "image_picker", "id": "image", "label": "Imagen del Reloj" },
+    { "type": "text", "id": "badge", "label": "Etiqueta", "default": "NUEVA EDICIÓN" },
     { "type": "text", "id": "title", "label": "Nombre del Reloj", "default": "Kieslect Lora 2" },
     { "type": "textarea", "id": "subtitle", "label": "Descripción corta", "default": "Elegancia y salud en tu muñeca." },
     { "type": "text", "id": "button_text", "label": "Botón", "default": "COMPRAR AHORA" },
     { "type": "url", "id": "link", "label": "Enlace" },
-    { "type": "color", "id": "accent_color", "label": "Color de Acento (Etiqueta)", "default": "#ff4500" }
+    { "type": "color", "id": "accent_color", "label": "Color de Acento", "default": "#ff4500" }
   ],
   "presets": [ { "name": "Banner Relojes Premium" } ]
 }

@@ -1,217 +1,17 @@
-{% schema %}
-{
-  "name": "Grid de Categorías",
-  "tag": "section",
-  "class": "category-grid-section",
-  "max_blocks": 8,
-  "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Título de la Sección",
-      "default": "Explora Nuestras Categorías"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 2,
-      "max": 6,
-      "step": 1,
-      "label": "Columnas en Escritorio",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "columns_mobile",
-      "min": 1,
-      "max": 2,
-      "step": 1,
-      "label": "Columnas en Móvil",
-      "default": 2
-    },
-    {
-      "type": "color",
-      "id": "card_bg",
-      "label": "Color de Fondo de Tarjeta",
-      "default": "#f8f8f8"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "category_card",
-      "name": "Tarjeta de Categoría",
-      "settings": [
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Colección a enlazar"
-        },
-        {
-          "type": "text",
-          "id": "title_override",
-          "label": "Título de la Tarjeta (Opcional)",
-          "info": "Si se deja vacío, usa el título de la Colección."
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Grid de Categorías Principal",
-      "category": "Colecciones",
-      "blocks": [
-        { "type": "category_card" },
-        { "type": "category_card" },
-        { "type": "category_card" },
-        { "type": "category_card" }
-      ]
-    }
-  ]
-}
-{% endschema %}
-
-
-{% comment %} Asignación de variables Liquid {% endcomment %}
-{% assign columns_desktop = section.settings.columns_desktop %}
-{% assign columns_mobile = section.settings.columns_mobile %}
-
-{% comment %} HTML Principal con clases de cuadrícula dinámicas {% endcomment %}
-<div class="category-grid-wrapper container">
-  
-  {% if section.settings.heading != blank %}
-    <h2 class="category-grid-heading">{{ section.settings.heading }}</h2>
-  {% endif %}
-
-  <div 
-    class="category-grid grid" 
-    style="--grid-desktop: {{ columns_desktop }}; --grid-mobile: {{ columns_mobile }};"
-  >
-    
-    {% comment %} Bucle de Liquid para iterar sobre cada bloque/tarjeta {% endcomment %}
-    {% for block in section.blocks %}
-      {% assign collection = block.settings.collection %}
-      {% if collection != empty %}
-
-        {% comment %} Contenido de la Tarjeta {% endcomment %}
-        <a 
-          href="{{ collection.url }}" 
-          class="category-card"
-          {{ block.shopify_attributes }}
-          style="background-color: {{ section.settings.card_bg }};"
-        >
-          
-          {% assign card_title = block.settings.title_override | default: collection.title %}
-          
-          {% if collection.image != empty %}
-            {{ collection.image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'category-card__image' }}
-          {% elsif collection.products.first.featured_media != empty %}
-            {% comment %} Usar la imagen del primer producto si no hay imagen de colección {% endcomment %}
-            {{ collection.products.first.featured_media | image_url: width: 400 | image_tag: loading: 'lazy', class: 'category-card__image' }}
-          {% else %}
-             <div class="category-card__placeholder">🛒</div>
-          {% endif %}
-          
-          <h3 class="category-card__title">{{ card_title }}</h3>
-          
-        </a>
-
-      {% else %}
-        {% comment %} Estado de vista previa: muestra contenido de placeholder en el editor {% endcomment %}
-        <div class="category-card category-card--placeholder" {{ block.shopify_attributes }}>
-          <div class="category-card__placeholder">Configurar Bloque</div>
-          <h3 class="category-card__title">{{ block.settings.title_override | default: block.name }}</h3>
-        </div>
-      {% endif %}
-    {% endfor %}
-    
-  </div>
-</div>
-
-<style>
-  /* Variables de la sección */
-  .category-grid-section {
-    padding: 40px 0; /* Espacio vertical */
-  }
-
-  /* Título */
-  .category-grid-heading {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2em;
-  }
-
-  /* Contenedor de la cuadrícula (CSS Grid) */
-  .category-grid {
-    display: grid;
-    gap: 20px; /* Espacio entre tarjetas */
-    
-    /* Configuración de escritorio (variable Liquid) */
-    grid-template-columns: repeat(var(--grid-desktop), 1fr);
-  }
-
-  /* Tarjeta individual */
-  .category-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    text-decoration: none;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: inherit; /* Hereda color del texto */
-  }
-
-  .category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Imagen */
-  .category-card__image, .category-card__placeholder {
-    width: 100%;
-    height: auto;
-    max-height: 180px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 15px;
-  }
-  
-  .category-card__placeholder {
-    background-color: rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    min-height: 100px;
-  }
-
-  .category-card__title {
-    margin: 0;
-    font-size: 1.1em;
-    font-weight: 600;
-  }
-
-  /* Media Query: Responsividad para Móviles */
-  @media (max-width: 768px) {
-    .category-grid {
-      /* Configuración de móvil (variable Liquid) */
-      grid-template-columns: repeat(var(--grid-mobile), 1fr);
-    }
-  }
-</style>
-
+{% comment %} HTML Principal {% endcomment %}
 <div class="cat-grid-wrapper page-width">
-  <h2 class="section-title center">{{ section.settings.title }}</h2>
+  {% if section.settings.title != blank %}
+    <h2 class="section-title center">{{ section.settings.title }}</h2>
+  {% endif %}
+  
   <div class="cat-grid-container">
     {% for block in section.blocks %}
       <a href="{{ block.settings.link }}" class="cat-card" {{ block.shopify_attributes }}>
         <div class="cat-card__image">
           {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+            {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.category_name }}
           {% else %}
-            {{ 'product-1' | placeholder_svg_tag }}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
           {% endif %}
         </div>
         <div class="cat-card__content">
@@ -225,63 +25,16 @@
 
 <style>
   .cat-grid-wrapper { padding: 50px 20px; }
-  .section-title { margin-bottom: 40px; font-size: 2.5rem; font-weight: 700; }
-  
-  .cat-grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Móvil: 2 columnas */
-    gap: 20px;
-  }
-
-  @media (min-width: 750px) {
-    .cat-grid-container { grid-template-columns: repeat(4, 1fr); } /* Tablet: 4 columnas */
-  }
-
-  @media (min-width: 1200px) {
-    .cat-grid-container { grid-template-columns: repeat(6, 1fr); } /* Desktop: 6 columnas */
-  }
-
-  .cat-card {
-    text-decoration: none;
-    color: #000;
-    background: #f9f9f9;
-    border-radius: 16px;
-    padding: 20px;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid transparent;
-  }
-
-  .cat-card:hover {
-    background: #ffffff;
-    border-color: #000;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  }
-
-  .cat-card__image img {
-    width: 100%;
-    height: auto;
-    max-width: 150px;
-    mix-blend-mode: multiply; /* Ideal para productos con fondo blanco */
-  }
-
-  .cat-card__content h3 {
-    font-size: 1rem;
-    margin: 15px 0 5px;
-    text-align: center;
-    font-weight: 600;
-  }
-
-  .cat-card__cta {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #ff4d00; /* Naranja Kieslect */
-    font-weight: bold;
-  }
+  .section-title { margin-bottom: 40px; font-size: 2.5rem; font-weight: 700; text-align: center; }
+  .cat-grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (min-width: 750px) { .cat-grid-container { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 1200px) { .cat-grid-container { grid-template-columns: repeat(6, 1fr); } }
+  .cat-card { text-decoration: none; color: #000; background: #f9f9f9; border-radius: 16px; padding: 20px; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; border: 1px solid transparent; }
+  .cat-card:hover { border-color: #000; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+  .cat-card__image { width: 100%; max-width: 150px; }
+  .cat-card__image img { width: 100%; height: auto; mix-blend-mode: multiply; }
+  .cat-card__content h3 { font-size: 1rem; margin: 15px 0 5px; text-align: center; font-weight: 600; }
+  .cat-card__cta { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #ff4d00; font-weight: bold; }
 </style>
 
 {% schema %}
@@ -295,7 +48,7 @@
       "type": "category",
       "name": "Categoría",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Imagen de Categoría" },
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
         { "type": "text", "id": "category_name", "label": "Nombre", "default": "Smartwatch" },
         { "type": "url", "id": "link", "label": "Enlace" }
       ]
