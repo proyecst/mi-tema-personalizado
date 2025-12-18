@@ -13,10 +13,44 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "menu": ""
+      }
+    },
+    "kieslect_watch_banner_XzzeYB": {
+      "type": "kieslect-watch-banner",
+      "name": "Banner Relojes Premium",
+      "settings": {
+        "badge": "NUEVA EDICIÓN",
+        "title": "Kieslect Lora 2",
+        "subtitle": "Elegancia y salud en tu muñeca.",
+        "button_text": "COMPRAR AHORA",
+        "link": "",
+        "accent_color": "#ff4500"
+      }
+    },
+    "listado_coleccion_avanzado_GJHFJY": {
+      "type": "listado-coleccion-avanzado",
+      "name": "Listado Profesional",
+      "settings": {
+        "section_heading": "Productos Destacados",
+        "featured_collection": "",
+        "product_limit": 4,
+        "grid_style": "simple"
+      }
+    },
+    "category_grid_F8CFMg": {
+      "type": "category-grid",
+      "name": "Categorías Grid",
+      "settings": {
+        "title": "Explora por Categoría"
+      }
     }
   },
   "order": [
-    "header"
-  ],
+    "header",
+    "kieslect_watch_banner_XzzeYB",
+    "listado_coleccion_avanzado_GJHFJY",
+    "category_grid_F8CFMg"
+  ]
 }
