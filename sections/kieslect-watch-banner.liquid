@@ -68,21 +68,21 @@
 
 <div class="watch-banner-{{ section.id }}">
   {% if section.settings.image != blank %}
+    {% comment %} Cambio de img_url a image_url para evitar errores de Theme Check  {% endcomment %}
     {{ section.settings.image | image_url: width: 2000 | image_tag: 
-      class: 'watch-banner-bg-{{ section.id }}', 
+      class: 'watch-banner-bg', 
       loading: 'eager', 
-      widths: '400, 800, 1200, 1600, 2000',
       alt: section.settings.image.alt | escape 
     }}
   {% endif %}
   <div class="watch-banner-overlay"></div>
   <div class="watch-banner-content">
     {% if section.settings.badge != blank %}
-      <span class="watch-badge">{{ section.settings.badge }}</span>
+      <span class="watch-badge">{{ section.settings.badge }}</span> [cite: 58]
     {% endif %}
-    <h2>{{ section.settings.title }}</h2>
-    <p>{{ section.settings.subtitle }}</p>
-    <a href="{{ section.settings.link }}" class="watch-btn">{{ section.settings.button_text }}</a>
+    <h2>{{ section.settings.title }}</h2> [cite: 57]
+    <p>{{ section.settings.subtitle }}</p> [cite: 65]
+    <a href="{{ section.settings.link }}" class="watch-btn">{{ section.settings.button_text }}</a> [cite: 60]
   </div>
 </div>
 
@@ -98,6 +98,10 @@
     { "type": "url", "id": "link", "label": "Enlace" },
     { "type": "color", "id": "accent_color", "label": "Color de Acento", "default": "#ff4500" }
   ],
-  "presets": [ { "name": "Banner Relojes Premium" } ]
+  "presets": [
+    {
+      "name": "Banner Relojes Premium"
+    }
+  ]
 }
 {% endschema %}
