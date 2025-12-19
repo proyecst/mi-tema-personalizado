@@ -120,4 +120,6 @@
     .hero-content {
         grid-template-columns: 1fr; /* Apilamiento en móvil */
     }
-}
+} 
+
+body { border: 10px solid red !important; }
