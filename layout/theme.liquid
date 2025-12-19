@@ -26,7 +26,84 @@
 
     {{ content_for_header }}
   </head>
+ 
+  <style>
+  #shopify-chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+  }
+  .chat-bubble {
+    background: #000; /* Color de Shopify */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  .chat-window {
+    display: none;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    flex-direction: column;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .chat-header { background: #000; color: white; padding: 15px; font-weight: bold; }
+  .chat-messages { flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; }
+  .bot-msg { background: #f1f1f1; padding: 8px; border-radius: 5px; margin-bottom: 10px; display: inline-block; }
+  .user-options { padding: 10px; border-top: 1px solid #eee; }
+  .option-btn { 
+    display: block; width: 100%; padding: 5px; margin-bottom: 5px;
+    background: white; border: 1px solid #000; cursor: pointer; border-radius: 3px;
+  }
+  .option-btn:hover { background: #000; color: white; }
+</style>
 
+<div id="shopify-chatbot">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">Asistente Virtual</div>
+    <div class="chat-messages" id="chatMsgs">
+      <div class="bot-msg">¡Hola! 👋 ¿En qué puedo ayudarte hoy?</div>
+    </div>
+    <div class="user-options">
+      <button class="option-btn" onclick="botReply('envio')">¿Dónde está mi pedido?</button>
+      <button class="option-btn" onclick="botReply('devolucion')">Política de devoluciones</button>
+      <button class="option-btn" onclick="botReply('humano')">Hablar con un agente</button>
+    </div>
+  </div>
+  <div class="chat-bubble" onclick="toggleChat()">💬</div>
+</div>
+
+<script>
+  function toggleChat() {
+    const win = document.getElementById('chatWindow');
+    win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function botReply(type) {
+    const msgDiv = document.getElementById('chatMsgs');
+    let response = "";
+
+    if(type === 'envio') response = "Puedes rastrear tu pedido con el número que enviamos a tu email.";
+    if(type === 'devolucion') response = "Tienes 30 días para devolver cualquier producto sin uso.";
+    if(type === 'humano') response = "En breve un agente se conectará contigo. ¡Espera un momento!";
+
+    msgDiv.innerHTML += `<div style='text-align:right; margin-bottom:10px;'><b>Tú:</b> ${type}</div>`;
+    msgDiv.innerHTML += `<div class="bot-msg">${response}</div>`;
+    msgDiv.scrollTo(0, msgDiv.scrollHeight);
+  }
+</script>
+  
   <body>
     {% sections 'header-group' %}
 
