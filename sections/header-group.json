@@ -44,19 +44,12 @@
       "type": "kieslect-hero-premium",
       "name": "Kieslect Hero Premium",
       "settings": {}
-    },
-    "kieslect_hero_premium_dUBGpT": {
-      "type": "kieslect-hero-premium",
-      "disabled": true,
-      "name": "Kieslect Hero Premium",
-      "settings": {}
     }
   },
   "order": [
     "header",
-    "kieslect_watch_banner_XzzeYB",
-    "listado_coleccion_avanzado_GJHFJY",
     "kieslect_hero_premium_JdR8nX",
-    "kieslect_hero_premium_dUBGpT"
+    "kieslect_watch_banner_XzzeYB",
+    "listado_coleccion_avanzado_GJHFJY"
   ]
 }
