@@ -123,3 +123,84 @@
 } 
 
 body { border: 10px solid red !important; }
+
+.kieslect-header {
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  padding: 15px 5%;
+  font-family: 'Helvetica', sans-serif;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Dropdown Logic */
+.has-dropdown {
+  position: relative;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  min-width: 220px;
+  padding: 10px 0;
+  z-index: 100;
+}
+
+.dropdown li {
+  list-style: none;
+}
+
+.dropdown a {
+  padding: 10px 20px;
+  display: block;
+}
+
+.dropdown a:hover {
+  background: #f8f8f8;
+  color: #000;
+}
+
+.has-dropdown:hover .dropdown {
+  display: block;
+}
+
+/* Secondary Nav */
+.secondary-nav {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.secondary-nav a {
+  font-size: 12px;
+  text-decoration: none;
+  color: #666;
+}
+
+.contact-btn {
+  background: #000;
+  color: #fff !important;
+  padding: 8px 15px;
+  border-radius: 4px;
+}
