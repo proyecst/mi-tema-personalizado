@@ -18,3 +18,20 @@
     "main"
   ]
 }
+
+{
+  "sections": {
+    "kieslect_hero_custom": {
+      "type": "kieslect-hero-premium",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-index",
+      "settings": {}
+    }
+  },
+  "order": [
+    "kieslect_hero_custom",
+    "main"
+  ]
+}
