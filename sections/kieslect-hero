@@ -1,0 +1,43 @@
+<div class="kieslect-hero-premium">
+  <div class="kieslect-content">
+    <p class="kieslect-tagline">KIESLECT OFFICIAL STORE</p>
+    <h1 class="kieslect-title">TECHNOLOGY &<br>LIFESTYLE</h1>
+    <p class="kieslect-description">
+      Experience the perfect fusion of innovative engineering and sophisticated aesthetics. 
+    </p>
+    <div class="kieslect-actions">
+      <a href="/collections/all" class="kieslect-btn-solid">SHOP COLLECTION</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .kieslect-hero-premium {
+    background-color: #000;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+  .kieslect-tagline { letter-spacing: 5px; color: #666; text-transform: uppercase; }
+  .kieslect-title { font-size: 70px; font-weight: 900; line-height: 1; margin: 20px 0; }
+  .kieslect-btn-solid {
+    background: #fff; color: #000; padding: 15px 40px; 
+    text-decoration: none; font-weight: bold; display: inline-block;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Kieslect Hero",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Kieslect Hero",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
