@@ -23,3 +23,15 @@
     "main"
   ]
 }
+
+{% schema %}
+{
+  "name": "Kieslect Header",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Kieslect Header"
+    }
+  ]
+}
+{% endschema %}
