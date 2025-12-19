@@ -7,19 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
-  "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
-    }
-  },
-  "order": [
-    "main"
-  ]
-}
-
-{
+ 
   "sections": {
     "kieslect_hero_custom": {
       "type": "kieslect-hero-premium",
