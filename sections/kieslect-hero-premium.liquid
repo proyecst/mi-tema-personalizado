@@ -1,86 +1,74 @@
-<div class="kieslect-hero-final">
-  <div class="kieslect-overlay-grid"></div>
-  <div class="kieslect-inner">
-    <span class="kieslect-badge">KIESLECT OFFICIAL</span>
-    <h1 class="kieslect-main-title">TECHNOLOGY &<br>LIFESTYLE</h1>
-    <p class="kieslect-text">Fusionando ingeniería innovadora con estética sofisticada.</p>
-    <div class="kieslect-cta-wrapper">
-      <a href="/collections/all" class="kieslect-button-black">EXPLORAR COLECCIÓN</a>
+<div class="kieslect-hero-premium">
+  <div class="kieslect-content">
+    <span class="kieslect-tagline">KIESLECT OFFICIAL STORE</span>
+    <h1 class="kieslect-title">TECHNOLOGY &<br>LIFESTYLE</h1>
+    <p class="kieslect-description">
+      Experience the perfect fusion of innovative engineering and sophisticated aesthetics.
+    </p>
+    <div class="kieslect-actions">
+      <a href="/collections/all" class="kieslect-btn-solid">SHOP COLLECTION</a>
     </div>
   </div>
 </div>
 
 <style>
-  /* Forzamos que la sección sea negra y ocupe espacio */
-  .kieslect-hero-final {
+  .kieslect-hero-premium {
     background-color: #000000 !important;
-    min-height: 80vh;
-    display: flex !important;
+    height: 85vh;
+    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    position: relative;
-    overflow: hidden;
+    color: #ffffff;
     width: 100%;
   }
-
-  .kieslect-inner {
-    position: relative;
-    z-index: 10;
-    padding: 20px;
-  }
-
-  .kieslect-badge {
+  .kieslect-tagline {
     color: #666;
-    letter-spacing: 5px;
-    font-size: 12px;
+    font-size: 14px;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    display: block;
     margin-bottom: 20px;
+    display: block;
   }
-
-  .kieslect-main-title {
-    color: #ffffff !important;
-    font-size: clamp(40px, 10vw, 90px) !important;
-    font-weight: 900 !important;
+  .kieslect-title {
+    font-size: clamp(40px, 10vw, 90px);
     line-height: 0.9;
+    font-weight: 900;
     margin: 0 0 30px 0;
-    text-transform: uppercase;
+    letter-spacing: -3px;
+    color: #ffffff !important;
   }
-
-  .kieslect-text {
+  .kieslect-description {
     color: #888;
     font-size: 18px;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto 40px;
+    line-height: 1.6;
   }
-
-  .kieslect-button-black {
-    background: #ffffff;
+  .kieslect-btn-solid {
+    background-color: #ffffff;
     color: #000000;
-    padding: 15px 45px;
+    padding: 18px 45px;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-weight: 800;
+    letter-spacing: 2px;
     display: inline-block;
-    transition: 0.3s;
+    transition: 0.3s ease;
   }
-
-  .kieslect-button-black:hover {
-    background: #cccccc;
-    transform: translateY(-3px);
+  .kieslect-btn-solid:hover {
+    background-color: #cccccc;
   }
 </style>
 
 {% schema %}
 {
-  "name": "Kieslect Hero Premium",
+  "name": "Banner Relojes Premium",
   "settings": [],
   "presets": [
     {
-      "name": "Kieslect Hero Premium"
+      "name": "Banner Relojes Premium"
     }
   ]
 }
 {% endschema %}
+   
