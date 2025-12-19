@@ -19,6 +19,7 @@
     },
     "kieslect_watch_banner_XzzeYB": {
       "type": "kieslect-watch-banner",
+      "disabled": true,
       "name": "Banner Relojes Premium",
       "settings": {
         "badge": "NUEVA EDICIÓN",
