@@ -1,59 +1,18 @@
-<header class="site-header">
-  <div class="header-container">
-    
-    <a href="/" class="logo">
-      <strong>KIESLECT</strong>
-    </a>
+<div class="kieslect-section-container" style="background:#000; color:#fff; padding:40px 20px; text-align:center; font-family:sans-serif;">
+  <h2 style="color:#ff4d00; margin:0;">KIESLECT HEADER & HERO</h2>
+  <p>Esta sección ahora aparecerá en tu lista de "Add Section"</p>
+  <a href="#" style="background:#ff4d00; color:#fff; padding:10px 20px; text-decoration:none; border-radius:5px; display:inline-block; margin-top:10px;">BOTÓN DE PRUEBA</a>
+</div>
 
-    <nav class="main-navigation">
-      <ul class="menu-list">
-        {% for link in linklists.main-menu.links %}
-          <li class="menu-item {% if link.title == 'Tienda' %}has-megamenu{% endif %}">
-            <a href="{{ link.url }}" class="menu-link">{{ link.title }}</a>
-
-            {% if link.title == 'Tienda' %}
-              <div class="mega-menu-wrapper">
-                <div class="mega-grid">
-                  <div class="mega-column">
-                    <h4>Smartwatches</h4>
-                    <a href="/collections/serie-amoled">Serie AMOLED</a>
-                    <a href="/collections/llamadas-bluetooth">Serie con Llamadas Bluetooth</a>
-                    <a href="/collections/deportiva-fitness">Serie Deportiva & Fitness</a>
-                    <a href="/collections/serie-premium">Serie Premium</a>
-                    <a href="/collections/serie-economica">Serie Económica</a>
-                  </div>
-                  <div class="mega-column">
-                    <h4>Accesorios</h4>
-                    <a href="/collections/correas">Correas</a>
-                  </div>
-                  <div class="mega-column">
-                    <h4>Destacados</h4>
-                    <a href="/collections/novedades">Novedades</a>
-                    <a href="/collections/mas-vendidos">Más Vendidos</a>
-                  </div>
-                </div>
-              </div>
-            {% endif %}
-          </li>
-        {% endfor %}
-        
-        <li class="menu-item"><a href="/pages/sobre-kieslect" class="menu-link">Sobre Kieslect</a></li>
-        <li class="menu-item"><a href="/blogs/news" class="menu-link">Blog</a></li>
-        <li class="menu-item"><a href="/pages/contacto" class="menu-link">Contacto</a></li>
-      </ul>
-    </nav>
-
-    <div class="header-actions">
-      <form action="/search" method="get" class="search-form">
-        <input type="text" name="q" placeholder="Buscar..." class="search-input">
-        <button type="submit" class="search-btn">🔍</button>
-      </form>
-
-      <a href="/account" class="icon-link">👤</a>
-
-      <a href="/cart" class="icon-link cart-btn">
-        🛒 <span class="cart-count">{{ cart.item_count }}</span>
-      </a>
-    </div>
-  </div>
-</header>
+{% schema %}
+{
+  "name": "Kieslect Custom",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Kieslect Custom",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
