@@ -33,4 +33,73 @@
 
     {% sections 'footer-group' %}
   </body>
+  <style>
+    .k-header-fixed {
+      background: #000;
+      color: #fff;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      position: relative;
+      z-index: 9999;
+    }
+    .k-logo-text {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .k-nav-links a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .k-hero-box {
+      background: #000;
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      border-bottom: 4px solid #ff4d00;
+    }
+    .k-hero-box h1 {
+      font-size: 48px;
+      margin: 0;
+      color: #fff;
+    }
+    .k-hero-box p {
+      font-size: 18px;
+      color: #ccc;
+      margin: 20px 0;
+    }
+    .k-cta-btn {
+      background: #ff4d00;
+      color: #fff;
+      padding: 12px 30px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+
+  <header class="k-header-fixed">
+    <a href="/" class="k-logo-text">KIESLECT</a>
+    <nav class="k-nav-links">
+      <a href="/collections/all">Tienda</a>
+      <a href="/pages/contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="k-hero-box">
+    <h1>Kieslect Premium</h1>
+    <p>Explora la nueva era de smartwatches AMOLED.</p>
+    <a href="/collections/all" class="k-cta-btn">VER COLECCIÓN</a>
+  </section>
 </html>
