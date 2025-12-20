@@ -35,3 +35,19 @@
   ]
 }
 {% endschema %}
+
+{
+  "sections": {
+    "header_kieslect_custom": {
+      "type": "mega-menu-kieslect",
+      "settings": {
+        "main_menu": "main-menu"
+      }
+    },
+    // ... aquí irán tus otras secciones (banner, productos, etc)
+  },
+  "order": [
+    "header_kieslect_custom"
+    // ... el resto de tus secciones
+  ]
+}
