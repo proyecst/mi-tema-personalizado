@@ -29,7 +29,15 @@
   <body>
     {% sections 'header-group' %}
 
-    {{ content_for_layout }}
+   <div id="kieslect-hero-definitivo" style="background:#000; color:#fff; padding:80px 20px; text-align:center; font-family:sans-serif; border-bottom:8px solid #ff4d00;">
+  <h1 style="font-size:55px; font-weight:900; margin:0; letter-spacing:3px;">KIESLECT</h1>
+  <p style="font-size:22px; color:#bbb; margin:20px 0;">PREMIUM SMARTWATCHES</p>
+  <a href="/collections/all" style="background:#ff4d00; color:#fff; padding:18px 45px; text-decoration:none; font-weight:bold; border-radius:50px; display:inline-block; font-size:18px;">COMPRAR AHORA</a>
+</div>
+
+<main id="MainContent" role="main">
+  {{ content_for_layout }}
+</main>
 
     {% sections 'footer-group' %}
   </body>
