@@ -13,9 +13,15 @@
   "sections": {
     "header": {
       "type": "header",
+      "disabled": true,
       "settings": {
         "menu": ""
       }
+    },
+    "kieslect_hero_premium_JdR8nX": {
+      "type": "kieslect-hero-premium",
+      "name": "Kieslect Hero Premium",
+      "settings": {}
     },
     "kieslect_watch_banner_XzzeYB": {
       "type": "kieslect-watch-banner",
@@ -40,16 +46,60 @@
         "grid_style": "simple"
       }
     },
-    "kieslect_hero_premium_JdR8nX": {
-      "type": "kieslect-hero-premium",
-      "name": "Kieslect Hero Premium",
-      "settings": {}
+    "trust_bar_7X8Kwh": {
+      "type": "trust-bar",
+      "blocks": {
+        "trust_item_A8pQTg": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🚚",
+            "title": "Envío Gratis",
+            "subtitle": ""
+          }
+        },
+        "trust_item_a4PftR": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🔒",
+            "title": "Pago Seguro",
+            "subtitle": ""
+          }
+        },
+        "trust_item_eKVGmg": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "⚡",
+            "title": "Entrega Rápida",
+            "subtitle": "2–5 días"
+          }
+        },
+        "trust_item_Mpe9Ye": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "💬",
+            "title": "Soporte 24/7",
+            "subtitle": ""
+          }
+        }
+      },
+      "block_order": [
+        "trust_item_A8pQTg",
+        "trust_item_a4PftR",
+        "trust_item_eKVGmg",
+        "trust_item_Mpe9Ye"
+      ],
+      "name": "Barra de Confianza",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#333333"
+      }
     }
   },
   "order": [
     "header",
     "kieslect_hero_premium_JdR8nX",
     "kieslect_watch_banner_XzzeYB",
-    "listado_coleccion_avanzado_GJHFJY"
+    "listado_coleccion_avanzado_GJHFJY",
+    "trust_bar_7X8Kwh"
   ]
 }
