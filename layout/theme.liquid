@@ -29,77 +29,57 @@
   <body>
     {% sections 'header-group' %}
 
-    {{ content_for_layout }}
+   <div id="kieslect-hero-definitivo" style="background:#000; color:#fff; padding:80px 20px; text-align:center; font-family:sans-serif; border-bottom:8px solid #ff4d00;">
+  <h1 style="font-size:55px; font-weight:900; margin:0; letter-spacing:3px;">KIESLECT</h1>
+  <p style="font-size:22px; color:#bbb; margin:20px 0;">PREMIUM SMARTWATCHES</p>
+  <a href="/collections/all" style="background:#ff4d00; color:#fff; padding:18px 45px; text-decoration:none; font-weight:bold; border-radius:50px; display:inline-block; font-size:18px;">COMPRAR AHORA</a>
+</div>
+
+<main id="MainContent" role="main">
+  {{ content_for_layout }}
+</main>
 
     {% sections 'footer-group' %}
   </body>
+
   <style>
-    .k-header-fixed {
-      background: #000;
-      color: #fff;
-      padding: 15px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      position: relative;
-      z-index: 9999;
-    }
-    .k-logo-text {
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      color: #fff;
-      text-decoration: none;
-    }
-    .k-nav-links a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
+  .site-header-custom { background: #fff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; font-family: sans-serif; }
+  .nav-list { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; }
+  .nav-link { text-decoration: none; color: #000; font-weight: bold; position: relative; padding: 10px 0; }
+  .mega-menu { position: absolute; top: 50px; left: 0; width: 100%; background: #fff; display: none; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 999; padding: 20px; }
+  .has-mega:hover .mega-menu { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .mega-col h4 { color: #ff4d00; font-size: 14px; }
+  .mega-col a { display: block; color: #333; text-decoration: none; padding: 5px 0; }
+</style>
 
-    .k-hero-box {
-      background: #000;
-      color: #fff;
-      padding: 80px 20px;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      border-bottom: 4px solid #ff4d00;
-    }
-    .k-hero-box h1 {
-      font-size: 48px;
-      margin: 0;
-      color: #fff;
-    }
-    .k-hero-box p {
-      font-size: 18px;
-      color: #ccc;
-      margin: 20px 0;
-    }
-    .k-cta-btn {
-      background: #ff4d00;
-      color: #fff;
-      padding: 12px 30px;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 4px;
-      display: inline-block;
-    }
-  </style>
-
-  <header class="k-header-fixed">
-    <a href="/" class="k-logo-text">KIESLECT</a>
-    <nav class="k-nav-links">
-      <a href="/collections/all">Tienda</a>
-      <a href="/pages/contacto">Contacto</a>
-    </nav>
-  </header>
-
-  <section class="k-hero-box">
-    <h1>Kieslect Premium</h1>
-    <p>Explora la nueva era de smartwatches AMOLED.</p>
-    <a href="/collections/all" class="k-cta-btn">VER COLECCIÓN</a>
-  </section>
+<header class="site-header-custom">
+  <div class="logo"><strong>KIESLECT</strong></div>
+  <nav>
+    <ul class="nav-list">
+      <li class="has-mega">
+        <a href="/collections/all" class="nav-link">Tienda ▾</a>
+        <div class="mega-menu">
+          <div class="mega-col">
+            <h4>Smartwatches</h4>
+            <a href="/collections/amoled">Serie AMOLED</a>
+            <a href="/collections/bluetooth">Serie Llamadas</a>
+          </div>
+          <div class="mega-col">
+            <h4>Accesorios</h4>
+            <a href="/collections/correas">Correas</a>
+          </div>
+          <div class="mega-col">
+            <h4>Más</h4>
+            <a href="/collections/novedades">Novedades</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="/pages/sobre-kieslect" class="nav-link">Sobre Kieslect</a></li>
+      <li><a href="/pages/contacto" class="nav-link">Contacto</a></li>
+    </ul>
+  </nav>
+  <div class="actions">
+    <a href="/search">🔍</a> | <a href="/cart">🛒</a>
+  </div>
+</header>
 </html>
