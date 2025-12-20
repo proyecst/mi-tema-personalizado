@@ -7,53 +7,15 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- 
+{
   "sections": {
-    "kieslect_hero_custom": {
-      "type": "kieslect-hero-premium",
-      "settings": {}
-    },
     "main": {
-      "type": "main-index",
+      "type": "hello-world",
       "settings": {}
     }
   },
   "order": [
-    "kieslect_hero_custom",
     "main"
   ]
 }
 
-
-
-{% schema %}
-{
-  "name": "Kieslect Header",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "main_menu",
-      "label": "Menú Principal",
-      "default": "main-menu"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Kieslect Header"
-    }
-  ]
-}
-{% endschema %}
-{
-  "sections": {
-    "header_kieslect_custom": {
-      "type": "mega-menu-kieslect",
-      "settings": {
-        "main_menu": "main-menu"
-      }
-    }
-  },
-  "order": [
-    "header_kieslect_custom"
-  ]
-}
