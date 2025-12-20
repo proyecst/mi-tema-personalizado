@@ -24,10 +24,19 @@
   ]
 }
 
+
+
 {% schema %}
 {
   "name": "Kieslect Header",
-  "settings": [],
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Menú Principal",
+      "default": "main-menu"
+    }
+  ],
   "presets": [
     {
       "name": "Kieslect Header"
@@ -35,7 +44,6 @@
   ]
 }
 {% endschema %}
-
 {
   "sections": {
     "header_kieslect_custom": {
