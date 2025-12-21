@@ -303,6 +303,47 @@
         "padding_top": 50,
         "padding_bottom": 50
       }
+    },
+    "bloque_educativo_pp7LX9": {
+      "type": "bloque-educativo",
+      "blocks": {
+        "guide_WwyFYD": {
+          "type": "guide",
+          "settings": {
+            "title": "Cómo Elegir el Smartwatch Ideal",
+            "link": ""
+          }
+        },
+        "guide_fhBqCc": {
+          "type": "guide",
+          "settings": {
+            "title": "Guía de Cuidado del Smartwatch",
+            "link": ""
+          }
+        },
+        "guide_LpP4PU": {
+          "type": "guide",
+          "settings": {
+            "title": "Trucos de KieslectOS 2.0",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "guide_WwyFYD",
+        "guide_fhBqCc",
+        "guide_LpP4PU"
+      ],
+      "name": "Bloque Educativo",
+      "settings": {
+        "title": "Aprende más sobre tu Smartwatch",
+        "blog_id": "",
+        "post_limit": 3,
+        "cta_text": "Leer el Blog",
+        "bg_color": "#ffffff",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
     }
   },
   "order": [
@@ -314,6 +355,7 @@
     "series_destacadas_zpGQwz",
     "caracteristicas_reloj_Vy3xdp",
     "testimonios_reales_Ahq9Wc",
-    "comparador_modelos_jMTaXE"
+    "comparador_modelos_jMTaXE",
+    "bloque_educativo_pp7LX9"
   ]
 }
