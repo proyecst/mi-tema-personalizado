@@ -1,0 +1,161 @@
+{%- style -%}
+  .custom-footer {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: 60px 0 30px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .footer-logo-info p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 15px;
+    opacity: 0.8;
+  }
+
+  .footer-column h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: {{ section.settings.text_color }};
+  }
+
+  .footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-list li {
+    margin-bottom: 12px;
+  }
+
+  .footer-list a {
+    text-decoration: none;
+    color: {{ section.settings.text_color }};
+    opacity: 0.7;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+  }
+
+  .footer-list a:hover {
+    opacity: 1;
+  }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 30px 20px 0 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    opacity: 0.6;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 15px;
+  }
+
+  .footer-socials svg {
+    fill: {{ section.settings.text_color }};
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .footer-container {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+    }
+  }
+{%- endstyle -%}
+
+<footer class="custom-footer">
+  <div class="footer-container">
+    <div class="footer-column footer-logo-info">
+      {% if section.settings.logo_text != blank %}
+        <h2 style="margin:0;">{{ section.settings.logo_text }}</h2>
+      {% endif %}
+      <p>{{ section.settings.description }}</p>
+    </div>
+
+    <div class="footer-column">
+      <h3>Compañía</h3>
+      <ul class="footer-list">
+        {% for link in linklists[section.settings.menu_company].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Soporte</h3>
+      <ul class="footer-list">
+        {% for link in linklists[section.settings.menu_support].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Contacto</h3>
+      <p style="font-size: 0.9rem; opacity: 0.7;">{{ section.settings.contact_info }}</p>
+      <div class="footer-socials" style="margin-top:15px;">
+        {%- comment -%} Aquí puedes agregar iconos de redes sociales {%- endcomment -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copyright">
+      &copy; {{ 'now' | date: "%Y" }}, {{ shop.name }}. Todos los derechos reservados.
+    </div>
+    <div class="footer-payment-icons">
+      {%- comment -%} Iconos de pago automáticos de Shopify {%- endcomment -%}
+      {% for type in shop.enabled_payment_types %}
+        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+      {% endfor %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer Personalizado",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de Fondo", "default": "#000000" },
+    { "type": "color", "id": "text_color", "label": "Color de Texto", "default": "#ffffff" },
+    { "type": "text", "id": "logo_text", "label": "Nombre/Logo", "default": "KIESLECT" },
+    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Innovación en tu muñeca. Smartwatches de alta tecnología y diseño premium." },
+    { "type": "link_list", "id": "menu_company", "label": "Menú Compañía" },
+    { "type": "link_list", "id": "menu_support", "label": "Menú Soporte" },
+    { "type": "textarea", "id": "contact_info", "label": "Información de Contacto", "default": "soporte@tu-tienda.com" }
+  ],
+  "presets": [
+    { "name": "Footer Personalizado" }
+  ]
+}
+{% endschema %}
