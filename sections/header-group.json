@@ -247,6 +247,62 @@
         "padding_top": 50,
         "padding_bottom": 50
       }
+    },
+    "comparador_modelos_jMTaXE": {
+      "type": "comparador-modelos",
+      "blocks": {
+        "model_EeEXEM": {
+          "type": "model",
+          "settings": {
+            "model_name": "KS3",
+            "price": "$120",
+            "spec_screen": "AMOLED 2.0\"",
+            "feat_calls": true,
+            "spec_battery": "10 días",
+            "spec_sports": "100+",
+            "feat_voice": true
+          }
+        },
+        "model_tqDtJx": {
+          "type": "model",
+          "settings": {
+            "model_name": "KR03",
+            "price": "$90",
+            "spec_screen": "AMOLED 2.0\"",
+            "feat_calls": true,
+            "spec_battery": "10 días",
+            "spec_sports": "100+",
+            "feat_voice": true
+          }
+        },
+        "model_7B6WTk": {
+          "type": "model",
+          "settings": {
+            "model_name": "KS2",
+            "price": "$75",
+            "spec_screen": "AMOLED 2.0\"",
+            "feat_calls": true,
+            "spec_battery": "10 días",
+            "spec_sports": "100+",
+            "feat_voice": true
+          }
+        }
+      },
+      "block_order": [
+        "model_EeEXEM",
+        "model_tqDtJx",
+        "model_7B6WTk"
+      ],
+      "name": "Herramienta de Comparación",
+      "settings": {
+        "title": "Compara nuestros Smartwatches",
+        "bg_color": "#ffffff",
+        "btn_color": "#000000",
+        "cta_text": "Comparar Modelos",
+        "cta_link": "",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
     }
   },
   "order": [
@@ -257,6 +313,7 @@
     "trust_bar_7X8Kwh",
     "series_destacadas_zpGQwz",
     "caracteristicas_reloj_Vy3xdp",
-    "testimonios_reales_Ahq9Wc"
+    "testimonios_reales_Ahq9Wc",
+    "comparador_modelos_jMTaXE"
   ]
 }
