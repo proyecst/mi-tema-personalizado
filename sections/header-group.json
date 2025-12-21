@@ -344,6 +344,23 @@
         "padding_top": 50,
         "padding_bottom": 50
       }
+    },
+    "newsletter_descuento_n4HQHQ": {
+      "type": "newsletter-descuento",
+      "name": "Newsletter con Descuento",
+      "settings": {
+        "badge_text": "Oferta de Bienvenida",
+        "title": "Únete a la familia Kieslect",
+        "subtitle": "Suscríbete y obtén un 15% de descuento en tu primer pedido.",
+        "btn_text": "Obtener mi descuento",
+        "bg_color": "#ffffff",
+        "inner_bg_color": "#f4f4f4",
+        "text_color": "#000000",
+        "btn_bg_color": "#000000",
+        "btn_text_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -356,6 +373,7 @@
     "caracteristicas_reloj_Vy3xdp",
     "testimonios_reales_Ahq9Wc",
     "comparador_modelos_jMTaXE",
-    "bloque_educativo_pp7LX9"
+    "bloque_educativo_pp7LX9",
+    "newsletter_descuento_n4HQHQ"
   ]
 }
