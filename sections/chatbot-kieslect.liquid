@@ -1,0 +1,168 @@
+{%- style -%}
+  :root {
+    --chat-color: {{ section.settings.chat_color }};
+  }
+
+  /* Botón Flotante */
+  .chat-launcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--chat-color);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: transform 0.3s ease;
+  }
+  
+  .chat-launcher:hover { transform: scale(1.1); }
+  
+  .chat-launcher svg { width: 30px; height: 30px; fill: white; }
+
+  /* Ventana de Chat */
+  .chat-window {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    max-height: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 10000;
+    font-family: sans-serif;
+  }
+
+  .chat-window.active { display: flex; animation: slideUp 0.3s ease; }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .chat-header {
+    background: var(--chat-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .chat-header h4 { margin: 0; font-size: 1.1rem; }
+  .chat-header p { margin: 5px 0 0; font-size: 0.8rem; opacity: 0.9; }
+
+  .chat-body {
+    padding: 20px;
+    overflow-y: auto;
+    background: #f9f9f9;
+  }
+
+  .chat-msg {
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    border-left: 3px solid var(--chat-color);
+  }
+
+  .chat-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-option-btn {
+    background: white;
+    border: 1px solid var(--chat-color);
+    color: var(--chat-color);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 600;
+  }
+
+  .chat-option-btn:hover {
+    background: var(--chat-color);
+    color: white;
+  }
+
+  .chat-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+  }
+{%- endstyle -%}
+
+<div id="chat-launcher" class="chat-launcher" onclick="toggleChat()">
+  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+</div>
+
+<div id="chat-window" class="chat-window">
+  <div class="chat-header">
+    <span class="chat-close" onclick="toggleChat()">&times;</span>
+    <h4>Asistente Kieslect</h4>
+    <p>En línea • Respondemos al instante</p>
+  </div>
+  
+  <div class="chat-body">
+    <div class="chat-msg">
+      ¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?
+    </div>
+    
+    <div class="chat-options">
+      <a href="/collections/all" class="chat-option-btn">🛍️ Ver Catálogo de Relojes</a>
+      
+      <div class="chat-option-btn" onclick="botReply('Para comparar, te recomiendo visitar nuestra tabla comparativa de los modelos KS3, KR y KS2.')">⚖️ Comparar Modelos</div>
+      
+      <div class="chat-option-btn" onclick="botReply('Para soporte, asegúrate de tener instalada la App Kieslect OS. ¿Tienes problemas de conexión?')">🔧 Soporte Técnico</div>
+      
+      <a href="https://wa.me/{{ section.settings.wa_number }}" target="_blank" class="chat-option-btn" style="border-color: #25d366; color: #25d366;">🟢 Hablar con un Asesor</a>
+    </div>
+    
+    <div id="bot-response" class="chat-msg" style="display:none; margin-top: 15px; background: #eefbff;">
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleChat() {
+    const chat = document.getElementById('chat-window');
+    chat.classList.toggle('active');
+  }
+
+  function botReply(text) {
+    const respDiv = document.getElementById('bot-response');
+    respDiv.innerText = text;
+    respDiv.style.display = 'block';
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Chatbot Kieslect",
+  "settings": [
+    { "type": "color", "id": "chat_color", "label": "Color Principal", "default": "#000000" },
+    { "type": "text", "id": "wa_number", "label": "Número WhatsApp (sin +)", "default": "54911000000" }
+  ],
+  "presets": [
+    { "name": "Chatbot Kieslect" }
+  ]
+}
+{% endschema %}
