@@ -93,6 +93,59 @@
         "bg_color": "#ffffff",
         "text_color": "#333333"
       }
+    },
+    "series_destacadas_zpGQwz": {
+      "type": "series-destacadas",
+      "blocks": {
+        "serie_KJzfYx": {
+          "type": "serie",
+          "settings": {
+            "title": "Serie AMOLED",
+            "link": ""
+          }
+        },
+        "serie_8gbAAE": {
+          "type": "serie",
+          "settings": {
+            "title": "Serie con Llamadas Bluetooth",
+            "link": ""
+          }
+        },
+        "serie_GJ79N8": {
+          "type": "serie",
+          "settings": {
+            "title": "Serie Deportiva",
+            "link": ""
+          }
+        },
+        "serie_6MzWPg": {
+          "type": "serie",
+          "settings": {
+            "title": "Novedades",
+            "link": ""
+          }
+        },
+        "serie_hKArRi": {
+          "type": "serie",
+          "settings": {
+            "title": "Best Sellers",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "serie_KJzfYx",
+        "serie_8gbAAE",
+        "serie_GJ79N8",
+        "serie_6MzWPg",
+        "serie_hKArRi"
+      ],
+      "name": "Series Destacadas",
+      "settings": {
+        "title": "Series Destacadas",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -100,6 +153,7 @@
     "kieslect_hero_premium_JdR8nX",
     "kieslect_watch_banner_XzzeYB",
     "listado_coleccion_avanzado_GJHFJY",
-    "trust_bar_7X8Kwh"
+    "trust_bar_7X8Kwh",
+    "series_destacadas_zpGQwz"
   ]
 }
