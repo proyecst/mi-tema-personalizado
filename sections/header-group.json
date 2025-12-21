@@ -146,6 +146,107 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "caracteristicas_reloj_Vy3xdp": {
+      "type": "caracteristicas-reloj",
+      "blocks": {
+        "feature_3CHg6f": {
+          "type": "feature",
+          "settings": {
+            "title": "Pantalla AMOLED"
+          }
+        },
+        "feature_qf3Ud4": {
+          "type": "feature",
+          "settings": {
+            "title": "Asistente de Voz IA"
+          }
+        },
+        "feature_G9zxJb": {
+          "type": "feature",
+          "settings": {
+            "title": "100+ Modos Deportivos"
+          }
+        },
+        "feature_i4gwd4": {
+          "type": "feature",
+          "settings": {
+            "title": "Llamadas Bluetooth"
+          }
+        },
+        "feature_ReDft9": {
+          "type": "feature",
+          "settings": {
+            "title": "Batería de Larga Duración"
+          }
+        },
+        "feature_qkmngN": {
+          "type": "feature",
+          "settings": {
+            "title": "Sensores de Salud"
+          }
+        }
+      },
+      "block_order": [
+        "feature_3CHg6f",
+        "feature_qf3Ud4",
+        "feature_G9zxJb",
+        "feature_i4gwd4",
+        "feature_ReDft9",
+        "feature_qkmngN"
+      ],
+      "name": "Características Principales Reloj",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "btn_color": "#000000",
+        "btn_text_color": "#ffffff",
+        "cta_text": "Explorar Funciones",
+        "cta_link": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "testimonios_reales_Ahq9Wc": {
+      "type": "testimonios-reales",
+      "blocks": {
+        "testimonial_iMwRwi": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "review_text": "Excelente producto, la pantalla AMOLED se ve increíble.",
+            "user_name": "Juan Pérez"
+          }
+        },
+        "testimonial_zCNUQx": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "review_text": "Excelente producto, la pantalla AMOLED se ve increíble.",
+            "user_name": "Juan Pérez"
+          }
+        },
+        "testimonial_rgVaKn": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "review_text": "Excelente producto, la pantalla AMOLED se ve increíble.",
+            "user_name": "Juan Pérez"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_iMwRwi",
+        "testimonial_zCNUQx",
+        "testimonial_rgVaKn"
+      ],
+      "name": "Testimonios de Clientes",
+      "settings": {
+        "title": "Lo que dicen nuestros clientes",
+        "bg_color": "#f9f9f9",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
     }
   },
   "order": [
@@ -154,6 +255,8 @@
     "kieslect_watch_banner_XzzeYB",
     "listado_coleccion_avanzado_GJHFJY",
     "trust_bar_7X8Kwh",
-    "series_destacadas_zpGQwz"
+    "series_destacadas_zpGQwz",
+    "caracteristicas_reloj_Vy3xdp",
+    "testimonios_reales_Ahq9Wc"
   ]
 }
