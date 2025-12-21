@@ -361,6 +361,19 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "footer_personalizado_pwwPzp": {
+      "type": "footer-personalizado",
+      "name": "Footer Personalizado",
+      "settings": {
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "logo_text": "KIESLECT",
+        "description": "Innovación en tu muñeca. Smartwatches de alta tecnología y diseño premium.",
+        "menu_company": "",
+        "menu_support": "",
+        "contact_info": "soporte@tu-tienda.com"
+      }
     }
   },
   "order": [
@@ -374,6 +387,7 @@
     "testimonios_reales_Ahq9Wc",
     "comparador_modelos_jMTaXE",
     "bloque_educativo_pp7LX9",
-    "newsletter_descuento_n4HQHQ"
+    "newsletter_descuento_n4HQHQ",
+    "footer_personalizado_pwwPzp"
   ]
 }
