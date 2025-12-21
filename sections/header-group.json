@@ -97,6 +97,20 @@
     "series_destacadas_zpGQwz": {
       "type": "series-destacadas",
       "blocks": {
+        "serie_NqBhy9": {
+          "type": "serie",
+          "settings": {
+            "title": "Nombre de la Serie",
+            "link": ""
+          }
+        },
+        "serie_zdK7GG": {
+          "type": "serie",
+          "settings": {
+            "title": "Nombre de la Serie",
+            "link": ""
+          }
+        },
         "serie_KJzfYx": {
           "type": "serie",
           "settings": {
@@ -117,28 +131,14 @@
             "title": "Serie Deportiva",
             "link": ""
           }
-        },
-        "serie_6MzWPg": {
-          "type": "serie",
-          "settings": {
-            "title": "Novedades",
-            "link": ""
-          }
-        },
-        "serie_hKArRi": {
-          "type": "serie",
-          "settings": {
-            "title": "Best Sellers",
-            "link": ""
-          }
         }
       },
       "block_order": [
+        "serie_NqBhy9",
+        "serie_zdK7GG",
         "serie_KJzfYx",
         "serie_8gbAAE",
-        "serie_GJ79N8",
-        "serie_6MzWPg",
-        "serie_hKArRi"
+        "serie_GJ79N8"
       ],
       "name": "Series Destacadas",
       "settings": {
