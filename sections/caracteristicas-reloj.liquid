@@ -1,0 +1,145 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .feat-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .feat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 20px;
+    margin-bottom: 50px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .feat-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px 10px;
+    }
+  }
+
+  .feat-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feat-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f4f4;
+    border-radius: 50%;
+    color: #000;
+  }
+
+  .feat-icon-wrapper svg, .feat-icon-wrapper img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .feat-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+    color: {{ section.settings.text_color }};
+  }
+
+  .feat-cta-wrapper {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .feat-btn {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: {{ section.settings.btn_color }};
+    color: {{ section.settings.btn_text_color }};
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+  }
+
+  .feat-btn:hover {
+    opacity: 0.8;
+  }
+{%- endstyle -%}
+
+<div class="feat-container">
+  <div class="feat-grid">
+    {% for block in section.blocks %}
+      <div class="feat-item" {{ block.shopify_attributes }}>
+        <div class="feat-icon-wrapper">
+          {% if block.settings.custom_icon != blank %}
+            <img src="{{ block.settings.custom_icon | image_url: width: 100 }}" alt="{{ block.settings.title }}" loading="lazy">
+          {% else %}
+            {% render 'icon-accordion' %} {%- comment -%} Icono genérico si no hay imagen {%- endcomment -%}
+          {% endif %}
+        </div>
+        <h3 class="feat-title">{{ block.settings.title }}</h3>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.cta_text != blank %}
+    <div class="feat-cta-wrapper">
+      <a href="{{ section.settings.cta_link }}" class="feat-btn">
+        {{ section.settings.cta_text }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Características Reloj",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Color Texto", "default": "#000000" },
+    { "type": "color", "id": "btn_color", "label": "Color Botón", "default": "#000000" },
+    { "type": "color", "id": "btn_text_color", "label": "Color Texto Botón", "default": "#ffffff" },
+    { "type": "text", "id": "cta_text", "label": "Texto Botón", "default": "Explorar Funciones" },
+    { "type": "url", "id": "cta_link", "label": "Link Botón" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "default": 40, "unit": "px", "label": "Padding Superior" },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "default": 40, "unit": "px", "label": "Padding Inferior" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Característica",
+      "limit": 6,
+      "settings": [
+        { "type": "image_picker", "id": "custom_icon", "label": "Icono (PNG/SVG)" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Característica" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Características Principales Reloj",
+      "blocks": [
+        { "type": "feature", "settings": { "title": "Pantalla AMOLED" } },
+        { "type": "feature", "settings": { "title": "Asistente de Voz IA" } },
+        { "type": "feature", "settings": { "title": "100+ Modos Deportivos" } },
+        { "type": "feature", "settings": { "title": "Llamadas Bluetooth" } },
+        { "type": "feature", "settings": { "title": "Batería de Larga Duración" } },
+        { "type": "feature", "settings": { "title": "Sensores de Salud" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
