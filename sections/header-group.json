@@ -18,6 +18,34 @@
         "menu": ""
       }
     },
+    "hero_tech_yAaWMa": {
+      "type": "hero-tech-",
+      "name": "Banner Tech Premium",
+      "settings": {
+        "title_1": "Kieslect",
+        "title_2": "Serie KS3 Pro",
+        "subtitle": "Doble núcleo, pantalla AMOLED de 2.01\" y una experiencia de usuario fluida como nunca antes.",
+        "btn_text": "Comprar Ahora",
+        "link": "",
+        "accent_color": "#0071e3",
+        "height_desktop": 90
+      }
+    },
+    "hero_animado_kieslect_6NKX9X": {
+      "type": "hero-animado-kieslect",
+      "disabled": true,
+      "name": "Banner Animado Pro",
+      "settings": {
+        "title": "Kieslect KS3",
+        "subtitle": "El futuro de la tecnología con pantalla AMOLED y doble núcleo.",
+        "btn_text": "Comprar Ahora",
+        "btn_link": "",
+        "btn_color": "#e62e04",
+        "text_alignment": "flex-start",
+        "height_desktop": 80,
+        "height_mobile": 60
+      }
+    },
     "kieslect_hero_premium_JdR8nX": {
       "type": "kieslect-hero-premium",
       "name": "Kieslect Hero Premium",
@@ -382,24 +410,11 @@
         "chat_color": "#000000",
         "wa_number": "54911000000"
       }
-    },
-    "hero_animado_kieslect_6NKX9X": {
-      "type": "hero-animado-kieslect",
-      "name": "Banner Animado Pro",
-      "settings": {
-        "title": "Kieslect KS3",
-        "subtitle": "El futuro de la tecnología con pantalla AMOLED y doble núcleo.",
-        "btn_text": "Comprar Ahora",
-        "btn_link": "",
-        "btn_color": "#e62e04",
-        "text_alignment": "flex-start",
-        "height_desktop": 80,
-        "height_mobile": 60
-      }
     }
   },
   "order": [
     "header",
+    "hero_tech_yAaWMa",
     "hero_animado_kieslect_6NKX9X",
     "kieslect_hero_premium_JdR8nX",
     "kieslect_watch_banner_XzzeYB",
