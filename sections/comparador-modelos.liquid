@@ -1,0 +1,185 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  .comp-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-family: sans-serif;
+  }
+
+  .comp-title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .comp-table-wrapper {
+    overflow-x: auto; /* Permite scroll en móviles */
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    background: #fff;
+  }
+
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px; /* Asegura que no se aplaste en móviles */
+  }
+
+  .comp-table th, .comp-table td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .comp-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+
+  .comp-model-name {
+    font-size: 1.4rem;
+    color: #000;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .comp-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e62e04;
+  }
+
+  .comp-feature-label {
+    text-align: left !important;
+    background-color: #fcfcfc;
+    font-weight: 600;
+    width: 25%;
+  }
+
+  .comp-check {
+    color: #27ae60;
+    font-weight: bold;
+  }
+
+  .comp-cta-container {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .comp-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: {{ section.settings.btn_color }};
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.2s;
+  }
+
+  .comp-btn:hover {
+    transform: scale(1.05);
+  }
+{%- endstyle -%}
+
+<div class="comp-container">
+  {% if section.settings.title != blank %}
+    <h2 class="comp-title">{{ section.settings.title }}</h2>
+  {% endif %}
+
+  <div class="comp-table-wrapper">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th class="comp-feature-label">Especificaciones</th>
+          {% for block in section.blocks %}
+            <th>
+              <span class="comp-model-name">{{ block.settings.model_name }}</span>
+              <span class="comp-price">{{ block.settings.price }}</span>
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="comp-feature-label">Pantalla</td>
+          {% for block in section.blocks %}<td>{{ block.settings.spec_screen }}</td>{% endfor %}
+        </tr>
+        <tr>
+          <td class="comp-feature-label">Llamadas BT</td>
+          {% for block in section.blocks %}
+            <td>{% if block.settings.feat_calls %}<span class="comp-check">✓ Sí</span>{% else %}—{% endif %}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="comp-feature-label">Batería</td>
+          {% for block in section.blocks %}<td>{{ block.settings.spec_battery }}</td>{% endfor %}
+        </tr>
+        <tr>
+          <td class="comp-feature-label">Modos Deportivos</td>
+          {% for block in section.blocks %}<td>{{ block.settings.spec_sports }}</td>{% endfor %}
+        </tr>
+        <tr>
+          <td class="comp-feature-label">Asistente de Voz</td>
+          {% for block in section.blocks %}
+            <td>{% if block.settings.feat_voice %}<span class="comp-check">✓ Sí</span>{% else %}—{% endif %}</td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="comp-cta-container">
+    <a href="{{ section.settings.cta_link }}" class="comp-btn">
+      {{ section.settings.cta_text }}
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Comparador de Modelos",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "Compara nuestros Smartwatches" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#ffffff" },
+    { "type": "color", "id": "btn_color", "label": "Color Botón", "default": "#000000" },
+    { "type": "text", "id": "cta_text", "label": "Texto Botón", "default": "Comparar Modelos" },
+    { "type": "url", "id": "cta_link", "label": "Link Botón" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 50, "unit": "px", "label": "Padding Superior" },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "default": 50, "unit": "px", "label": "Padding Inferior" }
+  ],
+  "blocks": [
+    {
+      "type": "model",
+      "name": "Modelo",
+      "settings": [
+        { "type": "text", "id": "model_name", "label": "Nombre del Modelo", "default": "KS3" },
+        { "type": "text", "id": "price", "label": "Precio", "default": "$99.00" },
+        { "type": "text", "id": "spec_screen", "label": "Tipo de Pantalla", "default": "AMOLED 2.0\"" },
+        { "type": "checkbox", "id": "feat_calls", "label": "Tiene Llamadas BT", "default": true },
+        { "type": "text", "id": "spec_battery", "label": "Duración Batería", "default": "10 días" },
+        { "type": "text", "id": "spec_sports", "label": "Modos Deportivos", "default": "100+" },
+        { "type": "checkbox", "id": "feat_voice", "label": "Tiene Asistente Voz", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Herramienta de Comparación",
+      "blocks": [
+        { "type": "model", "settings": { "model_name": "KS3", "price": "$120" } },
+        { "type": "model", "settings": { "model_name": "KR03", "price": "$90" } },
+        { "type": "model", "settings": { "model_name": "KS2", "price": "$75" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
