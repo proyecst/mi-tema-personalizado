@@ -374,6 +374,14 @@
         "menu_support": "",
         "contact_info": "soporte@tu-tienda.com"
       }
+    },
+    "chatbot_kieslect_kdMWME": {
+      "type": "chatbot-kieslect",
+      "name": "Chatbot Kieslect",
+      "settings": {
+        "chat_color": "#000000",
+        "wa_number": "54911000000"
+      }
     }
   },
   "order": [
@@ -388,6 +396,7 @@
     "comparador_modelos_jMTaXE",
     "bloque_educativo_pp7LX9",
     "newsletter_descuento_n4HQHQ",
-    "footer_personalizado_pwwPzp"
+    "footer_personalizado_pwwPzp",
+    "chatbot_kieslect_kdMWME"
   ]
 }
