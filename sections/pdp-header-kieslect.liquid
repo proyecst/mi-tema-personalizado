@@ -1,0 +1,81 @@
+<div class="k-pdp-header" style="background: {{ section.settings.bg }};">
+  <div class="k-container">
+    
+    <nav class="k-breadcrumb" aria-label="breadcrumbs">
+      <a href="/">Inicio</a>
+      <span class="sep">/</span>
+      {% if collection %}
+        <a href="{{ collection.url }}">{{ collection.title }}</a>
+        <span class="sep">/</span>
+      {% else %}
+        <a href="/collections/all">Smartwatches</a>
+        <span class="sep">/</span>
+      {% endif %}
+      <span class="current">{{ product.title }}</span>
+    </nav>
+
+    <div class="k-badges">
+      {%- assign date_published = product.published_at | date: '%s' -%}
+      {%- assign date_now = 'now' | date: '%s' -%}
+      {%- assign diff_days = date_now | minus: date_published | divided_by: 86400 -%}
+
+      {% comment %} NUEVO automático (30 días) {% endcomment %}
+      {% if diff_days < 30 %}
+        <span class="k-badge k-new">NUEVO</span>
+      {% endif %}
+
+      {% comment %} OFERTA automática {% endcomment %}
+      {% if product.compare_at_price > product.price %}
+        <span class="k-badge k-sale">OFERTA</span>
+      {% endif %}
+
+      {% comment %} Etiquetas por TAGS {% endcomment %}
+      {% for tag in product.tags %}
+        {% if tag contains 'Limitada' %}
+          <span class="k-badge k-limited">EDICIÓN LIMITADA</span>
+        {% elsif tag contains 'Top' %}
+          <span class="k-badge k-best">MÁS VENDIDO</span>
+        {% elsif tag contains 'Exclusivo' %}
+          <span class="k-badge k-exclusive">EXCLUSIVO</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .k-pdp-header { padding: 20px 0; border-bottom: 1px solid #222; font-family: sans-serif; }
+  .k-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+  
+  /* Breadcrumbs */
+  .k-breadcrumb { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .k-breadcrumb a { color: #888; text-decoration: none; }
+  .k-breadcrumb a:hover { color: #e62e04; }
+  .k-breadcrumb .sep { margin: 0 8px; color: #444; }
+  .k-breadcrumb .current { color: #fff; font-weight: bold; }
+
+  /* Badges */
+  .k-badges { display: flex; gap: 8px; }
+  .k-badge { padding: 4px 10px; font-size: 10px; font-weight: 900; color: #000; border-radius: 2px; }
+  
+  .k-new { background: #00ff88; }
+  .k-sale { background: #e62e04; color: #fff; }
+  .k-limited { background: #ffea00; }
+  .k-best { background: #2979ff; color: #fff; }
+  .k-exclusive { border: 1px solid #e62e04; color: #e62e04; background: transparent; }
+
+  @media (max-width: 768px) {
+    .k-container { flex-direction: column; align-items: flex-start; gap: 15px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "K Header Detalle",
+  "settings": [
+    { "type": "color", "id": "bg", "label": "Fondo", "default": "#000000" }
+  ],
+  "presets": [{ "name": "K Header Detalle" }]
+}
+{% endschema %}
