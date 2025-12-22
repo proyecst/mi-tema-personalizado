@@ -11,8 +11,16 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
+    "pdp_header_kieslect_UkgfwC": {
+      "type": "pdp-header-kieslect",
+      "name": "K Header Detalle",
+      "settings": {
+        "bg": "#000000"
+      }
+    },
     "header": {
       "type": "header",
+      "disabled": true,
       "settings": {
         "menu": ""
       }
@@ -408,14 +416,6 @@
       "settings": {
         "chat_color": "#000000",
         "wa_number": "54911000000"
-      }
-    },
-    "pdp_header_kieslect_UkgfwC": {
-      "type": "pdp-header-kieslect",
-      "disabled": true,
-      "name": "K Header Detalle",
-      "settings": {
-        "bg": "#000000"
       }
     }
   },
