@@ -1,29 +1,21 @@
-<div style="background:#000; color:#fff; padding:60px; text-align:center;">
-  <h1>{{ section.settings.t | escape }}</h1>
-  {% if section.settings.i != blank %}
-    {{ section.settings.i | image_url: width: 800 | image_tag: loading: 'lazy', style: 'width:100%; max-width:400px;' }}
-  {% endif %}
-</div>
+<section style="background:#000; color:#fff; padding:50px; text-align:center;">
+  <h1>{{ section.settings.t }}</h1>
+</section>
 
 {% schema %}
 {
-  "name": "Banner K",
+  "name": "Hero",
   "settings": [
     {
       "type": "text",
       "id": "t",
-      "label": "Titulo",
+      "label": "T",
       "default": "Kieslect"
-    },
-    {
-      "type": "image_picker",
-      "id": "i",
-      "label": "Imagen"
     }
   ],
   "presets": [
     {
-      "name": "Banner K"
+      "name": "Hero"
     }
   ]
 }
