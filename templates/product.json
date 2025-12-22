@@ -7,19 +7,23 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
+
+
 {
   "sections": {
     "header": {
       "type": "pdp-header-kieslect",
-      "settings": {}
+      "settings": {
+        "bg": "#000000"
+      }
     },
-    "producto": {
+    "main": {
       "type": "main-product",
       "settings": {}
     }
   },
   "order": [
     "header",
-    "producto"
+    "main"
   ]
 }
