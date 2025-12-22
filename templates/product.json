@@ -9,12 +9,17 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "product",
+    "kieslect_header_pdp": {
+      "type": "product-header-kieslect",
+      "settings": {}
+    },
+    "informacion_producto": {
+      "type": "main-product",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "kieslect_header_pdp",
+    "informacion_producto"
   ]
 }
