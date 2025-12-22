@@ -124,18 +124,16 @@
       <a href="{{ section.settings.link }}" class="hero-id-btn">{{ section.settings.btn_text }}</a>
     </div>
     
-    <<div class="ks-hero-img-area">
-  {% if section.settings.image != blank %}
-    <img 
-      src="{{ section.settings.image | image_url: width: 1200 }}" 
-      alt="{{ section.settings.image.alt | default: 'Smartwatch Kieslect' }}"
-      loading="eager"
-      width="1200"
-      height="auto"
-    >
-  {% else %}
-    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-  {% endif %}
+   <div class="ks-hero-img-area">
+  {%- if section.settings.image != blank -%}
+    {{ section.settings.image | image_url: width: 1200 | image_tag: 
+      loading: 'eager', 
+      alt: section.settings.title_top,
+      class: 'hero-image-render'
+    }}
+  {%- else -%}
+    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg-kieslect' }}
+  {%- endif -%}
 </div>
 </section>
 
