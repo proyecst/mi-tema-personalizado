@@ -13,7 +13,6 @@
   "sections": {
     "header": {
       "type": "header",
-      "disabled": true,
       "settings": {
         "menu": ""
       }
@@ -410,9 +409,18 @@
         "chat_color": "#000000",
         "wa_number": "54911000000"
       }
+    },
+    "pdp_header_kieslect_UkgfwC": {
+      "type": "pdp-header-kieslect",
+      "disabled": true,
+      "name": "K Header Detalle",
+      "settings": {
+        "bg": "#000000"
+      }
     }
   },
   "order": [
+    "pdp_header_kieslect_UkgfwC",
     "header",
     "hero_tech_yAaWMa",
     "hero_animado_kieslect_6NKX9X",
