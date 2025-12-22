@@ -1,0 +1,37 @@
+<section class="pdp-main container" style="background: #000; color: #fff; padding: 40px 20px;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
+    
+    <div class="product-gallery">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 800 | image_tag: class: 'img-fluid' }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+
+    <div class="product-info">
+      <h1 style="font-size: 40px; color: #e62e04;">{{ product.title }}</h1>
+      <div class="price" style="font-size: 24px; margin: 20px 0;">
+        {{ product.price | money }}
+      </div>
+      
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" style="background: #e62e04; color: #fff; padding: 15px 40px; border: none; font-weight: bold; width: 100%; cursor: pointer;">
+          AÑADIR AL CARRITO
+        </button>
+      {% endform %}
+
+      <div class="description" style="margin-top: 30px; color: #ccc; line-height: 1.6;">
+        {{ product.description }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Producto Principal",
+  "settings": []
+}
+{% endschema %}
