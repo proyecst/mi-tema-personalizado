@@ -9,17 +9,17 @@
  */
 {
   "sections": {
-    "cabecera": {
-      "type": "product-header-kieslect",
+    "header": {
+      "type": "pdp-header-kieslect",
       "settings": {}
     },
-    "cuerpo": {
+    "producto": {
       "type": "main-product",
       "settings": {}
     }
   },
   "order": [
-    "cabecera",
-    "cuerpo"
+    "header",
+    "producto"
   ]
 }
