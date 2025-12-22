@@ -9,17 +9,17 @@
  */
 {
   "sections": {
-    "kieslect_header_pdp": {
+    "cabecera": {
       "type": "product-header-kieslect",
       "settings": {}
     },
-    "informacion_producto": {
+    "cuerpo": {
       "type": "main-product",
       "settings": {}
     }
   },
   "order": [
-    "kieslect_header_pdp",
-    "informacion_producto"
+    "cabecera",
+    "cuerpo"
   ]
 }
