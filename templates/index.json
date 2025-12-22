@@ -7,13 +7,15 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-
 {
   "sections": {
     "h": {
       "type": "kieslect-hero",
       "settings": {
-        "t": "KIESLECT"
+        "t": "KIESLECT",
+        "st": "Dual Core Tech",
+        "i": "shopify://shop_images/imagen-lifestyle-con-smartwatch-kieslect.png",
+        "c": "#e62e04"
       }
     }
   },
