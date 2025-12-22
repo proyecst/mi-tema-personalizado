@@ -9,8 +9,15 @@
  */
 
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "h": {
+      "type": "kieslect-hero",
+      "settings": {
+        "t": "KIESLECT"
+      }
+    }
+  },
+  "order": [
+    "h"
+  ]
 }
-
-
