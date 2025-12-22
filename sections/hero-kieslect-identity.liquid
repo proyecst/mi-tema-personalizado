@@ -116,19 +116,12 @@
 {%- endstyle -%}
 
 <section class="hero-id-{{ section.id }}">
-  <div class="hero-id-container">
-    <div class="hero-id-content">
-      <span class="brand-badge">Kieslect Technology</span>
-      <h1 class="hero-id-title">{{ section.settings.title }}</h1>
-      <p class="hero-id-subtitle">{{ section.settings.subtitle }}</p>
-      <a href="{{ section.settings.link }}" class="hero-id-btn">{{ section.settings.btn_text }}</a>
-    </div>
-    
-   <div class="ks-hero-img-area">
+  
+<div class="ks-hero-img-area">
   {%- if section.settings.image != blank -%}
     {{ section.settings.image | image_url: width: 1200 | image_tag: 
       loading: 'eager', 
-      alt: section.settings.title_top,
+      alt: section.settings.title,
       class: 'hero-image-render'
     }}
   {%- else -%}
