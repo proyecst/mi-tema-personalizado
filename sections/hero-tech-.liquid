@@ -137,12 +137,17 @@
     </div>
 
     <div class="tech-image-wrapper">
-      {% if section.settings.image != blank %}
-        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.title_1 }}" loading="eager">
-      {% else %}
-        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-    </div>
+  {%- if section.settings.image != blank -%}
+    <img 
+      src="{{ section.settings.image | image_url: width: 1200 }}" 
+      alt="{{ section.settings.image.alt | default: section.settings.title_1 }}" 
+      loading="eager"
+      width="1200"
+      height="auto">
+  {%- else -%}
+    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+  {%- endif -%}
+</div>
 
   </div>
 </section>
