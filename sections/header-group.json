@@ -11,11 +11,53 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
+    "pdp_header_kieslect_GxKazd": {
+      "type": "pdp-header-kieslect",
+      "name": "K Header Detalle Pro",
+      "settings": {
+        "bg_color": "#000000",
+        "border_color": "#222222",
+        "accent_color": "#e62e04",
+        "show_breadcrumbs": true,
+        "text_home": "Inicio",
+        "text_collection": "Smartwatches",
+        "enable_new": true,
+        "label_new": "NUEVO",
+        "color_new": "#00ff88",
+        "enable_sale": true,
+        "label_sale": "OFERTA",
+        "color_sale": "#e62e04",
+        "label_limited": "EDICIÓN LIMITADA",
+        "color_limited": "#ffea00",
+        "label_top": "MÁS VENDIDO",
+        "color_top": "#2979ff",
+        "label_exclusive": "EXCLUSIVO",
+        "color_exclusive": "#e62e04"
+      }
+    },
     "pdp_header_kieslect_UkgfwC": {
       "type": "pdp-header-kieslect",
+      "disabled": true,
       "name": "K Header Detalle",
       "settings": {
-        "bg": "#000000"
+        "bg_color": "#000000",
+        "border_color": "#222222",
+        "accent_color": "#e62e04",
+        "show_breadcrumbs": true,
+        "text_home": "Inicio",
+        "text_collection": "Smartwatches",
+        "enable_new": true,
+        "label_new": "NUEVO",
+        "color_new": "#00ff88",
+        "enable_sale": true,
+        "label_sale": "OFERTA",
+        "color_sale": "#e62e04",
+        "label_limited": "EDICIÓN LIMITADA",
+        "color_limited": "#ffea00",
+        "label_top": "MÁS VENDIDO",
+        "color_top": "#2979ff",
+        "label_exclusive": "EXCLUSIVO",
+        "color_exclusive": "#e62e04"
       }
     },
     "header": {
@@ -417,9 +459,16 @@
         "chat_color": "#000000",
         "wa_number": "54911000000"
       }
+    },
+    "kieslect_header_7Bj6Gk": {
+      "type": "kieslect-header",
+      "name": "Kieslect Header",
+      "settings": {}
     }
   },
   "order": [
+    "kieslect_header_7Bj6Gk",
+    "pdp_header_kieslect_GxKazd",
     "pdp_header_kieslect_UkgfwC",
     "header",
     "hero_tech_yAaWMa",
