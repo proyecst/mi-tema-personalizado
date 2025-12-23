@@ -11,6 +11,7 @@
   "sections": {
     "h": {
       "type": "kieslect-hero",
+      "disabled": true,
       "settings": {
         "t": "KIESLECT",
         "st": "Dual Core Tech",
@@ -23,4 +24,3 @@
     "h"
   ]
 }
-

@@ -357,6 +357,7 @@
     },
     "pdp_header_kieslect_GxKazd": {
       "type": "pdp-header-kieslect",
+      "disabled": true,
       "name": "K Header Detalle Pro",
       "settings": {
         "bg_color": "#000000",
@@ -413,6 +414,7 @@
     },
     "hero_tech_yAaWMa": {
       "type": "hero-tech-",
+      "disabled": true,
       "name": "Banner Tech Premium",
       "settings": {
         "title_1": "Kieslect",
@@ -441,6 +443,7 @@
     },
     "kieslect_hero_premium_JdR8nX": {
       "type": "kieslect-hero-premium",
+      "disabled": true,
       "name": "Kieslect Hero Premium",
       "settings": {}
     },
