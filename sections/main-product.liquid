@@ -1,41 +1,122 @@
-<section class="pdp-main container" style="background: #000; color: #fff; padding: 40px 20px;">
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
+<div class="k-pdp-main" style="background-color: #000; color: #fff;">
+  <div class="k-pdp-container">
     
-    <div class="product-gallery">
-      {% if product.featured_image %}
-        {{ product.featured_image | image_url: width: 800 | image_tag: class: 'img-fluid', loading: 'lazy' }}
-      {% else %}
-        {{ 'product-1' | placeholder_svg_tag }}
+    <div class="k-gallery-column">
+      <div class="k-main-image-wrapper">
+        {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+        <img id="MainPhoto" 
+             src="{{ featured_media | image_url: width: 1000 }}" 
+             alt="{{ featured_media.alt | escape }}"
+             class="k-main-img"
+             data-zoom="{{ featured_media | image_url: width: 2000 }}">
+      </div>
+
+      {% if product.media.size > 1 %}
+      <div class="k-thumbnails-grid">
+        {% for media in product.media %}
+          <div class="k-thumb-item {% if media == featured_media %}active{% endif %}" 
+               onclick="switchImage('{{ media | image_url: width: 1000 }}')">
+            {{ media | image_url: width: 150 | image_tag: loading: 'lazy' }}
+          </div>
+        {% endfor %}
+      </div>
       {% endif %}
     </div>
 
-    <div class="product-info">
-      <h1 style="font-size: 40px; color: #e62e04; margin: 0;">{{ product.title }}</h1>
-      <div class="price" style="font-size: 24px; margin: 20px 0; font-weight: bold;">
-        {{ product.price | money }}
-      </div>
-      
-      {% form 'product', product %}
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <button type="submit" style="background: #e62e04; color: #fff; padding: 15px 40px; border: none; font-weight: bold; width: 100%; cursor: pointer; text-transform: uppercase;">
-          AÑADIR AL CARRITO
-        </button>
-      {% endform %}
+    <div class="k-info-column">
+      <div class="k-sticky-info">
+        <h1 class="k-product-title">{{ product.title }}</h1>
+        
+        <div class="k-price-wrapper">
+          <span class="k-current-price">{{ product.price | money }}</span>
+          {% if product.compare_at_price > product.price %}
+            <span class="k-old-price">{{ product.compare_at_price | money }}</span>
+          {% endif %}
+        </div>
 
-      <div class="description" style="margin-top: 30px; color: #ccc; line-height: 1.6;">
-        {{ product.description }}
+        <div class="k-product-desc">
+          {{ product.description | truncatewords: 40 }}
+        </div>
+
+        {% form 'product', product, class: 'k-product-form' %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          
+          <div class="k-purchase-actions">
+            <button type="submit" class="k-add-to-cart">
+              <span>AÑADIR AL CARRITO</span>
+              <span class="k-btn-arrow">→</span>
+            </button>
+          </div>
+        {% endform %}
+        
+        <div class="k-specs-mini">
+          <div class="k-spec-item"><span>Envío</span><strong>Gratis Express</strong></div>
+          <div class="k-spec-item"><span>Garantía</span><strong>12 Meses</strong></div>
+        </div>
       </div>
     </div>
+
   </div>
-</section>
+</div>
+
+<style>
+  .k-pdp-main { padding: 40px 0; font-family: 'Inter', sans-serif; }
+  .k-pdp-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; }
+  
+  /* Galería */
+  .k-main-image-wrapper { background: #111; border-radius: 4px; overflow: hidden; position: relative; cursor: crosshair; }
+  .k-main-img { width: 100%; display: block; transition: transform 0.3s ease; }
+  .k-main-img:hover { transform: scale(1.05); }
+  
+  .k-thumbnails-grid { display: flex; gap: 15px; margin-top: 20px; overflow-x: auto; padding-bottom: 10px; }
+  .k-thumb-item { width: 80px; height: 80px; background: #111; border: 1px solid #333; cursor: pointer; flex-shrink: 0; }
+  .k-thumb-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+  .k-thumb-item.active { border-color: #e62e04; }
+  .k-thumb-item.active img { opacity: 1; }
+
+  /* Info */
+  .k-product-title { font-size: 48px; font-weight: 800; letter-spacing: -1px; margin: 0 0 15px 0; text-transform: uppercase; }
+  .k-price-wrapper { margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
+  .k-current-price { font-size: 32px; color: #e62e04; font-weight: 700; }
+  .k-old-price { text-decoration: line-through; color: #666; font-size: 20px; }
+  
+  .k-product-desc { color: #aaa; line-height: 1.6; margin-bottom: 40px; border-left: 2px solid #333; padding-left: 20px; }
+
+  /* Botón Kieslect */
+  .k-add-to-cart { 
+    width: 100%; background: #e62e04; color: #fff; border: none; padding: 20px; 
+    font-weight: 900; font-size: 16px; cursor: pointer; display: flex; 
+    justify-content: space-between; transition: 0.3s;
+  }
+  .k-add-to-cart:hover { background: #ff3c14; transform: translateY(-3px); }
+
+  .k-specs-mini { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; border-top: 1px solid #222; padding-top: 30px; }
+  .k-spec-item span { display: block; font-size: 10px; color: #666; text-transform: uppercase; margin-bottom: 5px; }
+  .k-spec-item strong { color: #fff; font-size: 14px; }
+
+  @media (max-width: 990px) {
+    .k-pdp-container { grid-template-columns: 1fr; gap: 40px; padding: 0 20px; }
+    .k-product-title { font-size: 32px; }
+  }
+</style>
+
+<script>
+  function switchImage(src) {
+    document.getElementById('MainPhoto').src = src;
+    // Actualizar clase activa en thumbnails
+    const thumbs = document.querySelectorAll('.k-thumb-item');
+    thumbs.forEach(t => t.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+  }
+</script>
 
 {% schema %}
 {
-  "name": "Producto Principal",
+  "name": "K Main Product Pro",
   "settings": [],
   "presets": [
     {
-      "name": "Producto Principal"
+      "name": "K Main Product Pro"
     }
   ]
 }
