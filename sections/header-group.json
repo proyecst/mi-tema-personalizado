@@ -11,117 +11,10 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
-    "pdp_header_kieslect_GxKazd": {
-      "type": "pdp-header-kieslect",
-      "name": "K Header Detalle Pro",
-      "settings": {
-        "bg_color": "#000000",
-        "border_color": "#222222",
-        "accent_color": "#e62e04",
-        "show_breadcrumbs": true,
-        "text_home": "Inicio",
-        "text_collection": "Smartwatches",
-        "enable_new": true,
-        "label_new": "NUEVO",
-        "color_new": "#00ff88",
-        "enable_sale": true,
-        "label_sale": "OFERTA",
-        "color_sale": "#e62e04",
-        "label_limited": "EDICIÓN LIMITADA",
-        "color_limited": "#ffea00",
-        "label_top": "MÁS VENDIDO",
-        "color_top": "#2979ff",
-        "label_exclusive": "EXCLUSIVO",
-        "color_exclusive": "#e62e04"
-      }
-    },
-    "pdp_header_kieslect_UkgfwC": {
-      "type": "pdp-header-kieslect",
-      "disabled": true,
-      "name": "K Header Detalle",
-      "settings": {
-        "bg_color": "#000000",
-        "border_color": "#222222",
-        "accent_color": "#e62e04",
-        "show_breadcrumbs": true,
-        "text_home": "Inicio",
-        "text_collection": "Smartwatches",
-        "enable_new": true,
-        "label_new": "NUEVO",
-        "color_new": "#00ff88",
-        "enable_sale": true,
-        "label_sale": "OFERTA",
-        "color_sale": "#e62e04",
-        "label_limited": "EDICIÓN LIMITADA",
-        "color_limited": "#ffea00",
-        "label_top": "MÁS VENDIDO",
-        "color_top": "#2979ff",
-        "label_exclusive": "EXCLUSIVO",
-        "color_exclusive": "#e62e04"
-      }
-    },
-    "header": {
-      "type": "header",
-      "disabled": true,
-      "settings": {
-        "menu": ""
-      }
-    },
-    "hero_tech_yAaWMa": {
-      "type": "hero-tech-",
-      "name": "Banner Tech Premium",
-      "settings": {
-        "title_1": "Kieslect",
-        "title_2": "Serie KS3 Pro",
-        "subtitle": "Doble núcleo, pantalla AMOLED de 2.01\" y una experiencia de usuario fluida como nunca antes.",
-        "btn_text": "Comprar Ahora",
-        "link": "",
-        "accent_color": "#0071e3",
-        "height_desktop": 90
-      }
-    },
-    "hero_animado_kieslect_6NKX9X": {
-      "type": "hero-animado-kieslect",
-      "disabled": true,
-      "name": "Banner Animado Pro",
-      "settings": {
-        "title": "Kieslect KS3",
-        "subtitle": "El futuro de la tecnología con pantalla AMOLED y doble núcleo.",
-        "btn_text": "Comprar Ahora",
-        "btn_link": "",
-        "btn_color": "#e62e04",
-        "text_alignment": "flex-start",
-        "height_desktop": 80,
-        "height_mobile": 60
-      }
-    },
-    "kieslect_hero_premium_JdR8nX": {
-      "type": "kieslect-hero-premium",
-      "name": "Kieslect Hero Premium",
+    "kieslect_header_7Bj6Gk": {
+      "type": "kieslect-header",
+      "name": "Kieslect Header",
       "settings": {}
-    },
-    "kieslect_watch_banner_XzzeYB": {
-      "type": "kieslect-watch-banner",
-      "disabled": true,
-      "name": "Banner Relojes Premium",
-      "settings": {
-        "badge": "NUEVA EDICIÓN",
-        "title": "Kieslect Lora 2",
-        "subtitle": "Elegancia y salud en tu muñeca.",
-        "button_text": "COMPRAR AHORA",
-        "link": "",
-        "accent_color": "#ff4500"
-      }
-    },
-    "listado_coleccion_avanzado_GJHFJY": {
-      "type": "listado-coleccion-avanzado",
-      "name": "Listado Profesional",
-      "settings": {
-        "section_heading": "Productos Destacados",
-        "featured_collection": "",
-        "product_limit": 4,
-        "grid_style": "simple"
-      }
     },
     "trust_bar_7X8Kwh": {
       "type": "trust-bar",
@@ -169,6 +62,16 @@
       "settings": {
         "bg_color": "#ffffff",
         "text_color": "#333333"
+      }
+    },
+    "listado_coleccion_avanzado_GJHFJY": {
+      "type": "listado-coleccion-avanzado",
+      "name": "Listado Profesional",
+      "settings": {
+        "section_heading": "Productos Destacados",
+        "featured_collection": "",
+        "product_limit": 4,
+        "grid_style": "simple"
       }
     },
     "series_destacadas_zpGQwz": {
@@ -422,19 +325,6 @@
         "padding_bottom": 50
       }
     },
-    "footer_personalizado_pwwPzp": {
-      "type": "footer-personalizado",
-      "name": "Footer Personalizado",
-      "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "logo_text": "KIESLECT",
-        "description": "Innovación en tu muñeca. Smartwatches de alta tecnología y diseño premium.",
-        "menu_company": "",
-        "menu_support": "",
-        "contact_info": "soporte@tu-tienda.com"
-      }
-    },
     "newsletter_descuento_n4HQHQ": {
       "type": "newsletter-descuento",
       "name": "Newsletter con Descuento",
@@ -452,6 +342,121 @@
         "padding_bottom": 60
       }
     },
+    "footer_personalizado_pwwPzp": {
+      "type": "footer-personalizado",
+      "name": "Footer Personalizado",
+      "settings": {
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "logo_text": "KIESLECT",
+        "description": "Innovación en tu muñeca. Smartwatches de alta tecnología y diseño premium.",
+        "menu_company": "",
+        "menu_support": "",
+        "contact_info": "soporte@tu-tienda.com"
+      }
+    },
+    "pdp_header_kieslect_GxKazd": {
+      "type": "pdp-header-kieslect",
+      "name": "K Header Detalle Pro",
+      "settings": {
+        "bg_color": "#000000",
+        "border_color": "#222222",
+        "accent_color": "#e62e04",
+        "show_breadcrumbs": true,
+        "text_home": "Inicio",
+        "text_collection": "Smartwatches",
+        "enable_new": true,
+        "label_new": "NUEVO",
+        "color_new": "#00ff88",
+        "enable_sale": true,
+        "label_sale": "OFERTA",
+        "color_sale": "#e62e04",
+        "label_limited": "EDICIÓN LIMITADA",
+        "color_limited": "#ffea00",
+        "label_top": "MÁS VENDIDO",
+        "color_top": "#2979ff",
+        "label_exclusive": "EXCLUSIVO",
+        "color_exclusive": "#e62e04"
+      }
+    },
+    "pdp_header_kieslect_UkgfwC": {
+      "type": "pdp-header-kieslect",
+      "disabled": true,
+      "name": "K Header Detalle",
+      "settings": {
+        "bg_color": "#000000",
+        "border_color": "#222222",
+        "accent_color": "#e62e04",
+        "show_breadcrumbs": true,
+        "text_home": "Inicio",
+        "text_collection": "Smartwatches",
+        "enable_new": true,
+        "label_new": "NUEVO",
+        "color_new": "#00ff88",
+        "enable_sale": true,
+        "label_sale": "OFERTA",
+        "color_sale": "#e62e04",
+        "label_limited": "EDICIÓN LIMITADA",
+        "color_limited": "#ffea00",
+        "label_top": "MÁS VENDIDO",
+        "color_top": "#2979ff",
+        "label_exclusive": "EXCLUSIVO",
+        "color_exclusive": "#e62e04"
+      }
+    },
+    "header": {
+      "type": "header",
+      "disabled": true,
+      "settings": {
+        "menu": ""
+      }
+    },
+    "hero_tech_yAaWMa": {
+      "type": "hero-tech-",
+      "name": "Banner Tech Premium",
+      "settings": {
+        "title_1": "Kieslect",
+        "title_2": "Serie KS3 Pro",
+        "subtitle": "Doble núcleo, pantalla AMOLED de 2.01\" y una experiencia de usuario fluida como nunca antes.",
+        "btn_text": "Comprar Ahora",
+        "link": "",
+        "accent_color": "#0071e3",
+        "height_desktop": 90
+      }
+    },
+    "hero_animado_kieslect_6NKX9X": {
+      "type": "hero-animado-kieslect",
+      "disabled": true,
+      "name": "Banner Animado Pro",
+      "settings": {
+        "title": "Kieslect KS3",
+        "subtitle": "El futuro de la tecnología con pantalla AMOLED y doble núcleo.",
+        "btn_text": "Comprar Ahora",
+        "btn_link": "",
+        "btn_color": "#e62e04",
+        "text_alignment": "flex-start",
+        "height_desktop": 80,
+        "height_mobile": 60
+      }
+    },
+    "kieslect_hero_premium_JdR8nX": {
+      "type": "kieslect-hero-premium",
+      "name": "Kieslect Hero Premium",
+      "settings": {}
+    },
+    "kieslect_watch_banner_XzzeYB": {
+      "type": "kieslect-watch-banner",
+      "disabled": true,
+      "name": "Banner Relojes Premium",
+      "settings": {
+        "badge": "NUEVA EDICIÓN",
+        "title": "Kieslect Lora 2",
+        "subtitle": "Elegancia y salud en tu muñeca.",
+        "button_text": "COMPRAR AHORA",
+        "link": "",
+        "accent_color": "#ff4500"
+      }
+    },
     "chatbot_kieslect_kdMWME": {
       "type": "chatbot-kieslect",
       "name": "Chatbot Kieslect",
@@ -459,15 +464,19 @@
         "chat_color": "#000000",
         "wa_number": "54911000000"
       }
-    },
-    "kieslect_header_7Bj6Gk": {
-      "type": "kieslect-header",
-      "name": "Kieslect Header",
-      "settings": {}
     }
   },
   "order": [
     "kieslect_header_7Bj6Gk",
+    "trust_bar_7X8Kwh",
+    "listado_coleccion_avanzado_GJHFJY",
+    "series_destacadas_zpGQwz",
+    "caracteristicas_reloj_Vy3xdp",
+    "testimonios_reales_Ahq9Wc",
+    "comparador_modelos_jMTaXE",
+    "bloque_educativo_pp7LX9",
+    "newsletter_descuento_n4HQHQ",
+    "footer_personalizado_pwwPzp",
     "pdp_header_kieslect_GxKazd",
     "pdp_header_kieslect_UkgfwC",
     "header",
@@ -475,15 +484,6 @@
     "hero_animado_kieslect_6NKX9X",
     "kieslect_hero_premium_JdR8nX",
     "kieslect_watch_banner_XzzeYB",
-    "listado_coleccion_avanzado_GJHFJY",
-    "trust_bar_7X8Kwh",
-    "series_destacadas_zpGQwz",
-    "caracteristicas_reloj_Vy3xdp",
-    "testimonios_reales_Ahq9Wc",
-    "comparador_modelos_jMTaXE",
-    "bloque_educativo_pp7LX9",
-    "footer_personalizado_pwwPzp",
-    "newsletter_descuento_n4HQHQ",
     "chatbot_kieslect_kdMWME"
   ]
 }
