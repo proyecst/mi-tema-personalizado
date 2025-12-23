@@ -1,44 +1,45 @@
-<div class="k-pdp-header" style="background: {{ section.settings.bg }};">
+<div class="k-pdp-header" style="background-color: {{ section.settings.bg_color }}; border-bottom: 1px solid {{ section.settings.border_color }};">
   <div class="k-container">
     
+    {% if section.settings.show_breadcrumbs %}
     <nav class="k-breadcrumb" aria-label="breadcrumbs">
-      <a href="/">Inicio</a>
+      <a href="/">{{ section.settings.text_home }}</a>
       <span class="sep">/</span>
       {% if collection %}
         <a href="{{ collection.url }}">{{ collection.title }}</a>
       {% else %}
-        <a href="/collections/all">Smartwatches</a>
+        <a href="/collections/all">{{ section.settings.text_collection }}</a>
       {% endif %}
       <span class="sep">/</span>
       <span class="current">{{ product.title }}</span>
     </nav>
+    {% endif %}
 
     <div class="k-badges">
-      {% comment %} Lógica de Fecha Optimizada {% endcomment %}
+      {% comment %} Lógica Automática {% endcomment %}
       {%- assign date_published = product.published_at | date: '%s' | plus: 0 -%}
       {%- assign date_now = 'now' | date: '%s' | plus: 0 -%}
-      {%- assign diff_seconds = date_now | minus: date_published -%}
-      {%- assign diff_days = diff_seconds | divided_by: 86400 -%}
+      {%- assign diff_days = date_now | minus: date_published | divided_by: 86400 -%}
 
-      {% comment %} NUEVO automático (30 días) {% endcomment %}
-      {% if diff_days < 30 %}
-        <span class="k-badge k-new">NUEVO</span>
+      {% if diff_days < 30 and section.settings.enable_new %}
+        <span class="k-badge" style="background: {{ section.settings.color_new }}; color: #000;">{{ section.settings.label_new }}</span>
       {% endif %}
 
-      {% comment %} OFERTA automática {% endcomment %}
-      {% if product.compare_at_price > product.price %}
-        <span class="k-badge k-sale">OFERTA</span>
+      {% if product.compare_at_price > product.price and section.settings.enable_sale %}
+        <span class="k-badge" style="background: {{ section.settings.color_sale }}; color: #fff;">{{ section.settings.label_sale }}</span>
       {% endif %}
 
-      {% comment %} Etiquetas por TAGS {% endcomment %}
+      {% comment %} Lógica por Tags {% endcomment %}
       {% for tag in product.tags %}
         {% assign tag_clean = tag | downcase %}
         {% if tag_clean contains 'limitada' %}
-          <span class="k-badge k-limited">EDICIÓN LIMITADA</span>
-        {% elsif tag_clean contains 'top' or tag_clean contains 'vendido' %}
-          <span class="k-badge k-best">MÁS VENDIDO</span>
+          <span class="k-badge" style="background: {{ section.settings.color_limited }}; color: #000;">{{ section.settings.label_limited }}</span>
+        {% elsif tag_clean contains 'top' %}
+          <span class="k-badge" style="background: {{ section.settings.color_top }}; color: #fff;">{{ section.settings.label_top }}</span>
         {% elsif tag_clean contains 'exclusivo' %}
-          <span class="k-badge k-exclusive">EXCLUSIVO</span>
+          <span class="k-badge k-exclusive" style="border-color: {{ section.settings.color_exclusive }}; color: {{ section.settings.color_exclusive }};">
+            {{ section.settings.label_exclusive }}
+          </span>
         {% endif %}
       {% endfor %}
     </div>
@@ -47,54 +48,55 @@
 </div>
 
 <style>
-  .k-pdp-header { 
-    padding: 15px 0; 
-    border-bottom: 1px solid #333; 
-    background-color: #000;
-  }
-  .k-container { 
-    max-width: 1400px; 
-    margin: 0 auto; 
-    padding: 0 40px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-  }
-  
-  .k-breadcrumb { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
-  .k-breadcrumb a { color: #888; text-decoration: none; transition: 0.3s; }
-  .k-breadcrumb a:hover { color: #e62e04; }
+  .k-pdp-header { padding: 15px 0; font-family: 'Inter', sans-serif; }
+  .k-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+  .k-breadcrumb { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .k-breadcrumb a { color: #888; text-decoration: none; }
   .k-breadcrumb .sep { margin: 0 10px; color: #444; }
-  .k-breadcrumb .current { color: #fff; font-weight: 600; }
-
-  .k-badges { display: flex; gap: 10px; }
-  .k-badge { 
-    padding: 5px 12px; 
-    font-size: 9px; 
-    font-weight: 800; 
-    letter-spacing: 0.5px;
-    border-radius: 3px;
-    display: inline-block;
-  }
-  
-  .k-new { background: #00ff88; color: #000; }
-  .k-sale { background: #e62e04; color: #fff; }
-  .k-limited { background: #ffea00; color: #000; }
-  .k-best { background: #2979ff; color: #fff; }
-  .k-exclusive { border: 1px solid #e62e04; color: #e62e04; }
-
+  .k-breadcrumb .current { color: {{ section.settings.accent_color }}; font-weight: 700; }
+  .k-badges { display: flex; gap: 8px; }
+  .k-badge { padding: 4px 12px; font-size: 10px; font-weight: 800; border-radius: 2px; text-transform: uppercase; }
+  .k-exclusive { border: 1px solid; background: transparent; }
   @media (max-width: 768px) {
-    .k-container { flex-direction: column; align-items: flex-start; gap: 12px; padding: 0 20px; }
-    .k-badges { flex-wrap: wrap; }
+    .k-container { flex-direction: column; align-items: flex-start; gap: 10px; padding: 0 20px; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "K Header Detalle",
+  "name": "K Header Detalle Pro",
   "settings": [
-    { "type": "color", "id": "bg", "label": "Color de Fondo", "default": "#000000" }
+    {
+      "type": "header",
+      "content": "General"
+    },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
+    { "type": "color", "id": "border_color", "label": "Color de Borde", "default": "#222222" },
+    { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#e62e04" },
+    {
+      "type": "header",
+      "content": "Breadcrumbs"
+    },
+    { "type": "checkbox", "id": "show_breadcrumbs", "label": "Mostrar Breadcrumbs", "default": true },
+    { "type": "text", "id": "text_home", "label": "Texto Inicio", "default": "Inicio" },
+    { "type": "text", "id": "text_collection", "label": "Texto Colección (Default)", "default": "Smartwatches" },
+    {
+      "type": "header",
+      "content": "Etiquetas (Badges)"
+    },
+    { "type": "checkbox", "id": "enable_new", "label": "Habilitar 'NUEVO'", "default": true },
+    { "type": "text", "id": "label_new", "label": "Texto NUEVO", "default": "NUEVO" },
+    { "type": "color", "id": "color_new", "label": "Color NUEVO", "default": "#00ff88" },
+    { "type": "checkbox", "id": "enable_sale", "label": "Habilitar 'OFERTA'", "default": true },
+    { "type": "text", "id": "label_sale", "label": "Texto OFERTA", "default": "OFERTA" },
+    { "type": "color", "id": "color_sale", "label": "Color OFERTA", "default": "#e62e04" },
+    { "type": "text", "id": "label_limited", "label": "Texto LIMITADA", "default": "EDICIÓN LIMITADA" },
+    { "type": "color", "id": "color_limited", "label": "Color LIMITADA", "default": "#ffea00" },
+    { "type": "text", "id": "label_top", "label": "Texto MÁS VENDIDO", "default": "MÁS VENDIDO" },
+    { "type": "color", "id": "color_top", "label": "Color MÁS VENDIDO", "default": "#2979ff" },
+    { "type": "text", "id": "label_exclusive", "label": "Texto EXCLUSIVO", "default": "EXCLUSIVO" },
+    { "type": "color", "id": "color_exclusive", "label": "Color EXCLUSIVO", "default": "#e62e04" }
   ],
-  "presets": [{ "name": "K Header Detalle" }]
+  "presets": [{ "name": "K Header Detalle Pro" }]
 }
 {% endschema %}
