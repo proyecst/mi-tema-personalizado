@@ -21,14 +21,69 @@
       "name": "Barra de Confianza",
       "settings": {}
     },
+    "barra_efectiva_ty7y9a": {
+      "type": "barra-efectiva",
+      "blocks": {
+        "benefit_QwTCYd": {
+          "type": "benefit",
+          "settings": {
+            "icon": "💳",
+            "title": "Pago Seguro",
+            "description": "En todos los pedidos superiores a $50",
+            "button_label": "Saber más"
+          }
+        },
+        "benefit_eFGYjh": {
+          "type": "benefit",
+          "settings": {
+            "icon": "🔄",
+            "title": "Devolución 30 días",
+            "description": "En todos los pedidos superiores a $50",
+            "button_label": "Saber más"
+          }
+        },
+        "benefit_QjNYMR": {
+          "type": "benefit",
+          "settings": {
+            "icon": "⭐",
+            "title": "Garantía Total",
+            "description": "En todos los pedidos superiores a $50",
+            "button_label": "Saber más"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_QwTCYd",
+        "benefit_eFGYjh",
+        "benefit_QjNYMR"
+      ],
+      "name": "Barra Efectiva",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#121212",
+        "accent_color": "#2b6cb0"
+      }
+    },
     "listado_coleccion_avanzado_GJHFJY": {
       "type": "listado-coleccion-avanzado",
+      "blocks": {
+        "product_4wpjNa": {
+          "type": "product",
+          "settings": {
+            "featured_product": "",
+            "badge_text": "HOT"
+          }
+        }
+      },
+      "block_order": [
+        "product_4wpjNa"
+      ],
       "name": "Listado Profesional",
       "settings": {
-        "section_heading": "Productos Destacados",
-        "featured_collection": "",
-        "product_limit": 4,
-        "grid_style": "simple"
+        "main_title": "Selección Premium",
+        "bg_color": "#ffffff",
+        "accent_color": "#000000",
+        "btn_label": "COMPRA RÁPIDA"
       }
     },
     "series_destacadas_zpGQwz": {
@@ -423,49 +478,6 @@
       "settings": {
         "chat_color": "#000000",
         "wa_number": "54911000000"
-      }
-    },
-    "barra_efectiva_ty7y9a": {
-      "type": "barra-efectiva",
-      "blocks": {
-        "benefit_QwTCYd": {
-          "type": "benefit",
-          "settings": {
-            "icon": "💳",
-            "title": "Pago Seguro",
-            "description": "En todos los pedidos superiores a $50",
-            "button_label": "Saber más"
-          }
-        },
-        "benefit_eFGYjh": {
-          "type": "benefit",
-          "settings": {
-            "icon": "🔄",
-            "title": "Devolución 30 días",
-            "description": "En todos los pedidos superiores a $50",
-            "button_label": "Saber más"
-          }
-        },
-        "benefit_QjNYMR": {
-          "type": "benefit",
-          "settings": {
-            "icon": "⭐",
-            "title": "Garantía Total",
-            "description": "En todos los pedidos superiores a $50",
-            "button_label": "Saber más"
-          }
-        }
-      },
-      "block_order": [
-        "benefit_QwTCYd",
-        "benefit_eFGYjh",
-        "benefit_QjNYMR"
-      ],
-      "name": "Barra Efectiva",
-      "settings": {
-        "bg_color": "#ffffff",
-        "text_color": "#121212",
-        "accent_color": "#2b6cb0"
       }
     }
   },
