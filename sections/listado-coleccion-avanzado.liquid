@@ -1,52 +1,58 @@
-<section class="product-trust-section" style="background-color: {{ section.settings.bg_color }};">
-  <div class="product-trust-container">
+<section class="ultimate-grid-section" style="background-color: {{ section.settings.bg_color }};">
+  <div class="ultimate-container">
     {% if section.settings.main_title != blank %}
-      <h2 class="section-main-title">{{ section.settings.main_title }}</h2>
+      <h2 class="ultimate-main-title">{{ section.settings.main_title }}</h2>
     {% endif %}
 
-    <div class="product-trust-grid">
+    <div class="ultimate-grid">
       {% for block in section.blocks %}
-        {%- assign product_ref = block.settings.featured_product -%}
-        
-        <div class="product-trust-card" {{ block.shopify_attributes }}>
-          {% if product_ref != blank %}
-            <div class="product-trust-image-wrapper">
-              <a href="{{ product_ref.url }}">
-                <img class="primary-img" src="{{ product_ref.featured_image | img_url: '500x500', crop: 'center' }}" alt="{{ product_ref.title }}">
-                {% if product_ref.images[1] != blank %}
-                   <img class="secondary-img" src="{{ product_ref.images[1] | img_url: '500x500', crop: 'center' }}" alt="{{ product_ref.title }}">
-                {% endif %}
-              </a>
-              {% if block.settings.badge_text != blank %}
-                <span class="trust-badge">{{ block.settings.badge_text }}</span>
-              {% endif %}
-            </div>
+        <div class="ultimate-card card-{{ block.type }}" {{ block.shopify_attributes }}>
+          
+          {% case block.type %}
+            
+            {% when 'product_card' %}
+              {%- assign product_ref = block.settings.product_id -%}
+              <div class="card-inner">
+                <div class="media-wrapper">
+                  {% if product_ref != blank %}
+                    <img src="{{ product_ref.featured_image | img_url: '600x600' }}" alt="{{ product_ref.title }}">
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                  <span class="ultra-badge">{{ block.settings.badge }}</span>
+                </div>
+                <div class="info-wrapper">
+                  <h3>{{ product_ref.title | default: "Producto de Ejemplo" }}</h3>
+                  <p class="ultra-price">{{ product_ref.price | money }}</p>
+                  <button class="ultra-btn-add" onclick="addToCartAjax('{{ product_ref.variants.first.id }}', this)">
+                    {{ block.settings.btn_text }}
+                  </button>
+                </div>
+              </div>
 
-            <div class="product-trust-info">
-              <h3 class="product-title"><a href="{{ product_ref.url }}">{{ product_ref.title }}</a></h3>
-              <div class="product-price-row">
-                <span class="product-price">{{ product_ref.price | money }}</span>
-                {% if product_ref.compare_at_price > product_ref.price %}
-                  <span class="product-compare-price">{{ product_ref.compare_at_price | money }}</span>
-                {% endif %}
+            {% when 'media_card' %}
+              <div class="card-inner">
+                <div class="media-wrapper">
+                  {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | img_url: '600x600' }}" alt="Imagen">
+                  {% elsif block.settings.video_url != blank %}
+                    {% comment %} Video embebido simple {% endcomment %}
+                    <iframe src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}" frameborder="0"></iframe>
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                </div>
+                <div class="info-wrapper">
+                  <h3>{{ block.settings.title }}</h3>
+                  <p>{{ block.settings.text }}</p>
+                  {% if block.settings.link_url != blank %}
+                    <a href="{{ block.settings.link_url }}" class="ultra-link">{{ block.settings.link_label }} →</a>
+                  {% endif %}
+                </div>
               </div>
-              
-              {% comment %} Formulario con AJAX {% endcomment %}
-              <div class="product-form-container">
-                <input type="number" id="qty-{{ block.id }}" name="quantity" value="1" min="1" class="qty-input">
-                <button type="button" 
-                        class="add-to-cart-btn-ajax" 
-                        onclick="addToCartAjax('{{ product_ref.variants.first.id }}', 'qty-{{ block.id }}', this)">
-                  <span class="btn-label">{{ section.settings.btn_label }}</span>
-                  <span class="loading-spinner" style="display:none;">⏳</span>
-                </button>
-              </div>
-            </div>
-          {% else %}
-            <div class="product-placeholder">
-              <p>Selecciona un producto en el panel lateral</p>
-            </div>
-          {% endif %}
+
+          {% endcase %}
+          
         </div>
       {% endfor %}
     </div>
@@ -54,141 +60,101 @@
 </section>
 
 <style>
-  .product-trust-section { padding: 80px 20px; font-family: sans-serif; }
-  .product-trust-container { max-width: 1300px; margin: 0 auto; }
-  .section-main-title { margin-bottom: 50px; font-size: 32px; font-weight: 800; text-align: center; }
-  
-  .product-trust-grid {
+  .ultimate-grid-section { padding: 80px 5%; color: {{ section.settings.text_color }}; }
+  .ultimate-container { max-width: 1400px; margin: 0 auto; }
+  .ultimate-main-title { text-align: center; font-size: 40px; font-weight: 900; margin-bottom: 60px; letter-spacing: -1px; }
+
+  .ultimate-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
   }
 
-  .product-trust-card {
+  .ultimate-card {
     background: #fff;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    border: 1px solid #f0f0f0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Efecto de Imagen Doble */
-  .product-trust-image-wrapper {
-    position: relative;
+    border-radius: 24px;
     overflow: hidden;
-    aspect-ratio: 1/1;
-    border-radius: 12px 12px 0 0;
-  }
-  .product-trust-image-wrapper img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.8s ease, opacity 0.5s ease;
-  }
-  .secondary-img {
-    position: absolute; top: 0; left: 0; opacity: 0;
-  }
-  .product-trust-card:hover .secondary-img { opacity: 1; }
-  .product-trust-card:hover .primary-img { opacity: 0; transform: scale(1.1); }
-
-  .product-trust-info { padding: 25px; }
-
-  .trust-badge {
-    position: absolute; top: 15px; left: 15px;
-    background: {{ section.settings.accent_color }};
-    color: #fff; font-size: 11px; padding: 5px 12px;
-    border-radius: 50px; font-weight: bold; z-index: 2;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0,0,0,0.05);
   }
 
-  .product-title a { text-decoration: none; color: #111; font-size: 19px; font-weight: 700; }
+  .ultimate-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+
+  .media-wrapper { position: relative; width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #f4f4f4; }
+  .media-wrapper img, .media-wrapper iframe { width: 100%; height: 100%; object-fit: cover; }
   
-  .product-price-row { margin: 10px 0 20px; display: flex; gap: 10px; align-items: center; }
-  .product-price { font-size: 18px; font-weight: 600; color: {{ section.settings.accent_color }}; }
-  .product-compare-price { text-decoration: line-through; color: #999; font-size: 15px; }
+  .ultra-badge { position: absolute; top: 20px; left: 20px; background: {{ section.settings.accent_color }}; color: white; padding: 6px 15px; border-radius: 50px; font-size: 12px; font-weight: bold; }
 
-  /* Controles de Compra */
-  .product-form-container { display: flex; gap: 10px; }
-  .qty-input {
-    width: 60px; border: 1px solid #ddd; border-radius: 8px;
-    text-align: center; font-weight: bold;
-  }
-  .add-to-cart-btn-ajax {
-    flex-grow: 1; padding: 14px; background: #000; color: #fff;
-    border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
-    transition: background 0.3s;
-  }
-  .add-to-cart-btn-ajax:hover { background: #333; }
+  .info-wrapper { padding: 30px; }
+  .info-wrapper h3 { margin: 0 0 10px; font-size: 22px; font-weight: 800; }
+  .ultra-price { font-size: 18px; font-weight: 600; opacity: 0.7; margin-bottom: 20px; }
 
-  .product-placeholder { padding: 60px; text-align: center; border: 2px dashed #ddd; border-radius: 12px; }
+  .ultra-btn-add {
+    width: 100%; padding: 15px; border: none; border-radius: 12px;
+    background: #000; color: #fff; font-weight: bold; cursor: pointer; transition: 0.3s;
+  }
+  .ultra-btn-add:hover { background: {{ section.settings.accent_color }}; }
+
+  .ultra-link { font-weight: 700; text-decoration: none; color: {{ section.settings.accent_color }}; text-transform: uppercase; font-size: 13px; }
 </style>
 
 <script>
-function addToCartAjax(variantId, qtyId, btn) {
-  const qty = document.getElementById(qtyId).value;
-  const label = btn.querySelector('.btn-label');
-  const spinner = btn.querySelector('.loading-spinner');
-
-  label.style.display = 'none';
-  spinner.style.display = 'inline-block';
-
-  let formData = {
-   'items': [{ 'id': variantId, 'quantity': qty }]
-  };
-
-  fetch(window.Shopify.routes.root + 'cart/add.js', {
+function addToCartAjax(id, btn) {
+  let original = btn.innerText;
+  btn.innerText = "AÑADIENDO...";
+  fetch('/cart/add.js', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData)
-  })
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    spinner.style.display = 'none';
-    label.style.display = 'inline-block';
-    label.innerText = "¡AÑADIDO! ✓";
+    body: JSON.stringify({ items: [{ id: id, quantity: 1 }] })
+  }).then(() => {
+    btn.innerText = "¡LISTO! ✓";
     btn.style.background = "#27ae60";
-    
-    // Abrir el carrito automáticamente si tu tema lo permite
-    if(document.querySelector('cart-drawer')) {
-       document.querySelector('cart-drawer').classList.add('active');
-    }
-
-    setTimeout(() => {
-      label.innerText = "{{ section.settings.btn_label }}";
-      btn.style.background = "#000";
-    }, 2000);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-    alert('Hubo un error al añadir al carrito');
+    setTimeout(() => { btn.innerText = original; btn.style.background = "#000"; }, 2000);
   });
 }
 </script>
 
 {% schema %}
 {
-  "name": "Quick Buy Pro",
+  "name": "Ultimate Content Grid",
   "settings": [
-    { "type": "text", "id": "main_title", "label": "Título Principal", "default": "Selección Premium" },
-    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#000000" },
-    { "type": "text", "id": "btn_label", "label": "Botón", "default": "COMPRA RÁPIDA" }
+    { "type": "text", "id": "main_title", "label": "Título Sección", "default": "Explora Kieslect" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#f9f9f9" },
+    { "type": "color", "id": "text_color", "label": "Texto", "default": "#111111" },
+    { "type": "color", "id": "accent_color", "label": "Acento", "default": "#ff4b2b" }
   ],
   "blocks": [
     {
-      "type": "product",
-      "name": "Producto",
+      "type": "product_card",
+      "name": "Producto Destacado",
       "settings": [
-        { "type": "product", "id": "featured_product", "label": "Producto" },
-        { "type": "text", "id": "badge_text", "label": "Badge", "default": "HOT" }
+        { "type": "product", "id": "product_id", "label": "Producto" },
+        { "type": "text", "id": "badge", "label": "Etiqueta", "default": "NUEVO" },
+        { "type": "text", "id": "btn_text", "label": "Texto Botón", "default": "COMPRA RÁPIDA" }
+      ]
+    },
+    {
+      "type": "media_card",
+      "name": "Imagen / Video / Texto",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen Personalizada" },
+        { "type": "video_url", "id": "video_url", "label": "URL de Video (Youtube)", "accept": ["youtube"] },
+        { "type": "text", "id": "title", "label": "Título", "default": "Tecnología AMOLED" },
+        { "type": "textarea", "id": "text", "label": "Descripción", "default": "Crea una experiencia visual sin precedentes." },
+        { "type": "text", "id": "link_label", "label": "Texto Enlace", "default": "Saber más" },
+        { "type": "url", "id": "link_url", "label": "Enlace" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Quick Buy Pro",
-      "blocks": [ { "type": "product" }, { "type": "product" }, { "type": "product" } ]
+      "name": "Ultimate Content Grid",
+      "blocks": [
+        { "type": "product_card" },
+        { "type": "media_card" },
+        { "type": "product_card" }
+      ]
     }
   ]
 }
