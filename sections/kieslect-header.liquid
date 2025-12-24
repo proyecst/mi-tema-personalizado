@@ -1,4 +1,3 @@
-
 <header class="kieslect-header">
   <div class="header-container">
     
@@ -26,26 +25,27 @@
     </nav>
 
     <div class="secondary-nav">
-      <a href="/search" class="nav-link-sec">BUSCAR</a>
-      <a href="/account" class="nav-link-sec">MI CUENTA</a>
-      <a href="/contact" class="contact-btn">CONTACTO</a>
+      <a href="/search" class="icon-link">🔍</a>
+      <a href="/account" class="icon-link">Mi Cuenta</a>
+      <a href="/contact" class="contact-btn">Contacto</a>
     </div>
 
   </div>
 </header>
 
 <style>
+/* Variables de Color para fácil edición */
 :root {
-  --neon-blue: #00D1FF; /* Azul ultra visible */
-  --deep-black: #000000; /* Negro puro para máximo contraste */
-  --dark-gray: #111111;
+  --primary-blue: #007BFF; /* Azul Eléctrico */
+  --deep-black: #0a0a0a;   /* Negro casi total */
+  --text-gray: #b0b0b0;    /* Gris para estados inactivos */
 }
 
 .kieslect-header {
   background: var(--deep-black);
-  border-bottom: 2px solid var(--neon-blue);
-  padding: 20px 5%;
-  font-family: 'Inter', 'Arial Black', sans-serif;
+  border-bottom: 1px solid #222;
+  padding: 12px 5%;
+  font-family: 'Inter', 'Helvetica', sans-serif;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -57,19 +57,163 @@
   align-items: center;
 }
 
-/* Logo */
+/* Logo con brillo azul al pasar el mouse */
 .logo a {
-  font-weight: 900;
-  font-size: 28px;
-  color: #ffffff; /* El logo en blanco para balancear, o cámbialo a var(--neon-blue) */
+  font-weight: 800;
+  font-size: 22px;
+  color: #fff;
   text-decoration: none;
-  letter-spacing: 4px;
-  text-shadow: 0 0 10px var(--neon-blue);
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
 }
 
-/* Lista de Navegación */
+.logo a:hover {
+  color: var(--primary-blue);
+  text-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+/* Navegación Principal */
 .nav-list {
   display: flex;
   list-style: none;
   gap: 30px;
-  margin: 0
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Subrayado Azul Animado */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-blue);
+  box-shadow: 0 0 8px var(--primary-blue);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-blue);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Dropdown Estilo Oscuro */
+.has-dropdown {
+  position: relative;
+}
+
+.arrow {
+  font-size: 9px;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.has-dropdown:hover .arrow {
+  transform: rotate(180deg);
+  color: var(--primary-blue);
+}
+
+.dropdown {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: #1a1a1a; /* Negro ligeramente más claro que el fondo */
+  border: 1px solid #333;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  min-width: 200px;
+  padding: 10px 0;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  transform: translateY(10px);
+}
+
+.has-dropdown:hover .dropdown {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  top: 100%;
+}
+
+.dropdown a {
+  padding: 12px 20px;
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.dropdown a:hover {
+  background: #222;
+  color: var(--primary-blue);
+  padding-left: 25px;
+}
+
+/* Botones Secundarios */
+.secondary-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.icon-link {
+  font-size: 13px;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.icon-link:hover {
+  color: var(--primary-blue);
+}
+
+.contact-btn {
+  background: var(--primary-blue);
+  color: #fff !important;
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+}
+</style>
+
+{% schema %}
+{
+  "name": "Kieslect Black & Blue",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Kieslect Black & Blue"
+    }
+  ]
+}
+{% endschema %}
