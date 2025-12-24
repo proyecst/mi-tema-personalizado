@@ -1,164 +1,33 @@
-{%- style -%}
-  :root {
-    --k-blue: #00D1FF;
-    --k-black: #000000;
-    --k-dark-grey: #111111;
-  }
-
-  /* Botón Flotante */
-  .k-chat-launcher {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background-color: var(--k-black);
-    border: 2px solid var(--k-blue);
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-  
-  .k-chat-launcher:hover { transform: scale(1.1); }
-  .k-chat-launcher svg { width: 28px; height: 28px; fill: var(--k-blue); }
-
-  /* Ventana de Ayuda */
-  .k-help-window {
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    width: 340px;
-    background: var(--k-black);
-    border: 1px solid #333;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 10000;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .k-help-window.active { display: flex; animation: k-slide 0.3s ease-out; }
-
-  @keyframes k-slide {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-
-  .k-help-header {
-    background: var(--k-blue);
-    color: var(--k-black);
-    padding: 20px;
-    position: relative;
-  }
-
-  .k-help-header h4 { margin: 0; font-size: 1rem; font-weight: 900; text-transform: uppercase; }
-  .k-help-header p { margin: 3px 0 0; font-size: 0.75rem; font-weight: 600; }
-
-  .k-help-body {
-    padding: 15px;
-    background: var(--k-black);
-  }
-
-  .k-msg-intro {
-    color: #eee;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    line-height: 1.4;
-    padding: 10px;
-    background: var(--k-dark-grey);
-    border-radius: 8px;
-  }
-
-  /* Botones de Opciones */
-  .k-help-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .k-help-btn {
-    background: var(--k-dark-grey);
-    border: 1px solid #333;
-    color: var(--k-blue);
-    padding: 12px 15px;
-    border-radius: 8px;
-    text-align: left;
-    font-size: 0.85rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
-  .k-help-btn:hover {
-    background: var(--k-blue);
-    color: var(--k-black);
-    border-color: var(--k-blue);
-  }
-
-  .k-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
-    font-size: 22px;
-    color: var(--k-black);
-  }
-
-  /* Vista de información rápida */
-  #k-info-view {
-    display: none;
-    color: #fff;
-    font-size: 0.85rem;
-    animation: k-fade 0.3s;
-  }
-
-  @keyframes k-fade { from { opacity: 0; } to { opacity: 1; } }
-
-  .k-back-btn {
-    background: none;
-    border: none;
-    color: var(--k-blue);
-    font-weight: 800;
-    cursor: pointer;
-    padding: 0;
-    margin-bottom: 10px;
-    font-size: 0.7rem;
-  }
-{%- endstyle -%}
-
-<div class="k-chat-launcher" onclick="toggleKHelp()">
-  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+<div class="ai-launcher" onclick="toggleAIChat()">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2m0 2c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8m4 4.5l1.5 1.5L13.5 16 12 14.5l-1.5 1.5L6.5 12l1.5-1.5L12 14.5l4-4z"/></svg>
 </div>
 
-<div id="k-help-window" class="k-help-window">
-  <div class="k-help-header">
-    <span class="k-close" onclick="toggleKHelp()">&times;</span>
-    <h4>Asistente Kieslect</h4>
-    <p>Navegación y Soporte</p>
+<div id="ai-chat-box" class="ai-window">
+  <div class="ai-header">
+    <span>KIESLECT AI ASSISTANT</span>
+    <button onclick="toggleAIChat()" style="background:none; border:none; color:#000; font-weight:bold; cursor:pointer;">✕</button>
   </div>
-  
-  <div class="k-help-body">
-    <div id="k-main-nav">
-      <div class="k-msg-intro">
-        ¿Qué estás buscando hoy en <strong>Kieslect</strong>? Selecciona una opción:
-      </div>
-      
-      <div class="k-help-options">
-        <a href="/collections/all" class="k-help-btn">⌚ Explorar Colecciones</a>
-        <div class="k-help-btn" onclick="showKInfo('envios')">🚚 Tiempos de Envío</div>
-        <div class="k-help-btn" onclick="showKInfo('garantia')">🛡️ Política de Garantía</div>
-        <a href="/pages/contacto" class="k-help-btn">📧 Contactar Soporte</a>
-      </div>
-    </div>
+  <div id="ai-messages" class="ai-body">
+    <div class="ai-msg bot">Hola, soy la IA de Kieslect. ¿En qué puedo ayudarte hoy?</div>
+  </div>
+  <div class="ai-footer">
+    <input type="text" id="ai-input" placeholder="Escribe tu duda técnica..." onkeypress="handleEnter(event)">
+    <button onclick="askAI()">ENVIAR</button>
+  </div>
+</div>
 
-    <div id="k-info-view">
-      <button class="k-back-btn" onclick="backToKMain()">← VOLVER AL MENÚ</button>
+<style>
+  :root { --neon: #00D1FF; --dark: #0a0a0a; }
+  
+  .ai-launcher {
+    position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+    background: var(--dark); border: 2px solid var(--neon); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    z-index: 10000; box-shadow: 0 0 20px rgba(0,209,255,0.4);
+  }
+  .ai-launcher svg { width: 30px; fill: var(--neon); }
+
+  .ai-window {
+    position: fixed; bottom: 100px; right: 30px; width: 350px; height: 500px;
+    background: var(--dark); border: 1px solid #333; border-radius: 15px;
+    display: none; flex-direction: column; z-index: 10000; overflow: hidden;
