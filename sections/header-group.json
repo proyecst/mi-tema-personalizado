@@ -67,23 +67,36 @@
     "listado_coleccion_avanzado_GJHFJY": {
       "type": "listado-coleccion-avanzado",
       "blocks": {
-        "product_4wpjNa": {
-          "type": "product",
+        "product_card_qmP7We": {
+          "type": "product_card",
           "settings": {
-            "featured_product": "kieslect-lady-watch-pura",
-            "badge_text": "HOT"
+            "product_id": "kieslect-lady-watch-pura",
+            "badge": "NUEVO",
+            "btn_text": "COMPRA RÁPIDA"
+          }
+        },
+        "media_card_BTBA4q": {
+          "type": "media_card",
+          "settings": {
+            "image": "shopify://shop_images/Frame_20.png",
+            "video_url": "",
+            "title": "Tecnología AMOLED",
+            "text": "Crea una experiencia visual sin precedentes.",
+            "link_label": "Saber más",
+            "link_url": ""
           }
         }
       },
       "block_order": [
-        "product_4wpjNa"
+        "product_card_qmP7We",
+        "media_card_BTBA4q"
       ],
       "name": "Listado Profesional",
       "settings": {
         "main_title": "Selección Premium",
         "bg_color": "#ffffff",
-        "accent_color": "#000000",
-        "btn_label": "COMPRA RÁPIDA"
+        "text_color": "#111111",
+        "accent_color": "#000000"
       }
     },
     "series_destacadas_zpGQwz": {
