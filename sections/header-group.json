@@ -94,8 +94,8 @@
       "name": "Listado Profesional",
       "settings": {
         "main_title": "Selección Premium",
-        "bg_color": "#ffffff",
-        "text_color": "#111111",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
         "accent_color": "#000000"
       }
     },
@@ -201,7 +201,7 @@
       ],
       "name": "Características Principales Reloj",
       "settings": {
-        "bg_color": "#ffffff",
+        "bg_color": "#110f0f",
         "text_color": "#000000",
         "model_name": "KIESLECT KR PRO",
         "title": "Especificaciones Técnicas",
@@ -302,7 +302,7 @@
       "name": "Herramienta de Comparación",
       "settings": {
         "title": "Compara nuestros Smartwatches",
-        "bg_color": "#ffffff",
+        "bg_color": "#000000",
         "btn_color": "#000000",
         "cta_text": "Comparar Modelos",
         "cta_link": "",
@@ -346,7 +346,7 @@
         "blog_id": "",
         "post_limit": 3,
         "cta_text": "Leer el Blog",
-        "bg_color": "#ffffff",
+        "bg_color": "#110f0f",
         "padding_top": 50,
         "padding_bottom": 50
       }
