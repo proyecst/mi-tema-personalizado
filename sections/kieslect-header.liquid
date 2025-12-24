@@ -1,131 +1,41 @@
-<header class="kieslect-header">
-  <div class="header-container">
+<div id="trust-v3" style="background: {{ section.settings.bg_color }}; padding: 40px 0; border: 5px solid red;">
+  <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
     
-    <div class="logo">
-      <a href="/" style="font-weight: bold; font-size: 20px; color: #000; text-decoration: none;">KIESLECT</a>
-    </div>
-
-    <nav class="main-nav">
-      <ul class="nav-list">
-        <li><a href="/">Inicio</a></li>
-        
-        <li class="has-dropdown">
-          <a href="/collections/all">Tienda ▼</a>
-          <ul class="dropdown">
-            <li><a href="/collections/serie-amoled">Serie AMOLED</a></li>
-            <li><a href="/collections/llamadas-bluetooth">Serie Llamadas</a></li>
-            <li><a href="/collections/deportiva">Serie Deportiva</a></li>
-            <li><a href="/collections/premium">Serie Premium</a></li>
-          </ul>
-        </li>
-        
-        <li><a href="/blogs/news">Blog</a></li>
-        <li><a href="/pages/soporte">Soporte</a></li>
-      </ul>
-    </nav>
-
-    <div class="secondary-nav">
-      <a href="/search">Buscar</a>
-      <a href="/account">Mi Cuenta</a>
-      <a href="/contact" class="contact-btn">Contacto</a>
-    </div>
+    {% for block in section.blocks %}
+      <div style="background: #f4f4f4; padding: 20px; border-radius: 10px; min-width: 250px; text-align: center; color: #000;">
+        <span style="font-size: 40px;">{{ block.settings.icon }}</span>
+        <h3 style="margin: 10px 0;">{{ block.settings.title }}</h3>
+        <p>{{ block.settings.description }}</p>
+      </div>
+    {% endfor %}
 
   </div>
-</header>
-
-<style>
-/* Aquí pegué el CSS que tú me pasaste */
-.kieslect-header {
-  background: #ffffff;
-  border-bottom: 1px solid #eee;
-  padding: 15px 5%;
-  font-family: 'Helvetica', sans-serif;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-list a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-/* Dropdown Logic */
-.has-dropdown {
-  position: relative;
-}
-
-.dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-  min-width: 220px;
-  padding: 10px 0;
-  z-index: 100;
-}
-
-.dropdown li {
-  list-style: none;
-}
-
-.dropdown a {
-  padding: 10px 20px;
-  display: block;
-}
-
-.dropdown a:hover {
-  background: #f8f8f8;
-  color: #000;
-}
-
-.has-dropdown:hover .dropdown {
-  display: block;
-}
-
-/* Secondary Nav */
-.secondary-nav {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.secondary-nav a {
-  font-size: 12px;
-  text-decoration: none;
-  color: #666;
-}
-
-.contact-btn {
-  background: #000;
-  color: #fff !important;
-  padding: 8px 15px;
-  border-radius: 4px;
-}
-</style>
+</div>
 
 {% schema %}
 {
-  "name": "Kieslect Header",
-  "settings": [],
+  "name": "Barra Salvavidas",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Color de Fondo", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Bloque",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji", "default": "📦" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Título Prueba" },
+        { "type": "text", "id": "description", "label": "Descripción", "default": "Descripción de prueba" }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Kieslect Header"
+      "name": "Barra Salvavidas",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" }
+      ]
     }
   ]
 }
