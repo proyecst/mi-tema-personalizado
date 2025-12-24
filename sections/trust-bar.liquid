@@ -1,4 +1,4 @@
-<div class="neo-trust-section" id="neo-{{ section.id }}">
+<div class="neo-trust-section" id="neo-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
   <div class="neo-container">
     <div class="neo-grid">
       
@@ -6,21 +6,19 @@
         <div class="neo-card-orbit" {{ block.shopify_attributes }}>
           <div class="neo-card" onclick="this.classList.toggle('is-active')">
             
-            {% comment %} Fondo con gradiente animado {% endcomment %}
-            <div class="neo-card-bg"></div>
-            
             <div class="neo-card-inner">
-              <div class="neo-icon-box">
+              <div class="neo-icon-box" style="background-color: {{ section.settings.accent_color }};">
                 <span class="neo-emoji">{{ block.settings.icon }}</span>
               </div>
               
               <div class="neo-text-zone">
-                <h3 class="neo-h3">{{ block.settings.title }}</h3>
+                <h3 class="neo-h3" style="color: {{ section.settings.text_color }};">{{ block.settings.title }}</h3>
                 <div class="neo-expandable">
-                  <p class="neo-p">{{ block.settings.subtitle }}</p>
-                  <button class="neo-btn-post" onclick="triggerBrutalAction(event, '{{ block.id }}')">
-                    <span class="btn-text">{{ block.settings.button_label }}</span>
-                    <span class="btn-icon">→</span>
+                  <p class="neo-p" style="color: {{ section.settings.text_color }};">{{ block.settings.subtitle }}</p>
+                  <button class="neo-btn-post" 
+                          style="background-color: {{ section.settings.accent_color }}; color: #fff;"
+                          onclick="triggerBrutalAction(event, '{{ block.id }}')">
+                    {{ block.settings.button_label }}
                   </button>
                 </div>
               </div>
@@ -36,190 +34,120 @@
 
 <style>
   .neo-trust-section {
-    padding: 80px 0;
-    background: {{ section.settings.bg_color }};
-    overflow: hidden;
+    padding: 60px 0;
+    width: 100%;
+    display: block !important; /* Forzar visibilidad */
+    min-height: 200px;
   }
 
   .neo-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 20px;
   }
 
   .neo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-  }
-
-  /* La Tarjeta */
-  .neo-card {
-    position: relative;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 35px;
-    cursor: pointer;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-  }
-
-  .neo-card-bg {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at top right, {{ section.settings.accent_color }}22, transparent);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 0;
-  }
-
-  .neo-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: {{ section.settings.accent_color }};
-  }
-
-  .neo-card:hover .neo-card-bg {
-    opacity: 1;
-  }
-
-  .neo-card-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
   }
 
+  .neo-card {
+    background: rgba(128, 128, 128, 0.05); /* Fondo gris suave para que se vea */
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 20px;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  .neo-card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
   .neo-icon-box {
-    width: 60px;
-    height: 60px;
-    background: {{ section.settings.accent_color }};
-    border-radius: 18px;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    box-shadow: 0 10px 20px {{ section.settings.accent_color }}44;
+    font-size: 24px;
   }
 
   .neo-h3 {
     margin: 0;
-    font-size: 20px;
-    font-weight: 700;
-    color: {{ section.settings.text_color }};
-    letter-spacing: -0.5px;
+    font-size: 18px;
+    font-weight: bold;
   }
 
-  /* Animación Desplegable */
+  /* El contenido se oculta hasta hacer clic */
   .neo-expandable {
     max-height: 0;
-    opacity: 0;
+    overflow: hidden;
     transition: all 0.5s ease;
-    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  .neo-card.is-active {
+    border-color: {{ section.settings.accent_color }};
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
 
   .neo-card.is-active .neo-expandable {
-    max-height: 200px;
+    max-height: 500px;
     opacity: 1;
-    transform: translateY(0);
     margin-top: 15px;
   }
 
-  .neo-p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: {{ section.settings.text_color }};
-    opacity: 0.7;
-    margin-bottom: 20px;
-  }
-
-  /* Botón Brutal */
   .neo-btn-post {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: {{ section.settings.text_color }};
-    color: {{ section.settings.bg_color }};
-    border: none;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
     width: 100%;
-    justify-content: center;
-  }
-
-  .neo-btn-post:hover {
-    gap: 20px;
-    filter: brightness(1.2);
-  }
-
-  @media (max-width: 768px) {
-    .neo-container { padding: 0 20px; }
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
   }
 </style>
 
 <script>
-  function triggerBrutalAction(e, blockId) {
-    e.stopPropagation(); // Evita cerrar la card al clickar el botón
-    const btn = e.currentTarget;
-    const originalText = btn.innerHTML;
-    
-    btn.innerHTML = '<span class="btn-text">CONECTANDO...</span>';
-    btn.style.opacity = "0.5";
-
-    // Simulación de llamada POST a Shopify AJAX API
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: [{ id: blockId, quantity: 1 }] })
-    })
-    .then(res => {
-      btn.style.background = "#00ff88";
-      btn.style.color = "#000";
-      btn.style.opacity = "1";
-      btn.innerHTML = "¡MISIÓN COMPLETADA! ⚡";
-      
-      setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.style.background = "";
-        btn.style.color = "";
-      }, 3000);
-    })
-    .catch(err => console.error("Error brutal:", err));
+  function triggerBrutalAction(e, id) {
+    e.stopPropagation();
+    alert("¡Acción POST enviada para el bloque: " + id + "!");
   }
 </script>
 
 {% schema %}
 {
-  "name": "Barra Neo-Luxury",
+  "name": "Barra Brutal v2",
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#0a0a0a" },
-    { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Acento", "default": "#6366f1" }
+    { "type": "color", "id": "bg_color", "label": "Fondo Sección", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Color Texto", "default": "#000000" },
+    { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#0000ff" }
   ],
   "blocks": [
     {
       "type": "item",
-      "name": "Card Pro",
+      "name": "Bloque",
       "settings": [
-        { "type": "text", "id": "icon", "label": "Icono", "default": "💎" },
-        { "type": "text", "id": "title", "label": "Título", "default": "Soporte VIP" },
-        { "type": "textarea", "id": "subtitle", "label": "Contenido Extra", "default": "Acceso exclusivo a nuestro canal de Telegram 24/7 para clientes premium." },
-        { "type": "text", "id": "button_label", "label": "Texto Botón", "default": "ACTIVAR AHORA" }
+        { "type": "text", "id": "icon", "label": "Emoji", "default": "🚀" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Título de Prueba" },
+        { "type": "textarea", "id": "subtitle", "label": "Info", "default": "Haz clic para ver más información brutal." },
+        { "type": "text", "id": "button_label", "label": "Botón", "default": "LO QUIERO" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Barra Neo-Luxury",
+      "name": "Barra Brutal v2",
       "blocks": [
-        { "type": "item", "settings": {"icon": "🛡️", "title": "Garantía de Hierro"} },
-        { "type": "item", "settings": {"icon": "🚚", "title": "Envío Hyper-Fast"} }
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
       ]
     }
   ]
