@@ -3,94 +3,161 @@
     background-color: {{ section.settings.bg_color }};
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    font-family: 'Inter', sans-serif;
   }
 
-  .feat-container {
-    max-width: 1200px;
+  .feat-wrapper {
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
+    color: {{ section.settings.text_color }};
   }
 
-  .feat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px 20px;
+  .feat-header {
+    text-align: center;
     margin-bottom: 50px;
   }
 
+  .feat-model-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    background: #00D1FF;
+    color: #000;
+    font-weight: 800;
+    border-radius: 50px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .feat-main-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .feat-price {
+    font-size: 1.8rem;
+    color: #00D1FF;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+
+  /* Grid de Especificaciones */
+  .spec-table {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+  }
+
   @media screen and (max-width: 749px) {
-    .feat-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px 10px;
-    }
+    .spec-table { grid-template-columns: 1fr; }
+    .feat-main-title { font-size: 1.8rem; }
   }
 
-  .feat-item {
-    text-align: center;
+  .spec-card {
+    background: #111;
+    border: 1px solid #222;
+    padding: 25px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    gap: 20px;
   }
 
-  .feat-icon-wrapper {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
+  .spec-card:hover {
+    border-color: #00D1FF;
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.1);
+    transform: translateY(-5px);
+  }
+
+  .spec-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f4f4f4;
-    border-radius: 50%;
-    color: #000;
+    background: rgba(0, 209, 255, 0.1);
+    border-radius: 8px;
+    color: #00D1FF;
   }
 
-  .feat-icon-wrapper svg, .feat-icon-wrapper img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
+  .spec-icon svg, .spec-icon img {
+    width: 28px;
+    height: 28px;
   }
 
-  .feat-title {
-    font-size: 1.1rem;
-    font-weight: 600;
+  .spec-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.9rem;
+    color: #00D1FF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .spec-info p {
     margin: 0;
-    line-height: 1.3;
-    color: {{ section.settings.text_color }};
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
   }
 
   .feat-cta-wrapper {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 50px;
   }
 
   .feat-btn {
     display: inline-block;
-    padding: 12px 35px;
-    background-color: {{ section.settings.btn_color }};
-    color: {{ section.settings.btn_text_color }};
+    padding: 15px 45px;
+    background-color: #00D1FF;
+    color: #000;
     text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-    transition: opacity 0.3s;
+    border-radius: 4px;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
   }
 
   .feat-btn:hover {
-    opacity: 0.8;
+    background-color: #fff;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
   }
 {%- endstyle -%}
 
-<div class="feat-container">
-  <div class="feat-grid">
+<div class="feat-wrapper">
+  <div class="feat-header">
+    {% if section.settings.model_name != blank %}
+      <span class="feat-model-badge">{{ section.settings.model_name }}</span>
+    {% endif %}
+    
+    <h2 class="feat-main-title">{{ section.settings.title }}</h2>
+    
+    {% if section.settings.price != blank %}
+      <div class="feat-price">{{ section.settings.price }}</div>
+    {% endif %}
+  </div>
+
+  <div class="spec-table">
     {% for block in section.blocks %}
-      <div class="feat-item" {{ block.shopify_attributes }}>
-        <div class="feat-icon-wrapper">
+      <div class="spec-card" {{ block.shopify_attributes }}>
+        <div class="spec-icon">
           {% if block.settings.custom_icon != blank %}
-            <img src="{{ block.settings.custom_icon | image_url: width: 100 }}" alt="{{ block.settings.title }}" loading="lazy">
+            <img src="{{ block.settings.custom_icon | image_url: width: 100 }}" alt="{{ block.settings.spec_label }}" loading="lazy">
           {% else %}
-            {% render 'icon-accordion' %} {%- comment -%} Icono genérico si no hay imagen {%- endcomment -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20" stroke-linecap="round"/></svg>
           {% endif %}
         </div>
-        <h3 class="feat-title">{{ block.settings.title }}</h3>
+        <div class="spec-info">
+          <h4>{{ block.settings.spec_label }}</h4>
+          <p>{{ block.settings.spec_value }}</p>
+        </div>
       </div>
     {% endfor %}
   </div>
@@ -106,38 +173,37 @@
 
 {% schema %}
 {
-  "name": "Características Reloj",
+  "name": "Especificaciones Pro",
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#ffffff" },
-    { "type": "color", "id": "text_color", "label": "Color Texto", "default": "#000000" },
-    { "type": "color", "id": "btn_color", "label": "Color Botón", "default": "#000000" },
-    { "type": "color", "id": "btn_text_color", "label": "Color Texto Botón", "default": "#ffffff" },
-    { "type": "text", "id": "cta_text", "label": "Texto Botón", "default": "Explorar Funciones" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
+    { "type": "color", "id": "text_color", "label": "Color Texto", "default": "#ffffff" },
+    { "type": "text", "id": "model_name", "label": "Nombre del Modelo", "default": "KIESLECT KR PRO" },
+    { "type": "text", "id": "title", "label": "Título Principal", "default": "Especificaciones Técnicas" },
+    { "type": "text", "id": "price", "label": "Precio", "default": "$89.99" },
+    { "type": "text", "id": "cta_text", "label": "Texto Botón", "default": "Comprar Ahora" },
     { "type": "url", "id": "cta_link", "label": "Link Botón" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "default": 40, "unit": "px", "label": "Padding Superior" },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "default": 40, "unit": "px", "label": "Padding Inferior" }
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "default": 60, "unit": "px", "label": "Padding Superior" },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "default": 60, "unit": "px", "label": "Padding Inferior" }
   ],
   "blocks": [
     {
       "type": "feature",
-      "name": "Característica",
-      "limit": 6,
+      "name": "Especificación",
       "settings": [
-        { "type": "image_picker", "id": "custom_icon", "label": "Icono (PNG/SVG)" },
-        { "type": "text", "id": "title", "label": "Título", "default": "Característica" }
+        { "type": "image_picker", "id": "custom_icon", "label": "Icono Personalizado" },
+        { "type": "text", "id": "spec_label", "label": "Etiqueta (Ej: Pantalla)", "default": "Pantalla" },
+        { "type": "text", "id": "spec_value", "label": "Valor (Ej: 1.43\" AMOLED)", "default": "1.43\" Ultra AMOLED" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Características Principales Reloj",
+      "name": "Especificaciones Pro Reloj",
       "blocks": [
-        { "type": "feature", "settings": { "title": "Pantalla AMOLED" } },
-        { "type": "feature", "settings": { "title": "Asistente de Voz IA" } },
-        { "type": "feature", "settings": { "title": "100+ Modos Deportivos" } },
-        { "type": "feature", "settings": { "title": "Llamadas Bluetooth" } },
-        { "type": "feature", "settings": { "title": "Batería de Larga Duración" } },
-        { "type": "feature", "settings": { "title": "Sensores de Salud" } }
+        { "type": "feature", "settings": { "spec_label": "Pantalla", "spec_value": "1.43\" AMOLED" } },
+        { "type": "feature", "settings": { "spec_label": "Construcción", "spec_value": "Cuerpo de Metal Pulido" } },
+        { "type": "feature", "settings": { "spec_label": "Batería", "spec_value": "Hasta 10 días de uso" } },
+        { "type": "feature", "settings": { "spec_label": "Resistencia", "spec_value": "IP68 Resistente al Agua" } }
       ]
     }
   ]
