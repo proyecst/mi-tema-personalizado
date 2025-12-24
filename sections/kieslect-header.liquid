@@ -25,27 +25,26 @@
     </nav>
 
     <div class="secondary-nav">
-      <a href="/search" class="icon-link">🔍</a>
-      <a href="/account" class="icon-link">Mi Cuenta</a>
-      <a href="/contact" class="contact-btn">Contacto</a>
+      <a href="/search" class="icon-link">BUSCAR</a>
+      <a href="/account" class="icon-link">MI CUENTA</a>
+      <a href="/contact" class="contact-btn">CONTACTO</a>
     </div>
 
   </div>
 </header>
 
 <style>
-/* Variables de Color para fácil edición */
 :root {
-  --primary-blue: #007BFF; /* Azul Eléctrico */
-  --deep-black: #0a0a0a;   /* Negro casi total */
-  --text-gray: #b0b0b0;    /* Gris para estados inactivos */
+  --electric-blue: #00D1FF; /* Un azul más brillante y visible */
+  --deep-black: #050505;
+  --hover-blue: #00A3FF;
 }
 
 .kieslect-header {
   background: var(--deep-black);
-  border-bottom: 1px solid #222;
-  padding: 12px 5%;
-  font-family: 'Inter', 'Helvetica', sans-serif;
+  border-bottom: 2px solid var(--electric-blue); /* Línea divisoria azul */
+  padding: 18px 5%;
+  font-family: 'Inter', 'Arial Black', sans-serif;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -57,6 +56,21 @@
   align-items: center;
 }
 
-/* Logo con brillo azul al pasar el mouse */
+/* Logo muy visible */
 .logo a {
-  font-weight:
+  font-weight: 900;
+  font-size: 26px;
+  color: var(--electric-blue);
+  text-decoration: none;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(0, 209, 255, 0.4);
+}
+
+/* Enlaces de navegación con Azul resaltado */
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+  margin: 0;
+  padding: 0;
+}
