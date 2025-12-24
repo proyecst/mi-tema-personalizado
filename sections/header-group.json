@@ -33,6 +33,35 @@
     },
     "series_ia_HmgFFW": {
       "type": "series-ia",
+      "blocks": {
+        "serie_DkQNEm": {
+          "type": "serie",
+          "settings": {
+            "image": "shopify://shop_images/c8079620-18e9-45c9-9739-7fd94d775e8d.jpg",
+            "title": "pura",
+            "link": ""
+          }
+        },
+        "serie_6PqAU6": {
+          "type": "serie",
+          "settings": {
+            "title": "",
+            "link": ""
+          }
+        },
+        "serie_fdQGpr": {
+          "type": "serie",
+          "settings": {
+            "title": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "serie_DkQNEm",
+        "serie_6PqAU6",
+        "serie_fdQGpr"
+      ],
       "name": "Series IA Interactiva",
       "settings": {
         "title": "SERIES KIESLECT"
@@ -192,13 +221,18 @@
       "settings": {
         "bg_color": "#000000",
         "text_color": "#ffffff",
-        "accent_color": "#00D1FF",
+        "accent_color": "#00d1ff",
         "logo_text": "KIESLECT",
         "description": "Elevando los estándares de la tecnología wearable con diseños innovadores y rendimiento excepcional.",
         "menu_company": "",
         "menu_support": "",
         "contact_info": "Global Support: hello@kieslect.com"
       }
+    },
+    "kieslect_ai_assistant_6Npar6": {
+      "type": "kieslect-ai-assistant",
+      "name": "Kieslect AI Assistant",
+      "settings": {}
     },
     "caracteristicas_reloj_Vy3xdp": {
       "type": "caracteristicas-reloj",
@@ -320,11 +354,6 @@
     "chatbot_kieslect_kdMWME": {
       "type": "chatbot-kieslect",
       "name": "Chatbot Kieslect",
-      "settings": {}
-    },
-    "kieslect_ai_assistant_6Npar6": {
-      "type": "kieslect-ai-assistant",
-      "name": "Kieslect AI Assistant",
       "settings": {}
     }
   },
