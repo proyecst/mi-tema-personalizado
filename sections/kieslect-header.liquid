@@ -1,3 +1,4 @@
+
 <header class="kieslect-header">
   <div class="header-container">
     
@@ -25,8 +26,8 @@
     </nav>
 
     <div class="secondary-nav">
-      <a href="/search" class="icon-link">BUSCAR</a>
-      <a href="/account" class="icon-link">MI CUENTA</a>
+      <a href="/search" class="nav-link-sec">BUSCAR</a>
+      <a href="/account" class="nav-link-sec">MI CUENTA</a>
       <a href="/contact" class="contact-btn">CONTACTO</a>
     </div>
 
@@ -35,15 +36,15 @@
 
 <style>
 :root {
-  --electric-blue: #00D1FF; /* Un azul más brillante y visible */
-  --deep-black: #050505;
-  --hover-blue: #00A3FF;
+  --neon-blue: #00D1FF; /* Azul ultra visible */
+  --deep-black: #000000; /* Negro puro para máximo contraste */
+  --dark-gray: #111111;
 }
 
 .kieslect-header {
   background: var(--deep-black);
-  border-bottom: 2px solid var(--electric-blue); /* Línea divisoria azul */
-  padding: 18px 5%;
+  border-bottom: 2px solid var(--neon-blue);
+  padding: 20px 5%;
   font-family: 'Inter', 'Arial Black', sans-serif;
   position: sticky;
   top: 0;
@@ -56,21 +57,19 @@
   align-items: center;
 }
 
-/* Logo muy visible */
+/* Logo */
 .logo a {
   font-weight: 900;
-  font-size: 26px;
-  color: var(--electric-blue);
+  font-size: 28px;
+  color: #ffffff; /* El logo en blanco para balancear, o cámbialo a var(--neon-blue) */
   text-decoration: none;
-  letter-spacing: 3px;
-  text-shadow: 0 0 15px rgba(0, 209, 255, 0.4);
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px var(--neon-blue);
 }
 
-/* Enlaces de navegación con Azul resaltado */
+/* Lista de Navegación */
 .nav-list {
   display: flex;
   list-style: none;
-  gap: 35px;
-  margin: 0;
-  padding: 0;
-}
+  gap: 30px;
+  margin: 0
