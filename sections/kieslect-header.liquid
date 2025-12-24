@@ -2,15 +2,15 @@
   <div class="header-container">
     
     <div class="logo">
-      <a href="/" style="font-weight: bold; font-size: 20px; color: #000; text-decoration: none;">KIESLECT</a>
+      <a href="/">KIESLECT</a>
     </div>
 
     <nav class="main-nav">
       <ul class="nav-list">
-        <li><a href="/">Inicio</a></li>
+        <li><a href="/" class="nav-link">Inicio</a></li>
         
         <li class="has-dropdown">
-          <a href="/collections/all">Tienda ▼</a>
+          <a href="/collections/all" class="nav-link">Tienda <span class="arrow">▼</span></a>
           <ul class="dropdown">
             <li><a href="/collections/serie-amoled">Serie AMOLED</a></li>
             <li><a href="/collections/llamadas-bluetooth">Serie Llamadas</a></li>
@@ -19,14 +19,14 @@
           </ul>
         </li>
         
-        <li><a href="/blogs/news">Blog</a></li>
-        <li><a href="/pages/soporte">Soporte</a></li>
+        <li><a href="/blogs/news" class="nav-link">Blog</a></li>
+        <li><a href="/pages/soporte" class="nav-link">Soporte</a></li>
       </ul>
     </nav>
 
     <div class="secondary-nav">
-      <a href="/search">Buscar</a>
-      <a href="/account">Mi Cuenta</a>
+      <a href="/search" class="icon-link">🔍</a>
+      <a href="/account" class="icon-link">Mi Cuenta</a>
       <a href="/contact" class="contact-btn">Contacto</a>
     </div>
 
@@ -34,12 +34,21 @@
 </header>
 
 <style>
-/* Aquí pegué el CSS que tú me pasaste */
+/* Variables de Color para fácil edición */
+:root {
+  --primary-blue: #007BFF; /* Azul Eléctrico */
+  --deep-black: #0a0a0a;   /* Negro casi total */
+  --text-gray: #b0b0b0;    /* Gris para estados inactivos */
+}
+
 .kieslect-header {
-  background: #ffffff;
-  border-bottom: 1px solid #eee;
-  padding: 15px 5%;
-  font-family: 'Helvetica', sans-serif;
+  background: var(--deep-black);
+  border-bottom: 1px solid #222;
+  padding: 12px 5%;
+  font-family: 'Inter', 'Helvetica', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .header-container {
@@ -48,85 +57,6 @@
   align-items: center;
 }
 
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-list a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-/* Dropdown Logic */
-.has-dropdown {
-  position: relative;
-}
-
-.dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-  min-width: 220px;
-  padding: 10px 0;
-  z-index: 100;
-}
-
-.dropdown li {
-  list-style: none;
-}
-
-.dropdown a {
-  padding: 10px 20px;
-  display: block;
-}
-
-.dropdown a:hover {
-  background: #f8f8f8;
-  color: #000;
-}
-
-.has-dropdown:hover .dropdown {
-  display: block;
-}
-
-/* Secondary Nav */
-.secondary-nav {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.secondary-nav a {
-  font-size: 12px;
-  text-decoration: none;
-  color: #666;
-}
-
-.contact-btn {
-  background: #000;
-  color: #fff !important;
-  padding: 8px 15px;
-  border-radius: 4px;
-}
-</style>
-
-{% schema %}
-{
-  "name": "Kieslect Header",
-  "settings": [],
-  "presets": [
-    {
-      "name": "Kieslect Header"
-    }
-  ]
-}
-{% endschema %}
+/* Logo con brillo azul al pasar el mouse */
+.logo a {
+  font-weight:
