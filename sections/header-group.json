@@ -129,13 +129,15 @@
         "serie_8gbAAE": {
           "type": "serie",
           "settings": {
+            "image": "shopify://shop_images/kieslect-bluetooth-smartwatch-actor.png",
             "title": "Serie con Llamadas Bluetooth",
-            "link": ""
+            "link": "shopify://collections/relojes-para-hombre"
           }
         },
         "serie_GJ79N8": {
           "type": "serie",
           "settings": {
+            "image": "shopify://shop_images/lora2_0ea1203a-b917-4575-808f-1d9d73badcf7.jpg",
             "title": "Serie Deportiva",
             "link": ""
           }
