@@ -10,8 +10,17 @@
 {
   "current": {
     "type_primary_font": "arial_n4",
-    "background_color": "#110f0f",
+    "background_color": "#ffffff",
     "foreground_color": "#FFFFFF",
+    "sections": {
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "menu": "",
+          "show_payment_icons": true
+        }
+      }
+    },
     "content_for_index": []
   }
 }

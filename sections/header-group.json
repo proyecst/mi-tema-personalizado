@@ -23,363 +23,194 @@
     },
     "barra_efectiva_ty7y9a": {
       "type": "barra-efectiva",
-      "blocks": {
-        "benefit_QwTCYd": {
-          "type": "benefit",
-          "settings": {
-            "icon": "💳",
-            "title": "Pago Seguro",
-            "description": "En todos los pedidos superiores a $50",
-            "button_label": "Saber más"
-          }
-        },
-        "benefit_eFGYjh": {
-          "type": "benefit",
-          "settings": {
-            "icon": "🔄",
-            "title": "Devolución 30 días",
-            "description": "En todos los pedidos superiores a $50",
-            "button_label": "Saber más"
-          }
-        },
-        "benefit_QjNYMR": {
-          "type": "benefit",
-          "settings": {
-            "icon": "⭐",
-            "title": "Garantía Total",
-            "description": "En todos los pedidos superiores a $50",
-            "button_label": "Saber más"
-          }
-        }
-      },
-      "block_order": [
-        "benefit_QwTCYd",
-        "benefit_eFGYjh",
-        "benefit_QjNYMR"
-      ],
       "name": "Barra Efectiva",
+      "settings": {}
+    },
+    "barra_confianza_tech_Az8xPH": {
+      "type": "barra-confianza-tech",
+      "name": "Barra de Confianza Tech",
+      "settings": {}
+    },
+    "series_ia_HmgFFW": {
+      "type": "series-ia",
+      "name": "Series IA Interactiva",
       "settings": {
-        "bg_color": "#ffffff",
-        "text_color": "#121212",
-        "accent_color": "#2b6cb0"
+        "title": "SERIES KIESLECT"
       }
     },
-    "listado_coleccion_avanzado_GJHFJY": {
-      "type": "listado-coleccion-avanzado",
+    "kieslect_interactive_grid_wP7wWD": {
+      "type": "kieslect-interactive-grid",
+      "name": "Kieslect Interactive Grid",
+      "settings": {
+        "main_title": "KIESLECT SERIES",
+        "bg_color": "#000000"
+      }
+    },
+    "kieslect_tech_testimonials_3nkryh": {
+      "type": "kieslect-tech-testimonials",
       "blocks": {
-        "product_card_qmP7We": {
-          "type": "product_card",
+        "testimonial_CBU6Pb": {
+          "type": "testimonial",
           "settings": {
-            "product_id": "kieslect-lady-watch-pura",
-            "badge": "NUEVO",
-            "btn_text": "COMPRA RÁPIDA"
+            "rating": 5,
+            "review_text": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel.",
+            "user_name": "ALEX RIVERA"
           }
         },
-        "media_card_BTBA4q": {
-          "type": "media_card",
+        "testimonial_KnaMXp": {
+          "type": "testimonial",
           "settings": {
-            "image": "shopify://shop_images/Frame_20.png",
-            "video_url": "",
-            "title": "Tecnología AMOLED",
-            "text": "Crea una experiencia visual sin precedentes.",
-            "link_label": "Saber más",
-            "link_url": ""
+            "rating": 5,
+            "review_text": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel.",
+            "user_name": "ALEX RIVERA"
+          }
+        },
+        "testimonial_H83mCp": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "review_text": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel.",
+            "user_name": "ALEX RIVERA"
           }
         }
       },
       "block_order": [
-        "product_card_qmP7We",
-        "media_card_BTBA4q"
+        "testimonial_CBU6Pb",
+        "testimonial_KnaMXp",
+        "testimonial_H83mCp"
       ],
-      "name": "Listado Profesional",
+      "name": "Kieslect Tech Reviews",
       "settings": {
-        "main_title": "Selección Premium",
+        "title": "Comunidad Kieslect",
         "bg_color": "#000000",
         "text_color": "#ffffff",
-        "accent_color": "#000000"
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
-    "series_destacadas_zpGQwz": {
-      "type": "series-destacadas",
+    "kieslect_tech_comparator_4r3fhy": {
+      "type": "kieslect-tech-comparator",
       "blocks": {
-        "serie_NqBhy9": {
-          "type": "serie",
+        "model_6dMtPb": {
+          "type": "model",
           "settings": {
-            "image": "shopify://shop_images/KieslectLadySmartWatchPura-Rosa-Frontal.png",
-            "title": "Nombre de la Serie pura",
-            "link": "shopify://collections/relojes-para-mujer"
+            "model_name": "KS3",
+            "price": "$129.00",
+            "spec_screen": "Ultra AMOLED 2.1\"",
+            "feat_calls": true,
+            "spec_battery": "Up to 15 days",
+            "spec_sports": "150",
+            "feat_voice": true
           }
         },
-        "serie_zdK7GG": {
-          "type": "serie",
+        "model_JP6Jx9": {
+          "type": "model",
           "settings": {
-            "image": "shopify://shop_images/KR3_dorado.jpg",
-            "title": "Nombre de la Serie",
+            "model_name": "KR Pro",
+            "price": "$129.00",
+            "spec_screen": "Ultra AMOLED 2.1\"",
+            "feat_calls": true,
+            "spec_battery": "Up to 15 days",
+            "spec_sports": "150",
+            "feat_voice": true
+          }
+        }
+      },
+      "block_order": [
+        "model_6dMtPb",
+        "model_JP6Jx9"
+      ],
+      "name": "Kieslect Comparator",
+      "settings": {
+        "title": "Encuentra tu Kieslect ideal",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "cta_text": "Ver Todos los Modelos",
+        "cta_link": "",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "kieslect_edu_center_4MnPmH": {
+      "type": "kieslect-edu-center",
+      "blocks": {
+        "guide_UtYWMr": {
+          "type": "guide",
+          "settings": {
+            "title": "Configuración de Llamadas",
             "link": ""
           }
         },
-        "serie_KJzfYx": {
-          "type": "serie",
+        "guide_KDrYEN": {
+          "type": "guide",
           "settings": {
-            "image": "shopify://shop_images/Frame_20.png",
-            "title": "Serie AMOLED",
-            "link": "shopify://collections/relojes-para-hombre"
+            "title": "Guía Kieslect OS",
+            "link": ""
           }
         },
-        "serie_8gbAAE": {
-          "type": "serie",
+        "guide_yVq6aw": {
+          "type": "guide",
           "settings": {
-            "image": "shopify://shop_images/kieslect-bluetooth-smartwatch-actor.png",
-            "title": "Serie con Llamadas Bluetooth",
-            "link": "shopify://collections/relojes-para-hombre"
-          }
-        },
-        "serie_GJ79N8": {
-          "type": "serie",
-          "settings": {
-            "image": "shopify://shop_images/lora2_0ea1203a-b917-4575-808f-1d9d73badcf7.jpg",
-            "title": "Serie Deportiva",
+            "title": "Modos Deportivos",
             "link": ""
           }
         }
       },
       "block_order": [
-        "serie_NqBhy9",
-        "serie_zdK7GG",
-        "serie_KJzfYx",
-        "serie_8gbAAE",
-        "serie_GJ79N8"
+        "guide_UtYWMr",
+        "guide_KDrYEN",
+        "guide_yVq6aw"
       ],
-      "name": "Series Destacadas",
+      "name": "Kieslect Academy",
       "settings": {
-        "title": "Series Destacadas",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "title": "Domina tu Ecosistema",
+        "blog_id": "",
+        "post_limit": 3,
+        "cta_text": "Explorar Academy",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "kieslect_tech_newsletter_EMW4Nk": {
+      "type": "kieslect-tech-newsletter",
+      "name": "Kieslect Tech Newsletter",
+      "settings": {
+        "badge_text": "Exclusive Access",
+        "title": "Kieslect Insider",
+        "subtitle": "Únete a la vanguardia. Recibe actualizaciones de firmware, lanzamientos exclusivos y un 15% en tu primera compra.",
+        "btn_text": "Unirme ahora",
+        "bg_color": "#000000",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "kieslect_tech_footer_63wGGc": {
+      "type": "kieslect-tech-footer",
+      "name": "Kieslect Tech Footer",
+      "settings": {
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "accent_color": "#00D1FF",
+        "logo_text": "KIESLECT",
+        "description": "Elevando los estándares de la tecnología wearable con diseños innovadores y rendimiento excepcional.",
+        "menu_company": "",
+        "menu_support": "",
+        "contact_info": "Global Support: hello@kieslect.com"
       }
     },
     "caracteristicas_reloj_Vy3xdp": {
       "type": "caracteristicas-reloj",
-      "blocks": {
-        "feature_3CHg6f": {
-          "type": "feature",
-          "settings": {
-            "custom_icon": "shopify://shop_images/c8079620-18e9-45c9-9739-7fd94d775e8d.jpg",
-            "spec_label": "Pantalla",
-            "spec_value": "1.43\" Ultra AMOLED"
-          }
-        },
-        "feature_qf3Ud4": {
-          "type": "feature",
-          "settings": {
-            "custom_icon": "shopify://shop_images/KR3_dorado.jpg",
-            "spec_label": "Pantalla",
-            "spec_value": "1.43\" Ultra AMOLED"
-          }
-        },
-        "feature_G9zxJb": {
-          "type": "feature",
-          "settings": {
-            "custom_icon": "shopify://shop_images/LoraM-03.png",
-            "spec_label": "Pantalla",
-            "spec_value": "1.43\" Ultra AMOLED"
-          }
-        },
-        "feature_i4gwd4": {
-          "type": "feature",
-          "settings": {
-            "custom_icon": "shopify://shop_images/Kieslect_Smart_Calling_Watch_Actor_Leading-Negro-Frontal.png",
-            "spec_label": "Pantalla",
-            "spec_value": "1.43\" Ultra AMOLED"
-          }
-        }
-      },
-      "block_order": [
-        "feature_3CHg6f",
-        "feature_qf3Ud4",
-        "feature_G9zxJb",
-        "feature_i4gwd4"
-      ],
-      "name": "Características Principales Reloj",
-      "settings": {
-        "bg_color": "#110f0f",
-        "text_color": "#000000",
-        "model_name": "KIESLECT KR PRO",
-        "title": "Especificaciones Técnicas",
-        "price": "$89.99",
-        "cta_text": "Explorar Funciones",
-        "cta_link": "",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "testimonios_reales_Ahq9Wc": {
-      "type": "testimonios-reales",
-      "blocks": {
-        "testimonial_iMwRwi": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "review_text": "Excelente producto, la pantalla AMOLED se ve increíble.",
-            "user_name": "Juan Pérez"
-          }
-        },
-        "testimonial_zCNUQx": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "review_text": "Excelente producto, la pantalla AMOLED se ve increíble.",
-            "user_name": "Juan Pérez"
-          }
-        },
-        "testimonial_rgVaKn": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "review_text": "Excelente producto, la pantalla AMOLED se ve increíble.",
-            "user_name": "Juan Pérez"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_iMwRwi",
-        "testimonial_zCNUQx",
-        "testimonial_rgVaKn"
-      ],
       "disabled": true,
-      "name": "Testimonios de Clientes",
-      "settings": {
-        "title": "Lo que dicen nuestros clientes",
-        "bg_color": "#f9f9f9",
-        "padding_top": 50,
-        "padding_bottom": 50
-      }
+      "name": "Características Principales Reloj",
+      "settings": {}
     },
-    "comparador_modelos_jMTaXE": {
-      "type": "comparador-modelos",
-      "blocks": {
-        "model_EeEXEM": {
-          "type": "model",
-          "settings": {
-            "model_name": "KS3",
-            "price": "$120",
-            "spec_screen": "AMOLED 2.0\"",
-            "feat_calls": true,
-            "spec_battery": "10 días",
-            "spec_sports": "100+",
-            "feat_voice": true
-          }
-        },
-        "model_tqDtJx": {
-          "type": "model",
-          "settings": {
-            "model_name": "KR03",
-            "price": "$90",
-            "spec_screen": "AMOLED 2.0\"",
-            "feat_calls": true,
-            "spec_battery": "10 días",
-            "spec_sports": "100+",
-            "feat_voice": true
-          }
-        },
-        "model_7B6WTk": {
-          "type": "model",
-          "settings": {
-            "model_name": "KS2",
-            "price": "$75",
-            "spec_screen": "AMOLED 2.0\"",
-            "feat_calls": true,
-            "spec_battery": "10 días",
-            "spec_sports": "100+",
-            "feat_voice": true
-          }
-        }
-      },
-      "block_order": [
-        "model_EeEXEM",
-        "model_tqDtJx",
-        "model_7B6WTk"
-      ],
-      "name": "Herramienta de Comparación",
-      "settings": {
-        "title": "Compara nuestros Smartwatches",
-        "bg_color": "#000000",
-        "btn_color": "#000000",
-        "cta_text": "Comparar Modelos",
-        "cta_link": "",
-        "padding_top": 50,
-        "padding_bottom": 50
-      }
-    },
-    "bloque_educativo_pp7LX9": {
-      "type": "bloque-educativo",
-      "blocks": {
-        "guide_WwyFYD": {
-          "type": "guide",
-          "settings": {
-            "title": "Cómo Elegir el Smartwatch Ideal",
-            "link": ""
-          }
-        },
-        "guide_fhBqCc": {
-          "type": "guide",
-          "settings": {
-            "title": "Guía de Cuidado del Smartwatch",
-            "link": ""
-          }
-        },
-        "guide_LpP4PU": {
-          "type": "guide",
-          "settings": {
-            "title": "Trucos de KieslectOS 2.0",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "guide_WwyFYD",
-        "guide_fhBqCc",
-        "guide_LpP4PU"
-      ],
-      "name": "Bloque Educativo",
-      "settings": {
-        "title": "Aprende más sobre tu Smartwatch",
-        "blog_id": "",
-        "post_limit": 3,
-        "cta_text": "Leer el Blog",
-        "bg_color": "#110f0f",
-        "padding_top": 50,
-        "padding_bottom": 50
-      }
-    },
-    "newsletter_descuento_n4HQHQ": {
-      "type": "newsletter-descuento",
-      "name": "Newsletter con Descuento",
-      "settings": {
-        "badge_text": "Oferta de Bienvenida",
-        "title": "Únete a la familia Kieslect",
-        "subtitle": "Suscríbete y obtén un 15% de descuento en tu primer pedido.",
-        "btn_text": "Obtener mi descuento",
-        "bg_color": "#ffffff",
-        "inner_bg_color": "#f4f4f4",
-        "text_color": "#000000",
-        "btn_bg_color": "#000000",
-        "btn_text_color": "#ffffff",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
-    "footer_personalizado_pwwPzp": {
-      "type": "footer-personalizado",
-      "name": "Footer Personalizado",
-      "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "logo_text": "KIESLECT",
-        "description": "Innovación en tu muñeca. Smartwatches de alta tecnología y diseño premium.",
-        "menu_company": "",
-        "menu_support": "",
-        "contact_info": "soporte@tu-tienda.com"
-      }
+    "listado_coleccion_avanzado_GJHFJY": {
+      "type": "listado-coleccion-avanzado",
+      "disabled": true,
+      "name": "Listado Profesional",
+      "settings": {}
     },
     "pdp_header_kieslect_GxKazd": {
       "type": "pdp-header-kieslect",
@@ -489,24 +320,29 @@
     "chatbot_kieslect_kdMWME": {
       "type": "chatbot-kieslect",
       "name": "Chatbot Kieslect",
-      "settings": {
-        "chat_color": "#000000",
-        "wa_number": "54911000000"
-      }
+      "settings": {}
+    },
+    "kieslect_ai_assistant_6Npar6": {
+      "type": "kieslect-ai-assistant",
+      "name": "Kieslect AI Assistant",
+      "settings": {}
     }
   },
   "order": [
     "kieslect_header_7Bj6Gk",
     "trust_bar_7X8Kwh",
     "barra_efectiva_ty7y9a",
-    "listado_coleccion_avanzado_GJHFJY",
-    "series_destacadas_zpGQwz",
+    "barra_confianza_tech_Az8xPH",
+    "series_ia_HmgFFW",
+    "kieslect_interactive_grid_wP7wWD",
+    "kieslect_tech_testimonials_3nkryh",
+    "kieslect_tech_comparator_4r3fhy",
+    "kieslect_edu_center_4MnPmH",
+    "kieslect_tech_newsletter_EMW4Nk",
+    "kieslect_tech_footer_63wGGc",
+    "kieslect_ai_assistant_6Npar6",
     "caracteristicas_reloj_Vy3xdp",
-    "testimonios_reales_Ahq9Wc",
-    "comparador_modelos_jMTaXE",
-    "bloque_educativo_pp7LX9",
-    "newsletter_descuento_n4HQHQ",
-    "footer_personalizado_pwwPzp",
+    "listado_coleccion_avanzado_GJHFJY",
     "pdp_header_kieslect_GxKazd",
     "pdp_header_kieslect_UkgfwC",
     "header",
