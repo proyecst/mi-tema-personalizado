@@ -1,0 +1,211 @@
+<section class="k-grid-tech" id="k-grid-{{ section.id }}" style="background: {{ section.settings.bg_color }};">
+  <div class="k-container">
+    
+    <div class="k-header" data-aos="fade-up">
+      <h2 class="k-title">{{ section.settings.main_title }}</h2>
+      <div class="k-glow-line"></div>
+    </div>
+
+    <div class="k-main-grid">
+      {% for block in section.blocks %}
+        <div class="k-card-wrapper block-{{ block.id }}" {{ block.shopify_attributes }}>
+          
+          <div class="k-card-body">
+            {% case block.type %}
+              
+              {% when 'product_card' %}
+                {%- assign product_ref = block.settings.product_id -%}
+                <div class="k-inner-content product-type">
+                  <div class="k-media">
+                    <div class="k-corner-decor"></div>
+                    {% if product_ref != blank %}
+                      <img src="{{ product_ref.featured_image | img_url: '800x800' }}" alt="{{ product_ref.title }}" class="k-img">
+                    {% else %}
+                      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+                    <div class="k-status-indicator">
+                      <span class="dot"></span> {{ block.settings.badge | default: 'IN STOCK' }}
+                    </div>
+                  </div>
+                  
+                  <div class="k-info">
+                    <div class="k-meta">
+                      <span class="k-category">SMARTWATCH</span>
+                      <h3 class="k-prod-title">{{ product_ref.title | default: "Kieslect Core" }}</h3>
+                      <div class="k-price-wrap">
+                        <span class="k-currency">{{ cart.currency.symbol }}</span>
+                        <span class="k-amount">{{ product_ref.price | money_without_currency }}</span>
+                      </div>
+                    </div>
+                    <button class="k-buy-btn" onclick="addToCartAjax('{{ product_ref.variants.first.id }}', this)">
+                      <span class="btn-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                      </span>
+                      <span class="btn-txt">AÑADIR</span>
+                    </button>
+                  </div>
+                </div>
+
+              {% when 'media_card' %}
+                <div class="k-inner-content media-type">
+                  <div class="k-media full-bleed">
+                    {% if block.settings.image != blank %}
+                      <img src="{{ block.settings.image | img_url: '900x900' }}" class="k-img">
+                    {% endif %}
+                    <div class="k-glass-card">
+                      <div class="k-glass-header">TECH SPEC</div>
+                      <h3>{{ block.settings.title }}</h3>
+                      <p>{{ block.settings.text }}</p>
+                      {% if block.settings.link_url != blank %}
+                        <a href="{{ block.settings.link_url }}" class="k-action-link">
+                          SABER MÁS <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+            {% endcase %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --neon-blue: #00D1FF;
+    --dark-surface: #0f0f0f;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .k-grid-tech { padding: 80px 0; color: #fff; overflow: hidden; }
+  .k-container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  .k-header { text-align: center; margin-bottom: 60px; }
+  .k-title { font-size: 3rem; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; margin: 0; }
+  .k-glow-line { width: 40px; height: 3px; background: var(--neon-blue); margin: 15px auto; box-shadow: 0 0 15px var(--neon-blue); }
+
+  /* Grid System */
+  .k-main-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  /* Core Card Style */
+  .k-card-wrapper { perspective: 1000px; }
+  .k-card-body {
+    background: var(--dark-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    height: 100%;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .k-card-wrapper:hover .k-card-body {
+    transform: translateY(-10px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+
+  /* Product Styling */
+  .k-media { position: relative; overflow: hidden; background: #000; }
+  .k-inner-content.product-type .k-media { aspect-ratio: 1.1; display: flex; align-items: center; justify-content: center; }
+  .k-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .k-card-wrapper:hover .k-img { transform: scale(1.08); }
+
+  .k-status-indicator {
+    position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px); padding: 5px 12px; border-radius: 20px;
+    font-size: 10px; font-weight: 800; border: 1px solid var(--border-color);
+  }
+  .k-status-indicator .dot { display: inline-block; width: 6px; height: 6px; background: var(--neon-blue); border-radius: 50%; margin-right: 5px; box-shadow: 0 0 8px var(--neon-blue); }
+
+  .k-info { padding: 25px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .k-category { font-size: 10px; color: var(--neon-blue); font-weight: 800; letter-spacing: 2px; }
+  .k-prod-title { font-size: 22px; margin: 5px 0 10px; font-weight: 800; }
+  .k-amount { font-size: 24px; font-weight: 900; }
+
+  /* Button Tech */
+  .k-buy-btn {
+    background: #fff; color: #000; border: none; padding: 12px 20px;
+    border-radius: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    transition: 0.3s; font-weight: 900;
+  }
+  .k-buy-btn:hover { background: var(--neon-blue); color: #000; transform: scale(1.05); }
+  .btn-icon svg { width: 18px; height: 18px; }
+
+  /* Media Card Styling */
+  .media-type .k-media { height: 100%; min-height: 450px; }
+  .k-glass-card {
+    position: absolute; bottom: 20px; left: 20px; right: 20px;
+    background: rgba(15,15,15,0.8); backdrop-filter: blur(20px);
+    padding: 25px; border-radius: 20px; border: 1px solid var(--border-color);
+  }
+  .k-glass-header { color: var(--neon-blue); font-size: 9px; font-weight: 900; margin-bottom: 10px; letter-spacing: 3px; }
+  .k-action-link { 
+    display: inline-flex; align-items: center; gap: 8px; color: #fff; 
+    text-decoration: none; font-size: 12px; font-weight: 900; margin-top: 15px; 
+  }
+  .k-action-link svg { width: 16px; }
+
+  @media (max-width: 768px) {
+    .k-main-grid { grid-template-columns: 1fr; }
+    .k-title { font-size: 2rem; }
+  }
+</style>
+
+<script>
+function addToCartAjax(id, btn) {
+  const original = btn.innerHTML;
+  btn.innerHTML = "...";
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ items: [{ id: id, quantity: 1 }] })
+  }).then(() => {
+    btn.innerHTML = "✓";
+    btn.style.background = "#00D1FF";
+    setTimeout(() => { btn.innerHTML = original; btn.style.background = "#fff"; }, 2000);
+  });
+}
+</script>
+
+{% schema %}
+{
+  "name": "Kieslect Interactive Grid",
+  "settings": [
+    { "type": "text", "id": "main_title", "label": "Título", "default": "KIESLECT SERIES" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Reloj Pro",
+      "settings": [
+        { "type": "product", "id": "product_id", "label": "Producto" },
+        { "type": "text", "id": "badge", "label": "Etiqueta", "default": "NUEVO" }
+      ]
+    },
+    {
+      "type": "media_card",
+      "name": "Información Tech",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Display AMOLED" },
+        { "type": "textarea", "id": "text", "label": "Texto", "default": "Nitidez máxima en cada píxel." },
+        { "type": "url", "id": "link_url", "label": "Enlace" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Kieslect Interactive Grid" }
+  ]
+}
+{% endschema %}
