@@ -1,0 +1,304 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  :root {
+    --k-accent: #00D1FF;
+    --k-dark-bg: #111111;
+    --k-border: rgba(255, 255, 255, 0.1);
+  }
+
+  .comp-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .comp-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .comp-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin: 0;
+  }
+
+  .comp-subtitle {
+    color: var(--k-accent);
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .comp-table-wrapper {
+    overflow-x: auto;
+    border-radius: 24px;
+    background: var(--k-dark-bg);
+    border: 1px solid var(--k-border);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+  }
+
+  .comp-table th, .comp-table td {
+    padding: 25px;
+    text-align: center;
+    border-bottom: 1px solid var(--k-border);
+  }
+
+  /* Estilo Columna Lateral (Etiquetas) */
+  .comp-feature-label {
+    text-align: left !important;
+    background-color: rgba(255,255,255,0.02);
+    font-weight: 700;
+    width: 200px;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-right: 1px solid var(--k-border);
+  }
+
+  /* Encabezados de Modelo */
+  .comp-table th:not(.comp-feature-label) {
+    background: rgba(255,255,255,0.03);
+    vertical-align: bottom;
+  }
+
+  .comp-model-badge {
+    background: var(--k-accent);
+    color: #000;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .comp-model-name {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .comp-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--k-accent);
+    opacity: 0.9;
+  }
+
+  /* Estilo de Celdas de Datos */
+  .comp-spec-value {
+    color: #fff;
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  .comp-check-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #fff;
+  }
+
+  .comp-icon-box {
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 209, 255, 0.1);
+    border: 1px solid var(--k-accent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--k-accent);
+  }
+
+  .comp-dash {
+    opacity: 0.3;
+    font-weight: 300;
+  }
+
+  /* Botón CTA */
+  .comp-cta-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .comp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px 45px;
+    background-color: var(--k-accent);
+    color: #000;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.2);
+  }
+
+  .comp-btn:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 209, 255, 0.4);
+  }
+
+  /* Highlight columna al pasar mouse */
+  .comp-table td:hover {
+    background: rgba(0, 209, 255, 0.03);
+  }
+
+  /* Scrollbar personalizado */
+  .comp-table-wrapper::-webkit-scrollbar { height: 6px; }
+  .comp-table-wrapper::-webkit-scrollbar-track { background: #111; }
+  .comp-table-wrapper::-webkit-scrollbar-thumb { background: var(--k-accent); border-radius: 10px; }
+{%- endstyle -%}
+
+<div class="comp-container">
+  <div class="comp-header">
+    <span class="comp-subtitle">TECH SPECS COMPARISON</span>
+    {% if section.settings.title != blank %}
+      <h2 class="comp-title">{{ section.settings.title }}</h2>
+    {% endif %}
+  </div>
+
+  <div class="comp-table-wrapper">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th class="comp-feature-label">Hardware & Software</th>
+          {% for block in section.blocks %}
+            <th {{ block.shopify_attributes }}>
+              <span class="comp-model-badge">SERIE {{ block.settings.model_name | slice: 0, 2 | upcase }}</span>
+              <span class="comp-model-name">{{ block.settings.model_name }}</span>
+              <span class="comp-price">{{ block.settings.price }}</span>
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="comp-feature-label">Tecnología de Pantalla</td>
+          {% for block in section.blocks %}
+            <td class="comp-spec-value">{{ block.settings.spec_screen }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="comp-feature-label">Llamadas Bluetooth</td>
+          {% for block in section.blocks %}
+            <td>
+              {% if block.settings.feat_calls %}
+                <div class="comp-check-wrapper">
+                  <div class="comp-icon-box">✓</div> <span>Dual-Mode</span>
+                </div>
+              {% else %}
+                <span class="comp-dash">—</span>
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="comp-feature-label">Autonomía (Uso Típico)</td>
+          {% for block in section.blocks %}
+            <td class="comp-spec-value">{{ block.settings.spec_battery }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="comp-feature-label">Algoritmos Deportivos</td>
+          {% for block in section.blocks %}
+            <td class="comp-spec-value">
+              <span style="color:var(--k-accent)">+</span>{{ block.settings.spec_sports }} Modos
+            </td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="comp-feature-label">AI Voice Assistant</td>
+          {% for block in section.blocks %}
+            <td>
+              {% if block.settings.feat_voice %}
+                <div class="comp-check-wrapper">
+                  <div class="comp-icon-box">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                  </div> 
+                  <span>Activo</span>
+                </div>
+              {% else %}
+                <span class="comp-dash">—</span>
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  {% if section.settings.cta_text != blank %}
+    <div class="comp-cta-container">
+      <a href="{{ section.settings.cta_link }}" class="comp-btn">
+        {{ section.settings.cta_text }}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Kieslect Comparator",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "Encuentra tu Kieslect ideal" },
+    { "type": "color", "id": "bg_color", "label": "Fondo Sección", "default": "#000000" },
+    { "type": "color", "id": "text_color", "label": "Color Texto", "default": "#ffffff" },
+    { "type": "text", "id": "cta_text", "label": "Texto Botón", "default": "Ver Todos los Modelos" },
+    { "type": "url", "id": "cta_link", "label": "Link Botón" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Superior" },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Inferior" }
+  ],
+  "blocks": [
+    {
+      "type": "model",
+      "name": "Smartwatch",
+      "settings": [
+        { "type": "text", "id": "model_name", "label": "Modelo", "default": "KS3" },
+        { "type": "text", "id": "price", "label": "Precio", "default": "$129.00" },
+        { "type": "text", "id": "spec_screen", "label": "Pantalla", "default": "Ultra AMOLED 2.1\"" },
+        { "type": "checkbox", "id": "feat_calls", "label": "Llamadas BT", "default": true },
+        { "type": "text", "id": "spec_battery", "label": "Batería", "default": "Up to 15 days" },
+        { "type": "text", "id": "spec_sports", "label": "Nº Deportes", "default": "150" },
+        { "type": "checkbox", "id": "feat_voice", "label": "Asistente Voz", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kieslect Comparator",
+      "blocks": [
+        { "type": "model", "settings": { "model_name": "KS3" } },
+        { "type": "model", "settings": { "model_name": "KR Pro" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
