@@ -1,0 +1,171 @@
+<section class="trust-effective-section" style="background-color: {{ section.settings.bg_color }};">
+  <div class="trust-container">
+    <div class="trust-grid">
+      
+      {% for block in section.blocks %}
+        <div class="trust-item-card" {{ block.shopify_attributes }}>
+          <div class="trust-main-row">
+            <div class="trust-icon-circle" style="background-color: {{ section.settings.accent_color }}15; color: {{ section.settings.accent_color }};">
+              {{ block.settings.icon }}
+            </div>
+            <div class="trust-text">
+              <h4 class="trust-title">{{ block.settings.title }}</h4>
+              <p class="trust-desc">{{ block.settings.description }}</p>
+              
+              {% if block.settings.button_label != blank %}
+                <button class="trust-action-link" onclick="handleTrustPost(this, '{{ block.id }}')">
+                  {{ block.settings.button_label }} <span>→</span>
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-effective-section {
+    padding: 50px 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .trust-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .trust-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .trust-item-card {
+    flex: 1;
+    min-width: 250px;
+    transition: transform 0.3s ease;
+  }
+
+  .trust-main-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .trust-icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .trust-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .trust-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ section.settings.text_color }};
+  }
+
+  .trust-desc {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: {{ section.settings.text_color }};
+    opacity: 0.8;
+  }
+
+  .trust-action-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: {{ section.settings.accent_color }};
+    cursor: pointer;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .trust-action-link:hover span {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 768px) {
+    .trust-grid {
+      flex-direction: column;
+      gap: 25px;
+    }
+    .trust-item-card {
+      min-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  function handleTrustPost(btn, id) {
+    const originalContent = btn.innerHTML;
+    btn.innerHTML = "Procesando...";
+    btn.disabled = true;
+
+    // Simulación de llamado POST
+    setTimeout(() => {
+      btn.innerHTML = "¡LISTO! ✓";
+      btn.style.color = "#27ae60";
+      console.log("Acción ejecutada para el bloque:", id);
+    }, 1000);
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Barra Efectiva",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Texto", "default": "#121212" },
+    { "type": "color", "id": "accent_color", "label": "Color de Acento", "default": "#2b6cb0" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icono (Emoji)", "default": "🚚" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Envío Gratuito" },
+        { "type": "text", "id": "description", "label": "Descripción", "default": "En todos los pedidos superiores a $50" },
+        { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Saber más" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra Efectiva",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "💳", "title": "Pago Seguro" } },
+        { "type": "benefit", "settings": { "icon": "🔄", "title": "Devolución 30 días" } },
+        { "type": "benefit", "settings": { "icon": "⭐", "title": "Garantía Total" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
