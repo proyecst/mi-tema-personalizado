@@ -18,51 +18,8 @@
     },
     "trust_bar_7X8Kwh": {
       "type": "trust-bar",
-      "blocks": {
-        "trust_item_A8pQTg": {
-          "type": "trust_item",
-          "settings": {
-            "icon": "🚚",
-            "title": "Envío Gratis",
-            "subtitle": ""
-          }
-        },
-        "trust_item_a4PftR": {
-          "type": "trust_item",
-          "settings": {
-            "icon": "🔒",
-            "title": "Pago Seguro",
-            "subtitle": ""
-          }
-        },
-        "trust_item_eKVGmg": {
-          "type": "trust_item",
-          "settings": {
-            "icon": "⚡",
-            "title": "Entrega Rápida",
-            "subtitle": "2–5 días"
-          }
-        },
-        "trust_item_Mpe9Ye": {
-          "type": "trust_item",
-          "settings": {
-            "icon": "💬",
-            "title": "Soporte 24/7",
-            "subtitle": ""
-          }
-        }
-      },
-      "block_order": [
-        "trust_item_A8pQTg",
-        "trust_item_a4PftR",
-        "trust_item_eKVGmg",
-        "trust_item_Mpe9Ye"
-      ],
       "name": "Barra de Confianza",
-      "settings": {
-        "bg_color": "#ffffff",
-        "text_color": "#333333"
-      }
+      "settings": {}
     },
     "listado_coleccion_avanzado_GJHFJY": {
       "type": "listado-coleccion-avanzado",
@@ -467,11 +424,55 @@
         "chat_color": "#000000",
         "wa_number": "54911000000"
       }
+    },
+    "barra_efectiva_ty7y9a": {
+      "type": "barra-efectiva",
+      "blocks": {
+        "benefit_QwTCYd": {
+          "type": "benefit",
+          "settings": {
+            "icon": "💳",
+            "title": "Pago Seguro",
+            "description": "En todos los pedidos superiores a $50",
+            "button_label": "Saber más"
+          }
+        },
+        "benefit_eFGYjh": {
+          "type": "benefit",
+          "settings": {
+            "icon": "🔄",
+            "title": "Devolución 30 días",
+            "description": "En todos los pedidos superiores a $50",
+            "button_label": "Saber más"
+          }
+        },
+        "benefit_QjNYMR": {
+          "type": "benefit",
+          "settings": {
+            "icon": "⭐",
+            "title": "Garantía Total",
+            "description": "En todos los pedidos superiores a $50",
+            "button_label": "Saber más"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_QwTCYd",
+        "benefit_eFGYjh",
+        "benefit_QjNYMR"
+      ],
+      "name": "Barra Efectiva",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#121212",
+        "accent_color": "#2b6cb0"
+      }
     }
   },
   "order": [
     "kieslect_header_7Bj6Gk",
     "trust_bar_7X8Kwh",
+    "barra_efectiva_ty7y9a",
     "listado_coleccion_avanzado_GJHFJY",
     "series_destacadas_zpGQwz",
     "caracteristicas_reloj_Vy3xdp",
