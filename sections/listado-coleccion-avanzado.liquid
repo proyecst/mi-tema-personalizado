@@ -1,28 +1,40 @@
-<section class="ultimate-grid-section" style="background-color: {{ section.settings.bg_color }};">
+<section class="ultimate-grid-section" id="ultimate-grid-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
   <div class="ultimate-container">
-    {% if section.settings.main_title != blank %}
-      <h2 class="ultimate-main-title">{{ section.settings.main_title }}</h2>
-    {% endif %}
+    
+    <div class="ultimate-controls">
+      {% if section.settings.main_title != blank %}
+        <h2 class="ultimate-main-title">{{ section.settings.main_title }}</h2>
+      {% endif %}
+      
+      <div class="grid-filter-bar">
+        <button class="filter-btn active" onclick="filterGrid('all', this)">TODO</button>
+        <button class="filter-btn" onclick="filterGrid('product_card', this)">RELOJES</button>
+        <button class="filter-btn" onclick="filterGrid('media_card', this)">TECNOLOGÍA</button>
+      </div>
+    </div>
 
-    <div class="ultimate-grid">
+    <div class="ultimate-grid" id="main-ultimate-grid">
       {% for block in section.blocks %}
-        <div class="ultimate-card card-{{ block.type }}" {{ block.shopify_attributes }}>
+        <div class="ultimate-card card-{{ block.type }} filter-item-{{ block.type }}" 
+             data-type="{{ block.type }}"
+             {{ block.shopify_attributes }}>
           
           {% case block.type %}
             
             {% when 'product_card' %}
               {%- assign product_ref = block.settings.product_id -%}
               <div class="card-inner">
-                <div class="media-wrapper">
+                <div class="media-wrapper" onclick="executeQuickAction('product', '{{ product_ref.url }}')">
                   {% if product_ref != blank %}
-                    <img src="{{ product_ref.featured_image | img_url: '600x600' }}" alt="{{ product_ref.title }}">
+                    <img src="{{ product_ref.featured_image | img_url: '600x600' }}" alt="{{ product_ref.title }}" class="zoom-img">
                   {% else %}
                     {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
                   {% endif %}
                   <span class="ultra-badge">{{ block.settings.badge }}</span>
+                  <div class="card-overlay"><span>VER DETALLES</span></div>
                 </div>
                 <div class="info-wrapper">
-                  <h3>{{ product_ref.title | default: "Producto de Ejemplo" }}</h3>
+                  <h3>{{ product_ref.title | default: "Kieslect Watch" }}</h3>
                   <p class="ultra-price">{{ product_ref.price | money }}</p>
                   <button class="ultra-btn-add" onclick="addToCartAjax('{{ product_ref.variants.first.id }}', this)">
                     {{ block.settings.btn_text }}
@@ -34,25 +46,23 @@
               <div class="card-inner">
                 <div class="media-wrapper">
                   {% if block.settings.image != blank %}
-                    <img src="{{ block.settings.image | img_url: '600x600' }}" alt="Imagen">
+                    <img src="{{ block.settings.image | img_url: '800x800' }}" alt="Imagen" class="parallax-img">
                   {% elsif block.settings.video_url != blank %}
-                    {% comment %} Video embebido simple {% endcomment %}
-                    <iframe src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}" frameborder="0"></iframe>
+                    <iframe src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=0&mute=1&controls=0" frameborder="0"></iframe>
                   {% else %}
                     {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
                   {% endif %}
                 </div>
-                <div class="info-wrapper">
+                <div class="info-wrapper dark-info">
                   <h3>{{ block.settings.title }}</h3>
                   <p>{{ block.settings.text }}</p>
                   {% if block.settings.link_url != blank %}
-                    <a href="{{ block.settings.link_url }}" class="ultra-link">{{ block.settings.link_label }} →</a>
+                    <a href="{{ block.settings.link_url }}" class="ultra-link-animated">Descubrir Ahora <span>→</span></a>
                   {% endif %}
                 </div>
               </div>
 
           {% endcase %}
-          
         </div>
       {% endfor %}
     </div>
@@ -60,102 +70,6 @@
 </section>
 
 <style>
-  .ultimate-grid-section { padding: 80px 5%; color: {{ section.settings.text_color }}; }
-  .ultimate-container { max-width: 1400px; margin: 0 auto; }
-  .ultimate-main-title { text-align: center; font-size: 40px; font-weight: 900; margin-bottom: 60px; letter-spacing: -1px; }
+  :root { --accent: {{ section.settings.accent_color }}; --k-blue: #00D1FF; }
 
-  .ultimate-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-  }
-
-  .ultimate-card {
-    background: #fff;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border: 1px solid rgba(0,0,0,0.05);
-  }
-
-  .ultimate-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-
-  .media-wrapper { position: relative; width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #f4f4f4; }
-  .media-wrapper img, .media-wrapper iframe { width: 100%; height: 100%; object-fit: cover; }
-  
-  .ultra-badge { position: absolute; top: 20px; left: 20px; background: {{ section.settings.accent_color }}; color: white; padding: 6px 15px; border-radius: 50px; font-size: 12px; font-weight: bold; }
-
-  .info-wrapper { padding: 30px; }
-  .info-wrapper h3 { margin: 0 0 10px; font-size: 22px; font-weight: 800; }
-  .ultra-price { font-size: 18px; font-weight: 600; opacity: 0.7; margin-bottom: 20px; }
-
-  .ultra-btn-add {
-    width: 100%; padding: 15px; border: none; border-radius: 12px;
-    background: #000; color: #fff; font-weight: bold; cursor: pointer; transition: 0.3s;
-  }
-  .ultra-btn-add:hover { background: {{ section.settings.accent_color }}; }
-
-  .ultra-link { font-weight: 700; text-decoration: none; color: {{ section.settings.accent_color }}; text-transform: uppercase; font-size: 13px; }
-</style>
-
-<script>
-function addToCartAjax(id, btn) {
-  let original = btn.innerText;
-  btn.innerText = "AÑADIENDO...";
-  fetch('/cart/add.js', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ items: [{ id: id, quantity: 1 }] })
-  }).then(() => {
-    btn.innerText = "¡LISTO! ✓";
-    btn.style.background = "#27ae60";
-    setTimeout(() => { btn.innerText = original; btn.style.background = "#000"; }, 2000);
-  });
-}
-</script>
-
-{% schema %}
-{
-  "name": "Ultimate Content Grid",
-  "settings": [
-    { "type": "text", "id": "main_title", "label": "Título Sección", "default": "Explora Kieslect" },
-    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#f9f9f9" },
-    { "type": "color", "id": "text_color", "label": "Texto", "default": "#111111" },
-    { "type": "color", "id": "accent_color", "label": "Acento", "default": "#ff4b2b" }
-  ],
-  "blocks": [
-    {
-      "type": "product_card",
-      "name": "Producto Destacado",
-      "settings": [
-        { "type": "product", "id": "product_id", "label": "Producto" },
-        { "type": "text", "id": "badge", "label": "Etiqueta", "default": "NUEVO" },
-        { "type": "text", "id": "btn_text", "label": "Texto Botón", "default": "COMPRA RÁPIDA" }
-      ]
-    },
-    {
-      "type": "media_card",
-      "name": "Imagen / Video / Texto",
-      "settings": [
-        { "type": "image_picker", "id": "image", "label": "Imagen Personalizada" },
-        { "type": "video_url", "id": "video_url", "label": "URL de Video (Youtube)", "accept": ["youtube"] },
-        { "type": "text", "id": "title", "label": "Título", "default": "Tecnología AMOLED" },
-        { "type": "textarea", "id": "text", "label": "Descripción", "default": "Crea una experiencia visual sin precedentes." },
-        { "type": "text", "id": "link_label", "label": "Texto Enlace", "default": "Saber más" },
-        { "type": "url", "id": "link_url", "label": "Enlace" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Ultimate Content Grid",
-      "blocks": [
-        { "type": "product_card" },
-        { "type": "media_card" },
-        { "type": "product_card" }
-      ]
-    }
-  ]
-}
-{% endschema %}
+  .ultimate-grid
