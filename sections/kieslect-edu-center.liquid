@@ -1,0 +1,273 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    color: {{ section.settings.text_color }};
+  }
+
+  :root {
+    --k-cyan: #00D1FF;
+    --k-dark-card: #0a0a0a;
+    --k-border: rgba(255, 255, 255, 0.08);
+  }
+
+  .edu-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .edu-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .edu-header h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin: 0;
+  }
+
+  .edu-header .k-line {
+    width: 50px;
+    height: 3px;
+    background: var(--k-cyan);
+    margin: 15px auto;
+    box-shadow: 0 0 10px var(--k-cyan);
+  }
+
+  /* Guías Destacadas - Estilo Tech */
+  .edu-featured-guides {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 70px;
+  }
+
+  .edu-guide-card {
+    background: var(--k-dark-card);
+    color: #fff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    position: relative;
+    border: 1px solid var(--k-border);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .edu-guide-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--k-cyan);
+    box-shadow: 0 15px 30px rgba(0, 209, 255, 0.1);
+  }
+
+  .edu-guide-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at top right, rgba(0, 209, 255, 0.1), transparent 60%);
+    opacity: 0;
+    transition: 0.4s;
+  }
+
+  .edu-guide-card:hover::before { opacity: 1; }
+
+  .edu-guide-card h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.3;
+    z-index: 1;
+  }
+
+  .edu-guide-card .read-more {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--k-cyan);
+    margin-top: 20px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+  }
+
+  .edu-guide-card:hover .read-more { gap: 15px; }
+
+  /* Blog Grid - Estilo News Tech */
+  .edu-blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+  }
+
+  .edu-blog-item {
+    text-decoration: none;
+    color: inherit;
+    group;
+  }
+
+  .edu-blog-image-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #111;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid var(--k-border);
+  }
+
+  .edu-blog-image-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .edu-blog-item:hover .edu-blog-image-wrap img {
+    transform: scale(1.1) rotate(1deg);
+  }
+
+  .edu-blog-date {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--k-cyan);
+  }
+
+  .edu-blog-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    transition: 0.3s;
+  }
+
+  .edu-blog-item:hover .edu-blog-title {
+    color: var(--k-cyan);
+  }
+
+  .edu-cta-wrapper {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .edu-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 45px;
+    background: transparent;
+    border: 2px solid var(--k-cyan);
+    color: var(--k-cyan);
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    transition: all 0.3s;
+  }
+
+  .edu-btn:hover {
+    background: var(--k-cyan);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.4);
+  }
+
+  @media screen and (max-width: 900px) {
+    .edu-featured-guides { grid-template-columns: 1fr; gap: 15px; }
+  }
+{%- endstyle -%}
+
+<div class="edu-container">
+  <div class="edu-header">
+    <span style="color:var(--k-cyan); letter-spacing:4px; font-weight:700; font-size:12px;">KIESLECT ACADEMY</span>
+    <h2>{{ section.settings.title }}</h2>
+    <div class="k-line"></div>
+  </div>
+
+  <div class="edu-featured-guides">
+    {% for block in section.blocks %}
+      {% if block.type == 'guide' %}
+        <a href="{{ block.settings.link }}" class="edu-guide-card" {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.title }}</h3>
+          <span class="read-more">Ver Guía <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M12 1L17 6L12 11M1 6H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="edu-blog-grid">
+    {% assign blog_handle = section.settings.blog_id %}
+    {% for article in blogs[blog_handle].articles limit: section.settings.post_limit %}
+      <a href="{{ article.url }}" class="edu-blog-item">
+        <div class="edu-blog-image-wrap">
+          {% if article.image %}
+            <img src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title }}" loading="lazy">
+          {% else %}
+            <div style="width:100%; height:100%; background:#1a1a1a;"></div>
+          {% endif %}
+          <div class="edu-blog-date">{{ article.published_at | date: "%d %b %Y" | upcase }}</div>
+        </div>
+        <h4 class="edu-blog-title">{{ article.title }}</h4>
+        <p style="font-size: 0.9rem; color: #888; margin: 0; line-height: 1.5;">{{ article.excerpt_or_content | strip_html | truncate: 80 }}</p>
+      </a>
+    {% endfor %}
+  </div>
+
+  <div class="edu-cta-wrapper">
+    <a href="{{ blogs[blog_handle].url }}" class="edu-btn">
+      {{ section.settings.cta_text }}
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kieslect Academy",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título Sección", "default": "Domina tu Ecosistema" },
+    { "type": "blog", "id": "blog_id", "label": "Seleccionar Blog" },
+    { "type": "range", "id": "post_limit", "min": 2, "max": 4, "step": 1, "label": "Cantidad de artículos", "default": 3 },
+    { "type": "text", "id": "cta_text", "label": "Texto Botón", "default": "Explorar Academy" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
+    { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Superior" },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Inferior" }
+  ],
+  "blocks": [
+    {
+      "type": "guide",
+      "name": "Guía Rápida",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Optimización de Batería" },
+        { "type": "url", "id": "link", "label": "Enlace" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kieslect Academy",
+      "blocks": [
+        { "type": "guide", "settings": { "title": "Configuración de Llamadas" } },
+        { "type": "guide", "settings": { "title": "Guía Kieslect OS" } },
+        { "type": "guide", "settings": { "title": "Modos Deportivos" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
