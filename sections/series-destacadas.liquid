@@ -1,4 +1,4 @@
-<section class="series-destacadas section-{{ section.id }}-padding">
+<section class="series-destacadas section-{{ section.id }}-padding" id="series-section-{{ section.id }}">
   <div class="page-width">
     {% if section.settings.title != blank %}
       <div class="section-heading">
@@ -6,15 +6,19 @@
       </div>
     {% endif %}
 
-    <div class="series-grid">
+    <div class="series-grid" id="series-grid-main">
       {% for block in section.blocks %}
-        <a href="{{ block.settings.link }}" class="serie-card" {{ block.shopify_attributes }}>
+        <a href="{{ block.settings.link }}" 
+           class="serie-card k-item-ai" 
+           data-title="{{ block.settings.title | downcase }}"
+           {{ block.shopify_attributes }}>
           <div class="serie-image">
             {% if block.settings.image != blank %}
               {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
             {% else %}
               {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {% endif %}
+            <div class="ai-focus-overlay"></div>
           </div>
           <div class="serie-info">
             <h3>{{ block.settings.title }}</h3>
@@ -25,115 +29,38 @@
   </div>
 </section>
 
+<div class="k-ai-assistant">
+  <div class="k-ai-chat" id="k-ai-window">
+    <div class="k-ai-header">ASISTENTE KIESLECT IA</div>
+    <div class="k-ai-log" id="k-ai-log">
+      <div class="k-bot-msg">Dime qué buscas (ej: "Amoled", "Deporte") y yo filtraré las series por ti.</div>
+    </div>
+    <div class="k-ai-input">
+      <input type="text" id="k-ai-input-text" placeholder="Ordena a la IA..." onkeypress="if(event.key==='Enter') executeKieslectAI()">
+      <button onclick="executeKieslectAI()">EXE</button>
+    </div>
+  </div>
+  <div class="k-ai-toggle" onclick="toggleKieslectAI()">
+    <span class="pulse-ia"></span>
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="12" r="3" fill="#00D1FF"/></svg>
+  </div>
+</div>
+
 <style>
+  /* Estilos de la Sección */
   .series-destacadas {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
-    background-color: #f9f9f9;
+    background-color: #000; /* Estilo oscuro para resaltar IA */
+    color: #fff;
+    transition: all 0.5s ease;
   }
-  .section-heading {
-    text-align: center;
-    margin-bottom: 40px;
+  .series-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+  
+  .serie-card { 
+    text-decoration: none; color: inherit; text-align: center; transition: 0.4s; 
+    border: 1px solid #222; border-radius: 15px; padding: 15px; background: #0a0a0a;
   }
-  .series-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  .serie-card {
-    text-decoration: none;
-    color: inherit;
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-  .serie-card:hover {
-    transform: translateY(-5px);
-  }
-  .serie-image {
-    aspect-ratio: 1/1;
-    overflow: hidden;
-    border-radius: 12px;
-    background: #eee;
-    margin-bottom: 15px;
-  }
-  .serie-image img, .serie-image svg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .serie-info h3 {
-    font-size: 1.2rem;
-    margin: 0;
-    font-weight: 600;
-  }
-</style>
-
-{% schema %}
-{
-  "name": "Series Destacadas",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Título de la Sección",
-      "default": "Series Destacadas"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Superior",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Inferior",
-      "default": 36
-    }
-  ],
-  "blocks": [
-    {
-      "type": "serie",
-      "name": "Serie",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Imagen de la Serie"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Nombre de la Serie",
-          "default": "Nombre de la Serie"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Enlace a la Colección"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Series Destacadas",
-      "blocks": [
-        { "type": "serie", "settings": { "title": "Serie AMOLED" } },
-        { "type": "serie", "settings": { "title": "Serie con Llamadas Bluetooth" } },
-        { "type": "serie", "settings": { "title": "Serie Deportiva" } },
-        { "type": "serie", "settings": { "title": "Novedades" } },
-        { "type": "serie", "settings": { "title": "Best Sellers" } }
-      ]
-    }
-  ]
-}
-{% endschema %}
+  
+  /* Estados IA en las tarjetas */
+  .serie-card.ai-hidden { opacity: 0.1; filter: grayscale(
