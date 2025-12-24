@@ -1,171 +1,120 @@
-<section class="trust-effective-section" style="background-color: {{ section.settings.bg_color }};">
-  <div class="trust-container">
-    <div class="trust-grid">
-      
-      {% for block in section.blocks %}
-        <div class="trust-item-card" {{ block.shopify_attributes }}>
-          <div class="trust-main-row">
-            <div class="trust-icon-circle" style="background-color: {{ section.settings.accent_color }}15; color: {{ section.settings.accent_color }};">
-              {{ block.settings.icon }}
-            </div>
-            <div class="trust-text">
-              <h4 class="trust-title">{{ block.settings.title }}</h4>
-              <p class="trust-desc">{{ block.settings.description }}</p>
-              
-              {% if block.settings.button_label != blank %}
-                <button class="trust-action-link" onclick="handleTrustPost(this, '{{ block.id }}')">
-                  {{ block.settings.button_label }} <span>→</span>
-                </button>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      {% endfor %}
+<div class="k-ai-launcher" onclick="toggleKAI()">
+  <div class="pulse"></div>
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a1 1 0 0 0-1 1v3H8a1 1 0 0 0 0 2h3v3a1 1 0 0 0 2 0v-3h3a1 1 0 0 0 0-2h-3V7a1 1 0 0 0-1-1z"/></svg>
+</div>
 
+<div id="k-ai-window" class="k-ai-box">
+  <div class="k-ai-header">
+    <div class="ai-status">
+      <span class="dot"></span> KIESLECT INTELLIGENT AI
     </div>
+    <span class="k-ai-close" onclick="toggleKAI()">&times;</span>
   </div>
-</section>
+  
+  <div id="k-ai-body" class="k-ai-body">
+    <div class="msg bot">Hola, soy la IA de Kieslect. Analizo tus dudas en tiempo real. ¿En qué puedo ayudarte?</div>
+  </div>
+
+  <div class="k-ai-footer">
+    <input type="text" id="k-ai-input" placeholder="Pregúntame lo que sea..." onkeypress="checkEnter(event)">
+    <button onclick="processAI()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
 
 <style>
-  .trust-effective-section {
-    padding: 50px 0;
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
+  :root { --blue: #00D1FF; --dark: #000; --grey: #111; }
+
+  .k-ai-launcher {
+    position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+    background: var(--dark); border: 2px solid var(--blue); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    z-index: 10000; box-shadow: 0 0 20px rgba(0,209,255,0.5);
+  }
+  
+  .pulse {
+    position: absolute; width: 100%; height: 100%; border-radius: 50%;
+    background: var(--blue); opacity: 0.2; animation: pulse-ai 2s infinite;
+  }
+  @keyframes pulse-ai { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
+
+  .k-ai-launcher svg { width: 30px; fill: var(--blue); position: relative; z-index: 1; }
+
+  .k-ai-box {
+    position: fixed; bottom: 110px; right: 30px; width: 350px; height: 500px;
+    background: var(--dark); border: 1px solid #333; border-radius: 20px;
+    display: none; flex-direction: column; z-index: 10000; overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.8); font-family: 'Inter', sans-serif;
   }
 
-  .trust-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+  .k-ai-box.active { display: flex; animation: slideUp 0.3s ease; }
 
-  .trust-grid {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
+  .k-ai-header { background: var(--blue); padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+  .ai-status { color: #000; font-weight: 900; font-size: 11px; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 8px; height: 8px; background: #000; border-radius: 50%; animation: blink 1s infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
 
-  .trust-item-card {
-    flex: 1;
-    min-width: 250px;
-    transition: transform 0.3s ease;
-  }
+  .k-ai-body { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+  
+  .msg { padding: 12px 16px; border-radius: 15px; font-size: 14px; line-height: 1.5; max-width: 85%; }
+  .msg.bot { background: var(--grey); color: #fff; border-left: 4px solid var(--blue); align-self: flex-start; }
+  .msg.user { background: var(--blue); color: #000; font-weight: 700; align-self: flex-end; border-radius: 15px 15px 0 15px; }
 
-  .trust-main-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-  }
+  .k-ai-footer { padding: 15px; background: #080808; display: flex; gap: 10px; border-top: 1px solid #222; }
+  .k-ai-footer input { flex: 1; background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 8px; outline: none; }
+  .k-ai-footer button { background: var(--blue); border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; }
+  .k-ai-footer button svg { width: 20px; fill: #000; }
 
-  .trust-icon-circle {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
-  }
-
-  .trust-text {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .trust-title {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: {{ section.settings.text_color }};
-  }
-
-  .trust-desc {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.4;
-    color: {{ section.settings.text_color }};
-    opacity: 0.8;
-  }
-
-  .trust-action-link {
-    background: none;
-    border: none;
-    padding: 0;
-    margin-top: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    color: {{ section.settings.accent_color }};
-    cursor: pointer;
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .trust-action-link:hover span {
-    transform: translateX(3px);
-  }
-
-  @media (max-width: 768px) {
-    .trust-grid {
-      flex-direction: column;
-      gap: 25px;
-    }
-    .trust-item-card {
-      min-width: 100%;
-    }
-  }
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 </style>
 
 <script>
-  function handleTrustPost(btn, id) {
-    const originalContent = btn.innerHTML;
-    btn.innerHTML = "Procesando...";
-    btn.disabled = true;
+  function toggleKAI() {
+    document.getElementById('k-ai-window').classList.toggle('active');
+  }
 
-    // Simulación de llamado POST
+  function checkEnter(e) { if (e.key === 'Enter') processAI(); }
+
+  function processAI() {
+    const input = document.getElementById('k-ai-input');
+    const body = document.getElementById('k-ai-body');
+    const val = input.value.trim().toLowerCase();
+
+    if (!val) return;
+
+    // Agregar mensaje del usuario
+    body.innerHTML += `<div class="msg user">${input.value}</div>`;
+    input.value = "";
+    body.scrollTop = body.scrollHeight;
+
+    // Simular "IA Pensando"
+    const typingId = "typing-" + Date.now();
+    body.innerHTML += `<div id="${typingId}" class="msg bot">Procesando...</div>`;
+    
     setTimeout(() => {
-      btn.innerHTML = "¡LISTO! ✓";
-      btn.style.color = "#27ae60";
-      console.log("Acción ejecutada para el bloque:", id);
+      document.getElementById(typingId).remove();
+      let response = "";
+
+      // MOTOR DE IA (Lógica de palabras clave)
+      if (val.includes("problema") || val.includes("falla") || val.includes("no funciona")) {
+        response = "He detectado un problema técnico. ¿Es sobre la batería, la pantalla o la conexión Bluetooth? Dime el detalle para darte los pasos de solución.";
+      } else if (val.includes("hola") || val.includes("buenos")) {
+        response = "¡Hola! Soy la IA de Kieslect. Estoy lista para asistirte con dudas técnicas, sugerencias o problemas con tu reloj. ¿Qué sucede?";
+      } else if (val.includes("agua") || val.includes("nadar") || val.includes("sumergible")) {
+        response = "Analizando hardware... La mayoría de nuestros modelos tienen certificación IP68. Puedes lavarte las manos o sudar con él, pero no recomendamos usarlo en saunas o agua salada.";
+      } else if (val.includes("bateria") || val.includes("carga")) {
+        response = "Para optimizar la batería, te sugiero reducir el brillo y desactivar el 'Always on Display'. ¿Cuántos días te está durando actualmente?";
+      } else if (val.includes("sugerencia") || val.includes("idea")) {
+        response = "¡Excelente! Me encanta recolectar ideas para el equipo de desarrollo. Por favor, escribe tu sugerencia aquí mismo y la registraré en nuestra base de datos.";
+      } else if (val.includes("sincronizar") || val.includes("conectar") || val.includes("app")) {
+        response = "Para conectar: Borra el reloj de los ajustes Bluetooth del celular, abre la App 'Kieslect OS' y añade el dispositivo desde ahí. ¿Qué modelo tienes?";
+      } else {
+        response = "Entiendo. Para darte una asistencia precisa, ¿podrías darme más detalles o decirme el modelo de tu Kieslect? También puedes enviarnos un ticket desde la página de contacto.";
+      }
+
+      body.innerHTML += `<div class="msg bot">${response}</div>`;
+      body.scrollTop = body.scrollHeight;
     }, 1000);
   }
 </script>
-
-{% schema %}
-{
-  "name": "Barra Efectiva",
-  "settings": [
-    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#ffffff" },
-    { "type": "color", "id": "text_color", "label": "Texto", "default": "#121212" },
-    { "type": "color", "id": "accent_color", "label": "Color de Acento", "default": "#2b6cb0" }
-  ],
-  "blocks": [
-    {
-      "type": "benefit",
-      "name": "Beneficio",
-      "settings": [
-        { "type": "text", "id": "icon", "label": "Icono (Emoji)", "default": "🚚" },
-        { "type": "text", "id": "title", "label": "Título", "default": "Envío Gratuito" },
-        { "type": "text", "id": "description", "label": "Descripción", "default": "En todos los pedidos superiores a $50" },
-        { "type": "text", "id": "button_label", "label": "Texto del botón", "default": "Saber más" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Barra Efectiva",
-      "blocks": [
-        { "type": "benefit", "settings": { "icon": "💳", "title": "Pago Seguro" } },
-        { "type": "benefit", "settings": { "icon": "🔄", "title": "Devolución 30 días" } },
-        { "type": "benefit", "settings": { "icon": "⭐", "title": "Garantía Total" } }
-      ]
-    }
-  ]
-}
-{% endschema %}
