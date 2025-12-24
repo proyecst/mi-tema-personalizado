@@ -1,68 +1,32 @@
-<section class="ultimate-grid-section" id="ultimate-grid-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
-  <div class="ultimate-container">
-    
-    <div class="ultimate-controls">
-      {% if section.settings.main_title != blank %}
-        <h2 class="ultimate-main-title">{{ section.settings.main_title }}</h2>
-      {% endif %}
-      
-      <div class="grid-filter-bar">
-        <button class="filter-btn active" onclick="filterGrid('all', this)">TODO</button>
-        <button class="filter-btn" onclick="filterGrid('product_card', this)">RELOJES</button>
-        <button class="filter-btn" onclick="filterGrid('media_card', this)">TECNOLOGÍA</button>
+<section class="listado-coleccion-avanzado" style="background-color: {{ section.settings.bg_color }};">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <div class="section-header text-center">
+        <h2 class="h1">{{ section.settings.title | escape }}</h2>
       </div>
-    </div>
+    {% endif %}
 
-    <div class="ultimate-grid" id="main-ultimate-grid">
+    <div class="grid-colecciones">
       {% for block in section.blocks %}
-        <div class="ultimate-card card-{{ block.type }} filter-item-{{ block.type }}" 
-             data-type="{{ block.type }}"
-             {{ block.shopify_attributes }}>
-          
-          {% case block.type %}
-            
-            {% when 'product_card' %}
-              {%- assign product_ref = block.settings.product_id -%}
-              <div class="card-inner">
-                <div class="media-wrapper" onclick="executeQuickAction('product', '{{ product_ref.url }}')">
-                  {% if product_ref != blank %}
-                    <img src="{{ product_ref.featured_image | img_url: '600x600' }}" alt="{{ product_ref.title }}" class="zoom-img">
-                  {% else %}
-                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                  {% endif %}
-                  <span class="ultra-badge">{{ block.settings.badge }}</span>
-                  <div class="card-overlay"><span>VER DETALLES</span></div>
-                </div>
-                <div class="info-wrapper">
-                  <h3>{{ product_ref.title | default: "Kieslect Watch" }}</h3>
-                  <p class="ultra-price">{{ product_ref.price | money }}</p>
-                  <button class="ultra-btn-add" onclick="addToCartAjax('{{ product_ref.variants.first.id }}', this)">
-                    {{ block.settings.btn_text }}
-                  </button>
+        <div class="coleccion-item" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.collection.url | default: '#' }}" class="coleccion-link">
+            <div class="coleccion-imagen-wrapper">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: '600x600', crop: 'center' }}" alt="{{ block.settings.title }}">
+              {% elsif block.settings.collection.image != blank %}
+                <img src="{{ block.settings.collection.image | img_url: '600x600', crop: 'center' }}" alt="{{ block.settings.collection.title }}">
+              {% else %}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+              
+              <div class="coleccion-overlay">
+                <div class="coleccion-content">
+                  <h3>{{ block.settings.title | default: block.settings.collection.title }}</h3>
+                  <span class="btn-ver">{{ section.settings.button_label | default: 'Ver Colección' }}</span>
                 </div>
               </div>
-
-            {% when 'media_card' %}
-              <div class="card-inner">
-                <div class="media-wrapper">
-                  {% if block.settings.image != blank %}
-                    <img src="{{ block.settings.image | img_url: '800x800' }}" alt="Imagen" class="parallax-img">
-                  {% elsif block.settings.video_url != blank %}
-                    <iframe src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay=0&mute=1&controls=0" frameborder="0"></iframe>
-                  {% else %}
-                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                  {% endif %}
-                </div>
-                <div class="info-wrapper dark-info">
-                  <h3>{{ block.settings.title }}</h3>
-                  <p>{{ block.settings.text }}</p>
-                  {% if block.settings.link_url != blank %}
-                    <a href="{{ block.settings.link_url }}" class="ultra-link-animated">Descubrir Ahora <span>→</span></a>
-                  {% endif %}
-                </div>
-              </div>
-
-          {% endcase %}
+            </div>
+          </a>
         </div>
       {% endfor %}
     </div>
@@ -70,8 +34,20 @@
 </section>
 
 <style>
-  :root { --accent: {{ section.settings.accent_color }}; --k-blue: #00D1FF; }
-
-  .ultimate-grid-section { padding: 60px 5%; overflow: hidden; transition: background 0.5s ease; }
-  .ultimate-controls { display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; }
-  .ultimate-main-title { font-size: 3rem; font-weight: 900; color: {{ section.settings.text_color }}; text-transform: uppercase; letter-spacing: -2px; margin: 0; text-align: center; }
+  .listado-coleccion-avanzado {
+    padding: 50px 0;
+  }
+  .section-header {
+    margin-bottom: 40px;
+  }
+  .grid-colecciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .coleccion-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
