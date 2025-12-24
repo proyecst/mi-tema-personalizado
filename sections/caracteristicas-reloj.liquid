@@ -1,115 +1,68 @@
-<section class="ultimate-grid-section" id="ultimate-grid-main" style="background-color: {{ section.settings.bg_color }};">
+<section class="ultimate-grid-section" style="background-color: {{ section.settings.bg_color }};">
   <div class="ultimate-container">
-    
-    <div class="ultimate-header">
+    {% if section.settings.main_title != blank %}
       <h2 class="ultimate-main-title">{{ section.settings.main_title }}</h2>
-      <div class="ia-filter-tags">
-        <span class="tag" onclick="filterGrid('all')">Todo</span>
-        <span class="tag" onclick="filterGrid('product_card')">Relojes</span>
-        <span class="tag" onclick="filterGrid('media_card')">Info</span>
-      </div>
-    </div>
+    {% endif %}
 
-    <div class="ultimate-grid" id="grid-element">
+    <div class="ultimate-grid">
       {% for block in section.blocks %}
-        <div class="ultimate-card card-{{ block.type }}" data-type="{{ block.type }}" data-title="{{ block.settings.product_id.title | downcase }}{{ block.settings.title | downcase }}">
+        <div class="ultimate-card card-{{ block.type }}" {{ block.shopify_attributes }}>
+          
           {% case block.type %}
+            
             {% when 'product_card' %}
               {%- assign product_ref = block.settings.product_id -%}
               <div class="card-inner">
-                <img src="{{ product_ref.featured_image | img_url: '600x600' }}">
+                <div class="media-wrapper">
+                  {% if product_ref != blank %}
+                    <img src="{{ product_ref.featured_image | img_url: '600x600' }}" alt="{{ product_ref.title }}">
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                  <span class="ultra-badge">{{ block.settings.badge }}</span>
+                </div>
                 <div class="info-wrapper">
-                  <h3 class="p-title">{{ product_ref.title }}</h3>
-                  <button class="ultra-btn-add" id="btn-{{ product_ref.variants.first.id }}" onclick="addToCartAjax('{{ product_ref.variants.first.id }}', this)">
+                  <h3>{{ product_ref.title | default: "Producto de Ejemplo" }}</h3>
+                  <p class="ultra-price">{{ product_ref.price | money }}</p>
+                  <button class="ultra-btn-add" onclick="addToCartAjax('{{ product_ref.variants.first.id }}', this)">
                     {{ block.settings.btn_text }}
                   </button>
                 </div>
               </div>
+
             {% when 'media_card' %}
-              <div class="card-inner media">
-                <img src="{{ block.settings.image | img_url: '600x600' }}">
+              <div class="card-inner">
+                <div class="media-wrapper">
+                  {% if block.settings.image != blank %}
+                    <img src="{{ block.settings.image | img_url: '600x600' }}" alt="Imagen">
+                  {% elsif block.settings.video_url != blank %}
+                    <iframe src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}" frameborder="0"></iframe>
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {% endif %}
+                </div>
                 <div class="info-wrapper">
                   <h3>{{ block.settings.title }}</h3>
                   <p>{{ block.settings.text }}</p>
+                  {% if block.settings.link_url != blank %}
+                    <a href="{{ block.settings.link_url }}" class="ultra-link">{{ block.settings.link_label }} →</a>
+                  {% endif %}
                 </div>
               </div>
+
           {% endcase %}
+          
         </div>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<div id="ai-system" class="ai-container">
-  <div id="ai-window" class="ai-window">
-    <div class="ai-chat-log" id="ai-log">
-      <div class="ai-msg">Soy el sistema Kieslect. Puedo <b>filtrar</b>, <b>buscar</b> o <b>comprar</b> por ti. Prueba decir: "Busca el KR Pro" o "Muestra solo relojes".</div>
-    </div>
-    <div class="ai-input-area">
-      <input type="text" id="ai-query" placeholder="Escribe una orden..." onkeypress="if(event.key==='Enter') executeAI()">
-      <button onclick="executeAI()">Ejecutar</button>
-    </div>
-  </div>
-  <div class="ai-trigger" onclick="document.getElementById('ai-window').classList.toggle('active')">
-    <div class="ai-icon">IA</div>
-  </div>
-</div>
-
 <style>
-  :root { --neon: #00D1FF; --dark: #000; }
-  .ultimate-grid-section { padding: 60px 5%; font-family: sans-serif; transition: 0.5s; }
-  .ultimate-main-title { text-align: center; font-weight: 900; text-transform: uppercase; }
-  .ia-filter-tags { text-align: center; margin-bottom: 30px; }
-  .tag { padding: 8px 20px; border: 1px solid #ddd; border-radius: 50px; cursor: pointer; margin: 0 5px; font-size: 12px; font-weight: bold; }
-  
-  .ultimate-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-  .ultimate-card { background: #fff; border-radius: 20px; overflow: hidden; transition: 0.5s; border: 1px solid #eee; }
-  .ultimate-card.highlight { border: 3px solid var(--neon); box-shadow: 0 0 30px rgba(0,209,255,0.5); transform: scale(1.05); }
-  .ultimate-card.hidden { display: none; }
-  
-  .ai-container { position: fixed; bottom: 30px; right: 30px; z-index: 999; }
-  .ai-trigger { width: 60px; height: 60px; background: var(--dark); border: 2px solid var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--neon); font-weight: bold; cursor: pointer; box-shadow: 0 0 15px var(--neon); }
-  .ai-window { position: absolute; bottom: 80px; right: 0; width: 320px; background: var(--dark); border-radius: 15px; display: none; flex-direction: column; overflow: hidden; border: 1px solid #333; }
-  .ai-window.active { display: flex; }
-  .ai-chat-log { height: 250px; padding: 15px; overflow-y: auto; color: #fff; font-size: 13px; }
-  .ai-msg { background: #1a1a1a; padding: 10px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid var(--neon); }
-  .ai-input-area { display: flex; padding: 10px; background: #111; }
-  .ai-input-area input { flex: 1; background: #222; border: none; color: #fff; padding: 8px; border-radius: 5px; }
-  .ai-input-area button { background: var(--neon); border: none; padding: 0 15px; font-weight: bold; cursor: pointer; border-radius: 5px; margin-left: 5px; }
+  .ultimate-grid-section { padding: 80px 5%; color: {{ section.settings.text_color }}; }
+  .ultimate-container { max-width: 1400px; margin: 0 auto; }
+  .ultimate-main-title { text-align: center; font-size: 40px; font-weight: 900; margin-bottom: 60px; letter-spacing: -1px; }
 
-  /* Animación de ejecución */
-  @keyframes pulse-exec { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
-  .executing { animation: pulse-exec 0.2s infinite; }
-</style>
-
-<script>
-// FUNCIONES DE LA CUADRÍCULA (GRID)
-function filterGrid(type) {
-  const cards = document.querySelectorAll('.ultimate-card');
-  cards.forEach(card => {
-    if(type === 'all' || card.dataset.type === type) {
-      card.classList.remove('hidden');
-    } else {
-      card.classList.add('hidden');
-    }
-  });
-}
-
-function highlightProduct(name) {
-  const cards = document.querySelectorAll('.ultimate-card');
-  let found = false;
-  cards.forEach(card => {
-    card.classList.remove('highlight');
-    if(card.dataset.title.includes(name) && name !== "") {
-      card.classList.add('highlight');
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      found = true;
-    }
-  });
-  return found;
-}
-
-// MOTOR DE EJECUCIÓN DE LA IA
-function executeAI() {
-  const queryField = document.getElementById('ai-query');
-  const log = document.
+  .ultimate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
