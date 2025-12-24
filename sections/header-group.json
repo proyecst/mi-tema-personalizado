@@ -53,7 +53,8 @@
         "serie_fdQGpr": {
           "type": "serie",
           "settings": {
-            "title": "",
+            "image": "shopify://shop_images/lora2-gold_3.jpg",
+            "title": "lora 3",
             "link": ""
           }
         }
