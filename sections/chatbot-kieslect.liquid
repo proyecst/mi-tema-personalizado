@@ -1,43 +1,42 @@
 {%- style -%}
   :root {
-    --chat-blue: #00D1FF;
-    --chat-black: #000000;
-    --chat-dark: #1a1a1a;
+    --k-blue: #00D1FF;
+    --k-black: #000000;
+    --k-dark-grey: #111111;
   }
 
-  /* Botón Flotante con Pulso */
-  .chat-launcher {
+  /* Botón Flotante */
+  .k-chat-launcher {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 65px;
-    height: 65px;
-    background-color: var(--chat-black);
-    border: 2px solid var(--chat-blue);
+    width: 60px;
+    height: 60px;
+    background-color: var(--k-black);
+    border: 2px solid var(--k-blue);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 0 15px rgba(0, 209, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    transition: all 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   
-  .chat-launcher:hover { transform: scale(1.1) rotate(5deg); }
-  .chat-launcher svg { width: 32px; height: 32px; fill: var(--chat-blue); }
+  .k-chat-launcher:hover { transform: scale(1.1); }
+  .k-chat-launcher svg { width: 28px; height: 28px; fill: var(--k-blue); }
 
-  /* Ventana de Centro de Ayuda */
-  .chat-window {
+  /* Ventana de Ayuda */
+  .k-help-window {
     position: fixed;
-    bottom: 110px;
+    bottom: 100px;
     right: 30px;
-    width: 380px;
-    max-height: 600px;
-    background: var(--chat-black);
+    width: 340px;
+    background: var(--k-black);
     border: 1px solid #333;
-    border-radius: 20px;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
     display: none;
     flex-direction: column;
     overflow: hidden;
@@ -45,200 +44,121 @@
     font-family: 'Inter', sans-serif;
   }
 
-  .chat-window.active { display: flex; animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .k-help-window.active { display: flex; animation: k-slide 0.3s ease-out; }
 
-  @keyframes slideUp {
-    from { transform: translateY(50px); opacity: 0; }
+  @keyframes k-slide {
+    from { transform: translateY(30px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
   }
 
-  .chat-header {
-    background: var(--chat-blue);
-    color: var(--chat-black);
-    padding: 25px 20px;
-    text-align: left;
+  .k-help-header {
+    background: var(--k-blue);
+    color: var(--k-black);
+    padding: 20px;
     position: relative;
   }
 
-  .chat-header h4 { margin: 0; font-size: 1.2rem; font-weight: 900; text-transform: uppercase; }
-  .chat-header p { margin: 5px 0 0; font-size: 0.85rem; font-weight: 600; opacity: 0.8; }
+  .k-help-header h4 { margin: 0; font-size: 1rem; font-weight: 900; text-transform: uppercase; }
+  .k-help-header p { margin: 3px 0 0; font-size: 0.75rem; font-weight: 600; }
 
-  .chat-body {
-    padding: 20px;
-    overflow-y: auto;
-    background: var(--chat-black);
-    color: white;
-  }
-
-  .help-section-title {
-    font-size: 0.75rem;
-    color: var(--chat-blue);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    font-weight: 800;
-  }
-
-  .chat-msg {
-    background: var(--chat-dark);
+  .k-help-body {
     padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    border: 1px solid #333;
+    background: var(--k-black);
   }
 
-  /* Opciones de Ayuda */
-  .chat-options {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .chat-option-btn {
-    background: var(--chat-dark);
-    border: 1px solid #444;
-    color: #fff;
-    padding: 14px 18px;
-    border-radius: 10px;
-    text-align: left;
+  .k-msg-intro {
+    color: #eee;
     font-size: 0.9rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    padding: 10px;
+    background: var(--k-dark-grey);
+    border-radius: 8px;
+  }
+
+  /* Botones de Opciones */
+  .k-help-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .k-help-btn {
+    background: var(--k-dark-grey);
+    border: 1px solid #333;
+    color: var(--k-blue);
+    padding: 12px 15px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.85rem;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 500;
-  }
-
-  .chat-option-btn span { color: var(--chat-blue); font-size: 1.2rem; }
-
-  .chat-option-btn:hover {
-    border-color: var(--chat-blue);
-    background: #222;
-    transform: translateX(5px);
-  }
-
-  /* Pantalla de respuesta dinámica */
-  #bot-response-container {
-    display: none;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #333;
-  }
-
-  .back-btn {
-    background: transparent;
-    border: none;
-    color: var(--chat-blue);
-    cursor: pointer;
-    font-size: 0.8rem;
+    transition: all 0.2s;
     font-weight: 700;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    text-transform: uppercase;
   }
 
-  .chat-close {
+  .k-help-btn:hover {
+    background: var(--k-blue);
+    color: var(--k-black);
+    border-color: var(--k-blue);
+  }
+
+  .k-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    color: var(--chat-black);
+    top: 15px;
+    right: 15px;
     cursor: pointer;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 22px;
+    color: var(--k-black);
+  }
+
+  /* Vista de información rápida */
+  #k-info-view {
+    display: none;
+    color: #fff;
+    font-size: 0.85rem;
+    animation: k-fade 0.3s;
+  }
+
+  @keyframes k-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .k-back-btn {
+    background: none;
+    border: none;
+    color: var(--k-blue);
+    font-weight: 800;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 10px;
+    font-size: 0.7rem;
   }
 {%- endstyle -%}
 
-<div id="chat-launcher" class="chat-launcher" onclick="toggleChat()">
-  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+<div class="k-chat-launcher" onclick="toggleKHelp()">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
 </div>
 
-<div id="chat-window" class="chat-window">
-  <div class="chat-header">
-    <span class="chat-close" onclick="toggleChat()">&times;</span>
-    <h4>Centro de Ayuda</h4>
-    <p>Kieslect Soporte Oficial</p>
+<div id="k-help-window" class="k-help-window">
+  <div class="k-help-header">
+    <span class="k-close" onclick="toggleKHelp()">&times;</span>
+    <h4>Asistente Kieslect</h4>
+    <p>Navegación y Soporte</p>
   </div>
   
-  <div class="chat-body">
-    <div id="main-menu">
-      <div class="chat-msg">
-        Hola, ¿cómo podemos ayudarte hoy con tu experiencia Kieslect?
+  <div class="k-help-body">
+    <div id="k-main-nav">
+      <div class="k-msg-intro">
+        ¿Qué estás buscando hoy en <strong>Kieslect</strong>? Selecciona una opción:
       </div>
       
-      <p class="help-section-title">Opciones de Soporte</p>
-      
-      <div class="chat-options">
-        <div class="chat-option-btn" onclick="showHelp('order')">
-          <span>📦</span> Rastrear mi Pedido
-        </div>
-        
-        <div class="chat-option-btn" onclick="showHelp('faq')">
-          <span>❓</span> Preguntas Frecuentes
-        </div>
-        
-        <div class="chat-option-btn" onclick="showHelp('warranty')">
-          <span>🛡️</span> Garantía y Devoluciones
-        </div>
-
-        <div class="chat-option-btn" onclick="showHelp('app')">
-          <span>📱</span> Problemas con la App
-        </div>
-
-        <a href="/pages/contacto" class="chat-option-btn">
-          <span>✉️</span> Enviar un Ticket de Soporte
-        </a>
+      <div class="k-help-options">
+        <a href="/collections/all" class="k-help-btn">⌚ Explorar Colecciones</a>
+        <div class="k-help-btn" onclick="showKInfo('envios')">🚚 Tiempos de Envío</div>
+        <div class="k-help-btn" onclick="showKInfo('garantia')">🛡️ Política de Garantía</div>
+        <a href="/pages/contacto" class="k-help-btn">📧 Contactar Soporte</a>
       </div>
     </div>
 
-    <div id="bot-response-container">
-      <button class="back-btn" onclick="backToMain()">← VOLVER AL MENÚ</button>
-      <div id="bot-response-content" class="chat-msg">
-        </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  function toggleChat() {
-    const chat = document.getElementById('chat-window');
-    chat.classList.toggle('active');
-  }
-
-  function showHelp(type) {
-    const main = document.getElementById('main-menu');
-    const responseContainer = document.getElementById('bot-response-container');
-    const content = document.getElementById('bot-response-content');
-    
-    main.style.display = 'none';
-    responseContainer.style.display = 'block';
-
-    const responses = {
-      'order': 'Para rastrear tu pedido, por favor ten a mano tu número de orden y visita nuestra página de Seguimiento. Los pedidos suelen tardar de 3 a 5 días hábiles.',
-      'faq': '<strong>¿Son sumergibles?</strong> Sí, la mayoría tienen certificación IP68.<br><br><strong>¿Cuánto dura la batería?</strong> Entre 7 a 15 días según el modelo.<br><br><strong>¿Tienen GPS?</strong> Algunos modelos como el KS Pro incluyen soporte avanzado.',
-      'warranty': 'Todos nuestros productos Kieslect cuentan con 1 año de garantía limitada por defectos de fábrica. Guarda tu comprobante de compra.',
-      'app': 'Asegúrate de descargar la App <strong>Kieslect OS</strong> desde la Play Store o App Store. Reinicia el Bluetooth de tu móvil si no detecta el reloj.'
-    };
-
-    content.innerHTML = responses[type];
-  }
-
-  function backToMain() {
-    document.getElementById('main-menu').style.display = 'block';
-    document.getElementById('bot-response-container').style.display = 'none';
-  }
-</script>
-
-{% schema %}
-{
-  "name": "Centro Ayuda Kieslect",
-  "settings": [],
-  "presets": [
-    { "name": "Centro Ayuda Kieslect" }
-  ]
-}
-{% endschema %}
+    <div id="k-info-view">
+      <button class="k-back-btn" onclick="backToKMain()">← VOLVER AL MENÚ</button>
