@@ -163,37 +163,33 @@
         "feature_3CHg6f": {
           "type": "feature",
           "settings": {
-            "title": "Pantalla AMOLED"
+            "custom_icon": "shopify://shop_images/c8079620-18e9-45c9-9739-7fd94d775e8d.jpg",
+            "spec_label": "Pantalla",
+            "spec_value": "1.43\" Ultra AMOLED"
           }
         },
         "feature_qf3Ud4": {
           "type": "feature",
           "settings": {
-            "title": "Asistente de Voz IA"
+            "custom_icon": "shopify://shop_images/KR3_dorado.jpg",
+            "spec_label": "Pantalla",
+            "spec_value": "1.43\" Ultra AMOLED"
           }
         },
         "feature_G9zxJb": {
           "type": "feature",
           "settings": {
-            "title": "100+ Modos Deportivos"
+            "custom_icon": "shopify://shop_images/LoraM-03.png",
+            "spec_label": "Pantalla",
+            "spec_value": "1.43\" Ultra AMOLED"
           }
         },
         "feature_i4gwd4": {
           "type": "feature",
           "settings": {
-            "title": "Llamadas Bluetooth"
-          }
-        },
-        "feature_ReDft9": {
-          "type": "feature",
-          "settings": {
-            "title": "Batería de Larga Duración"
-          }
-        },
-        "feature_qkmngN": {
-          "type": "feature",
-          "settings": {
-            "title": "Sensores de Salud"
+            "custom_icon": "shopify://shop_images/Kieslect_Smart_Calling_Watch_Actor_Leading-Negro-Frontal.png",
+            "spec_label": "Pantalla",
+            "spec_value": "1.43\" Ultra AMOLED"
           }
         }
       },
@@ -201,16 +197,15 @@
         "feature_3CHg6f",
         "feature_qf3Ud4",
         "feature_G9zxJb",
-        "feature_i4gwd4",
-        "feature_ReDft9",
-        "feature_qkmngN"
+        "feature_i4gwd4"
       ],
       "name": "Características Principales Reloj",
       "settings": {
         "bg_color": "#ffffff",
         "text_color": "#000000",
-        "btn_color": "#000000",
-        "btn_text_color": "#ffffff",
+        "model_name": "KIESLECT KR PRO",
+        "title": "Especificaciones Técnicas",
+        "price": "$89.99",
         "cta_text": "Explorar Funciones",
         "cta_link": "",
         "padding_top": 40,
