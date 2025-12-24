@@ -10,6 +10,7 @@
 {
   "current": {
     "type_primary_font": "arial_n4",
+    "foreground_color": "#FFFFFF",
     "content_for_index": []
   }
 }
