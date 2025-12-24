@@ -105,13 +105,15 @@
         "serie_NqBhy9": {
           "type": "serie",
           "settings": {
-            "title": "Nombre de la Serie",
-            "link": ""
+            "image": "shopify://shop_images/KieslectLadySmartWatchPura-Rosa-Frontal.png",
+            "title": "Nombre de la Serie pura",
+            "link": "shopify://collections/relojes-para-mujer"
           }
         },
         "serie_zdK7GG": {
           "type": "serie",
           "settings": {
+            "image": "shopify://shop_images/KR3_dorado.jpg",
             "title": "Nombre de la Serie",
             "link": ""
           }
@@ -119,8 +121,9 @@
         "serie_KJzfYx": {
           "type": "serie",
           "settings": {
+            "image": "shopify://shop_images/Frame_20.png",
             "title": "Serie AMOLED",
-            "link": ""
+            "link": "shopify://collections/relojes-para-hombre"
           }
         },
         "serie_8gbAAE": {
