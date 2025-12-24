@@ -1,142 +1,204 @@
 {%- style -%}
   :root {
-    --chat-color: {{ section.settings.chat_color }};
+    --chat-blue: #00D1FF;
+    --chat-black: #000000;
+    --chat-dark: #1a1a1a;
   }
 
-  /* Botón Flotante */
+  /* Botón Flotante con Pulso */
   .chat-launcher {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 60px;
-    height: 60px;
-    background-color: var(--chat-color);
+    width: 65px;
+    height: 65px;
+    background-color: var(--chat-black);
+    border: 2px solid var(--chat-blue);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 0 15px rgba(0, 209, 255, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
   }
   
-  .chat-launcher:hover { transform: scale(1.1); }
-  
-  .chat-launcher svg { width: 30px; height: 30px; fill: white; }
+  .chat-launcher:hover { transform: scale(1.1) rotate(5deg); }
+  .chat-launcher svg { width: 32px; height: 32px; fill: var(--chat-blue); }
 
-  /* Ventana de Chat */
+  /* Ventana de Centro de Ayuda */
   .chat-window {
     position: fixed;
-    bottom: 100px;
+    bottom: 110px;
     right: 30px;
-    width: 350px;
-    max-height: 500px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    width: 380px;
+    max-height: 600px;
+    background: var(--chat-black);
+    border: 1px solid #333;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.8);
     display: none;
     flex-direction: column;
     overflow: hidden;
     z-index: 10000;
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
-  .chat-window.active { display: flex; animation: slideUp 0.3s ease; }
+  .chat-window.active { display: flex; animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
   @keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
+    from { transform: translateY(50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
   }
 
   .chat-header {
-    background: var(--chat-color);
-    color: white;
-    padding: 20px;
-    text-align: center;
+    background: var(--chat-blue);
+    color: var(--chat-black);
+    padding: 25px 20px;
+    text-align: left;
+    position: relative;
   }
 
-  .chat-header h4 { margin: 0; font-size: 1.1rem; }
-  .chat-header p { margin: 5px 0 0; font-size: 0.8rem; opacity: 0.9; }
+  .chat-header h4 { margin: 0; font-size: 1.2rem; font-weight: 900; text-transform: uppercase; }
+  .chat-header p { margin: 5px 0 0; font-size: 0.85rem; font-weight: 600; opacity: 0.8; }
 
   .chat-body {
     padding: 20px;
     overflow-y: auto;
-    background: #f9f9f9;
+    background: var(--chat-black);
+    color: white;
+  }
+
+  .help-section-title {
+    font-size: 0.75rem;
+    color: var(--chat-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: 800;
   }
 
   .chat-msg {
-    background: white;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-    line-height: 1.4;
-    border-left: 3px solid var(--chat-color);
+    background: var(--chat-dark);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border: 1px solid #333;
   }
 
+  /* Opciones de Ayuda */
   .chat-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .chat-option-btn {
-    background: white;
-    border: 1px solid var(--chat-color);
-    color: var(--chat-color);
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 0.85rem;
+    background: var(--chat-dark);
+    border: 1px solid #444;
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 0.9rem;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.2s;
-    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
   }
 
+  .chat-option-btn span { color: var(--chat-blue); font-size: 1.2rem; }
+
   .chat-option-btn:hover {
-    background: var(--chat-color);
-    color: white;
+    border-color: var(--chat-blue);
+    background: #222;
+    transform: translateX(5px);
+  }
+
+  /* Pantalla de respuesta dinámica */
+  #bot-response-container {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+  }
+
+  .back-btn {
+    background: transparent;
+    border: none;
+    color: var(--chat-blue);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 
   .chat-close {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    color: white;
+    top: 20px;
+    right: 20px;
+    color: var(--chat-black);
     cursor: pointer;
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: bold;
   }
 {%- endstyle -%}
 
 <div id="chat-launcher" class="chat-launcher" onclick="toggleChat()">
-  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </div>
 
 <div id="chat-window" class="chat-window">
   <div class="chat-header">
     <span class="chat-close" onclick="toggleChat()">&times;</span>
-    <h4>Asistente Kieslect</h4>
-    <p>En línea • Respondemos al instante</p>
+    <h4>Centro de Ayuda</h4>
+    <p>Kieslect Soporte Oficial</p>
   </div>
   
   <div class="chat-body">
-    <div class="chat-msg">
-      ¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?
+    <div id="main-menu">
+      <div class="chat-msg">
+        Hola, ¿cómo podemos ayudarte hoy con tu experiencia Kieslect?
+      </div>
+      
+      <p class="help-section-title">Opciones de Soporte</p>
+      
+      <div class="chat-options">
+        <div class="chat-option-btn" onclick="showHelp('order')">
+          <span>📦</span> Rastrear mi Pedido
+        </div>
+        
+        <div class="chat-option-btn" onclick="showHelp('faq')">
+          <span>❓</span> Preguntas Frecuentes
+        </div>
+        
+        <div class="chat-option-btn" onclick="showHelp('warranty')">
+          <span>🛡️</span> Garantía y Devoluciones
+        </div>
+
+        <div class="chat-option-btn" onclick="showHelp('app')">
+          <span>📱</span> Problemas con la App
+        </div>
+
+        <a href="/pages/contacto" class="chat-option-btn">
+          <span>✉️</span> Enviar un Ticket de Soporte
+        </a>
+      </div>
     </div>
-    
-    <div class="chat-options">
-      <a href="/collections/all" class="chat-option-btn">🛍️ Ver Catálogo de Relojes</a>
-      
-      <div class="chat-option-btn" onclick="botReply('Para comparar, te recomiendo visitar nuestra tabla comparativa de los modelos KS3, KR y KS2.')">⚖️ Comparar Modelos</div>
-      
-      <div class="chat-option-btn" onclick="botReply('Para soporte, asegúrate de tener instalada la App Kieslect OS. ¿Tienes problemas de conexión?')">🔧 Soporte Técnico</div>
-      
-      <a href="https://wa.me/{{ section.settings.wa_number }}" target="_blank" class="chat-option-btn" style="border-color: #25d366; color: #25d366;">🟢 Hablar con un Asesor</a>
-    </div>
-    
-    <div id="bot-response" class="chat-msg" style="display:none; margin-top: 15px; background: #eefbff;">
+
+    <div id="bot-response-container">
+      <button class="back-btn" onclick="backToMain()">← VOLVER AL MENÚ</button>
+      <div id="bot-response-content" class="chat-msg">
+        </div>
     </div>
   </div>
 </div>
@@ -147,22 +209,36 @@
     chat.classList.toggle('active');
   }
 
-  function botReply(text) {
-    const respDiv = document.getElementById('bot-response');
-    respDiv.innerText = text;
-    respDiv.style.display = 'block';
+  function showHelp(type) {
+    const main = document.getElementById('main-menu');
+    const responseContainer = document.getElementById('bot-response-container');
+    const content = document.getElementById('bot-response-content');
+    
+    main.style.display = 'none';
+    responseContainer.style.display = 'block';
+
+    const responses = {
+      'order': 'Para rastrear tu pedido, por favor ten a mano tu número de orden y visita nuestra página de Seguimiento. Los pedidos suelen tardar de 3 a 5 días hábiles.',
+      'faq': '<strong>¿Son sumergibles?</strong> Sí, la mayoría tienen certificación IP68.<br><br><strong>¿Cuánto dura la batería?</strong> Entre 7 a 15 días según el modelo.<br><br><strong>¿Tienen GPS?</strong> Algunos modelos como el KS Pro incluyen soporte avanzado.',
+      'warranty': 'Todos nuestros productos Kieslect cuentan con 1 año de garantía limitada por defectos de fábrica. Guarda tu comprobante de compra.',
+      'app': 'Asegúrate de descargar la App <strong>Kieslect OS</strong> desde la Play Store o App Store. Reinicia el Bluetooth de tu móvil si no detecta el reloj.'
+    };
+
+    content.innerHTML = responses[type];
+  }
+
+  function backToMain() {
+    document.getElementById('main-menu').style.display = 'block';
+    document.getElementById('bot-response-container').style.display = 'none';
   }
 </script>
 
 {% schema %}
 {
-  "name": "Chatbot Kieslect",
-  "settings": [
-    { "type": "color", "id": "chat_color", "label": "Color Principal", "default": "#000000" },
-    { "type": "text", "id": "wa_number", "label": "Número WhatsApp (sin +)", "default": "54911000000" }
-  ],
+  "name": "Centro Ayuda Kieslect",
+  "settings": [],
   "presets": [
-    { "name": "Chatbot Kieslect" }
+    { "name": "Centro Ayuda Kieslect" }
   ]
 }
 {% endschema %}
