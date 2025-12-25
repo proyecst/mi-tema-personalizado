@@ -1,3 +1,4 @@
+
 {%- style -%}
   .k-header-wrapper {
     width: 100%;
@@ -25,11 +26,8 @@
     letter-spacing: 3px;
     text-transform: uppercase;
   }
-  .k-logo img {
-    max-height: 40px;
-    display: block;
-  }
 
+  /* Navegación Principal */
   .k-nav { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
   .k-nav a { 
     color: #fff; 
@@ -42,17 +40,24 @@
   }
   .k-nav a:hover { opacity: 1; color: #00D1FF; }
 
+  /* Acciones */
   .k-actions { display: flex; align-items: center; gap: 20px; }
+  
   .k-register-link {
     background: #00D1FF;
     color: #000 !important;
-    padding: 10px 20px;
-    border-radius: 4px;
+    padding: 12px 24px;
+    border-radius: 6px;
     font-weight: 800;
     font-size: 11px;
     text-transform: uppercase;
     text-decoration: none;
     transition: 0.3s;
+    display: inline-block;
+  }
+  .k-register-link:hover { 
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.4); 
+    transform: translateY(-2px);
   }
 
   @media (max-width: 768px) { .k-nav { display: none; } }
@@ -61,21 +66,14 @@
 <div class="k-header-wrapper">
   <div class="k-header-container">
     
-    <div class="k-logo">
-      <a href="/">
-        {%- if section.settings.logo_img != blank -%}
-          <img src="{{ section.settings.logo_img | image_url: width: 300 }}" alt="{{ shop.name }}">
-        {%- else -%}
-          {{ section.settings.logo_text | default: 'KIESLECT' }}
-        {%- endif -%}
-      </a>
-    </div>
+    <div class="k-logo"><a href="/">{{ section.settings.logo_text }}</a></div>
     
     <nav>
       <ul class="k-nav">
         {%- for block in section.blocks -%}
           <li {{ block.shopify_attributes }}>
-            <a href="{{ block.settings.link_url | default: '#' }}" {% if block.settings.external %}target="_blank"{% endif %}>
+            <a href="{{ block.settings.link_url | default: '#' }}" 
+               {% if block.settings.external %}target="_blank"{% endif %}>
               {{ block.settings.link_text }}
             </a>
           </li>
@@ -86,10 +84,10 @@
     <div class="k-actions">
       {%- if customer -%}
         <a href="/account" style="color:#fff; text-decoration:none; font-size:12px; font-weight:700;">HOLA, {{ customer.first_name | upcase }}</a>
-        <a href="/account/logout" style="color:#ff4d4d; font-size:10px; text-decoration:none; margin-left:10px;">SALIR</a>
+        <a href="/account/logout" style="color:#ff4d4d; font-size:10px; text-decoration:none; margin-left:10px; font-weight:bold;">SALIR</a>
       {%- else -%}
         <a href="{{ section.settings.reg_link | default: '/account/register' }}" class="k-register-link">
-          {{ section.settings.reg_text | default: 'Registrarse' }}
+          {{ section.settings.reg_text }}
         </a>
       {%- endif -%}
     </div>
@@ -98,6 +96,7 @@
 </div>
 
 <script>
+  // Desplazamiento suave para IDs internos
   document.querySelectorAll('.k-nav a').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
@@ -120,47 +119,38 @@
   "name": "Kieslect Header Ultimate",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "logo_img",
-      "label": "Logo en Imagen"
-    },
-    {
       "type": "text",
       "id": "logo_text",
-      "label": "Texto del Logo (Si no hay imagen)",
+      "label": "Texto del Logo",
       "default": "KIESLECT"
-    },
-    {
-      "type": "header",
-      "content": "Botón de Acción"
     },
     {
       "type": "text",
       "id": "reg_text",
-      "label": "Texto Botón",
+      "label": "Texto Botón Registro",
       "default": "Registrarse"
     },
     {
       "type": "url",
       "id": "reg_link",
-      "label": "Link Botón"
+      "label": "Link Botón Registro"
     }
   ],
   "blocks": [
     {
       "type": "nav_link",
-      "name": "Link de Menú",
+      "name": "Opción de Menú",
       "settings": [
         {
           "type": "text",
           "id": "link_text",
-          "label": "Nombre del link",
-          "default": "Nueva Sección"
+          "label": "Texto del Link",
+          "default": "Nueva Opción"
         },
         {
           "type": "url",
           "id": "link_url",
-          "label": "Link (URL o #Seccion)"
+          "label": "URL o ID de Sección (ej: #id)"
         },
         {
           "type": "checkbox",
@@ -175,8 +165,27 @@
     {
       "name": "Kieslect Header Ultimate",
       "blocks": [
-        { "type": "nav_link", "settings": { "link_text": "Inicio" } },
-        { "type": "nav_link", "settings": { "link_text": "Modelos" } }
+        {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Inicio",
+            "link_url": "#shopify-section-template--index-main"
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Modelos",
+            "link_url": "#shopify-section-featured-products"
+          }
+        },
+        {
+          "type": "nav_link",
+          "settings": {
+            "link_text": "Comunidad",
+            "link_url": "#testi-list"
+          }
+        }
       ]
     }
   ]
