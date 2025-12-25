@@ -47,25 +47,18 @@
 </section>
 
 <script>
-  const shopifyData = {
-    isLogged: {% if customer %}true{% else %}false{% endif %},
-    userName: {{ customer.first_name | json | default: "'Invitado'" }}
-  };
-
-  function toggleTrust(el) {
-    const parent = el.parentElement;
-    const wasActive = parent.classList.contains('is-active');
-    document.querySelectorAll('.trust-item-wrapper').forEach(i => i.classList.remove('is-active'));
-    if(!wasActive) parent.classList.add('is-active');
+ function openAIChat() {
+  let mensaje = "Hola " + shopifyUserData.name + ". ";
+  
+  if (shopifyUserData.totalOrders > 0) {
+    mensaje += "Veo que tienes " + shopifyUserData.totalOrders + " pedidos con nosotros. ¿Deseas ayuda con tu última compra (" + shopifyUserData.lastOrder + ")?";
+  } else {
+    mensaje += "Soy el asistente de Kieslect. ¿En qué sección de la tienda necesitas ayuda hoy? (Soporte, Garantías o Envíos)";
   }
-
-  function openAIChat() {
-    if(shopifyData.isLogged) {
-      alert("IA: Hola " + shopifyData.userName + ", ¿cómo puedo ayudarte con tus productos?");
-    } else {
-      alert("IA: Hola, soy el asistente de Kieslect. Inicia sesión para darte ayuda personalizada.");
-    }
-  }
+  
+  alert(mensaje); // Esto es una simulación. Aquí es donde se abriría tu ventana de chat real.
+} 
+  
 </script>
 
 {% schema %}
