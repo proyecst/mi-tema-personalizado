@@ -13,51 +13,22 @@
   .k-logo a { color: #fff; text-decoration: none; font-size: 22px; font-weight: 900; letter-spacing: 2px; }
 
   /* Navegación Principal */
-  .k-nav-main { display: flex; gap: 10px; }
+  .k-nav-main { display: flex; gap: 15px; align-items: center; }
   
-  .k-dropdown { position: relative; }
-  
-  .k-drop-trigger {
-    background: transparent; color: #fff; border: none; padding: 10px 15px;
-    font-size: 12px; font-weight: 700; text-transform: uppercase; cursor: pointer;
-    display: flex; align-items: center; gap: 6px; transition: 0.3s;
+  /* Estilo para los links directos */
+  .k-nav-link {
+    color: #fff; text-decoration: none; font-size: 12px; font-weight: 700;
+    text-transform: uppercase; padding: 10px 15px; transition: 0.3s; opacity: 0.8;
   }
-  .k-drop-trigger:hover { color: var(--k-cyan); }
-
-  /* El Menú Desplegable */
-  .k-drop-menu {
-    display: none; position: absolute; top: 100%; left: 0;
-    background: #0a0a0a; min-width: 250px; border: 1px solid #1a1a1a;
-    border-radius: 8px; padding: 15px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-  }
-  
-  /* Mostrar cuando está activo */
-  .k-dropdown.is-open .k-drop-menu { display: block; animation: slideUp 0.2s ease-out; }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Secciones dentro del Menú */
-  .k-menu-section { padding: 0 20px 10px 20px; }
-  .k-menu-section-title {
-    color: var(--k-cyan); font-size: 10px; font-weight: 800;
-    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
-    display: block; border-bottom: 1px solid #222; padding-bottom: 4px;
-  }
-
-  .k-drop-menu a {
-    display: block; color: #bbb; text-decoration: none; font-size: 11px;
-    padding: 6px 0; transition: 0.2s; font-weight: 500;
-  }
-  .k-drop-menu a:hover { color: #fff; padding-left: 5px; }
+  .k-nav-link:hover { opacity: 1; color: var(--k-cyan); }
 
   /* Botón Acceso */
   .k-access-btn {
-    background: var(--k-cyan); color: #000; padding: 10px 20px;
-    border-radius: 4px; font-weight: 800; font-size: 12px; text-decoration: none;
+    background: var(--k-cyan); color: #000 !important; padding: 10px 20px;
+    border-radius: 4px; font-weight: 800; font-size: 11px; text-decoration: none;
+    text-transform: uppercase; transition: 0.3s;
   }
+  .k-access-btn:hover { background: #fff; }
 
   @media (max-width: 900px) { .k-nav-main { display: none; } }
 {%- endstyle -%}
@@ -68,21 +39,31 @@
     <div class="k-logo"><a href="/">KIESLECT</a></div>
     
     <nav class="k-nav-main">
-      <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
+      <a href="/" class="k-nav-link">Inicio</a>
+      <a href="/collections/all" class="k-nav-link">Productos</a>
+      <a href="/pages/comunidad" class="k-nav-link">Comunidad</a>
+      <a href="/pages/soporte" class="k-nav-link">Soporte</a>
+    </nav>
 
-      <div class="k-dropdown js-drop">
-        <button class="k-drop-trigger" onclick="kToggle(this)">Modelos ▼</button>
-        <div class="k-drop-menu">
-          <div class="k-menu-section">
-            <span class="k-menu-section-title">Smartwatches</span>
-            <a href="/collections/ks-series">Serie KS Pro</a>
-            <a href="/collections/kr-series">Serie KR Pro</a>
-            <a href="/collections/l-series">Lady Series</a>
-          </div>
-          <div class="k-menu-section">
-            <span class="k-menu-section-title">Accesorios</span>
-            <a href="/collections/correas">Correas Magnéticas</a>
-            <a href="/collections/micas">Protectores de Pantalla</a>
-          </div>
-        </div>
-      </div>
+    <div class="k-actions">
+      <a href="/account" class="k-access-btn">
+        {%- if customer -%}
+          {{ customer.first_name }}
+        {%- else -%}
+          Acceso
+        {%- endif -%}
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Script minimalista para efectos futuros
+  document.querySelectorAll('.k-nav-link').forEach(link => {
+    if(link.href === window.location.href) {
+      link.style.color = 'var(--k-cyan)';
+      link.style.opacity = '1';
+    }
+  });
+</script>
