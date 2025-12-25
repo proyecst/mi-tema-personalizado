@@ -25,10 +25,8 @@
 <header class="k-header-wrapper">
   <div class="k-header-container">
     <div class="k-logo"><a href="/">KIESLECT</a></div>
-    
     <nav class="k-nav-main">
       <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
-
       {% assign menu_items = "Productos,Comunidad,Soporte" | split: "," %}
       {% for m_title in menu_items %}
         <div class="k-dropdown js-drop">
@@ -53,7 +51,6 @@
         </div>
       {% endfor %}
     </nav>
-
     <div class="k-actions">
       <a href="/account" class="k-access-btn">Acceso</a>
     </div>
@@ -86,7 +83,7 @@
         {
           "type": "select",
           "id": "parent",
-          "label": "Menú donde aparece",
+          "label": "Menú",
           "options": [
             {"value": "Productos", "label": "Productos"},
             {"value": "Comunidad", "label": "Comunidad"},
@@ -103,7 +100,7 @@
         {
           "type": "select",
           "id": "parent",
-          "label": "Menú donde aparece",
+          "label": "Menú",
           "options": [
             {"value": "Productos", "label": "Productos"},
             {"value": "Comunidad", "label": "Comunidad"},
@@ -112,8 +109,8 @@
         },
         { "type": "text", "id": "title", "label": "Título", "default": "Enlace" },
         { "type": "text", "id": "sub", "label": "Subtítulo", "default": "Descripción" },
-        { "type": "url", "id": "url", "label": "URL / Link" },
-        { "type": "checkbox", "id": "download", "label": "¿Es descarga?", "default": false }
+        { "type": "url", "id": "url", "label": "URL" },
+        { "type": "checkbox", "id": "download", "label": "¿Descarga?", "default": false }
       ]
     }
   ],
