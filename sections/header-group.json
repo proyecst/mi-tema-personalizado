@@ -402,6 +402,7 @@
     },
     "chatbot_kieslect_kdMWME": {
       "type": "chatbot-kieslect",
+      "disabled": true,
       "name": "Chatbot Kieslect",
       "settings": {}
     }
