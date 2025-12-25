@@ -1,5 +1,5 @@
-{%- style -%}
-  :root { --k-cyan: #00D1FF; }
+<style>
+  :root { --k-cyan: #00D1FF; --k-bg: #0a0a0a; }
   
   .k-header-wrapper {
     width: 100%; background: #000; border-bottom: 1px solid #1a1a1a;
@@ -11,56 +11,37 @@
   }
   .k-logo a { color: #fff; text-decoration: none; font-size: 22px; font-weight: 900; letter-spacing: 2px; }
 
-  .k-nav-main { display: flex; gap: 10px; }
+  .k-nav-main { display: flex; gap: 5px; }
   .k-dropdown { position: relative; }
   
   .k-drop-trigger {
     background: transparent; color: #fff; border: none; padding: 10px 15px;
     font-size: 12px; font-weight: 700; text-transform: uppercase; cursor: pointer;
-    display: flex; align-items: center; gap: 6px; transition: 0.3s;
+    display: flex; align-items: center; gap: 6px; transition: color 0.3s ease;
   }
   .k-drop-trigger:hover { color: var(--k-cyan); }
 
   .k-drop-menu {
     display: none; position: absolute; top: 100%; left: 0;
-    background: #0a0a0a; min-width: 280px; border: 1px solid #1a1a1a;
+    background: var(--k-bg); min-width: 280px; border: 1px solid #1a1a1a;
     border-radius: 12px; padding: 15px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-    animation: kSlideUp 0.3s ease forwards;
   }
   
-  .k-dropdown.is-open .k-drop-menu { display: block; }
+  .k-dropdown.is-open .k-drop-menu { 
+    display: block; 
+    animation: kSlideUp 0.25s ease forwards; 
+  }
 
-  /* Estilo de Secciones y Archivos dentro del menú */
   .k-menu-label {
-    display: block; padding: 5px 20px; color: var(--k-cyan);
+    display: block; padding: 5px 20px 8px; color: var(--k-cyan);
     font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
   }
 
   .k-item {
     display: flex !important; align-items: center; justify-content: space-between;
-    padding: 10px 20px; text-decoration: none; transition: 0.2s;
+    padding: 12px 20px; text-decoration: none; transition: background 0.2s ease;
+    border: none; background: transparent; width: 100%;
   }
-  .k-item:hover { background: rgba(0, 209, 255, 0.05); }
+  .k-item:hover { background: rgba(0, 209, 255, 0.08); }
 
-  .k-item-info { display: flex; flex-direction: column; text-align: left; }
-  .k-item-title { color: #fff; font-size: 11px; font-weight: 700; text-transform: uppercase; }
-  .k-item-sub { color: #555; font-size: 9px; font-weight: 600; }
-  
-  .k-item-icon { color: var(--k-cyan); font-size: 12px; opacity: 0.6; }
-
-  .k-access-btn {
-    background: var(--k-cyan); color: #000 !important; padding: 10px 20px;
-    border-radius: 4px; font-weight: 800; font-size: 11px; text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  @keyframes kSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  @media (max-width: 900px) { .k-nav-main { display: none; } }
-{%- endstyle -%}
-
-<div class="k-header-wrapper">
-  <div class="k-header-container">
-    <div class="k-logo"><a href="/">KIESLECT</a></div>
-    
-    <nav class="k-nav-main">
-      <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
+  .k-item-info { display: flex; flex-direction: column
