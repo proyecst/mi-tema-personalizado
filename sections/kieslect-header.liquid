@@ -1,218 +1,188 @@
+{%- style -%}
+  :root {
+    --primary-blue: {{ section.settings.accent_color }};
+    --deep-black: #050505;
+    --text-gray: #b0b0b0;
+    --header-height: 70px;
+  }
+
+  .kieslect-header {
+    background: var(--deep-black);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 0 5%;
+    font-family: 'Inter', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* LOGO FUNCIONAL */
+  .logo a {
+    font-weight: 900;
+    font-size: 24px;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 3px;
+    transition: 0.3s;
+  }
+  .logo a:hover { color: var(--primary-blue); text-shadow: 0 0 15px var(--primary-blue); }
+
+  /* NAVEGACIÓN DINÁMICA */
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    position: relative;
+  }
+
+  .nav-link:hover { color: var(--primary-blue); }
+
+  /* DROPDOWN MEJORADO */
+  .has-dropdown { position: relative; height: var(--header-height); display: flex; align-items: center; }
+  
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    background: #0f0f0f;
+    border: 1px solid #222;
+    min-width: 220px;
+    padding: 15px 0;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.3s;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  }
+
+  .has-dropdown:hover .dropdown { visibility: visible; opacity: 1; transform: translateY(0); }
+
+  .dropdown a {
+    padding: 12px 25px;
+    display: block;
+    color: #eee;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    transition: 0.2s;
+  }
+
+  .dropdown a:hover { background: #1a1a1a; color: var(--primary-blue); padding-left: 30px; }
+
+  /* ACCIONES (BUSQUEDA, CUENTA, REGISTRO) */
+  .secondary-nav { display: flex; gap: 20px; align-items: center; }
+
+  .icon-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  .icon-link:hover { color: var(--primary-blue); }
+
+  .register-btn {
+    background: var(--primary-blue);
+    color: #000 !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  .register-btn:hover {
+    box-shadow: 0 0 20px var(--primary-blue);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .main-nav { display: none; } /* Aquí deberías agregar un menú hamburguesa */
+  }
+{%- endstyle -%}
+
 <header class="kieslect-header">
   <div class="header-container">
     
     <div class="logo">
-      <a href="/">KIESLECT</a>
+      <a href="{{ routes.root_url }}">KIESLECT</a>
     </div>
 
     <nav class="main-nav">
       <ul class="nav-list">
-        <li><a href="/" class="nav-link">Inicio</a></li>
+        <li><a href="{{ routes.root_url }}" class="nav-link">Inicio</a></li>
         
         <li class="has-dropdown">
-          <a href="/collections/all" class="nav-link">Tienda <span class="arrow">▼</span></a>
+          <a href="{{ routes.all_products_collection_url }}" class="nav-link">Tienda</a>
           <ul class="dropdown">
-            <li><a href="/collections/serie-amoled">Serie AMOLED</a></li>
-            <li><a href="/collections/llamadas-bluetooth">Serie Llamadas</a></li>
-            <li><a href="/collections/deportiva">Serie Deportiva</a></li>
-            <li><a href="/collections/premium">Serie Premium</a></li>
+            {% comment %} Estos enlaces deben coincidir con tus colecciones creadas en Shopify {% endcomment %}
+            <li><a href="/collections/serie-ks">Serie Ks (AMOLED)</a></li>
+            <li><a href="/collections/serie-kr">Serie Kr (Llamadas)</a></li>
+            <li><a href="/collections/serie-l">Serie L (Damas)</a></li>
+            <li><a href="/collections/accesorios">Accesorios</a></li>
           </ul>
         </li>
         
-        <li><a href="/blogs/news" class="nav-link">Blog</a></li>
-        <li><a href="/pages/soporte" class="nav-link">Soporte</a></li>
+        <li><a href="/pages/comunidad" class="nav-link">Comunidad</a></li>
+        <li><a href="{{ routes.search_url }}" class="nav-link">Buscar</a></li>
       </ul>
     </nav>
 
     <div class="secondary-nav">
-      <a href="/search" class="icon-link">🔍</a>
-      <a href="/account" class="icon-link">Mi Cuenta</a>
-      <a href="/contact" class="contact-btn">Contacto</a>
+      {% if customer %}
+        <a href="{{ routes.account_url }}" class="icon-link">HOLA, {{ customer.first_name | uppercase }}</a>
+        <a href="{{ routes.account_logout_url }}" class="icon-link" style="opacity: 0.6;">Salir</a>
+      {% else %}
+        <a href="{{ routes.account_login_url }}" class="icon-link">LOGIN</a>
+        <a href="{{ routes.account_register_url }}" class="register-btn">REGISTRARSE</a>
+      {% endif %}
+      
+      <a href="{{ routes.cart_url }}" class="icon-link">
+        CART ({{ cart.item_count }})
+      </a>
     </div>
 
   </div>
 </header>
 
-<style>
-/* Variables de Color para fácil edición */
-:root {
-  --primary-blue: #007BFF; /* Azul Eléctrico */
-  --deep-black: #0a0a0a;   /* Negro casi total */
-  --text-gray: #b0b0b0;    /* Gris para estados inactivos */
-}
-
-.kieslect-header {
-  background: var(--deep-black);
-  border-bottom: 1px solid #222;
-  padding: 12px 5%;
-  font-family: 'Inter', 'Helvetica', sans-serif;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Logo con brillo azul al pasar el mouse */
-.logo a {
-  font-weight: 800;
-  font-size: 22px;
-  color: #fff;
-  text-decoration: none;
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-}
-
-.logo a:hover {
-  color: var(--primary-blue);
-  text-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
-}
-
-/* Navegación Principal */
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 30px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  font-size: 14px;
-  position: relative;
-  padding: 8px 0;
-  transition: color 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Subrayado Azul Animado */
-.nav-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: var(--primary-blue);
-  box-shadow: 0 0 8px var(--primary-blue);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover {
-  color: var(--primary-blue);
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-/* Dropdown Estilo Oscuro */
-.has-dropdown {
-  position: relative;
-}
-
-.arrow {
-  font-size: 9px;
-  margin-left: 5px;
-  transition: transform 0.3s ease;
-  display: inline-block;
-}
-
-.has-dropdown:hover .arrow {
-  transform: rotate(180deg);
-  color: var(--primary-blue);
-}
-
-.dropdown {
-  display: block;
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  top: 120%;
-  left: 0;
-  background: #1a1a1a; /* Negro ligeramente más claro que el fondo */
-  border: 1px solid #333;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  min-width: 200px;
-  padding: 10px 0;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  transform: translateY(10px);
-}
-
-.has-dropdown:hover .dropdown {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  top: 100%;
-}
-
-.dropdown a {
-  padding: 12px 20px;
-  display: block;
-  color: #ccc;
-  text-decoration: none;
-  font-size: 13px;
-  transition: all 0.2s;
-}
-
-.dropdown a:hover {
-  background: #222;
-  color: var(--primary-blue);
-  padding-left: 25px;
-}
-
-/* Botones Secundarios */
-.secondary-nav {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.icon-link {
-  font-size: 13px;
-  text-decoration: none;
-  color: #fff;
-  transition: color 0.3s ease;
-}
-
-.icon-link:hover {
-  color: var(--primary-blue);
-}
-
-.contact-btn {
-  background: var(--primary-blue);
-  color: #fff !important;
-  padding: 8px 18px;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
-
-.contact-btn:hover {
-  background: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
-}
-</style>
-
 {% schema %}
 {
-  "name": "Kieslect Black & Blue",
-  "settings": [],
+  "name": "Kieslect Header Pro",
+  "settings": [
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de Acento (Azul)",
+      "default": "#007BFF"
+    }
+  ],
   "presets": [
     {
-      "name": "Kieslect Black & Blue"
+      "name": "Kieslect Header Pro"
     }
   ]
 }
