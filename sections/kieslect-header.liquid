@@ -29,8 +29,8 @@
     <nav class="k-nav-main">
       <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
 
-      {% assign menu_titles = "Productos,Comunidad,Soporte" | split: "," %}
-      {% for m_title in menu_titles %}
+      {% assign menu_items = "Productos,Comunidad,Soporte" | split: "," %}
+      {% for m_title in menu_items %}
         <div class="k-dropdown js-drop">
           <button class="k-drop-trigger" onclick="kToggle(this)">{{ m_title }} ▼</button>
           <div class="k-drop-menu">
@@ -55,9 +55,7 @@
     </nav>
 
     <div class="k-actions">
-      <a href="/account" class="k-access-btn">
-        {%- if customer -%}{{ customer.first_name }}{%- else -%}Acceso{%- endif -%}
-      </a>
+      <a href="/account" class="k-access-btn">Acceso</a>
     </div>
   </div>
 </header>
@@ -95,7 +93,7 @@
             {"value": "Soporte", "label": "Soporte"}
           ]
         },
-        { "type": "text", "id": "title", "label": "Texto (Ej: México)", "default": "NUEVA SECCIÓN" }
+        { "type": "text", "id": "title", "label": "Texto", "default": "NUEVA SECCIÓN" }
       ]
     },
     {
@@ -122,4 +120,3 @@
   "presets": [{ "name": "Kieslect Header Pro" }]
 }
 {% endschema %}
-            {
