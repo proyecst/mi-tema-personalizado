@@ -34,6 +34,14 @@
     "series_ia_HmgFFW": {
       "type": "series-ia",
       "blocks": {
+        "serie_a8PdDV": {
+          "type": "serie",
+          "settings": {
+            "image": "shopify://shop_images/Kieslect_Smart_Calling_Watch_Actor_Leading-Negro-Frontal.png",
+            "title": "actor leading",
+            "link": "https://www.kieslect.com/es/?s=actor&trp-form-language=es"
+          }
+        },
         "serie_FjpmUd": {
           "type": "serie",
           "settings": {
@@ -68,6 +76,7 @@
         }
       },
       "block_order": [
+        "serie_a8PdDV",
         "serie_FjpmUd",
         "serie_DkQNEm",
         "serie_6PqAU6",
