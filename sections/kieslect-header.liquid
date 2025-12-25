@@ -1,115 +1,73 @@
 {%- style -%}
-  :root { --k-cyan: #00D1FF; --k-dark: #050505; }
+  :root { --k-cyan: #00D1FF; }
+
+  .k-header-wrapper {
+    width: 100%; background: #000; border-bottom: 1px solid #1a1a1a;
+    position: sticky; top: 0; z-index: 9999; font-family: 'Inter', sans-serif;
+  }
+  .k-header-container {
+    max-width: 1300px; height: 80px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+  }
+  .k-logo a { color: #fff; text-decoration: none; font-size: 22px; font-weight: 900; letter-spacing: 2px; }
+
+  .k-nav-main { display: flex; gap: 10px; }
+  .k-dropdown { position: relative; }
   
-  /* ... (Estilos base anteriores se mantienen) ... */
+  .k-drop-trigger {
+    background: transparent; color: #fff; border: none; padding: 10px 15px;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; cursor: pointer;
+    display: flex; align-items: center; gap: 8px; transition: 0.3s;
+  }
+  .k-drop-trigger:hover { color: var(--k-cyan); }
 
   .k-drop-menu {
     display: none; position: absolute; top: 100%; left: 0;
     background: #0a0a0a; min-width: 300px; border: 1px solid #1a1a1a;
-    border-radius: 12px; padding: 15px 0; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    border-radius: 12px; padding: 20px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  }
+  
+  .k-dropdown.is-open .k-drop-menu { 
+    display: block; 
+    animation: kSlideUp 0.3s ease forwards;
   }
 
-  /* Contenedor de Grupo */
-  .k-nav-group { margin-bottom: 15px; }
-  .k-nav-group-label {
-    display: block; padding: 0 20px 8px; font-size: 9px;
-    font-weight: 800; color: #444; text-transform: uppercase; letter-spacing: 1.5px;
+  .k-menu-label {
+    display: block; padding: 0 20px 10px; color: var(--k-cyan);
+    font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
   }
 
-  /* Estilo para LINKS de navegación */
-  .k-nav-link {
+  .k-item {
     display: flex !important; align-items: center; justify-content: space-between;
-    padding: 10px 20px; color: #fff; text-decoration: none; font-size: 12px;
-    font-weight: 600; transition: all 0.2s ease;
+    padding: 12px 20px; text-decoration: none; transition: 0.2s;
+    border-left: 2px solid transparent;
   }
-  .k-nav-link:hover { background: #111; color: var(--k-cyan); }
-  .k-nav-link svg { width: 14px; height: 14px; opacity: 0.3; transition: 0.3s; }
-  .k-nav-link:hover svg { opacity: 1; transform: translateX(3px); }
-
-  /* Estilo para ARCHIVOS descargables */
-  .k-file-item {
-    display: flex !important; align-items: center; gap: 12px;
-    padding: 10px 20px; text-decoration: none; background: rgba(255,255,255,0.02);
-    margin: 4px 10px; border-radius: 8px; border: 1px solid transparent;
-  }
-  .k-file-item:hover {
+  .k-item:hover {
     background: rgba(0, 209, 255, 0.05);
-    border-color: rgba(0, 209, 255, 0.2);
+    border-left-color: var(--k-cyan);
   }
-  .k-file-icon { font-size: 18px; }
-  .k-file-text { display: flex; flex-direction: column; }
-  .k-file-name { color: #fff; font-size: 11px; font-weight: 700; }
-  .k-file-meta { color: var(--k-cyan); font-size: 8px; font-weight: 800; text-transform: uppercase; }
 
-  .k-dropdown.is-open .k-drop-menu { display: block; animation: kReveal 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
-  @keyframes kReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .k-item-content { display: flex; flex-direction: column; text-align: left; }
+  .k-item-title { color: #fff; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .k-item-sub { color: #555; font-size: 9px; font-weight: 600; margin-top: 2px; }
+  
+  .k-item-icon { color: var(--k-cyan); font-size: 14px; opacity: 0.5; }
+  .k-item:hover .k-item-icon { opacity: 1; transform: translateX(3px); }
+
+  @keyframes kSlideUp { 
+    from { opacity: 0; transform: translateY(10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+
+  .k-access-btn {
+    background: var(--k-cyan); color: #000 !important; padding: 10px 20px;
+    border-radius: 4px; font-weight: 800; font-size: 11px; text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .k-nav-main { display: none; }
+  }
 {%- endstyle -%}
 
-<div class="k-header-wrapper">
-  <div class="k-header-container">
-    <div class="k-logo"><a href="/">KIESLECT</a></div>
-    
-    <nav class="k-nav-main" style="display: flex; gap: 15px;">
-      
-      <div class="k-dropdown js-drop">
-        <button class="k-drop-trigger" onclick="kToggle(this)">Comunidad & Soporte ▼</button>
-        <div class="k-drop-menu">
-          
-          <div class="k-nav-group">
-            <span class="k-nav-group-label">Explorar</span>
-            <a href="/pages/comunidad" class="k-nav-link">
-              Foro de Usuarios
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="/pages/blog" class="k-nav-link">
-              Noticias Tech
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
-          <div class="k-nav-group">
-            <span class="k-nav-group-label">Descargas Directas</span>
-            
-            <a href="https://cdn.shopify.com/s/files/manual-ejemplo.pdf" class="k-file-item" download>
-              <span class="k-file-icon">📑</span>
-              <div class="k-file-text">
-                <span class="k-file-name">Guía de Inicio Rápido</span>
-                <span class="k-file-meta">PDF • 2.4 MB</span>
-              </div>
-            </a>
-
-            <a href="https://cdn.shopify.com/s/files/firmware-update.zip" class="k-file-item" download>
-              <span class="k-file-icon">⚙️</span>
-              <div class="k-file-text">
-                <span class="k-file-name">Firmware Update v2.1</span>
-                <span class="k-file-meta">ZIP • 15 MB</span>
-              </div>
-            </a>
-          </div>
-
-        </div>
-      </div>
-      
-    </nav>
-
-    <div class="k-actions">
-       <a href="/account" class="k-access-btn">MI PERFIL</a>
-    </div>
-  </div>
-</div>
-
-<script>
-  function kToggle(btn) {
-    const parent = btn.closest('.js-drop');
-    const wasOpen = parent.classList.contains('is-open');
-    document.querySelectorAll('.js-drop').forEach(d => d.classList.remove('is-open'));
-    if (!wasOpen) parent.classList.add('is-open');
-  }
-
-  // Cierre automático al hacer clic fuera o al descargar un archivo
-  window.onclick = function(e) {
-    if (!e.target.closest('.js-drop')) {
-      document.querySelectorAll('.js-drop').forEach(d => d.classList.remove('is-open'));
-    }
-  }
-</script>
+<div class="
