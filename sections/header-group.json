@@ -14,6 +14,23 @@
     "kieslect_header_7Bj6Gk": {
       "type": "kieslect-header",
       "blocks": {
+        "enlace_hhn8qw": {
+          "type": "enlace",
+          "settings": {
+            "parent": "Productos",
+            "title": "Enlace",
+            "sub": "Descripción",
+            "url": "https://www.kieslect.com/es/about-us/",
+            "download": false
+          }
+        },
+        "seccion_ByBirc": {
+          "type": "seccion",
+          "settings": {
+            "parent": "Soporte",
+            "title": "SOPORTE"
+          }
+        },
         "enlace_AzYjLM": {
           "type": "enlace",
           "settings": {
@@ -50,6 +67,8 @@
         }
       },
       "block_order": [
+        "enlace_hhn8qw",
+        "seccion_ByBirc",
         "enlace_AzYjLM",
         "seccion_itfTXy",
         "enlace_iekMWC",
