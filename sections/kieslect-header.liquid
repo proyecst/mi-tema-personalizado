@@ -25,8 +25,11 @@
     letter-spacing: 3px;
     text-transform: uppercase;
   }
+  .k-logo img {
+    max-height: 40px;
+    display: block;
+  }
 
-  /* Navegación Principal */
   .k-nav { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
   .k-nav a { 
     color: #fff; 
@@ -39,9 +42,7 @@
   }
   .k-nav a:hover { opacity: 1; color: #00D1FF; }
 
-  /* Acciones (Lado derecho) */
   .k-actions { display: flex; align-items: center; gap: 20px; }
-  
   .k-register-link {
     background: #00D1FF;
     color: #000 !important;
@@ -53,7 +54,6 @@
     text-decoration: none;
     transition: 0.3s;
   }
-  .k-register-link:hover { transform: scale(1.05); filter: brightness(1.1); }
 
   @media (max-width: 768px) { .k-nav { display: none; } }
 {%- endstyle -%}
@@ -61,18 +61,25 @@
 <div class="k-header-wrapper">
   <div class="k-header-container">
     
-    <div class="k-logo"><a href="/">KIESLECT</a></div>
+    <div class="k-logo">
+      <a href="/">
+        {%- if section.settings.logo_img != blank -%}
+          <img src="{{ section.settings.logo_img | image_url: width: 300 }}" alt="{{ shop.name }}">
+        {%- else -%}
+          {{ section.settings.logo_text | default: 'KIESLECT' }}
+        {%- endif -%}
+      </a>
+    </div>
     
     <nav>
       <ul class="k-nav">
-        <li><a href="#shopify-section-template--index-main">Inicio</a></li>
-        <li><a href="#shopify-section-featured-products">Modelos</a></li>
-        <li><a href="#testi-list">Comunidad</a></li>
-        
-        {% comment %} --- NUEVO LINK AGREGADO --- {% endcomment %}
-        <li><a href="https://tusitio.com/pagina" target="_blank">Soporte</a></li>
-        {% comment %} --------------------------- {% endcomment %}
-        
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link_url | default: '#' }}" {% if block.settings.external %}target="_blank"{% endif %}>
+              {{ block.settings.link_text }}
+            </a>
+          </li>
+        {%- endfor -%}
       </ul>
     </nav>
 
@@ -81,7 +88,9 @@
         <a href="/account" style="color:#fff; text-decoration:none; font-size:12px; font-weight:700;">HOLA, {{ customer.first_name | upcase }}</a>
         <a href="/account/logout" style="color:#ff4d4d; font-size:10px; text-decoration:none; margin-left:10px;">SALIR</a>
       {%- else -%}
-        <a href="/account/register" class="k-register-link">Registrarse</a>
+        <a href="{{ section.settings.reg_link | default: '/account/register' }}" class="k-register-link">
+          {{ section.settings.reg_text | default: 'Registrarse' }}
+        </a>
       {%- endif -%}
     </div>
 
@@ -89,21 +98,19 @@
 </div>
 
 <script>
-  // Script para que los links que empiezan con '#' bajen suavemente
   document.querySelectorAll('.k-nav a').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
-      if (href.startsWith('#')) {
-        e.preventDefault();
+      if (href && href.startsWith('#')) {
         const target = document.querySelector(href);
         if (target) {
+          e.preventDefault();
           window.scrollTo({
             top: target.offsetTop - 80,
             behavior: 'smooth'
           });
         }
       }
-      // Si el link es una URL normal (no empieza con #), el navegador lo seguirá normalmente.
     });
   });
 </script>
@@ -111,7 +118,69 @@
 {% schema %}
 {
   "name": "Kieslect Header Ultimate",
-  "settings": [],
-  "presets": [{"name": "Kieslect Header Ultimate"}]
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_img",
+      "label": "Logo en Imagen"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Texto del Logo (Si no hay imagen)",
+      "default": "KIESLECT"
+    },
+    {
+      "type": "header",
+      "content": "Botón de Acción"
+    },
+    {
+      "type": "text",
+      "id": "reg_text",
+      "label": "Texto Botón",
+      "default": "Registrarse"
+    },
+    {
+      "type": "url",
+      "id": "reg_link",
+      "label": "Link Botón"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Link de Menú",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Nombre del link",
+          "default": "Nueva Sección"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link (URL o #Seccion)"
+        },
+        {
+          "type": "checkbox",
+          "id": "external",
+          "label": "Abrir en pestaña nueva",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kieslect Header Ultimate",
+      "blocks": [
+        { "type": "nav_link", "settings": { "link_text": "Inicio" } },
+        { "type": "nav_link", "settings": { "link_text": "Modelos" } }
+      ]
+    }
+  ]
 }
 {% endschema %}
+
+
