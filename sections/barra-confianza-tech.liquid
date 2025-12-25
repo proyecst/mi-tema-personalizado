@@ -9,6 +9,7 @@
     background-color: #000;
     padding: 60px 0;
     border-top: 1px solid #1a1a1a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
   .trust-bar-grid {
@@ -25,13 +26,14 @@
     background: var(--k-dark);
     border-radius: 15px;
     border: 1px solid #1a1a1a;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     overflow: hidden;
   }
 
   .trust-item-wrapper.is-active {
     border-color: var(--k-cyan);
-    box-shadow: 0 0 20px rgba(0, 209, 255, 0.1);
+    box-shadow: 0 0 25px rgba(0, 209, 255, 0.15);
+    transform: translateY(-5px);
   }
 
   .trust-header {
@@ -40,11 +42,15 @@
     gap: 12px;
     padding: 20px;
     cursor: pointer;
+    user-select: none;
   }
 
   .trust-icon-wrapper { width: 28px; height: 28px; color: var(--k-cyan); flex-shrink: 0; }
-  .trust-title { color: #fff; font-weight: 800; font-size: 12px; text-transform: uppercase; display: block; }
-  .trust-subtitle { color: #555; font-size: 10px; }
+  .trust-icon-wrapper svg { width: 100%; height: 100%; }
+
+  .trust-text { display: flex; flex-direction: column; }
+  .trust-title { color: #fff; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .trust-subtitle { color: #555; font-size: 10px; margin-top: 2px; }
 
   /* CONTENIDO DESPLEGABLE */
   .trust-content {
@@ -61,7 +67,7 @@
     border-top: 1px solid #1a1a1a;
   }
 
-  /* ESTILOS DE FORMULARIO INTERNO */
+  /* FORMULARIOS E INPUTS */
   .trust-input-group {
     margin-top: 15px;
     display: flex;
@@ -72,32 +78,42 @@
   .trust-input {
     background: #151515;
     border: 1px solid #222;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 12px;
+    border-radius: 8px;
     color: #fff;
     font-size: 12px;
     outline: none;
+    transition: 0.3s;
   }
 
-  .trust-input:focus { border-color: var(--k-cyan); }
+  .trust-input:focus { border-color: var(--k-cyan); background: #1a1a1a; }
 
   .trust-btn {
     background: var(--k-cyan);
     color: #000;
     border: none;
-    padding: 10px;
-    border-radius: 5px;
-    font-weight: 700;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 800;
     font-size: 11px;
     cursor: pointer;
     text-transform: uppercase;
     transition: 0.3s;
+    letter-spacing: 1px;
   }
 
-  .trust-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+  .trust-btn:hover { 
+    filter: brightness(1.2);
+    box-shadow: 0 0 15px var(--k-cyan);
+  }
+
+  .trust-description { color: #888; font-size: 11px; line-height: 1.4; margin: 0; }
 
   @media (max-width: 1024px) { .trust-bar-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 650px) { .trust-bar-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 650px) { 
+    .trust-bar-grid { grid-template-columns: 1fr; }
+    .trust-bar-section { padding: 30px 0; }
+  }
 {%- endstyle -%}
 
 <section class="trust-bar-section">
@@ -106,18 +122,18 @@
     <div class="trust-item-wrapper">
       <div class="trust-header" onclick="toggleTrust(this)">
         <div class="trust-icon-wrapper">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10H3M21 6H3M21 14H3M21 18H3"></path></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10H3M21 6H3M21 14H3M21 18H3"></path></svg>
         </div>
         <div class="trust-text">
           <span class="trust-title">Rastrear Pedido</span>
-          <span class="trust-subtitle">Estado en tiempo real</span>
+          <span class="trust-subtitle">Logística en tiempo real</span>
         </div>
       </div>
       <div class="trust-content">
-        <p style="color: #888; font-size: 11px;">Ingresa tu ID de pedido para localizar tu paquete.</p>
+        <p class="trust-description">Introduce tu número de orden para verificar el estado de envío.</p>
         <div class="trust-input-group">
-          <input type="text" class="trust-input" placeholder="Ej: #1024">
-          <button class="trust-btn" onclick="trackOrder()">Localizar</button>
+          <input type="text" id="trackInput" class="trust-input" placeholder="Ej: #1234">
+          <button class="trust-btn" onclick="trackOrder()">Localizar Paquete</button>
         </div>
       </div>
     </div>
@@ -125,19 +141,19 @@
     <div class="trust-item-wrapper">
       <div class="trust-header" onclick="toggleTrust(this)">
         <div class="trust-icon-wrapper">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
         </div>
         <div class="trust-text">
-          <span class="trust-title">Mis Datos</span>
-          <span class="trust-subtitle">Recibir alertas SMS</span>
+          <span class="trust-title">Alertas VIP</span>
+          <span class="trust-subtitle">Vincular mi WhatsApp</span>
         </div>
       </div>
       <div class="trust-content">
-        <p style="color: #888; font-size: 11px;">Déjanos tu WhatsApp para enviarte alertas de firmware.</p>
+        <p class="trust-description">Recibe actualizaciones de firmware y stock antes que nadie.</p>
         {% form 'customer' %}
           <div class="trust-input-group">
-            <input type="tel" name="contact[note][whatsapp]" class="trust-input" placeholder="+54 9 11..." required>
-            <button type="submit" class="trust-btn">Vincular</button>
+            <input type="tel" name="contact[note][WhatsApp]" class="trust-input" placeholder="+00 000 000 000" required>
+            <button type="submit" class="trust-btn">Activar Alertas</button>
           </div>
         {% endform %}
       </div>
@@ -146,64 +162,106 @@
     <div class="trust-item-wrapper">
       <div class="trust-header" onclick="toggleTrust(this)">
         <div class="trust-icon-wrapper">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         </div>
         <div class="trust-text">
-          <span class="trust-title">Garantía</span>
-          <span class="trust-subtitle">Activar protección</span>
+          <span class="trust-title">Garantía Tech</span>
+          <span class="trust-subtitle">Registro de producto</span>
         </div>
       </div>
       <div class="trust-content">
-        <p style="color: #888; font-size: 11px;">Registra el número de serie de tu Kieslect.</p>
+        <p class="trust-description">Registra el S/N de tu dispositivo para soporte prioritario.</p>
         <div class="trust-input-group">
-          <input type="text" class="trust-input" placeholder="S/N: K-XXXXXXXX">
-          <button class="trust-btn" onclick="alert('Registro enviado al sistema de garantía')">Activar</button>
+          <input type="text" id="snInput" class="trust-input" placeholder="S/N: K-2025XXXX">
+          <button class="trust-btn" onclick="registerSN()">Validar Garantía</button>
         </div>
       </div>
     </div>
 
     <div class="trust-item-wrapper">
-  <div class="trust-header" onclick="toggleTrust(this)">
-    <div class="trust-icon-wrapper">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
-      </svg>
+      <div class="trust-header" onclick="toggleTrust(this)">
+        <div class="trust-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">Kieslect IA</span>
+          <span class="trust-subtitle">Soporte Inteligente</span>
+        </div>
+      </div>
+      <div class="trust-content">
+        <p class="trust-description">¿Dudas técnicas? Nuestra IA está lista para ayudarte ahora.</p>
+        <div class="trust-input-group">
+          <button class="trust-btn" onclick="openAIChat()" style="background: #fff; color: #000;">Abrir Chat de IA</button>
+        </div>
+      </div>
     </div>
-    <div class="trust-text">
-      <span class="trust-title">Asistente IA</span>
-      <span class="trust-subtitle">Consulta inteligente 24/7</span>
-    </div>
+
   </div>
-  <div class="trust-content">
-    <p style="color: #888; font-size: 11px;">Nuestro sistema de IA puede resolver dudas sobre compatibilidad y configuración al instante.</p>
-    <div class="trust-input-group">
-      <button class="trust-btn" onclick="openAIChat()" style="background: #fff; color: #000;">
-        INICIAR CHAT IA
-      </button>
-    </div>
-  </div>
-</div>
 </section>
 
 <script>
+  // Función para manejar los desplegables
   function toggleTrust(element) {
     const wrapper = element.parentElement;
     const isActive = wrapper.classList.contains('is-active');
-    
     document.querySelectorAll('.trust-item-wrapper').forEach(w => w.classList.remove('is-active'));
-    
-    if (!isActive) {
-      wrapper.classList.add('is-active');
+    if (!isActive) wrapper.classList.add('is-active');
+  }
+
+  // Función para rastreo de pedidos
+  function trackOrder() {
+    const orderId = document.getElementById('trackInput').value;
+    if(orderId) {
+      window.location.href = `/account/orders`; // O tu app de rastreo específica
+    } else {
+      alert("Por favor ingresa tu número de pedido");
     }
   }
 
-  function trackOrder() {
-    const orderId = event.target.previousElementSibling.value;
-    if(orderId) {
-      // Redirige a la página de rastreo nativa de Shopify o de tu transportista
-      window.location.href = `/apps/track-order?id=${orderId}`;
+  // Función para simular registro de Garantía
+  function registerSN() {
+    const sn = document.getElementById('snInput').value;
+    if(sn.length > 5) {
+      alert("SISTEMA: El número de serie " + sn + " ha sido enviado para validación.");
     } else {
-      alert("Por favor ingresa un número de pedido");
+      alert("Ingresa un número de serie válido.");
+    }
+  }
+
+  // FUNCIÓN MAESTRA PARA ABRIR EL CHAT IA
+  function openAIChat() {
+    // Intenta detectar los widgets de chat más comunes en Shopify
+    const shopifyInbox = window.ShopifyChat;
+    const tidio = window.tidioChatApi;
+    const chatra = window.Chatra;
+
+    if (shopifyInbox) {
+      shopifyInbox.show();
+    } else if (tidio) {
+      tidio.show();
+      tidio.open();
+    } else if (chatra) {
+      chatra('openChat', true);
+    } else {
+      // Si no hay app instalada, busca el botón flotante genérico y hazle click
+      const genericChat = document.querySelector('[aria-label="Chat"]' ) || document.querySelector('#shopify-chat');
+      if (genericChat) {
+        genericChat.click();
+      } else {
+        alert("Iniciando Asistente IA... (Asegúrate de tener Shopify Inbox o un Chat instalado)");
+      }
     }
   }
 </script>
+
+{% schema %}
+{
+  "name": "Barra Confianza Tech Pro",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Barra Confianza Tech Pro"
+    }
+  ]
+}
+{% endschema %}
