@@ -5,72 +5,40 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
     color: {{ section.settings.text_color }};
     --k-cyan: #00D1FF;
-    --k-dark-card: #0a0a0a;
-    --k-border: rgba(255, 255, 255, 0.08);
+    --k-border: rgba(255, 255, 255, 0.1);
   }
 
-  .edu-container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
-
-  .edu-header { text-align: center; margin-bottom: 60px; }
-  .edu-header h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0; }
-  .edu-header .k-line { width: 50px; height: 3px; background: var(--k-cyan); margin: 15px auto; box-shadow: 0 0 10px var(--k-cyan); }
-
-  /* Grid de Tarjetas (Donde se subirá el texto) */
-  .edu-featured-guides {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-bottom: 50px;
-  }
-
-  /* El mismo diseño de tarjeta original */
-  .edu-guide-card {
-    background: var(--k-dark-card);
-    padding: 40px 30px;
-    border-radius: 20px;
-    text-decoration: none;
-    border: 1px solid var(--k-border);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 200px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .edu-guide-card:hover { transform: translateY(-10px); border-color: var(--k-cyan); box-shadow: 0 15px 30px rgba(0, 209, 255, 0.1); }
-  .edu-guide-card h3 { font-size: 1.3rem; font-weight: 800; color: #fff; margin:0; line-height: 1.3; z-index: 1; }
-  .read-more { font-size: 11px; font-weight: 900; color: var(--k-cyan); text-transform: uppercase; margin-top: 20px; display: flex; align-items: center; gap: 8px; }
-
-  /* FORMULARIO DE SUBIDA */
-  .edu-upload-box {
-    background: #050505;
-    padding: 40px;
-    border-radius: 24px;
-    border: 1px solid var(--k-cyan);
-    margin-bottom: 40px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .edu-upload-box h4 { text-align: center; text-transform: uppercase; margin-top: 0; color: var(--k-cyan); letter-spacing: 2px; }
-
-  .input-flex { display: flex; flex-direction: column; gap: 15px; }
+  .edu-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; font-family: 'Inter', sans-serif; }
   
-  .edu-input {
+  .edu-header { text-align: center; margin-bottom: 50px; }
+  .edu-header h2 { font-size: 2.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0; }
+  .k-line { width: 60px; height: 3px; background: var(--k-cyan); margin: 15px auto; box-shadow: 0 0 15px var(--k-cyan); }
+
+  /* FORMULARIO DE CREACIÓN */
+  .edu-creator-box {
+    max-width: 600px;
+    margin: 0 auto 60px auto;
+    background: #0a0a0a;
+    padding: 35px;
+    border-radius: 24px;
+    border: 1px solid var(--k-border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .edu-creator-box h4 { margin-top: 0; color: var(--k-cyan); text-transform: uppercase; font-size: 14px; letter-spacing: 2px; text-align: center; }
+
+  .edu-form { display: flex; flex-direction: column; gap: 15px; }
+  .edu-form input {
     background: #000;
-    border: 1px solid #333;
+    border: 1px solid #222;
     padding: 15px;
     border-radius: 12px;
     color: #fff;
-    font-family: inherit;
     outline: none;
+    transition: 0.3s;
   }
-  .edu-input:focus { border-color: var(--k-cyan); }
+  .edu-form input:focus { border-color: var(--k-cyan); }
 
-  .edu-submit-btn {
+  .edu-btn-submit {
     background: var(--k-cyan);
     color: #000;
     border: none;
@@ -81,80 +49,128 @@
     cursor: pointer;
     transition: 0.3s;
   }
-  .edu-submit-btn:hover { box-shadow: 0 0 20px var(--k-cyan); transform: scale(1.02); }
+  .edu-btn-submit:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 209, 255, 0.4); }
 
-  @media screen and (max-width: 900px) {
-    .edu-featured-guides { grid-template-columns: 1fr; }
+  /* GRID DE TARJETAS (GUÍAS) */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
   }
+
+  .edu-card {
+    background: #0a0a0a;
+    border: 1px solid var(--k-border);
+    padding: 35px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+  }
+
+  .edu-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--k-cyan);
+    background: #111;
+  }
+
+  .edu-card h3 { color: #fff; margin: 0; font-size: 1.4rem; font-weight: 800; line-height: 1.3; }
+  
+  .edu-card .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+
+  .badge-link {
+    font-size: 10px;
+    font-weight: 900;
+    color: var(--k-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  @media (max-width: 900px) { .edu-grid { grid-template-columns: 1fr; } }
 {%- endstyle -%}
 
 <div class="edu-container">
   <div class="edu-header">
-    <span style="color:var(--k-cyan); letter-spacing:4px; font-weight:700; font-size:12px;">CREAR CONTENIDO</span>
     <h2>{{ section.settings.title }}</h2>
     <div class="k-line"></div>
   </div>
 
-  <div class="edu-upload-box">
-    <h4>Agregar Nueva Guía</h4>
-    <div class="input-flex">
-      <input type="text" id="guide-title" class="edu-input" placeholder="Título de la guía (ej. Trucos de Pantalla)">
-      <button id="add-guide-btn" class="edu-submit-btn">Publicar en Academy</button>
+  <div class="edu-creator-box">
+    <h4>Publicar nueva opción</h4>
+    <div class="edu-form">
+      <input type="text" id="input-title" placeholder="Título de la guía (Ej: Manual KS Pro)">
+      <input type="text" id="input-url" placeholder="Pega el Link aquí (https://...)">
+      <button class="edu-btn-submit" id="btn-add-guide">Publicar en el sitio</button>
     </div>
   </div>
 
-  <div id="guides-grid" class="edu-featured-guides">
+  <div id="guides-display" class="edu-grid">
     {% for block in section.blocks %}
-      <div class="edu-guide-card" {{ block.shopify_attributes }}>
-        <h3>{{ block.settings.title }}</h3>
-        <span class="read-more">Guía Oficial <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M12 1L17 6L12 11M1 6H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </div>
+      <a href="{{ block.settings.link_url }}" class="edu-card">
+        <h3>{{ block.settings.guide_title }}</h3>
+        <div class="card-footer">
+          <span class="badge-link">IR AL SITIO →</span>
+        </div>
+      </a>
     {% endfor %}
-    </div>
+  </div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const btn = document.getElementById('add-guide-btn');
-  const grid = document.getElementById('guides-grid');
-  const titleInput = document.getElementById('guide-title');
+  const btn = document.getElementById('btn-add-guide');
+  const grid = document.getElementById('guides-display');
 
-  // Función para generar la tarjeta con el mismo diseño
-  function createGuideCard(title, isUserGenerated = false) {
-    const card = document.createElement('div');
-    card.className = 'edu-guide-card';
-    if(isUserGenerated) card.style.borderColor = '#00D1FF';
-
+  // Función para crear la tarjeta física
+  function createCard(title, url) {
+    const card = document.createElement('a');
+    card.href = url.startsWith('http') ? url : 'https://' + url;
+    card.target = "_blank"; // Se abre en pestaña nueva
+    card.className = 'edu-card';
     card.innerHTML = `
       <h3>${title.toUpperCase()}</h3>
-      <span class="read-more">Aporte Comunidad <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M12 1L17 6L12 11M1 6H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="card-footer">
+        <span class="badge-link">VISITAR SITIO →</span>
+      </div>
     `;
     return card;
   }
 
-  // 1. Cargar del almacenamiento local al iniciar
-  const savedGuides = JSON.parse(localStorage.getItem('kieslect_user_guides') || '[]');
-  savedGuides.forEach(g => {
-    grid.prepend(createGuideCard(g.title, true));
+  // 1. Cargar guías guardadas en el navegador
+  const savedData = JSON.parse(localStorage.getItem('kieslect_guides_db') || '[]');
+  savedData.forEach(item => {
+    grid.prepend(createCard(item.t, item.u));
   });
 
-  // 2. Evento para añadir nueva guía (Subir texto a la opción)
+  // 2. Guardar y Publicar
   btn.addEventListener('click', function() {
-    const val = titleInput.value.trim();
-    
-    if(val !== "") {
-      // Agregar visualmente
-      grid.prepend(createGuideCard(val, true));
+    const tVal = document.getElementById('input-title').value.trim();
+    const uVal = document.getElementById('input-url').value.trim();
 
-      // Guardar en memoria del navegador
-      savedGuides.push({ title: val });
-      localStorage.setItem('kieslect_user_guides', JSON.stringify(savedGuides));
+    if (tVal && uVal) {
+      // Agregar al grid
+      grid.prepend(createCard(tVal, uVal));
 
-      // Limpiar y feedback
-      titleInput.value = "";
-      alert("¡Guía publicada con éxito!");
+      // Guardar en memoria
+      savedData.push({ t: tVal, u: uVal });
+      localStorage.setItem('kieslect_guides_db', JSON.stringify(savedData));
+
+      // Limpiar inputs
+      document.getElementById('input-title').value = "";
+      document.getElementById('input-url').value = "";
     } else {
-      alert("Por favor escribe un título.");
+      alert("Por favor rellena el título y el link");
     }
   });
 });
@@ -162,9 +178,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% schema %}
 {
-  "name": "Kieslect Academy Dynamic",
+  "name": "Kieslect Academy Links",
   "settings": [
-    { "type": "text", "id": "title", "label": "Título Sección", "default": "Kieslect Academy" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Kieslect Academy" },
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
     { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Superior" },
@@ -172,20 +188,14 @@ document.addEventListener('DOMContentLoaded', function() {
   ],
   "blocks": [
     {
-      "type": "guide",
+      "type": "manual_guide",
       "name": "Guía Estática",
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Configuración Inicial" }
+        { "type": "text", "id": "guide_title", "label": "Título", "default": "Manual Oficial" },
+        { "type": "url", "id": "link_url", "label": "Link de la guía" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Kieslect Academy Dynamic",
-      "blocks": [
-        { "type": "guide", "settings": { "title": "Optimización Batería" } }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Kieslect Academy Links" }]
 }
 {% endschema %}
