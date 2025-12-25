@@ -1,212 +1,88 @@
 {%- style -%}
+  :root { --k-cyan: #00D1FF; }
+  
   .k-header-wrapper {
-    width: 100%;
-    background: #000;
-    border-bottom: 1px solid #1a1a1a;
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-    font-family: 'Inter', sans-serif;
+    width: 100%; background: #000; border-bottom: 1px solid #1a1a1a;
+    position: sticky; top: 0; z-index: 9999; font-family: 'Inter', sans-serif;
   }
   .k-header-container {
-    max-width: 1300px;
-    height: 80px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
+    max-width: 1300px; height: 80px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
   }
-  .k-logo a { 
-    color: #fff; 
-    text-decoration: none; 
-    font-size: 24px; 
-    font-weight: 900; 
-    letter-spacing: 3px; 
-    text-transform: uppercase; 
-  }
+  
+  .k-logo a { color: #fff; text-decoration: none; font-size: 22px; font-weight: 900; letter-spacing: 2px; }
 
-  .k-dropdown { position: relative; display: inline-block; }
+  /* Navegación Principal */
+  .k-nav-main { display: flex; gap: 10px; }
+  
+  .k-dropdown { position: relative; }
   
   .k-drop-trigger {
-    background: transparent;
-    color: #fff;
-    border: none;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: 0.3s;
-    opacity: 0.8;
+    background: transparent; color: #fff; border: none; padding: 10px 15px;
+    font-size: 12px; font-weight: 700; text-transform: uppercase; cursor: pointer;
+    display: flex; align-items: center; gap: 6px; transition: 0.3s;
   }
+  .k-drop-trigger:hover { color: var(--k-cyan); }
 
-  /* Animación de la flecha */
-  .k-drop-trigger span { 
-    font-size: 10px; 
-    transition: transform 0.3s ease; 
-  }
-  .k-dropdown.is-open .k-drop-trigger span { 
-    transform: rotate(180deg); 
-  }
-  .k-dropdown.is-open .k-drop-trigger { opacity: 1; color: #00D1FF; }
-
-  .k-access-trigger {
-    background: #00D1FF;
-    color: #000;
-    border-radius: 4px;
-    font-weight: 800;
-    opacity: 1;
-    margin-left: 10px;
-  }
-
-  /* Menú Desplegable Mejorado */
+  /* El Menú Desplegable */
   .k-drop-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
-    background: #111;
-    min-width: 220px;
-    border: 1px solid #222;
-    border-radius: 8px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.9);
-    z-index: 100;
-    padding: 8px 0;
-    /* Animación de entrada */
-    animation: kFadeIn 0.2s ease-out;
+    display: none; position: absolute; top: 100%; left: 0;
+    background: #0a0a0a; min-width: 250px; border: 1px solid #1a1a1a;
+    border-radius: 8px; padding: 15px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   }
+  
+  /* Mostrar cuando está activo */
+  .k-dropdown.is-open .k-drop-menu { display: block; animation: slideUp 0.2s ease-out; }
 
-  @keyframes kFadeIn {
+  @keyframes slideUp {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Clase activa para mostrar el menú */
-  .k-dropdown.is-open .k-drop-menu { display: block; }
-  
-  .k-dropdown-right .k-drop-menu { left: auto; right: 0; }
-
-  .k-drop-menu a, .k-drop-menu button {
-    display: block;
-    width: 100%;
-    padding: 12px 20px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: 600;
-    text-align: left;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  .k-drop-menu a:hover, .k-drop-menu button:hover {
-    background: rgba(0, 209, 255, 0.1);
-    color: #00D1FF;
-    padding-left: 25px;
+  /* Secciones dentro del Menú */
+  .k-menu-section { padding: 0 20px 10px 20px; }
+  .k-menu-section-title {
+    color: var(--k-cyan); font-size: 10px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+    display: block; border-bottom: 1px solid #222; padding-bottom: 4px;
   }
 
-  /* Estilos Modal permanecen iguales */
-  .k-modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 10001;
-    align-items: center; justify-content: center;
+  .k-drop-menu a {
+    display: block; color: #bbb; text-decoration: none; font-size: 11px;
+    padding: 6px 0; transition: 0.2s; font-weight: 500;
   }
-  .k-modal-box {
-    background: #0a0a0a; padding: 30px; border-radius: 15px;
-    border: 1px solid #222; width: 90%; max-width: 380px;
+  .k-drop-menu a:hover { color: #fff; padding-left: 5px; }
+
+  /* Botón Acceso */
+  .k-access-btn {
+    background: var(--k-cyan); color: #000; padding: 10px 20px;
+    border-radius: 4px; font-weight: 800; font-size: 12px; text-decoration: none;
   }
+
+  @media (max-width: 900px) { .k-nav-main { display: none; } }
 {%- endstyle -%}
 
 <div class="k-header-wrapper">
   <div class="k-header-container">
     
-    <div class="k-logo"><a href="/">{{ section.settings.logo_text }}</a></div>
+    <div class="k-logo"><a href="/">KIESLECT</a></div>
     
-    <nav class="k-nav-desktop">
-      <div class="k-dropdown js-dropdown">
-        <button class="k-drop-trigger" onclick="toggleKDropdown(this)">
-          Explorar Productos <span>▼</span>
-        </button>
+    <nav class="k-nav-main">
+      <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
+
+      <div class="k-dropdown js-drop">
+        <button class="k-drop-trigger" onclick="kToggle(this)">Modelos ▼</button>
         <div class="k-drop-menu">
-          {%- for block in section.blocks -%}
-            <a href="{{ block.settings.link_url | default: '#' }}">
-              {{ block.settings.link_text }}
-            </a>
-          {%- endfor -%}
+          <div class="k-menu-section">
+            <span class="k-menu-section-title">Smartwatches</span>
+            <a href="/collections/ks-series">Serie KS Pro</a>
+            <a href="/collections/kr-series">Serie KR Pro</a>
+            <a href="/collections/l-series">Lady Series</a>
+          </div>
+          <div class="k-menu-section">
+            <span class="k-menu-section-title">Accesorios</span>
+            <a href="/collections/correas">Correas Magnéticas</a>
+            <a href="/collections/micas">Protectores de Pantalla</a>
+          </div>
         </div>
       </div>
-    </nav>
-
-    <div class="k-actions">
-      <div class="k-dropdown k-dropdown-right js-dropdown">
-        <button class="k-drop-trigger k-access-trigger" onclick="toggleKDropdown(this)">
-          {%- if customer -%}
-            {{ customer.first_name | upcase }}
-          {%- else -%}
-            Mi Cuenta
-          {%- endif -%}
-          <span>▼</span>
-        </button>
-        <div class="k-drop-menu">
-          {%- if customer -%}
-            <a href="/account">Panel de Control</a>
-            <a href="/account/orders">Rastrear Pedidos</a>
-            <a href="/account/logout" style="color: #ff4d4d; border-top: 1px solid #222; margin-top: 5px;">Cerrar Sesión</a>
-          {%- else -%}
-            <a href="/account/login">Iniciar Sesión</a>
-            <button onclick="openModal()">Registrarme Ahora</button>
-          {%- endif -%}
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div id="kRegModal" class="k-modal">
-  <div class="k-modal-box">
-    <h3 style="color:#00D1FF; text-align:center; font-weight:900;">CREAR CUENTA</h3>
-    {%- form 'create_customer' -%}
-      <input type="text" name="customer[first_name]" placeholder="Nombre" style="width:100%; padding:10px; margin:10px 0; background:#111; color:#fff; border:1px solid #333;" required>
-      <input type="email" name="customer[email]" placeholder="Email" style="width:100%; padding:10px; margin:10px 0; background:#111; color:#fff; border:1px solid #333;" required>
-      <input type="password" name="customer[password]" placeholder="Contraseña" style="width:100%; padding:10px; margin:10px 0; background:#111; color:#fff; border:1px solid #333;" required>
-      <button type="submit" style="width:100%; background:#00D1FF; padding:12px; border:none; font-weight:bold; cursor:pointer;">EMPEZAR</button>
-    {%- endform -%}
-    <button onclick="closeModal()" style="background:transparent; color:#555; border:none; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
-  </div>
-</div>
-
-<script>
-  // Función Maestra de Despliegue
-  function toggleKDropdown(btn) {
-    const dropdown = btn.closest('.js-dropdown');
-    const isOpen = dropdown.classList.contains('is-open');
-    
-    // Cerrar otros menús abiertos antes de abrir este
-    document.querySelectorAll('.js-dropdown').forEach(d => d.classList.remove('is-open'));
-    
-    if (!isOpen) {
-      dropdown.classList.add('is-open');
-    }
-  }
-
-  // Cerrar menús al hacer clic en cualquier otra parte de la pantalla
-  window.addEventListener('click', function(e) {
-    if (!e.target.closest('.js-dropdown')) {
-      document.querySelectorAll('.js-dropdown').forEach(d => d.classList.remove('is-open'));
-    }
-  });
-
-  // Funciones Modal
-  function openModal() { document.getElementById('kRegModal').style.display = 'flex'; }
-  function closeModal() { document.getElementById('kRegModal').style.display = 'none'; }
-</script>
