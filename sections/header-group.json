@@ -83,25 +83,22 @@
         "testimonial_CBU6Pb": {
           "type": "testimonial",
           "settings": {
-            "rating": 5,
-            "review_text": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel.",
-            "user_name": "ALEX RIVERA"
+            "user_name": "ALEX RIVERA",
+            "review_text": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel."
           }
         },
         "testimonial_KnaMXp": {
           "type": "testimonial",
           "settings": {
-            "rating": 5,
-            "review_text": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel.",
-            "user_name": "ALEX RIVERA"
+            "user_name": "ALEX RIVERA",
+            "review_text": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel."
           }
         },
         "testimonial_H83mCp": {
           "type": "testimonial",
           "settings": {
-            "rating": 5,
-            "review_text": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel.",
-            "user_name": "ALEX RIVERA"
+            "user_name": "ALEX RIVERA",
+            "review_text": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel."
           }
         }
       },
@@ -115,6 +112,8 @@
         "title": "Comunidad Kieslect",
         "bg_color": "#000000",
         "text_color": "#ffffff",
+        "enable_infinite_scroll": true,
+        "speed": 30,
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -157,47 +156,16 @@
         "bg_color": "#000000",
         "text_color": "#ffffff",
         "cta_text": "Ver Todos los Modelos",
-        "cta_link": "",
+        "cta_link": "https://www.kieslect.com/es/shop/",
         "padding_top": 80,
         "padding_bottom": 80
       }
     },
     "kieslect_edu_center_4MnPmH": {
       "type": "kieslect-edu-center",
-      "blocks": {
-        "guide_UtYWMr": {
-          "type": "guide",
-          "settings": {
-            "title": "Configuración de Llamadas",
-            "link": ""
-          }
-        },
-        "guide_KDrYEN": {
-          "type": "guide",
-          "settings": {
-            "title": "Guía Kieslect OS",
-            "link": ""
-          }
-        },
-        "guide_yVq6aw": {
-          "type": "guide",
-          "settings": {
-            "title": "Modos Deportivos",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "guide_UtYWMr",
-        "guide_KDrYEN",
-        "guide_yVq6aw"
-      ],
       "name": "Kieslect Academy",
       "settings": {
         "title": "Domina tu Ecosistema",
-        "blog_id": "",
-        "post_limit": 3,
-        "cta_text": "Explorar Academy",
         "bg_color": "#000000",
         "text_color": "#ffffff",
         "padding_top": 80,
