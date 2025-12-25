@@ -17,58 +17,82 @@
     justify-content: space-between;
     padding: 0 20px;
   }
-  .k-logo a { color: #fff; text-decoration: none; font-size: 24px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+  .k-logo a { 
+    color: #fff; 
+    text-decoration: none; 
+    font-size: 24px; 
+    font-weight: 900; 
+    letter-spacing: 3px; 
+    text-transform: uppercase; 
+  }
 
-  /* Navegación Principal */
-  .k-nav { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; }
-  .k-nav a { color: #fff; text-decoration: none; font-size: 12px; font-weight: 600; text-transform: uppercase; opacity: 0.7; transition: 0.3s; }
-  .k-nav a:hover { opacity: 1; color: #00D1FF; }
-
-  /* Dropdown de Usuario */
-  .k-user-dropdown { position: relative; display: inline-block; }
-  .k-drop-btn {
-    background: #00D1FF;
-    color: #000;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 800;
-    font-size: 11px;
+  /* Estilo General de Dropdowns */
+  .k-dropdown { position: relative; display: inline-block; }
+  
+  .k-drop-trigger {
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
-    border: none;
+    padding: 10px 15px;
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: 0.3s;
+    opacity: 0.8;
   }
-  .k-drop-content {
+  .k-drop-trigger:hover { opacity: 1; color: #00D1FF; }
+
+  /* Botón de Acceso (Diferente estilo) */
+  .k-access-trigger {
+    background: #00D1FF;
+    color: #000;
+    border-radius: 4px;
+    font-weight: 800;
+    opacity: 1;
+  }
+  .k-access-trigger:hover { background: #fff; color: #000; }
+
+  .k-drop-menu {
     display: none;
     position: absolute;
-    right: 0;
+    top: 100%;
+    left: 0;
     background: #111;
-    min-width: 180px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    min-width: 200px;
     border: 1px solid #222;
     border-radius: 8px;
-    z-index: 10;
-    overflow: hidden;
-    margin-top: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    z-index: 100;
+    padding: 10px 0;
   }
-  .k-drop-content a, .k-drop-content button {
-    color: #fff;
-    padding: 12px 16px;
-    text-decoration: none;
+  .k-dropdown:hover .k-drop-menu { display: block; }
+  
+  /* Alineación a la derecha para el menú de usuario */
+  .k-dropdown-right .k-drop-menu { left: auto; right: 0; }
+
+  .k-drop-menu a, .k-drop-menu button {
     display: block;
+    width: 100%;
+    padding: 12px 20px;
+    color: #fff;
+    text-decoration: none;
     font-size: 11px;
     text-transform: uppercase;
     font-weight: 600;
-    border: none;
-    background: transparent;
-    width: 100%;
     text-align: left;
+    background: transparent;
+    border: none;
     cursor: pointer;
+    transition: 0.2s;
   }
-  .k-drop-content a:hover, .k-drop-content button:hover { background: #00D1FF; color: #000; }
-  .k-user-dropdown:hover .k-drop-content { display: block; }
+  .k-drop-menu a:hover, .k-drop-menu button:hover {
+    background: #00D1FF;
+    color: #000;
+  }
 
   /* Modal de Registro */
   .k-modal {
@@ -87,36 +111,42 @@
     width: 100%; max-width: 380px;
     position: relative;
   }
-  .k-modal-box h3 { color: #00D1FF; text-align: center; margin-bottom: 20px; font-weight: 900; }
   .k-modal-box input {
     width: 100%; padding: 12px; margin-bottom: 10px;
     background: #111; border: 1px solid #333; color: #fff; border-radius: 5px;
     box-sizing: border-box;
   }
-  .k-modal-box .btn-reg {
+  .btn-submit-reg {
     width: 100%; background: #00D1FF; color: #000; border: none;
     padding: 12px; font-weight: 800; border-radius: 5px; cursor: pointer;
   }
-  .close-modal { position: absolute; top: 15px; right: 15px; color: #555; cursor: pointer; font-size: 20px; }
 
-  @media (max-width: 768px) { .k-nav { display: none; } }
+  @media (max-width: 768px) { .k-nav-desktop { display: none; } }
 {%- endstyle -%}
 
 <div class="k-header-wrapper">
   <div class="k-header-container">
+    
     <div class="k-logo"><a href="/">{{ section.settings.logo_text }}</a></div>
     
-    <nav>
-      <ul class="k-nav">
-        {%- for block in section.blocks -%}
-          <li><a href="{{ block.settings.link_url | default: '#' }}">{{ block.settings.link_text }}</a></li>
-        {%- endfor -%}
-      </ul>
+    <nav class="k-nav-desktop">
+      <div class="k-dropdown">
+        <button class="k-drop-trigger">
+          Menú Principal <span>▼</span>
+        </button>
+        <div class="k-drop-menu">
+          {%- for block in section.blocks -%}
+            <a href="{{ block.settings.link_url | default: '#' }}" {{ block.shopify_attributes }}>
+              {{ block.settings.link_text }}
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
     </nav>
 
     <div class="k-actions">
-      <div class="k-user-dropdown">
-        <button class="k-drop-btn">
+      <div class="k-dropdown k-dropdown-right">
+        <button class="k-drop-trigger k-access-trigger">
           {%- if customer -%}
             Hola, {{ customer.first_name | upcase }}
           {%- else -%}
@@ -124,53 +154,56 @@
           {%- endif -%}
           <span>▼</span>
         </button>
-        <div class="k-drop-content">
+        <div class="k-drop-menu">
           {%- if customer -%}
             <a href="/account">Mi Perfil</a>
+            <a href="/account/orders">Mis Pedidos</a>
             <a href="/account/logout" style="color: #ff4d4d;">Cerrar Sesión</a>
           {%- else -%}
             <a href="/account/login">Iniciar Sesión</a>
-            <button onclick="openRegModal()">Registrarse</button>
+            <button onclick="openModal()">Crear Cuenta Nueva</button>
           {%- endif -%}
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
-<div id="regModal" class="k-modal">
+<div id="kRegModal" class="k-modal">
   <div class="k-modal-box">
-    <span class="close-modal" onclick="closeRegModal()">&times;</span>
-    <h3>CREAR CUENTA</h3>
+    <span style="position:absolute; top:15px; right:15px; color:#555; cursor:pointer;" onclick="closeModal()">&times;</span>
+    <h3 style="color:#00D1FF; text-align:center; font-weight:900; margin-bottom:20px;">NUEVO USUARIO</h3>
     {%- form 'create_customer' -%}
       {{ form.errors | default_errors }}
       <input type="text" name="customer[first_name]" placeholder="Nombre" required>
       <input type="text" name="customer[last_name]" placeholder="Apellido" required>
       <input type="email" name="customer[email]" placeholder="Email" required>
       <input type="password" name="customer[password]" placeholder="Contraseña" required>
-      <button type="submit" class="btn-reg">GUARDAR Y REGISTRAR</button>
+      <button type="submit" class="btn-submit-reg">GUARDAR Y REGISTRAR</button>
     {%- endform -%}
   </div>
 </div>
 
 <script>
-  function openRegModal() { document.getElementById('regModal').style.display = 'flex'; }
-  function closeRegModal() { document.getElementById('regModal').style.display = 'none'; }
+  function openModal() { document.getElementById('kRegModal').style.display = 'flex'; }
+  function closeModal() { document.getElementById('kRegModal').style.display = 'none'; }
   
-  // Cerrar si hace clic fuera
-  window.onclick = function(event) {
-    let modal = document.getElementById('regModal');
-    if (event.target == modal) closeRegModal();
+  // Cerrar al hacer clic fuera
+  window.onclick = function(e) {
+    if (e.target == document.getElementById('kRegModal')) closeModal();
   }
 
-  // Smooth Scroll
-  document.querySelectorAll('.k-nav a').forEach(link => {
+  // Desplazamiento suave para links con #
+  document.querySelectorAll('.k-drop-menu a').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
       if (href.startsWith('#')) {
         e.preventDefault();
         const target = document.querySelector(href);
-        if (target) { window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' }); }
+        if (target) {
+          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+        }
       }
     });
   });
@@ -185,9 +218,9 @@
   "blocks": [
     {
       "type": "nav_link",
-      "name": "Link",
+      "name": "Opción de Menú",
       "settings": [
-        { "type": "text", "id": "link_text", "label": "Nombre", "default": "Opción" },
+        { "type": "text", "id": "link_text", "label": "Nombre", "default": "Nueva Sección" },
         { "type": "url", "id": "link_url", "label": "Link o #ID" }
       ]
     }
