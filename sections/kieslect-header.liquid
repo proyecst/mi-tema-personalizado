@@ -26,7 +26,6 @@
     text-transform: uppercase; 
   }
 
-  /* Estilo General de Dropdowns */
   .k-dropdown { position: relative; display: inline-block; }
   
   .k-drop-trigger {
@@ -44,34 +43,51 @@
     transition: 0.3s;
     opacity: 0.8;
   }
-  .k-drop-trigger:hover { opacity: 1; color: #00D1FF; }
 
-  /* Botón de Acceso (Diferente estilo) */
+  /* Animación de la flecha */
+  .k-drop-trigger span { 
+    font-size: 10px; 
+    transition: transform 0.3s ease; 
+  }
+  .k-dropdown.is-open .k-drop-trigger span { 
+    transform: rotate(180deg); 
+  }
+  .k-dropdown.is-open .k-drop-trigger { opacity: 1; color: #00D1FF; }
+
   .k-access-trigger {
     background: #00D1FF;
     color: #000;
     border-radius: 4px;
     font-weight: 800;
     opacity: 1;
+    margin-left: 10px;
   }
-  .k-access-trigger:hover { background: #fff; color: #000; }
 
+  /* Menú Desplegable Mejorado */
   .k-drop-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px);
     left: 0;
     background: #111;
-    min-width: 200px;
+    min-width: 220px;
     border: 1px solid #222;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.9);
     z-index: 100;
-    padding: 10px 0;
+    padding: 8px 0;
+    /* Animación de entrada */
+    animation: kFadeIn 0.2s ease-out;
   }
-  .k-dropdown:hover .k-drop-menu { display: block; }
+
+  @keyframes kFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Clase activa para mostrar el menú */
+  .k-dropdown.is-open .k-drop-menu { display: block; }
   
-  /* Alineación a la derecha para el menú de usuario */
   .k-dropdown-right .k-drop-menu { left: auto; right: 0; }
 
   .k-drop-menu a, .k-drop-menu button {
@@ -90,11 +106,12 @@
     transition: 0.2s;
   }
   .k-drop-menu a:hover, .k-drop-menu button:hover {
-    background: #00D1FF;
-    color: #000;
+    background: rgba(0, 209, 255, 0.1);
+    color: #00D1FF;
+    padding-left: 25px;
   }
 
-  /* Modal de Registro */
+  /* Estilos Modal permanecen iguales */
   .k-modal {
     display: none;
     position: fixed;
@@ -104,24 +121,9 @@
     align-items: center; justify-content: center;
   }
   .k-modal-box {
-    background: #0a0a0a;
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid #222;
-    width: 100%; max-width: 380px;
-    position: relative;
+    background: #0a0a0a; padding: 30px; border-radius: 15px;
+    border: 1px solid #222; width: 90%; max-width: 380px;
   }
-  .k-modal-box input {
-    width: 100%; padding: 12px; margin-bottom: 10px;
-    background: #111; border: 1px solid #333; color: #fff; border-radius: 5px;
-    box-sizing: border-box;
-  }
-  .btn-submit-reg {
-    width: 100%; background: #00D1FF; color: #000; border: none;
-    padding: 12px; font-weight: 800; border-radius: 5px; cursor: pointer;
-  }
-
-  @media (max-width: 768px) { .k-nav-desktop { display: none; } }
 {%- endstyle -%}
 
 <div class="k-header-wrapper">
@@ -130,13 +132,13 @@
     <div class="k-logo"><a href="/">{{ section.settings.logo_text }}</a></div>
     
     <nav class="k-nav-desktop">
-      <div class="k-dropdown">
-        <button class="k-drop-trigger">
-          Menú Principal <span>▼</span>
+      <div class="k-dropdown js-dropdown">
+        <button class="k-drop-trigger" onclick="toggleKDropdown(this)">
+          Explorar Productos <span>▼</span>
         </button>
         <div class="k-drop-menu">
           {%- for block in section.blocks -%}
-            <a href="{{ block.settings.link_url | default: '#' }}" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link_url | default: '#' }}">
               {{ block.settings.link_text }}
             </a>
           {%- endfor -%}
@@ -145,23 +147,23 @@
     </nav>
 
     <div class="k-actions">
-      <div class="k-dropdown k-dropdown-right">
-        <button class="k-drop-trigger k-access-trigger">
+      <div class="k-dropdown k-dropdown-right js-dropdown">
+        <button class="k-drop-trigger k-access-trigger" onclick="toggleKDropdown(this)">
           {%- if customer -%}
-            Hola, {{ customer.first_name | upcase }}
+            {{ customer.first_name | upcase }}
           {%- else -%}
-            Acceso
+            Mi Cuenta
           {%- endif -%}
           <span>▼</span>
         </button>
         <div class="k-drop-menu">
           {%- if customer -%}
-            <a href="/account">Mi Perfil</a>
-            <a href="/account/orders">Mis Pedidos</a>
-            <a href="/account/logout" style="color: #ff4d4d;">Cerrar Sesión</a>
+            <a href="/account">Panel de Control</a>
+            <a href="/account/orders">Rastrear Pedidos</a>
+            <a href="/account/logout" style="color: #ff4d4d; border-top: 1px solid #222; margin-top: 5px;">Cerrar Sesión</a>
           {%- else -%}
             <a href="/account/login">Iniciar Sesión</a>
-            <button onclick="openModal()">Crear Cuenta Nueva</button>
+            <button onclick="openModal()">Registrarme Ahora</button>
           {%- endif -%}
         </div>
       </div>
@@ -172,68 +174,39 @@
 
 <div id="kRegModal" class="k-modal">
   <div class="k-modal-box">
-    <span style="position:absolute; top:15px; right:15px; color:#555; cursor:pointer;" onclick="closeModal()">&times;</span>
-    <h3 style="color:#00D1FF; text-align:center; font-weight:900; margin-bottom:20px;">NUEVO USUARIO</h3>
+    <h3 style="color:#00D1FF; text-align:center; font-weight:900;">CREAR CUENTA</h3>
     {%- form 'create_customer' -%}
-      {{ form.errors | default_errors }}
-      <input type="text" name="customer[first_name]" placeholder="Nombre" required>
-      <input type="text" name="customer[last_name]" placeholder="Apellido" required>
-      <input type="email" name="customer[email]" placeholder="Email" required>
-      <input type="password" name="customer[password]" placeholder="Contraseña" required>
-      <button type="submit" class="btn-submit-reg">GUARDAR Y REGISTRAR</button>
+      <input type="text" name="customer[first_name]" placeholder="Nombre" style="width:100%; padding:10px; margin:10px 0; background:#111; color:#fff; border:1px solid #333;" required>
+      <input type="email" name="customer[email]" placeholder="Email" style="width:100%; padding:10px; margin:10px 0; background:#111; color:#fff; border:1px solid #333;" required>
+      <input type="password" name="customer[password]" placeholder="Contraseña" style="width:100%; padding:10px; margin:10px 0; background:#111; color:#fff; border:1px solid #333;" required>
+      <button type="submit" style="width:100%; background:#00D1FF; padding:12px; border:none; font-weight:bold; cursor:pointer;">EMPEZAR</button>
     {%- endform -%}
+    <button onclick="closeModal()" style="background:transparent; color:#555; border:none; width:100%; margin-top:10px; cursor:pointer;">Cancelar</button>
   </div>
 </div>
 
 <script>
-  function openModal() { document.getElementById('kRegModal').style.display = 'flex'; }
-  function closeModal() { document.getElementById('kRegModal').style.display = 'none'; }
-  
-  // Cerrar al hacer clic fuera
-  window.onclick = function(e) {
-    if (e.target == document.getElementById('kRegModal')) closeModal();
+  // Función Maestra de Despliegue
+  function toggleKDropdown(btn) {
+    const dropdown = btn.closest('.js-dropdown');
+    const isOpen = dropdown.classList.contains('is-open');
+    
+    // Cerrar otros menús abiertos antes de abrir este
+    document.querySelectorAll('.js-dropdown').forEach(d => d.classList.remove('is-open'));
+    
+    if (!isOpen) {
+      dropdown.classList.add('is-open');
+    }
   }
 
-  // Desplazamiento suave para links con #
-  document.querySelectorAll('.k-drop-menu a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
-        }
-      }
-    });
+  // Cerrar menús al hacer clic en cualquier otra parte de la pantalla
+  window.addEventListener('click', function(e) {
+    if (!e.target.closest('.js-dropdown')) {
+      document.querySelectorAll('.js-dropdown').forEach(d => d.classList.remove('is-open'));
+    }
   });
-</script>
 
-{% schema %}
-{
-  "name": "Kieslect Header Ultimate",
-  "settings": [
-    { "type": "text", "id": "logo_text", "label": "Logo", "default": "KIESLECT" }
-  ],
-  "blocks": [
-    {
-      "type": "nav_link",
-      "name": "Opción de Menú",
-      "settings": [
-        { "type": "text", "id": "link_text", "label": "Nombre", "default": "Nueva Sección" },
-        { "type": "url", "id": "link_url", "label": "Link o #ID" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Kieslect Header Ultimate",
-      "blocks": [
-        { "type": "nav_link", "settings": { "link_text": "Inicio", "link_url": "#shopify-section-template--index-main" } },
-        { "type": "nav_link", "settings": { "link_text": "Modelos", "link_url": "#shopify-section-featured-products" } },
-        { "type": "nav_link", "settings": { "link_text": "Comunidad", "link_url": "#testi-list" } }
-      ]
-    }
-  ]
-}
-{% endschema %}
+  // Funciones Modal
+  function openModal() { document.getElementById('kRegModal').style.display = 'flex'; }
+  function closeModal() { document.getElementById('kRegModal').style.display = 'none'; }
+</script>
