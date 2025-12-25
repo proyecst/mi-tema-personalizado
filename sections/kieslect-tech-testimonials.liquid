@@ -3,241 +3,209 @@
     background-color: {{ section.settings.bg_color }};
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
-    overflow: hidden;
-  }
-
-  :root {
-    --k-cyan: #00D1FF;
+    --k-cyan: {{ section.settings.accent_color }};
     --k-glass: rgba(255, 255, 255, 0.03);
     --k-border: rgba(255, 255, 255, 0.1);
-  }
-
-  .testi-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .testi-title {
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -1px;
     color: {{ section.settings.text_color }};
+    font-family: sans-serif;
   }
 
-  .testi-title span {
-    color: var(--k-cyan);
-    display: block;
-    font-size: 0.4em;
-    letter-spacing: 5px;
-    margin-bottom: 10px;
+  .testi-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+  /* Título */
+  .testi-header { text-align: center; margin-bottom: 50px; }
+  .testi-subtitle { color: var(--k-cyan); display: block; font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 10px; font-weight: 700; }
+  .testi-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; text-transform: uppercase; margin: 0; }
+
+  /* Estilos del Marquee (Scroll Infinito) */
+  .marquee-wrapper {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 30px;
+    padding: 20px 0;
   }
 
+  .marquee-content {
+    display: flex;
+    flex-shrink: 0;
+    gap: 30px;
+    animation: scroll {{ section.settings.speed }}s linear infinite;
+  }
+
+  {% if section.settings.pause_on_hover %}
+    .marquee-wrapper:hover .marquee-content { animation-play-state: paused; }
+  {% endif %}
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - 30px)); }
+  }
+
+  /* Grid Normal (Si el scroll está apagado) */
   .testi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
   }
 
+  /* Card de Testimonio */
   .testi-card {
     background: var(--k-glass);
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 35px;
-    border-radius: 24px;
+    padding: 30px;
+    border-radius: 20px;
     border: 1px solid var(--k-border);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    position: relative;
+    min-width: 350px;
+    transition: 0.3s ease;
   }
 
-  .testi-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--k-cyan);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 209, 255, 0.1);
-  }
+  .testi-card:hover { border-color: var(--k-cyan); transform: translateY(-5px); }
 
-  .testi-card::before {
-    content: '"';
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 80px;
+  .testi-stars { color: var(--k-cyan); margin-bottom: 15px; display: flex; gap: 4px; }
+
+  .testi-text { line-height: 1.6; font-size: 1rem; margin-bottom: 20px; min-height: 60px; }
+
+  .testi-user { display: flex; align-items: center; gap: 15px; }
+  .user-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--k-cyan); }
+  .user-initials { width: 50px; height: 50px; border-radius: 50%; background: #222; display: flex; align-items: center; justify-content: center; color: var(--k-cyan); font-weight: bold; border: 1px solid var(--k-border); }
+  .user-name { font-weight: 800; text-transform: uppercase; font-size: 0.9rem; margin: 0; }
+  .verified-tag { font-size: 10px; color: var(--k-cyan); display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+
+  /* Formulario de Comentarios */
+  .comment-form-trigger {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .btn-comment {
+    background: transparent;
     color: var(--k-cyan);
-    opacity: 0.1;
-    font-family: serif;
-    line-height: 1;
+    border: 2px solid var(--k-cyan);
+    padding: 12px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
   }
+  .btn-comment:hover { background: var(--k-cyan); color: #000; box-shadow: 0 0 20px var(--k-cyan); }
 
-  .testi-stars {
-    color: var(--k-cyan);
-    font-size: 14px;
-    letter-spacing: 3px;
-    display: flex;
-    gap: 2px;
+  .review-form-container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: var(--k-glass);
+    padding: 30px;
+    border-radius: 20px;
+    display: none; /* Se activa con JS */
   }
-
-  .testi-text {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: {{ section.settings.text_color }};
-    opacity: 0.9;
-    margin: 0;
-    min-height: 80px;
-  }
-
-  .testi-user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid var(--k-border);
-  }
-
-  .photo-wrapper {
-    position: relative;
-    width: 55px;
-    height: 55px;
-    flex-shrink: 0;
-  }
-
-  .testi-photo {
+  .review-form-container input, .review-form-container textarea {
     width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--k-border);
-  }
-
-  .status-dot {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    width: 12px;
-    height: 12px;
-    background: #27ae60;
-    border-radius: 50%;
-    border: 2px solid #000;
-    animation: pulse-green 2s infinite;
-  }
-
-  @keyframes pulse-green {
-    0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(39, 174, 96, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); }
-  }
-
-  .testi-name {
-    font-weight: 800;
-    font-size: 1rem;
-    margin: 0 0 3px 0;
-    color: {{ section.settings.text_color }};
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .testi-verified {
-    font-size: 0.7rem;
-    color: var(--k-cyan);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
-  .testi-verified svg {
-    filter: drop-shadow(0 0 5px var(--k-cyan));
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--k-border);
+    padding: 12px;
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 8px;
   }
 {%- endstyle -%}
 
 <div class="testi-container">
-  {% if section.settings.title != blank %}
-    <h2 class="testi-title">
-      <span>USER EXPERIENCE</span>
-      {{ section.settings.title }}
-    </h2>
-  {% endif %}
+  <div class="testi-header">
+    <span class="testi-subtitle">{{ section.settings.subtitle }}</span>
+    <h2 class="testi-title">{{ section.settings.title }}</h2>
+  </div>
 
-  <div class="testi-grid">
+  {% capture blocks_content %}
     {% for block in section.blocks %}
       <div class="testi-card" {{ block.shopify_attributes }}>
-        
         <div class="testi-stars">
           {% for i in (1..5) %}
-            {% if i <= block.settings.rating %}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            {% else %}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            {% endif %}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="{% if i <= block.settings.rating %}currentColor{% else %}none{% endif %}" stroke="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
           {% endfor %}
         </div>
-
         <p class="testi-text">"{{ block.settings.review_text }}"</p>
-
-        <div class="testi-user-info">
-          <div class="photo-wrapper">
-            {% if block.settings.user_photo != blank %}
-              <img src="{{ block.settings.user_photo | image_url: width: 150, height: 150, crop: 'center' }}" class="testi-photo" alt="{{ block.settings.user_name }}" loading="lazy">
-            {% else %}
-              <div class="testi-photo" style="background: #222; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--k-cyan);">
-                {{ block.settings.user_name | slice: 0 }}
-              </div>
-            {% endif %}
-            <div class="status-dot"></div>
-          </div>
-          
+        <div class="testi-user">
+          {% if block.settings.user_photo != blank %}
+            <img src="{{ block.settings.user_photo | image_url: width: 100 }}" class="user-img" alt="User">
+          {% else %}
+            <div class="user-initials">{{ block.settings.user_name | slice: 0 }}</div>
+          {% endif %}
           <div>
-            <p class="testi-name">{{ block.settings.user_name }}</p>
-            <span class="testi-verified">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.7l-3.61.81.34 3.68L1 12l2.44 2.79-.34 3.69 3.61.82 1.89 3.2L12 21.04l3.4 1.46 1.89-3.2 3.61-.81-.34-3.68L23 12zm-13 5l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-              VERIFIED KIESLECT USER
-            </span>
+            <p class="user-name">{{ block.settings.user_name }}</p>
+            <span class="verified-tag">✓ VERIFIED USER</span>
           </div>
         </div>
-
       </div>
     {% endfor %}
-  </div>
+  {% endcapture %}
+
+  {% if section.settings.enable_infinite_scroll %}
+    <div class="marquee-wrapper">
+      <div class="marquee-content">{{ blocks_content }}</div>
+      <div class="marquee-content" aria-hidden="true">{{ blocks_content }}</div>
+    </div>
+  {% else %}
+    <div class="testi-grid">{{ blocks_content }}</div>
+  {% endif %}
+
+  {% if section.settings.show_form %}
+    <div class="comment-form-trigger">
+      <button class="btn-comment" onclick="toggleReviewForm()">DEJAR UN COMENTARIO</button>
+    </div>
+
+    <div id="reviewForm" class="review-form-container">
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <p style="color: var(--k-cyan);">¡Gracias! Tu reseña será revisada por nuestro equipo.</p>
+        {% endif %}
+        <input type="text" name="contact[name]" placeholder="Tu Nombre" required>
+        <input type="email" name="contact[email]" placeholder="Tu Email" required>
+        <select name="contact[rating]" style="width: 100%; padding: 10px; background: #111; color: #fff; margin-bottom: 15px;">
+           <option value="5">⭐⭐⭐⭐⭐ (5 Estrellas)</option>
+           <option value="4">⭐⭐⭐⭐ (4 Estrellas)</option>
+           <option value="3">⭐⭐⭐ (3 Estrellas)</option>
+        </select>
+        <textarea name="contact[body]" rows="4" placeholder="Cuéntanos tu experiencia..." required></textarea>
+        <button type="submit" class="btn-comment" style="width: 100%;">ENVIAR RESEÑA</button>
+      {% endform %}
+    </div>
+  {% endif %}
 </div>
+
+<script>
+  function toggleReviewForm() {
+    var form = document.getElementById('reviewForm');
+    form.style.display = (form.style.display === 'block') ? 'none' : 'block';
+  }
+</script>
 
 {% schema %}
 {
-  "name": "Kieslect Tech Reviews",
+  "name": "Kieslect Dynamic Reviews",
   "settings": [
-    { "type": "text", "id": "title", "label": "Título", "default": "Comunidad Kieslect" },
-    { "type": "color", "id": "bg_color", "label": "Color de fondo", "default": "#000000" },
-    { "type": "color", "id": "text_color", "label": "Color de texto", "default": "#ffffff" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Superior" },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Inferior" }
+    { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT COMMUNITY" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "USER EXPERIENCE" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
+    { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Color Acento (Cyan)", "default": "#00D1FF" },
+    { "type": "checkbox", "id": "enable_infinite_scroll", "label": "Activar Scroll Infinito", "default": true },
+    { "type": "range", "id": "speed", "label": "Velocidad de Scroll (seg)", "min": 10, "max": 60, "default": 30 },
+    { "type": "checkbox", "id": "pause_on_hover", "label": "Pausar al pasar el mouse", "default": true },
+    { "type": "checkbox", "id": "show_form", "label": "Permitir dejar comentarios", "default": true },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Top" },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Bottom" }
   ],
   "blocks": [
     {
       "type": "testimonial",
-      "name": "Testimonio",
+      "name": "Reseña",
       "settings": [
-        { "type": "range", "id": "rating", "min": 1, "max": 5, "step": 1, "label": "Estrellas", "default": 5 },
-        { "type": "textarea", "id": "review_text", "label": "Opinión", "default": "El reloj superó mis expectativas. La fluidez del sistema y el diseño son de otro nivel." },
-        { "type": "image_picker", "id": "user_photo", "label": "Foto del Cliente" },
-        { "type": "text", "id": "user_name", "label": "Nombre del Cliente", "default": "ALEX RIVERA" }
+        { "type": "range", "id": "rating", "min": 1, "max": 5, "default": 5, "label": "Estrellas" },
+        { "type": "textarea", "id": "review_text", "label": "Comentario", "default": "Increíble calidad." },
+        { "type": "text", "id": "user_name", "label": "Nombre", "default": "Alex R." },
+        { "type": "image_picker", "id": "user_photo", "label": "Foto (opcional)" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Kieslect Tech Reviews",
-      "blocks": [
-        { "type": "testimonial" },
-        { "type": "testimonial" },
-        { "type": "testimonial" }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Kieslect Dynamic Reviews" }]
 }
 {% endschema %}
