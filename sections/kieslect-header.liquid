@@ -9,4 +9,117 @@
   .k-drop-trigger:hover { color: var(--k-cyan); }
   .k-drop-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--k-bg); min-width: 280px; border: 1px solid #1a1a1a; border-radius: 12px; padding: 15px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
   .k-dropdown.is-open .k-drop-menu { display: block; animation: kSlideUp 0.25s ease forwards; }
-  .k-menu-label { display: block; padding: 12px 20px 5px; color: var(--k-cyan); font-size: 9px; font-weight: 800; letter-spacing: 1.5
+  .k-menu-label { display: block; padding: 12px 20px 5px; color: var(--k-cyan); font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; border-top: 1px solid #1a1a1a; margin-top: 5px; }
+  .k-menu-label:first-child { border-top: none; margin-top: 0; padding-top: 5px; }
+  .k-item { display: flex !important; align-items: center; justify-content: space-between; padding: 12px 20px; text-decoration: none; transition: background 0.2s ease; border: none; background: transparent; width: 100%; }
+  .k-item:hover { background: rgba(0, 209, 255, 0.08); }
+  .k-item-info { display: flex; flex-direction: column; text-align: left; }
+  .k-item-title { color: #fff; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .k-item-sub { color: #666; font-size: 9px; font-weight: 600; margin-top: 2px; }
+  .k-item-icon { color: var(--k-cyan); font-size: 12px; }
+  .k-access-btn { background: var(--k-cyan); color: #000 !important; padding: 10px 22px; border-radius: 4px; font-weight: 800; font-size: 11px; text-decoration: none; text-transform: uppercase; }
+  @keyframes kSlideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 900px) { .k-nav-main { display: none; } }
+</style>
+
+<header class="k-header-wrapper">
+  <div class="k-header-container">
+    <div class="k-logo"><a href="/">KIESLECT</a></div>
+    
+    <nav class="k-nav-main">
+      <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
+
+      {% assign menu_titles = "Productos,Comunidad,Soporte" | split: "," %}
+      {% for m_title in menu_titles %}
+        <div class="k-dropdown js-drop">
+          <button class="k-drop-trigger" onclick="kToggle(this)">{{ m_title }} ▼</button>
+          <div class="k-drop-menu">
+            {% for block in section.blocks %}
+              {% if block.settings.parent == m_title %}
+                {% if block.type == 'seccion' %}
+                  <span class="k-menu-label">{{ block.settings.title }}</span>
+                {% elsif block.type == 'enlace' %}
+                  <a href="{{ block.settings.url }}" class="k-item" {% if block.settings.download %}download{% endif %}>
+                    <div class="k-item-info">
+                      <span class="k-item-title">{{ block.settings.title }}</span>
+                      {% if block.settings.sub != blank %}<span class="k-item-sub">{{ block.settings.sub }}</span>{% endif %}
+                    </div>
+                    <span class="k-item-icon">{% if block.settings.download %}⬇{% else %}→{% endif %}</span>
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </nav>
+
+    <div class="k-actions">
+      <a href="/account" class="k-access-btn">
+        {%- if customer -%}{{ customer.first_name }}{%- else -%}Acceso{%- endif -%}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  function kToggle(btn) {
+    const parent = btn.parentElement;
+    const wasOpen = parent.classList.contains('is-open');
+    document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
+    if (!wasOpen) parent.classList.add('is-open');
+  }
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.js-drop')) {
+      document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Kieslect Header Pro",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "seccion",
+      "name": "Título de Sección",
+      "settings": [
+        {
+          "type": "select",
+          "id": "parent",
+          "label": "Menú donde aparece",
+          "options": [
+            {"value": "Productos", "label": "Productos"},
+            {"value": "Comunidad", "label": "Comunidad"},
+            {"value": "Soporte", "label": "Soporte"}
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Texto (Ej: México)", "default": "NUEVA SECCIÓN" }
+      ]
+    },
+    {
+      "type": "enlace",
+      "name": "Link o Archivo",
+      "settings": [
+        {
+          "type": "select",
+          "id": "parent",
+          "label": "Menú donde aparece",
+          "options": [
+            {"value": "Productos", "label": "Productos"},
+            {"value": "Comunidad", "label": "Comunidad"},
+            {"value": "Soporte", "label": "Soporte"}
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Título", "default": "Enlace" },
+        { "type": "text", "id": "sub", "label": "Subtítulo", "default": "Descripción" },
+        { "type": "url", "id": "url", "label": "URL / Link" },
+        { "type": "checkbox", "id": "download", "label": "¿Es descarga?", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Kieslect Header Pro" }]
+}
+{% endschema %}
+            {
