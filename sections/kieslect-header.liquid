@@ -1,15 +1,13 @@
 {%- style -%}
   .k-header-wrapper {
-    display: block;
     width: 100%;
-    background: #000000;
-    font-family: 'Inter', sans-serif;
+    background: #000;
+    border-bottom: 1px solid #1a1a1a;
     position: sticky;
     top: 0;
     z-index: 9999;
-    border-bottom: 1px solid #1a1a1a;
+    font-family: 'Inter', sans-serif;
   }
-
   .k-header-container {
     max-width: 1300px;
     height: 80px;
@@ -19,111 +17,159 @@
     justify-content: space-between;
     padding: 0 20px;
   }
-
-  .k-logo a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: 900;
+  .k-logo a { 
+    color: #fff; 
+    text-decoration: none; 
+    font-size: 24px; 
+    font-weight: 900; 
     letter-spacing: 3px;
     text-transform: uppercase;
   }
 
-  .k-main-nav {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .k-nav-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
+  /* Navegación por Secciones */
+  .k-nav { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
+  .k-nav a { 
+    color: #fff; 
+    text-decoration: none; 
+    font-size: 13px; 
+    font-weight: 600; 
     text-transform: uppercase;
     transition: 0.3s;
+    opacity: 0.8;
   }
+  .k-nav a:hover { opacity: 1; color: #00D1FF; }
 
-  .k-nav-link:hover {
-    color: #00D1FF;
-  }
-
-  .k-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .k-login-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-  }
-
+  /* Acciones y Registro */
+  .k-actions { display: flex; align-items: center; gap: 20px; }
+  
   .k-register-btn {
     background: #00D1FF;
-    color: #000000 !important;
-    padding: 10px 20px;
-    border-radius: 4px;
+    color: #000 !important;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
     font-weight: 800;
     font-size: 11px;
-    text-decoration: none;
     text-transform: uppercase;
+    border: none;
     transition: 0.3s;
+    text-decoration: none;
+  }
+  .k-register-btn:hover { 
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.4); 
+    transform: translateY(-2px); 
   }
 
-  .k-register-btn:hover {
-    box-shadow: 0 0 15px rgba(0, 209, 255, 0.5);
+  /* Formulario de Registro (Modal) */
+  .k-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 10000;
+    align-items: center; justify-content: center;
   }
+  .k-modal-box {
+    background: #0a0a0a;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid #222;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+  }
+  .k-modal-box h2 { color: #00D1FF; text-align: center; margin-bottom: 25px; font-weight: 900; }
+  .k-modal-box input {
+    width: 100%; padding: 15px; margin-bottom: 12px;
+    background: #000; border: 1px solid #333; color: #fff; border-radius: 10px;
+    box-sizing: border-box;
+  }
+  .k-modal-box .submit-btn {
+    width: 100%; background: #00D1FF; color: #000; border: none;
+    padding: 16px; font-weight: 800; border-radius: 10px; cursor: pointer;
+    text-transform: uppercase; margin-top: 10px;
+  }
+  .close-x { position: absolute; top: 20px; right: 25px; font-size: 24px; color: #555; cursor: pointer; }
 
-  @media (max-width: 768px) {
-    .k-main-nav { display: none; }
-  }
+  @media (max-width: 768px) { .k-nav { display: none; } }
 {%- endstyle -%}
 
 <div class="k-header-wrapper">
   <div class="k-header-container">
     
-    <div class="k-logo">
-      <a href="{{ routes.root_url }}">KIESLECT</a>
-    </div>
-
+    <div class="k-logo"><a href="/">KIESLECT</a></div>
+    
     <nav>
-      <ul class="k-main-nav">
-        <li><a href="{{ routes.root_url }}" class="k-nav-link">Inicio</a></li>
-        <li><a href="{{ routes.all_products_collection_url }}" class="k-nav-link">Tienda</a></li>
-        <li><a href="/pages/comunidad" class="k-nav-link">Comunidad</a></li>
+      <ul class="k-nav">
+        <li><a href="#shopify-section-template--index-main">Inicio</a></li>
+        <li><a href="#shopify-section-featured-products">Modelos</a></li>
+        <li><a href="#testi-list">Comunidad</a></li>
       </ul>
     </nav>
 
     <div class="k-actions">
       {%- if customer -%}
-        <a href="{{ routes.account_url }}" class="k-login-link">MI CUENTA</a>
-        <a href="{{ routes.account_logout_url }}" class="k-login-link" style="opacity: 0.5;">SALIR</a>
+        <a href="/account" class="k-nav-link" style="color:#fff; text-decoration:none; font-size:12px;">HOLA, {{ customer.first_name | uppercase }}</a>
+        <a href="/account/logout" style="color:#ff4d4d; font-size:10px; text-decoration:none; margin-left:10px;">SALIR</a>
       {%- else -%}
-        <a href="{{ routes.account_login_url }}" class="k-login-link">LOGIN</a>
-        <a href="{{ routes.account_register_url }}" class="k-register-btn">REGISTRO INFINITO</a>
+        <a href="#" class="k-register-btn" onclick="toggleKModal(true)">Registrarse</a>
       {%- endif -%}
-      
-      <a href="{{ routes.cart_url }}" class="k-login-link" style="color: #00D1FF;">
-        CARRITO ({{ cart.item_count }})
-      </a>
     </div>
 
   </div>
 </div>
 
+<div id="kRegisterModal" class="k-modal">
+  <div class="k-modal-box">
+    <span class="close-x" onclick="toggleKModal(false)">&times;</span>
+    <h2>NUEVA CUENTA</h2>
+
+    {%- form 'create_customer' -%}
+      {%- if form.errors -%}
+        <div style="color:#ff4d4d; font-size:12px; margin-bottom:15px;">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+
+      <input type="text" name="customer[first_name]" placeholder="Nombre" required>
+      <input type="text" name="customer[last_name]" placeholder="Apellido" required>
+      <input type="email" name="customer[email]" placeholder="Correo Electrónico" required>
+      <input type="password" name="customer[password]" placeholder="Crea una contraseña" required>
+
+      <button type="submit" class="submit-btn">Completar Registro</button>
+    {%- endform -%}
+    
+    <p style="text-align:center; font-size:11px; color:#666; margin-top:15px;">
+      Tus datos se almacenarán de forma segura en nuestro sistema.
+    </p>
+  </div>
+</div>
+
+<script>
+  function toggleKModal(show) {
+    document.getElementById('kRegisterModal').style.display = show ? 'flex' : 'none';
+  }
+
+  // Desplazamiento suave para las secciones
+  document.querySelectorAll('.k-nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+</script>
+
 {% schema %}
 {
-  "name": "Kieslect Header Fixed",
+  "name": "Kieslect Header Ultimate",
   "settings": [],
-  "presets": [
-    {
-      "name": "Kieslect Header Fixed"
-    }
-  ]
+  "presets": [{"name": "Kieslect Header Ultimate"}]
 }
 {% endschema %}
