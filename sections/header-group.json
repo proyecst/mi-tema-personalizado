@@ -34,6 +34,14 @@
     "series_ia_HmgFFW": {
       "type": "series-ia",
       "blocks": {
+        "serie_FjpmUd": {
+          "type": "serie",
+          "settings": {
+            "image": "shopify://shop_images/LoraM-00.png",
+            "title": "lora reno",
+            "link": "https://www.kieslect.com/es/?s=lora&trp-form-language=es"
+          }
+        },
         "serie_DkQNEm": {
           "type": "serie",
           "settings": {
@@ -60,6 +68,7 @@
         }
       },
       "block_order": [
+        "serie_FjpmUd",
         "serie_DkQNEm",
         "serie_6PqAU6",
         "serie_fdQGpr"
