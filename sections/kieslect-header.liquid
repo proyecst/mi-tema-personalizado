@@ -95,4 +95,35 @@
       <ul class="k-main-nav">
         <li><a href="{{ routes.root_url }}" class="k-nav-link">Inicio</a></li>
         <li><a href="{{ routes.all_products_collection_url }}" class="k-nav-link">Tienda</a></li>
-        <li><a href
+        <li><a href="/pages/comunidad" class="k-nav-link">Comunidad</a></li>
+      </ul>
+    </nav>
+
+    <div class="k-actions">
+      {%- if customer -%}
+        <a href="{{ routes.account_url }}" class="k-login-link">MI CUENTA</a>
+        <a href="{{ routes.account_logout_url }}" class="k-login-link" style="opacity: 0.5;">SALIR</a>
+      {%- else -%}
+        <a href="{{ routes.account_login_url }}" class="k-login-link">LOGIN</a>
+        <a href="{{ routes.account_register_url }}" class="k-register-btn">REGISTRO INFINITO</a>
+      {%- endif -%}
+      
+      <a href="{{ routes.cart_url }}" class="k-login-link" style="color: #00D1FF;">
+        CARRITO ({{ cart.item_count }})
+      </a>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kieslect Header Fixed",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Kieslect Header Fixed"
+    }
+  ]
+}
+{% endschema %}
