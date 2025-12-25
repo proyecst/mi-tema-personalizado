@@ -3,112 +3,183 @@
     background-color: {{ section.settings.bg_color }};
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
-    --k-cyan: {{ section.settings.accent_color }};
-    --k-glass: rgba(255, 255, 255, 0.05);
+    --k-cyan: #00D1FF;
+    --k-glass: rgba(255, 255, 255, 0.03);
     --k-border: rgba(255, 255, 255, 0.1);
     color: {{ section.settings.text_color }};
     overflow: hidden;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
-  .testi-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
-  .testi-header { text-align: center; margin-bottom: 50px; }
-  .testi-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; text-transform: uppercase; margin: 0; letter-spacing: -1px; }
+  .testi-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-  /* Contenedor de Scroll Infinito */
-  .marquee-viewport {
-    display: flex;
-    overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  .testi-title {
+    text-align: center; margin-bottom: 60px; font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900; text-transform: uppercase; letter-spacing: -1px;
+    color: {{ section.settings.text_color }};
   }
 
-  .marquee-content {
-    display: flex;
-    gap: 30px;
-    padding: 20px 0;
-    animation: scroll-left {{ section.settings.speed }}s linear infinite;
+  .testi-title span { color: var(--k-cyan); display: block; font-size: 0.4em; letter-spacing: 5px; margin-bottom: 10px; }
+
+  .marquee-viewport { overflow: hidden; width: 100%; position: relative; }
+
+  .testi-grid {
+    display: flex; gap: 30px; padding: 20px 0; width: max-content;
+    {% if section.settings.enable_infinite_scroll %}
+      animation: scroll-kieslect {{ section.settings.speed }}s linear infinite;
+    {% endif %}
   }
 
-  @keyframes scroll-left {
+  @keyframes scroll-kieslect {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
 
-  /* Estilo de Tarjeta */
   .testi-card {
-    background: var(--k-glass);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 24px;
-    border: 1px solid var(--k-border);
-    width: 350px;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
+    background: var(--k-glass); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    padding: 35px; border-radius: 24px; border: 1px solid var(--k-border);
+    display: flex; flex-direction: column; gap: 20px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative; width: 350px; flex-shrink: 0;
   }
 
   .testi-card:hover { transform: translateY(-10px); border-color: var(--k-cyan); }
-  .testi-stars { color: var(--k-cyan); margin-bottom: 15px; font-size: 1.2rem; }
-  .testi-text { font-size: 1rem; line-height: 1.5; opacity: 0.9; margin-bottom: 20px; min-height: 75px; }
 
-  .testi-user { display: flex; align-items: center; gap: 12px; }
-  .user-avatar { 
-    width: 45px; height: 45px; border-radius: 50%; 
-    background: var(--k-cyan); color: #000; 
+  .testi-stars { color: var(--k-cyan); font-size: 14px; letter-spacing: 3px; display: flex; gap: 2px; }
+  .testi-text { font-size: 1.05rem; line-height: 1.6; opacity: 0.9; margin: 0; min-height: 80px; color: {{ section.settings.text_color }}; }
+
+  .testi-user-info { display: flex; align-items: center; gap: 15px; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--k-border); }
+
+  .photo-wrapper { position: relative; width: 55px; height: 55px; flex-shrink: 0; }
+  .testi-photo-alt { 
+    width: 100%; height: 100%; border-radius: 50%; background: #111; 
     display: flex; align-items: center; justify-content: center; 
-    font-weight: 900; font-size: 1.2rem;
+    font-weight: bold; color: var(--k-cyan); border: 2px solid var(--k-border);
+    font-size: 1.2rem;
   }
 
-  /* Formulario */
-  .review-form-box {
-    max-width: 600px;
-    margin: 50px auto 0;
-    padding: 40px;
-    background: rgba(255,255,255,0.02);
-    border-radius: 30px;
-    border: 1px solid var(--k-border);
+  .status-dot { position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #27ae60; border-radius: 50%; border: 2px solid #000; }
+
+  .form-wrapper { max-width: 600px; margin: 60px auto; padding: 40px; border-radius: 24px; border: 1px solid var(--k-border); background: rgba(255,255,255,0.01); }
+  .form-wrapper input, .form-wrapper textarea {
+    width: 100%; background: #000; border: 1px solid var(--k-border); 
+    padding: 15px; color: #fff; margin-bottom: 15px; border-radius: 12px; font-family: inherit;
   }
-  .review-form-box input, .review-form-box textarea {
-    width: 100%; padding: 15px; margin-bottom: 15px; 
-    background: #111; border: 1px solid var(--k-border); 
-    color: #fff; border-radius: 12px;
-  }
-  .btn-send {
-    width: 100%; background: var(--k-cyan); color: #000; 
-    border: none; padding: 15px; font-weight: 800; 
-    border-radius: 12px; cursor: pointer; text-transform: uppercase;
+  .btn-kieslect {
+    width: 100%; background: var(--k-cyan); color: #000; border: none; 
+    padding: 18px; border-radius: 12px; font-weight: 900; text-transform: uppercase; cursor: pointer;
   }
 {%- endstyle -%}
 
 <div class="testi-container">
-  <div class="testi-header">
-    <h2 class="testi-title">{{ section.settings.title }}</h2>
-  </div>
+  <h2 class="testi-title"><span>USER EXPERIENCE</span>{{ section.settings.title }}</h2>
 
   <div class="marquee-viewport">
-    <div id="testi-track" class="marquee-content">
-      {%- comment -%} Se repite el loop dos veces para el efecto infinito real {%- endcomment -%}
-      {% for i in (1..2) %}
+    <div id="testi-render-track" class="testi-grid">
+      <div id="dynamic-reviews-container" style="display: flex; gap: 30px;"></div>
+      
+      {% capture original_blocks %}
         {% for block in section.blocks %}
-          <div class="testi-card" {{ block.shopify_attributes }}>
+          <div class="testi-card">
             <div class="testi-stars">★★★★★</div>
             <p class="testi-text">"{{ block.settings.review_text }}"</p>
-            <div class="testi-user">
-              <div class="user-avatar">{{ block.settings.user_name | slice: 0 }}</div>
+            <div class="testi-user-info">
+              <div class="photo-wrapper">
+                <div class="testi-photo-alt">{{ block.settings.user_name | slice: 0 | uppercase }}</div>
+                <div class="status-dot"></div>
+              </div>
               <div>
-                <strong style="display:block;">{{ block.settings.user_name }}</strong>
-                <small style="color: var(--k-cyan);">CLIENTE VERIFICADO</small>
+                <p style="margin:0; font-weight:800; color: {{ section.settings.text_color }};">{{ block.settings.user_name | uppercase }}</p>
+                <small style="color:var(--k-cyan); font-weight:700;">VERIFIED USER</small>
               </div>
             </div>
           </div>
         {% endfor %}
-      {% endfor %}
+      {% endcapture %}
+
+      {{ original_blocks }}
+      {% if section.settings.enable_infinite_scroll %}
+        {{ original_blocks }}
+      {% endif %}
     </div>
   </div>
 
-  <div class="review-form-box">
-    <h3 style="text-align:center; margin-bottom:25px;">COMPARTE TU EXPERIENCIA</h3>
-    <form id="liveReviewForm">
-      <input type="text" id="reviewerName" placeholder="Tu nombre" required>
-      <textarea id="reviewerText" placeholder="¿Qué te pareció el producto?" rows="3" required></textarea>
+  <div class="form-wrapper">
+    <h3 style="text-align: center; margin-bottom: 25px; text-transform: uppercase; color: {{ section.settings.text_color }};">Deja tu comentario</h3>
+    <form id="kieslectForm">
+      <input type="text" id="k-name" placeholder="Tu Nombre" required>
+      <textarea id="k-text" placeholder="Escribe tu opinión aquí..." rows="4" required></textarea>
+      <button type="submit" class="btn-kieslect">Publicar Comentario</button>
+    </form>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('kieslectForm');
+  const container = document.getElementById('dynamic-reviews-container');
+
+  function getCardHTML(name, text) {
+    return `
+      <div class="testi-card" style="border-color: #00D1FF;">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"${text}"</p>
+        <div class="testi-user-info">
+          <div class="photo-wrapper">
+            <div class="testi-photo-alt">${name.charAt(0).toUpperCase()}</div>
+            <div class="status-dot"></div>
+          </div>
+          <div>
+            <p style="margin:0; font-weight:800; color: {{ section.settings.text_color }};">${name.toUpperCase()}</p>
+            <small style="color:#00D1FF; font-weight:700;">RECENT REVIEW</small>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  const saved = JSON.parse(localStorage.getItem('k_reviews') || '[]');
+  saved.forEach(c => { container.innerHTML += getCardHTML(c.name, c.text); });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('k-name').value;
+    const text = document.getElementById('k-text').value;
+    container.innerHTML = getCardHTML(name, text) + container.innerHTML;
+    saved.push({name, text});
+    localStorage.setItem('k_reviews', JSON.stringify(saved));
+    form.reset();
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Kieslect Community",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "Comunidad" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
+    { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
+    { "type": "checkbox", "id": "enable_infinite_scroll", "label": "Activar Scroll Infinito", "default": true },
+    { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 1, "unit": "s", "label": "Velocidad Scroll", "default": 30 },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 1, "unit": "px", "label": "Padding Superior", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "label": "Padding Inferior", "default": 80 }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonio",
+      "settings": [
+        { "type": "text", "id": "user_name", "label": "Nombre", "default": "ALEX R." },
+        { "type": "textarea", "id": "review_text", "label": "Comentario", "default": "Diseño Increíble." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kieslect Community",
+      "blocks": [
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}
