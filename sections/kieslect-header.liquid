@@ -26,7 +26,7 @@
     text-transform: uppercase;
   }
 
-  /* Navegación */
+  /* Navegación Principal */
   .k-nav { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
   .k-nav a { 
     color: #fff; 
@@ -39,42 +39,21 @@
   }
   .k-nav a:hover { opacity: 1; color: #00D1FF; }
 
-  /* Acciones y Botón de Link */
+  /* Acciones (Lado derecho) */
   .k-actions { display: flex; align-items: center; gap: 20px; }
   
   .k-register-link {
     background: #00D1FF;
     color: #000 !important;
-    padding: 12px 24px;
-    border-radius: 6px;
+    padding: 10px 20px;
+    border-radius: 4px;
     font-weight: 800;
     font-size: 11px;
     text-transform: uppercase;
     text-decoration: none;
     transition: 0.3s;
-    display: inline-block;
   }
-  .k-register-link:hover { 
-    box-shadow: 0 0 20px rgba(0, 209, 255, 0.4); 
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-  }
-
-  .k-user-greeting {
-    color: #fff;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 700;
-  }
-
-  .k-logout-link {
-    color: #ff4d4d;
-    font-size: 10px;
-    text-decoration: none;
-    margin-left: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+  .k-register-link:hover { transform: scale(1.05); filter: brightness(1.1); }
 
   @media (max-width: 768px) { .k-nav { display: none; } }
 {%- endstyle -%}
@@ -89,18 +68,19 @@
         <li><a href="#shopify-section-template--index-main">Inicio</a></li>
         <li><a href="#shopify-section-featured-products">Modelos</a></li>
         <li><a href="#testi-list">Comunidad</a></li>
+        
+        {% comment %} --- NUEVO LINK AGREGADO --- {% endcomment %}
+        <li><a href="https://tusitio.com/pagina" target="_blank">Soporte</a></li>
+        {% comment %} --------------------------- {% endcomment %}
+        
       </ul>
     </nav>
 
     <div class="k-actions">
       {%- if customer -%}
-        <a href="/account" class="k-user-greeting">HOLA, {{ customer.first_name | upcase }}</a>
-        <a href="/account/logout" class="k-logout-link">Salir</a>
+        <a href="/account" style="color:#fff; text-decoration:none; font-size:12px; font-weight:700;">HOLA, {{ customer.first_name | upcase }}</a>
+        <a href="/account/logout" style="color:#ff4d4d; font-size:10px; text-decoration:none; margin-left:10px;">SALIR</a>
       {%- else -%}
-        {%- comment -%} 
-          Cambia el href por el link que necesites. 
-          Ejemplo para registro de Shopify: /account/register 
-        {%- endcomment -%}
         <a href="/account/register" class="k-register-link">Registrarse</a>
       {%- endif -%}
     </div>
@@ -109,7 +89,7 @@
 </div>
 
 <script>
-  // Desplazamiento suave para las secciones de la misma página
+  // Script para que los links que empiezan con '#' bajen suavemente
   document.querySelectorAll('.k-nav a').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
@@ -123,6 +103,7 @@
           });
         }
       }
+      // Si el link es una URL normal (no empieza con #), el navegador lo seguirá normalmente.
     });
   });
 </script>
