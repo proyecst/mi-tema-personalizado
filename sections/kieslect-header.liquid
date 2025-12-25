@@ -17,125 +17,160 @@
     justify-content: space-between;
     padding: 0 20px;
   }
-  .k-logo a { 
-    color: #fff; 
-    text-decoration: none; 
-    font-size: 24px; 
-    font-weight: 900; 
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
+  .k-logo a { color: #fff; text-decoration: none; font-size: 24px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
 
-  /* Navegación */
-  .k-nav { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; align-items: center; }
-  .k-nav a { 
-    color: #fff; 
-    text-decoration: none; 
-    font-size: 12px; 
-    font-weight: 600; 
-    text-transform: uppercase;
-    transition: 0.3s;
-    opacity: 0.7;
-  }
+  /* Navegación Principal */
+  .k-nav { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; }
+  .k-nav a { color: #fff; text-decoration: none; font-size: 12px; font-weight: 600; text-transform: uppercase; opacity: 0.7; transition: 0.3s; }
   .k-nav a:hover { opacity: 1; color: #00D1FF; }
 
-  /* Acciones de Usuario */
-  .k-actions { display: flex; align-items: center; gap: 15px; }
-  
-  .k-user-box {
+  /* Dropdown de Usuario */
+  .k-user-dropdown { position: relative; display: inline-block; }
+  .k-drop-btn {
+    background: #00D1FF;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,0.05);
-    padding: 8px 15px;
-    border-radius: 50px;
-    border: 1px solid #333;
+    gap: 8px;
   }
-
-  .k-user-name {
-    color: #00D1FF;
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
+  .k-drop-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #111;
+    min-width: 180px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #222;
+    border-radius: 8px;
+    z-index: 10;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  .k-drop-content a, .k-drop-content button {
+    color: #fff;
+    padding: 12px 16px;
     text-decoration: none;
-  }
-
-  .k-logout-btn {
-    color: #ff4d4d;
-    font-size: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding-left: 10px;
-    border-left: 1px solid #444;
-  }
-
-  .k-register-link {
-    background: #00D1FF;
-    color: #000 !important;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: 800;
+    display: block;
     font-size: 11px;
     text-transform: uppercase;
-    text-decoration: none;
-    transition: 0.3s;
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
   }
+  .k-drop-content a:hover, .k-drop-content button:hover { background: #00D1FF; color: #000; }
+  .k-user-dropdown:hover .k-drop-content { display: block; }
 
-  @media (max-width: 900px) { .k-nav { display: none; } }
+  /* Modal de Registro */
+  .k-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 10001;
+    align-items: center; justify-content: center;
+  }
+  .k-modal-box {
+    background: #0a0a0a;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #222;
+    width: 100%; max-width: 380px;
+    position: relative;
+  }
+  .k-modal-box h3 { color: #00D1FF; text-align: center; margin-bottom: 20px; font-weight: 900; }
+  .k-modal-box input {
+    width: 100%; padding: 12px; margin-bottom: 10px;
+    background: #111; border: 1px solid #333; color: #fff; border-radius: 5px;
+    box-sizing: border-box;
+  }
+  .k-modal-box .btn-reg {
+    width: 100%; background: #00D1FF; color: #000; border: none;
+    padding: 12px; font-weight: 800; border-radius: 5px; cursor: pointer;
+  }
+  .close-modal { position: absolute; top: 15px; right: 15px; color: #555; cursor: pointer; font-size: 20px; }
+
+  @media (max-width: 768px) { .k-nav { display: none; } }
 {%- endstyle -%}
 
 <div class="k-header-wrapper">
   <div class="k-header-container">
-    
     <div class="k-logo"><a href="/">{{ section.settings.logo_text }}</a></div>
     
     <nav>
       <ul class="k-nav">
         {%- for block in section.blocks -%}
-          <li {{ block.shopify_attributes }}>
-            <a href="{{ block.settings.link_url | default: '#' }}" {% if block.settings.external %}target="_blank"{% endif %}>
-              {{ block.settings.link_text }}
-            </a>
-          </li>
+          <li><a href="{{ block.settings.link_url | default: '#' }}">{{ block.settings.link_text }}</a></li>
         {%- endfor -%}
       </ul>
     </nav>
 
     <div class="k-actions">
-      {%- if customer -%}
-        {%- comment -%} USUARIO INCORPORADO (LOGUEADO) {%- endcomment -%}
-        <div class="k-user-box">
-          <a href="/account" class="k-user-name">
-            <span style="color:#fff; opacity:0.6; margin-right:5px;">HOLA,</span>{{ customer.first_name }}
-          </a>
-          <a href="/account/logout" class="k-logout-btn">Salir</a>
+      <div class="k-user-dropdown">
+        <button class="k-drop-btn">
+          {%- if customer -%}
+            Hola, {{ customer.first_name | upcase }}
+          {%- else -%}
+            Acceso
+          {%- endif -%}
+          <span>▼</span>
+        </button>
+        <div class="k-drop-content">
+          {%- if customer -%}
+            <a href="/account">Mi Perfil</a>
+            <a href="/account/logout" style="color: #ff4d4d;">Cerrar Sesión</a>
+          {%- else -%}
+            <a href="/account/login">Iniciar Sesión</a>
+            <button onclick="openRegModal()">Registrarse</button>
+          {%- endif -%}
         </div>
-      {%- else -%}
-        {%- comment -%} USUARIO NO INCORPORADO {%- endcomment -%}
-        <a href="/account/login" style="color:#fff; text-decoration:none; font-size:11px; font-weight:600; text-transform:uppercase; opacity:0.7;">Iniciar Sesión</a>
-        <a href="{{ section.settings.reg_link | default: '/account/register' }}" class="k-register-link">
-          {{ section.settings.reg_text }}
-        </a>
-      {%- endif -%}
+      </div>
     </div>
+  </div>
+</div>
 
+<div id="regModal" class="k-modal">
+  <div class="k-modal-box">
+    <span class="close-modal" onclick="closeRegModal()">&times;</span>
+    <h3>CREAR CUENTA</h3>
+    {%- form 'create_customer' -%}
+      {{ form.errors | default_errors }}
+      <input type="text" name="customer[first_name]" placeholder="Nombre" required>
+      <input type="text" name="customer[last_name]" placeholder="Apellido" required>
+      <input type="email" name="customer[email]" placeholder="Email" required>
+      <input type="password" name="customer[password]" placeholder="Contraseña" required>
+      <button type="submit" class="btn-reg">GUARDAR Y REGISTRAR</button>
+    {%- endform -%}
   </div>
 </div>
 
 <script>
+  function openRegModal() { document.getElementById('regModal').style.display = 'flex'; }
+  function closeRegModal() { document.getElementById('regModal').style.display = 'none'; }
+  
+  // Cerrar si hace clic fuera
+  window.onclick = function(event) {
+    let modal = document.getElementById('regModal');
+    if (event.target == modal) closeRegModal();
+  }
+
+  // Smooth Scroll
   document.querySelectorAll('.k-nav a').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
-      if (href && href.startsWith('#')) {
+      if (href.startsWith('#')) {
+        e.preventDefault();
         const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
+        if (target) { window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' }); }
       }
     });
   });
@@ -143,48 +178,17 @@
 
 {% schema %}
 {
-  "name": "Kieslect Header Pro",
+  "name": "Kieslect Header Ultimate",
   "settings": [
-    {
-      "type": "text",
-      "id": "logo_text",
-      "label": "Texto del Logo",
-      "default": "KIESLECT"
-    },
-    {
-      "type": "text",
-      "id": "reg_text",
-      "label": "Texto Botón Registro",
-      "default": "Crear Cuenta"
-    },
-    {
-      "type": "url",
-      "id": "reg_link",
-      "label": "Link de Registro"
-    }
+    { "type": "text", "id": "logo_text", "label": "Logo", "default": "KIESLECT" }
   ],
   "blocks": [
     {
       "type": "nav_link",
-      "name": "Opción de Menú",
+      "name": "Link",
       "settings": [
-        {
-          "type": "text",
-          "id": "link_text",
-          "label": "Texto del Link",
-          "default": "Nueva Opción"
-        },
-        {
-          "type": "url",
-          "id": "link_url",
-          "label": "URL o #ID"
-        },
-        {
-          "type": "checkbox",
-          "id": "external",
-          "label": "Abrir en pestaña nueva",
-          "default": false
-        }
+        { "type": "text", "id": "link_text", "label": "Nombre", "default": "Opción" },
+        { "type": "url", "id": "link_url", "label": "Link o #ID" }
       ]
     }
   ],
