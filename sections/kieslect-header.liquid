@@ -3,7 +3,7 @@
     display: block;
     width: 100%;
     background: #000000;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Helvetica', 'Arial', sans-serif;
     position: sticky;
     top: 0;
     z-index: 9999;
@@ -64,19 +64,15 @@
   }
 
   .k-register-btn {
-    background: #00D1FF;
+    background: #00D1FF !important;
     color: #000000 !important;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 800;
-    font-size: 11px;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: 0.3s;
-  }
-
-  .k-register-btn:hover {
-    box-shadow: 0 0 15px rgba(0, 209, 255, 0.5);
+    padding: 10px 20px !important;
+    border-radius: 4px !important;
+    font-weight: 800 !important;
+    font-size: 11px !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    display: inline-block !important;
   }
 
   @media (max-width: 768px) {
@@ -88,27 +84,27 @@
   <div class="k-header-container">
     
     <div class="k-logo">
-      <a href="{{ routes.root_url }}">KIESLECT</a>
+      <a href="/">KIESLECT</a>
     </div>
 
     <nav>
       <ul class="k-main-nav">
-        <li><a href="{{ routes.root_url }}" class="k-nav-link">Inicio</a></li>
-        <li><a href="{{ routes.all_products_collection_url }}" class="k-nav-link">Tienda</a></li>
+        <li><a href="/" class="k-nav-link">Inicio</a></li>
+        <li><a href="/collections/all" class="k-nav-link">Tienda</a></li>
         <li><a href="/pages/comunidad" class="k-nav-link">Comunidad</a></li>
       </ul>
     </nav>
 
     <div class="k-actions">
       {%- if customer -%}
-        <a href="{{ routes.account_url }}" class="k-login-link">MI CUENTA</a>
-        <a href="{{ routes.account_logout_url }}" class="k-login-link" style="opacity: 0.5;">SALIR</a>
+        <a href="/account" class="k-login-link">MI CUENTA</a>
+        <a href="/account/logout" class="k-login-link" style="opacity: 0.5;">SALIR</a>
       {%- else -%}
-        <a href="{{ routes.account_login_url }}" class="k-login-link">LOGIN</a>
-        <a href="{{ routes.account_register_url }}" class="k-register-btn">REGISTRO INFINITO</a>
+        <a href="/account/login" class="k-login-link">LOGIN</a>
+        <a href="/account/register" class="k-register-btn">REGISTRO INFINITO</a>
       {%- endif -%}
       
-      <a href="{{ routes.cart_url }}" class="k-login-link" style="color: #00D1FF;">
+      <a href="/cart" class="k-login-link" style="color: #00D1FF;">
         CARRITO ({{ cart.item_count }})
       </a>
     </div>
