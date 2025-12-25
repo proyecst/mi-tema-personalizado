@@ -15,7 +15,7 @@
   .edu-header h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0; }
   .edu-header .k-line { width: 50px; height: 3px; background: var(--k-cyan); margin: 15px auto; box-shadow: 0 0 10px var(--k-cyan); }
 
-  /* Grid de Guías */
+  /* Grid de Tarjetas (Donde se subirá el texto) */
   .edu-featured-guides {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -23,167 +23,148 @@
     margin-bottom: 50px;
   }
 
+  /* El mismo diseño de tarjeta original */
   .edu-guide-card {
     background: var(--k-dark-card);
     padding: 40px 30px;
     border-radius: 20px;
     text-decoration: none;
     border: 1px solid var(--k-border);
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 180px;
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .edu-guide-card:hover { transform: translateY(-10px); border-color: var(--k-cyan); }
-  .edu-guide-card h3 { font-size: 1.3rem; font-weight: 800; color: #fff; margin:0; }
+  .edu-guide-card:hover { transform: translateY(-10px); border-color: var(--k-cyan); box-shadow: 0 15px 30px rgba(0, 209, 255, 0.1); }
+  .edu-guide-card h3 { font-size: 1.3rem; font-weight: 800; color: #fff; margin:0; line-height: 1.3; z-index: 1; }
   .read-more { font-size: 11px; font-weight: 900; color: var(--k-cyan); text-transform: uppercase; margin-top: 20px; display: flex; align-items: center; gap: 8px; }
 
-  /* --- SECCIÓN DE ALMACENAMIENTO DE TEXTO (NUEVO) --- */
-  .edu-storage-area {
-    margin-top: 80px;
-    background: rgba(255,255,255,0.02);
+  /* FORMULARIO DE SUBIDA */
+  .edu-upload-box {
+    background: #050505;
     padding: 40px;
     border-radius: 24px;
-    border: 1px dashed var(--k-border);
+    border: 1px solid var(--k-cyan);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .edu-input-group {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-  }
+  .edu-upload-box h4 { text-align: center; text-transform: uppercase; margin-top: 0; color: var(--k-cyan); letter-spacing: 2px; }
 
-  .edu-input-group input {
-    flex: 1;
+  .input-flex { display: flex; flex-direction: column; gap: 15px; }
+  
+  .edu-input {
     background: #000;
-    border: 1px solid var(--k-border);
+    border: 1px solid #333;
     padding: 15px;
     border-radius: 12px;
     color: #fff;
+    font-family: inherit;
     outline: none;
   }
+  .edu-input:focus { border-color: var(--k-cyan); }
 
-  .edu-input-group input:focus { border-color: var(--k-cyan); }
-
-  .edu-save-btn {
+  .edu-submit-btn {
     background: var(--k-cyan);
     color: #000;
     border: none;
-    padding: 15px 30px;
+    padding: 18px;
     border-radius: 12px;
     font-weight: 900;
-    cursor: pointer;
     text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
   }
-
-  .edu-notes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
-
-  .note-card {
-    background: #000;
-    padding: 20px;
-    border-radius: 15px;
-    border-left: 4px solid var(--k-cyan);
-    animation: fadeIn 0.5s ease forwards;
-  }
-
-  .note-card p { margin: 0; font-size: 0.95rem; line-height: 1.5; opacity: 0.9; }
-  .note-card small { display: block; margin-top: 10px; color: var(--k-cyan); font-weight: 700; font-size: 10px; }
-
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .edu-submit-btn:hover { box-shadow: 0 0 20px var(--k-cyan); transform: scale(1.02); }
 
   @media screen and (max-width: 900px) {
     .edu-featured-guides { grid-template-columns: 1fr; }
-    .edu-input-group { flex-direction: column; }
   }
 {%- endstyle -%}
 
 <div class="edu-container">
   <div class="edu-header">
-    <span style="color:var(--k-cyan); letter-spacing:4px; font-weight:700; font-size:12px;">KIESLECT ACADEMY</span>
+    <span style="color:var(--k-cyan); letter-spacing:4px; font-weight:700; font-size:12px;">CREAR CONTENIDO</span>
     <h2>{{ section.settings.title }}</h2>
     <div class="k-line"></div>
   </div>
 
-  <div class="edu-featured-guides">
-    {% for block in section.blocks %}
-      <a href="{{ block.settings.link }}" class="edu-guide-card">
-        <h3>{{ block.settings.title }}</h3>
-        <span class="read-more">Ver Guía →</span>
-      </a>
-    {% endfor %}
-  </div>
-
-  <div class="edu-storage-area">
-    <h4 style="text-transform: uppercase; margin-bottom: 20px; font-weight: 800; text-align: center;">
-      ¿Algún consejo para la comunidad? <span style="color: var(--k-cyan);">Almacénalo aquí</span>
-    </h4>
-    
-    <div class="edu-input-group">
-      <input type="text" id="edu-note-input" placeholder="Escribe tu consejo o truco Kieslect...">
-      <button class="edu-save-btn" id="edu-save-note">Publicar</button>
+  <div class="edu-upload-box">
+    <h4>Agregar Nueva Guía</h4>
+    <div class="input-flex">
+      <input type="text" id="guide-title" class="edu-input" placeholder="Título de la guía (ej. Trucos de Pantalla)">
+      <button id="add-guide-btn" class="edu-submit-btn">Publicar en Academy</button>
     </div>
-
-    <div id="edu-notes-display" class="edu-notes-grid">
-      </div>
   </div>
+
+  <div id="guides-grid" class="edu-featured-guides">
+    {% for block in section.blocks %}
+      <div class="edu-guide-card" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.title }}</h3>
+        <span class="read-more">Guía Oficial <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M12 1L17 6L12 11M1 6H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    {% endfor %}
+    </div>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const input = document.getElementById('edu-note-input');
-  const saveBtn = document.getElementById('edu-save-note');
-  const display = document.getElementById('edu-notes-display');
+  const btn = document.getElementById('add-guide-btn');
+  const grid = document.getElementById('guides-grid');
+  const titleInput = document.getElementById('guide-title');
 
-  // Función para crear el HTML de la nota
-  function createNoteElement(text, date) {
+  // Función para generar la tarjeta con el mismo diseño
+  function createGuideCard(title, isUserGenerated = false) {
     const card = document.createElement('div');
-    card.className = 'note-card';
+    card.className = 'edu-guide-card';
+    if(isUserGenerated) card.style.borderColor = '#00D1FF';
+
     card.innerHTML = `
-      <p>"${text}"</p>
-      <small>PUBLICADO EL ${date}</small>
+      <h3>${title.toUpperCase()}</h3>
+      <span class="read-more">Aporte Comunidad <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M12 1L17 6L12 11M1 6H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     `;
     return card;
   }
 
-  // Cargar notas guardadas en el navegador
-  const savedNotes = JSON.parse(localStorage.getItem('kieslect_academy_notes') || '[]');
-  savedNotes.forEach(note => {
-    display.appendChild(createNoteElement(note.text, note.date));
+  // 1. Cargar del almacenamiento local al iniciar
+  const savedGuides = JSON.parse(localStorage.getItem('kieslect_user_guides') || '[]');
+  savedGuides.forEach(g => {
+    grid.prepend(createGuideCard(g.title, true));
   });
 
-  // Guardar nueva nota
-  saveBtn.addEventListener('click', function() {
-    const text = input.value.trim();
-    if (text === "") return;
-
-    const now = new Date();
-    const dateStr = now.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
-
-    // Guardar en Array y LocalStorage
-    const newNote = { text: text, date: dateStr };
-    savedNotes.push(newNote);
-    localStorage.setItem('kieslect_academy_notes', JSON.stringify(savedNotes));
-
-    // Mostrar en pantalla
-    display.prepend(createNoteElement(text, dateStr));
+  // 2. Evento para añadir nueva guía (Subir texto a la opción)
+  btn.addEventListener('click', function() {
+    const val = titleInput.value.trim();
     
-    // Limpiar input
-    input.value = "";
+    if(val !== "") {
+      // Agregar visualmente
+      grid.prepend(createGuideCard(val, true));
+
+      // Guardar en memoria del navegador
+      savedGuides.push({ title: val });
+      localStorage.setItem('kieslect_user_guides', JSON.stringify(savedGuides));
+
+      // Limpiar y feedback
+      titleInput.value = "";
+      alert("¡Guía publicada con éxito!");
+    } else {
+      alert("Por favor escribe un título.");
+    }
   });
 });
 </script>
 
 {% schema %}
 {
-  "name": "Kieslect Academy Notes",
+  "name": "Kieslect Academy Dynamic",
   "settings": [
-    { "type": "text", "id": "title", "label": "Título Sección", "default": "Domina tu Ecosistema" },
+    { "type": "text", "id": "title", "label": "Título Sección", "default": "Kieslect Academy" },
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
     { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Superior" },
@@ -192,19 +173,17 @@ document.addEventListener('DOMContentLoaded', function() {
   "blocks": [
     {
       "type": "guide",
-      "name": "Guía Rápida",
+      "name": "Guía Estática",
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Optimización de Batería" },
-        { "type": "url", "id": "link", "label": "Enlace" }
+        { "type": "text", "id": "title", "label": "Título", "default": "Configuración Inicial" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Kieslect Academy Notes",
+      "name": "Kieslect Academy Dynamic",
       "blocks": [
-        { "type": "guide", "settings": { "title": "Configuración de Llamadas" } },
-        { "type": "guide", "settings": { "title": "Guía Kieslect OS" } }
+        { "type": "guide", "settings": { "title": "Optimización Batería" } }
       ]
     }
   ]
