@@ -17,7 +17,7 @@
         "enlace_hhn8qw": {
           "type": "enlace",
           "settings": {
-            "parent": "Productos",
+            "parent": "Soporte",
             "title": "Enlace",
             "sub": "Descripción",
             "url": "https://www.kieslect.com/es/about-us/",
