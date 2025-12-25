@@ -44,4 +44,122 @@
   }
   .k-item:hover { background: rgba(0, 209, 255, 0.08); }
 
-  .k-item-info { display: flex; flex-direction: column
+  .k-item-info { display: flex; flex-direction: column; text-align: left; }
+  .k-item-title { color: #fff; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .k-item-sub { color: #666; font-size: 9px; font-weight: 600; margin-top: 2px; }
+  
+  .k-item-icon { color: var(--k-cyan); font-size: 12px; }
+
+  .k-access-btn {
+    background: var(--k-cyan); color: #000 !important; padding: 10px 22px;
+    border-radius: 4px; font-weight: 800; font-size: 11px; text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  @keyframes kSlideUp { 
+    from { opacity: 0; transform: translateY(8px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  
+  @media (max-width: 900px) { .k-nav-main { display: none; } }
+</style>
+
+<header class="k-header-wrapper">
+  <div class="k-header-container">
+    <div class="k-logo"><a href="/">KIESLECT</a></div>
+    
+    <nav class="k-nav-main">
+      <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
+
+      <div class="k-dropdown js-drop">
+        <button class="k-drop-trigger" onclick="kToggle(this)">Productos ▼</button>
+        <div class="k-drop-menu">
+          <span class="k-menu-label">Navegación</span>
+          <a href="/collections/all" class="k-item">
+            <div class="k-item-info"><span class="k-item-title">Catálogo</span></div>
+            <span class="k-item-icon">→</span>
+          </a>
+          <span class="k-menu-label">Documentos</span>
+          <a href="#" class="k-item" download>
+            <div class="k-item-info">
+              <span class="k-item-title">Ficha Técnica</span>
+              <span class="k-item-sub">Descargar PDF</span>
+            </div>
+            <span class="k-item-icon">⬇</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="k-dropdown js-drop">
+        <button class="k-drop-trigger" onclick="kToggle(this)">Comunidad ▼</button>
+        <div class="k-drop-menu">
+          <span class="k-menu-label">Únete</span>
+          <a href="/pages/comunidad" class="k-item">
+            <div class="k-item-info"><span class="k-item-title">Foro Oficial</span></div>
+            <span class="k-item-icon">→</span>
+          </a>
+          <span class="k-menu-label">Recursos</span>
+          <a href="#" class="k-item" download>
+            <div class="k-item-info">
+              <span class="k-item-title">Media Kit</span>
+              <span class="k-item-sub">Descargar ZIP</span>
+            </div>
+            <span class="k-item-icon">⬇</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="k-dropdown js-drop">
+        <button class="k-drop-trigger" onclick="kToggle(this)">Soporte ▼</button>
+        <div class="k-drop-menu">
+          <span class="k-menu-label">Ayuda</span>
+          <a href="/pages/contacto" class="k-item">
+            <div class="k-item-info"><span class="k-item-title">Contacto</span></div>
+            <span class="k-item-icon">→</span>
+          </a>
+          <span class="k-menu-label">Manuales</span>
+          <a href="#" class="k-item" download>
+            <div class="k-item-info">
+              <span class="k-item-title">Guía de Usuario</span>
+              <span class="k-item-sub">Descargar Manual</span>
+            </div>
+            <span class="k-item-icon">⬇</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="k-actions">
+      <a href="/account" class="k-access-btn">
+        {%- if customer -%}{{ customer.first_name }}{%- else -%}Acceso{%- endif -%}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  function kToggle(btn) {
+    const parent = btn.parentElement;
+    const wasOpen = parent.classList.contains('is-open');
+    document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
+    if (!wasOpen) parent.classList.add('is-open');
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.js-drop')) {
+      document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Kieslect Header Pro",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Kieslect Header Pro"
+    }
+  ]
+}
+{% endschema %}
