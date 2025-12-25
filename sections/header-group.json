@@ -13,6 +13,48 @@
   "sections": {
     "kieslect_header_7Bj6Gk": {
       "type": "kieslect-header",
+      "blocks": {
+        "enlace_AzYjLM": {
+          "type": "enlace",
+          "settings": {
+            "parent": "Comunidad",
+            "title": "Enlace",
+            "sub": "Descripción",
+            "url": "https://www.kieslect.com/es/market-shooting/",
+            "download": false
+          }
+        },
+        "seccion_itfTXy": {
+          "type": "seccion",
+          "settings": {
+            "parent": "Comunidad",
+            "title": "COMUNIDAD"
+          }
+        },
+        "enlace_iekMWC": {
+          "type": "enlace",
+          "settings": {
+            "parent": "Productos",
+            "title": "Enlace",
+            "sub": "Descripción",
+            "url": "",
+            "download": false
+          }
+        },
+        "seccion_T8ffb9": {
+          "type": "seccion",
+          "settings": {
+            "parent": "Productos",
+            "title": "SERIES"
+          }
+        }
+      },
+      "block_order": [
+        "enlace_AzYjLM",
+        "seccion_itfTXy",
+        "enlace_iekMWC",
+        "seccion_T8ffb9"
+      ],
       "name": "Kieslect Header",
       "settings": {}
     },
