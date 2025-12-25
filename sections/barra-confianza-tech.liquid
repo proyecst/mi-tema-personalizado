@@ -7,173 +7,179 @@
 
   .trust-bar-section {
     background-color: #000;
-    padding: 40px 0;
+    padding: 60px 0;
     border-top: 1px solid #1a1a1a;
-    border-bottom: 1px solid #1a1a1a;
-  }
-
-  .trust-bar-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
   }
 
   .trust-bar-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 15px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   .trust-item-wrapper {
     position: relative;
-  }
-
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 20px;
     background: var(--k-dark);
     border-radius: 15px;
     border: 1px solid #1a1a1a;
-    cursor: pointer;
     transition: 0.3s;
-    position: relative;
-    z-index: 5;
+    overflow: hidden;
   }
 
-  .trust-item:hover {
+  .trust-item-wrapper.is-active {
     border-color: var(--k-cyan);
-    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.1);
   }
 
-  .trust-icon-wrapper { width: 35px; height: 35px; color: var(--k-cyan); flex-shrink: 0; }
-  .trust-icon-wrapper svg { width: 100%; height: 100%; }
+  .trust-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    cursor: pointer;
+  }
 
-  .trust-text { display: flex; flex-direction: column; }
-  .trust-title { color: #fff; font-weight: 800; font-size: 13px; text-transform: uppercase; }
-  .trust-subtitle { color: #555; font-size: 10px; margin-top: 2px; }
+  .trust-icon-wrapper { width: 28px; height: 28px; color: var(--k-cyan); flex-shrink: 0; }
+  .trust-title { color: #fff; font-weight: 800; font-size: 12px; text-transform: uppercase; display: block; }
+  .trust-subtitle { color: #555; font-size: 10px; }
 
-  /* DROP DOWN DINÁMICO */
-  .trust-dropdown {
+  /* CONTENIDO DESPLEGABLE */
+  .trust-content {
     max-height: 0;
     overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     background: #0a0a0a;
-    border-radius: 0 0 15px 15px;
-    transition: all 0.4s ease;
-    border: 1px solid transparent;
-    margin-top: -10px;
     padding: 0 20px;
   }
 
-  .trust-item-wrapper.is-active .trust-dropdown {
-    max-height: 250px;
-    padding: 30px 20px 20px 20px;
-    border: 1px solid #222;
-    border-top: none;
+  .trust-item-wrapper.is-active .trust-content {
+    max-height: 400px;
+    padding: 10px 20px 25px 20px;
+    border-top: 1px solid #1a1a1a;
   }
 
-  .trust-dropdown p { color: #888; font-size: 12px; margin: 0 0 10px 0; line-height: 1.4; }
-  .user-data-badge {
-    background: rgba(0, 209, 255, 0.1);
-    color: var(--k-cyan);
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    display: inline-block;
+  /* ESTILOS DE FORMULARIO INTERNO */
+  .trust-input-group {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
+
+  .trust-input {
+    background: #151515;
+    border: 1px solid #222;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    outline: none;
+  }
+
+  .trust-input:focus { border-color: var(--k-cyan); }
+
+  .trust-btn {
+    background: var(--k-cyan);
+    color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 11px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+  }
+
+  .trust-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
   @media (max-width: 1024px) { .trust-bar-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 650px) { .trust-bar-grid { grid-template-columns: 1fr; } }
 {%- endstyle -%}
 
 <section class="trust-bar-section">
-  <div class="trust-bar-container">
-    <div class="trust-bar-grid">
-      
-      <div class="trust-item-wrapper">
-        <div class="trust-item" onclick="toggleTrust(this)">
-          <div class="trust-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11h14M5 15h14M2 8h20L20 19H4L2 8zM12 3v5"></path></svg>
-          </div>
-          <div class="trust-text">
-            <span class="trust-title">Mi Envío</span>
-            <span class="trust-subtitle">Click para ver info</span>
-          </div>
+  <div class="trust-bar-grid">
+    
+    <div class="trust-item-wrapper">
+      <div class="trust-header" onclick="toggleTrust(this)">
+        <div class="trust-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10H3M21 6H3M21 14H3M21 18H3"></path></svg>
         </div>
-        <div class="trust-dropdown">
-          {% if customer %}
-            <p>Hola <strong>{{ customer.first_name }}</strong>, tus pedidos se enviarán a:</p>
-            <div class="user-data-badge">{{ customer.default_address.city | default: "Dirección no registrada" }}</div>
-          {% else %}
-            <p>Registrate para rastrear tus envíos personalizados.</p>
-            <a href="/account/register" style="color: var(--k-cyan); font-size: 11px; font-weight: 800;">CREAR CUENTA →</a>
-          {% endif %}
+        <div class="trust-text">
+          <span class="trust-title">Rastrear Pedido</span>
+          <span class="trust-subtitle">Estado en tiempo real</span>
         </div>
       </div>
-
-      <div class="trust-item-wrapper">
-        <div class="trust-item" onclick="toggleTrust(this)">
-          <div class="trust-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          </div>
-          <div class="trust-text">
-            <span class="trust-title">Cuenta Segura</span>
-            <span class="trust-subtitle">Estado de protección</span>
-          </div>
-        </div>
-        <div class="trust-dropdown">
-          {% if customer %}
-            <p>Conectado como:</p>
-            <div class="user-data-badge">{{ customer.email }}</div>
-            <p style="margin-top:10px;">Tu cuenta tiene cifrado de 256 bits activo.</p>
-          {% else %}
-            <p>Inicia sesión para proteger tus datos de compra.</p>
-            <a href="/account/login" style="color: var(--k-cyan); font-size: 11px; font-weight: 800;">LOGIN →</a>
-          {% endif %}
+      <div class="trust-content">
+        <p style="color: #888; font-size: 11px;">Ingresa tu ID de pedido para localizar tu paquete.</p>
+        <div class="trust-input-group">
+          <input type="text" class="trust-input" placeholder="Ej: #1024">
+          <button class="trust-btn" onclick="trackOrder()">Localizar</button>
         </div>
       </div>
-
-      <div class="trust-item-wrapper">
-        <div class="trust-item" onclick="toggleTrust(this)">
-          <div class="trust-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
-          </div>
-          <div class="trust-text">
-            <span class="trust-title">Mis Pedidos</span>
-            <span class="trust-subtitle">Última actividad</span>
-          </div>
-        </div>
-        <div class="trust-dropdown">
-          {% if customer %}
-            <p>Total de pedidos realizados:</p>
-            <div class="user-data-badge">{{ customer.orders_count }} PEDIDOS</div>
-            <a href="/account" style="display:block; margin-top:10px; color: var(--k-cyan); font-size:10px;">VER HISTORIAL</a>
-          {% else %}
-            <p>Debes estar registrado para ver tus últimos pedidos.</p>
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="trust-item-wrapper">
-        <div class="trust-item" onclick="toggleTrust(this)">
-          <div class="trust-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.8.9L21 3z"></path></svg>
-          </div>
-          <div class="trust-text">
-            <span class="trust-title">Soporte VIP</span>
-            <span class="trust-subtitle">Ayuda directa</span>
-          </div>
-        </div>
-        <div class="trust-dropdown">
-          <p>¿Necesitas ayuda inmediata?</p>
-          <div class="user-data-badge">WHATSAPP: +123 456 789</div>
-          <p style="margin-top:10px;">Atención 24/7 para clientes Kieslect.</p>
-        </div>
-      </div>
-
     </div>
+
+    <div class="trust-item-wrapper">
+      <div class="trust-header" onclick="toggleTrust(this)">
+        <div class="trust-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">Mis Datos</span>
+          <span class="trust-subtitle">Recibir alertas SMS</span>
+        </div>
+      </div>
+      <div class="trust-content">
+        <p style="color: #888; font-size: 11px;">Déjanos tu WhatsApp para enviarte alertas de firmware.</p>
+        {% form 'customer' %}
+          <div class="trust-input-group">
+            <input type="tel" name="contact[note][whatsapp]" class="trust-input" placeholder="+54 9 11..." required>
+            <button type="submit" class="trust-btn">Vincular</button>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+
+    <div class="trust-item-wrapper">
+      <div class="trust-header" onclick="toggleTrust(this)">
+        <div class="trust-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">Garantía</span>
+          <span class="trust-subtitle">Activar protección</span>
+        </div>
+      </div>
+      <div class="trust-content">
+        <p style="color: #888; font-size: 11px;">Registra el número de serie de tu Kieslect.</p>
+        <div class="trust-input-group">
+          <input type="text" class="trust-input" placeholder="S/N: K-XXXXXXXX">
+          <button class="trust-btn" onclick="alert('Registro enviado al sistema de garantía')">Activar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-item-wrapper">
+      <div class="trust-header" onclick="toggleTrust(this)">
+        <div class="trust-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">Soporte 24/7</span>
+          <span class="trust-subtitle">Chat directo</span>
+        </div>
+      </div>
+      <div class="trust-content">
+        <p style="color: #888; font-size: 11px;">¿Tienes un problema técnico?</p>
+        <div class="trust-input-group">
+          <a href="https://wa.me/TUNUMERO" class="trust-btn" style="text-align:center; text-decoration:none;">Iniciar Chat</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -182,24 +188,20 @@
     const wrapper = element.parentElement;
     const isActive = wrapper.classList.contains('is-active');
     
-    // Cerrar otros abiertos
     document.querySelectorAll('.trust-item-wrapper').forEach(w => w.classList.remove('is-active'));
     
-    // Abrir el actual si no estaba abierto
     if (!isActive) {
       wrapper.classList.add('is-active');
     }
   }
-</script>
 
-{% schema %}
-{
-  "name": "Confianza Cliente Tech",
-  "settings": [],
-  "presets": [
-    {
-      "name": "Confianza Cliente Tech"
+  function trackOrder() {
+    const orderId = event.target.previousElementSibling.value;
+    if(orderId) {
+      // Redirige a la página de rastreo nativa de Shopify o de tu transportista
+      window.location.href = `/apps/track-order?id=${orderId}`;
+    } else {
+      alert("Por favor ingresa un número de pedido");
     }
-  ]
-}
-{% endschema %}
+  }
+</script>
