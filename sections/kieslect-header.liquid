@@ -9,9 +9,12 @@
     max-width: 1300px; height: 80px; margin: 0 auto;
     display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
   }
+  
   .k-logo a { color: #fff; text-decoration: none; font-size: 22px; font-weight: 900; letter-spacing: 2px; }
 
+  /* Navegación Principal */
   .k-nav-main { display: flex; gap: 10px; }
+  
   .k-dropdown { position: relative; }
   
   .k-drop-trigger {
@@ -21,39 +24,39 @@
   }
   .k-drop-trigger:hover { color: var(--k-cyan); }
 
+  /* El Menú Desplegable */
   .k-drop-menu {
     display: none; position: absolute; top: 100%; left: 0;
-    background: #0a0a0a; min-width: 280px; border: 1px solid #1a1a1a;
+    background: #0a0a0a; min-width: 250px; border: 1px solid #1a1a1a;
     border-radius: 8px; padding: 15px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   }
   
-  .k-dropdown.is-open .k-drop-menu { 
-    display: block; 
-    animation: slideUp 0.2s ease-out forwards; 
-  }
+  /* Mostrar cuando está activo */
+  .k-dropdown.is-open .k-drop-menu { display: block; animation: slideUp 0.2s ease-out; }
 
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .k-menu-section { padding: 10px 20px; }
+  /* Secciones dentro del Menú */
+  .k-menu-section { padding: 0 20px 10px 20px; }
   .k-menu-section-title {
     color: var(--k-cyan); font-size: 10px; font-weight: 800;
-    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
     display: block; border-bottom: 1px solid #222; padding-bottom: 4px;
   }
 
   .k-drop-menu a {
     display: block; color: #bbb; text-decoration: none; font-size: 11px;
-    padding: 7px 0; transition: 0.2s; font-weight: 500; text-align: left;
+    padding: 6px 0; transition: 0.2s; font-weight: 500;
   }
   .k-drop-menu a:hover { color: #fff; padding-left: 5px; }
 
+  /* Botón Acceso */
   .k-access-btn {
-    background: var(--k-cyan); color: #000 !important; padding: 10px 20px;
-    border-radius: 4px; font-weight: 800; font-size: 11px; text-decoration: none;
-    text-transform: uppercase;
+    background: var(--k-cyan); color: #000; padding: 10px 20px;
+    border-radius: 4px; font-weight: 800; font-size: 12px; text-decoration: none;
   }
 
   @media (max-width: 900px) { .k-nav-main { display: none; } }
@@ -61,6 +64,7 @@
 
 <div class="k-header-wrapper">
   <div class="k-header-container">
+    
     <div class="k-logo"><a href="/">KIESLECT</a></div>
     
     <nav class="k-nav-main">
@@ -69,8 +73,16 @@
       <div class="k-dropdown js-drop">
         <button class="k-drop-trigger" onclick="kToggle(this)">Modelos ▼</button>
         <div class="k-drop-menu">
-          
           <div class="k-menu-section">
-            <span class="k-menu-section-title">Nuevos Lanzamientos</span>
-            <a href="/products/kieslect-ks2">Kieslect Ks2 Pro</a>
-            <a href="/products/kieslect-kr2">K
+            <span class="k-menu-section-title">Smartwatches</span>
+            <a href="/collections/ks-series">Serie KS Pro</a>
+            <a href="/collections/kr-series">Serie KR Pro</a>
+            <a href="/collections/l-series">Lady Series</a>
+          </div>
+          <div class="k-menu-section">
+            <span class="k-menu-section-title">Accesorios</span>
+            <a href="/collections/correas">Correas Magnéticas</a>
+            <a href="/collections/micas">Protectores de Pantalla</a>
+          </div>
+        </div>
+      </div>
