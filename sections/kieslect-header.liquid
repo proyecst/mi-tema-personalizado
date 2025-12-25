@@ -26,63 +26,75 @@
     text-transform: uppercase;
   }
 
-  /* Navegación Simple (Sin desplegables) */
-  .k-nav { 
-    display: flex; 
-    gap: 30px; 
-    list-style: none; 
-    margin: 0; 
-    padding: 0; 
-  }
+  /* Navegación */
+  .k-nav { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; align-items: center; }
   .k-nav a { 
     color: #fff; 
     text-decoration: none; 
-    font-size: 13px; 
+    font-size: 12px; 
     font-weight: 600; 
     text-transform: uppercase;
     transition: 0.3s;
-    opacity: 0.8;
+    opacity: 0.7;
   }
   .k-nav a:hover { opacity: 1; color: #00D1FF; }
 
-  /* Acciones */
-  .k-actions { display: flex; align-items: center; gap: 20px; }
+  /* Acciones de Usuario */
+  .k-actions { display: flex; align-items: center; gap: 15px; }
   
+  .k-user-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    padding: 8px 15px;
+    border-radius: 50px;
+    border: 1px solid #333;
+  }
+
+  .k-user-name {
+    color: #00D1FF;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .k-logout-btn {
+    color: #ff4d4d;
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-left: 10px;
+    border-left: 1px solid #444;
+  }
+
   .k-register-link {
     background: #00D1FF;
     color: #000 !important;
-    padding: 12px 24px;
-    border-radius: 6px;
+    padding: 10px 20px;
+    border-radius: 5px;
     font-weight: 800;
     font-size: 11px;
     text-transform: uppercase;
     text-decoration: none;
     transition: 0.3s;
-    display: inline-block;
-  }
-  .k-register-link:hover { 
-    box-shadow: 0 0 20px rgba(0, 209, 255, 0.4); 
-    transform: translateY(-2px);
   }
 
-  @media (max-width: 768px) { 
-    .k-nav { display: none; } 
-  }
+  @media (max-width: 900px) { .k-nav { display: none; } }
 {%- endstyle -%}
 
 <div class="k-header-wrapper">
   <div class="k-header-container">
     
-    <div class="k-logo">
-      <a href="/">{{ section.settings.logo_text }}</a>
-    </div>
+    <div class="k-logo"><a href="/">{{ section.settings.logo_text }}</a></div>
     
     <nav>
       <ul class="k-nav">
         {%- for block in section.blocks -%}
           <li {{ block.shopify_attributes }}>
-            <a href="{{ block.settings.link_url | default: '#' }}" 
-               {% if block.settings.external %}target="_blank"{% endif %}>
+            <a href="{{ block.settings.link_url | default: '#' }}" {% if block.settings.external %}target="_blank"{% endif %}>
               {{ block.settings.link_text }}
             </a>
           </li>
@@ -92,9 +104,16 @@
 
     <div class="k-actions">
       {%- if customer -%}
-        <a href="/account" style="color:#fff; text-decoration:none; font-size:12px; font-weight:700;">HOLA, {{ customer.first_name | upcase }}</a>
-        <a href="/account/logout" style="color:#ff4d4d; font-size:10px; text-decoration:none; margin-left:10px; font-weight:bold;">SALIR</a>
+        {%- comment -%} USUARIO INCORPORADO (LOGUEADO) {%- endcomment -%}
+        <div class="k-user-box">
+          <a href="/account" class="k-user-name">
+            <span style="color:#fff; opacity:0.6; margin-right:5px;">HOLA,</span>{{ customer.first_name }}
+          </a>
+          <a href="/account/logout" class="k-logout-btn">Salir</a>
+        </div>
       {%- else -%}
+        {%- comment -%} USUARIO NO INCORPORADO {%- endcomment -%}
+        <a href="/account/login" style="color:#fff; text-decoration:none; font-size:11px; font-weight:600; text-transform:uppercase; opacity:0.7;">Iniciar Sesión</a>
         <a href="{{ section.settings.reg_link | default: '/account/register' }}" class="k-register-link">
           {{ section.settings.reg_text }}
         </a>
@@ -105,7 +124,6 @@
 </div>
 
 <script>
-  // Suavizado de scroll para links internos
   document.querySelectorAll('.k-nav a').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
@@ -125,7 +143,7 @@
 
 {% schema %}
 {
-  "name": "Kieslect Header Ultimate",
+  "name": "Kieslect Header Pro",
   "settings": [
     {
       "type": "text",
@@ -137,12 +155,12 @@
       "type": "text",
       "id": "reg_text",
       "label": "Texto Botón Registro",
-      "default": "Registrarse"
+      "default": "Crear Cuenta"
     },
     {
       "type": "url",
       "id": "reg_link",
-      "label": "Link Botón Registro"
+      "label": "Link de Registro"
     }
   ],
   "blocks": [
@@ -153,13 +171,13 @@
         {
           "type": "text",
           "id": "link_text",
-          "label": "Nombre del link",
+          "label": "Texto del Link",
           "default": "Nueva Opción"
         },
         {
           "type": "url",
           "id": "link_url",
-          "label": "URL o ID de sección (ej: #seccion)"
+          "label": "URL o #ID"
         },
         {
           "type": "checkbox",
@@ -174,31 +192,11 @@
     {
       "name": "Kieslect Header Ultimate",
       "blocks": [
-        {
-          "type": "nav_link",
-          "settings": {
-            "link_text": "Inicio",
-            "link_url": "#shopify-section-template--index-main"
-          }
-        },
-        {
-          "type": "nav_link",
-          "settings": {
-            "link_text": "Modelos",
-            "link_url": "#shopify-section-featured-products"
-          }
-        },
-        {
-          "type": "nav_link",
-          "settings": {
-            "link_text": "Comunidad",
-            "link_url": "#testi-list"
-          }
-        }
+        { "type": "nav_link", "settings": { "link_text": "Inicio", "link_url": "#shopify-section-template--index-main" } },
+        { "type": "nav_link", "settings": { "link_text": "Modelos", "link_url": "#shopify-section-featured-products" } },
+        { "type": "nav_link", "settings": { "link_text": "Comunidad", "link_url": "#testi-list" } }
       ]
     }
   ]
 }
 {% endschema %}
-
-
