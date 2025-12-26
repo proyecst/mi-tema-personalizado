@@ -20,11 +20,18 @@
   .trust-subtitle { color: #666; font-size: 10px; }
   
   .trust-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #080808; padding: 0 15px; }
-  .trust-item-wrapper.is-active .trust-content { max-height: 350px; padding: 10px 15px 20px 15px; border-top: 1px solid #1a1a1a; }
+  .trust-item-wrapper.is-active .trust-content { max-height: 450px; padding: 10px 15px 20px 15px; border-top: 1px solid #1a1a1a; }
   
-  /* Estilo Bloque Manual (Add Block) */
-  .manual-block { background: #111; padding: 10px; border-radius: 6px; border: 1px dashed #333; margin-bottom: 10px; }
-  .manual-block p { color: #ccc; font-size: 10px; margin: 0; line-height: 1.4; }
+  .trust-form { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
+  .trust-input { 
+    background: #111; border: 1px solid #222; color: #fff; padding: 8px; 
+    border-radius: 4px; font-size: 10px; outline: none; 
+  }
+  
+  /* Casillas de Pago */
+  .payment-options { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .pay-method { display: flex; align-items: center; gap: 8px; color: #888; font-size: 10px; }
+  .pay-method input { accent-color: var(--k-cyan); cursor: default; }
 
   .trust-btn { 
     background: var(--k-cyan); color: #000; border: none; width: 100%; 
@@ -51,8 +58,12 @@
         </div>
       </div>
       <div class="trust-content">
-        <p style="color:#888; font-size:9px; margin-bottom:10px;">Consulta disponibilidad de entrega inmediata en tu ciudad.</p>
-        <button class="trust-btn">Ver Cobertura</button>
+        <form action="/contact#contact_form" method="post" class="trust-form">
+          <input type="hidden" name="contact[tags]" value="newsletter, envio_gratis">
+          <p style="color:#888; font-size:9px; margin:0;">Recibe un cupón de envío gratis:</p>
+          <input type="email" name="contact[email]" class="trust-input" placeholder="Tu Email" required>
+          <button type="submit" class="trust-btn">Obtener Cupón</button>
+        </form>
       </div>
     </div>
 
@@ -63,15 +74,16 @@
         </div>
         <div class="trust-text">
           <span class="trust-title">Pago Seguro</span>
-          <span class="trust-subtitle">Métodos de pago</span>
+          <span class="trust-subtitle">Métodos aceptados</span>
         </div>
       </div>
       <div class="trust-content">
-        <div class="manual-block">
-          <p><strong>Transferencia Directa:</strong> Banco XYZ<br>Cuenta: 123456789</p>
-          <p style="margin-top:5px;"><strong>Otros:</strong> Visa, Mastercard, PayPal.</p>
+        <div class="payment-options">
+          <label class="pay-method"><input type="checkbox" checked onclick="return false;"> Transferencia Bancaria</label>
+          <label class="pay-method"><input type="checkbox" checked onclick="return false;"> Tarjeta de Crédito/Débito</label>
+          <label class="pay-method"><input type="checkbox" checked onclick="return false;"> Pago en Efectivo</label>
         </div>
-        <button class="trust-btn" onclick="location.href='/pages/metodos-pago'">Más información</button>
+        <button class="trust-btn" onclick="location.href='/pages/metodos-pago'">Ver Info Detallada</button>
       </div>
     </div>
 
@@ -86,7 +98,10 @@
         </div>
       </div>
       <div class="trust-content">
-        <button class="trust-btn" onclick="location.href='/apps/tracking'">Rastrear Pedido</button>
+        <form action="/apps/tracking" method="post" class="trust-form">
+          <input type="text" name="tracking_number" class="trust-input" placeholder="Nro de Guía" required>
+          <button type="submit" class="trust-btn">Rastrear Pedido</button>
+        </form>
       </div>
     </div>
 
@@ -97,12 +112,12 @@
         </div>
         <div class="trust-text">
           <span class="trust-title">Soporte 24/7</span>
-          <span class="trust-subtitle">Contacto por Correo</span>
+          <span class="trust-subtitle">Contactar ahora</span>
         </div>
       </div>
       <div class="trust-content">
-        <p style="color:#888; font-size:9px; margin-bottom:10px;">Escríbenos y te responderemos en breve.</p>
-        <a href="mailto:soporte@tuweb.com" class="trust-btn">Enviar Email</a>
+        <p style="color:#888; font-size:9px; margin-bottom:10px;">¿Necesitas ayuda? Accede a nuestro portal de atención:</p>
+        <a href="https://tuweb.com/contacto" class="trust-btn">Ir al Centro de Ayuda</a>
       </div>
     </div>
 
