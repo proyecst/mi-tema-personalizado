@@ -95,6 +95,14 @@
     "series_ia_HmgFFW": {
       "type": "series-ia",
       "blocks": {
+        "serie_RB6hJb": {
+          "type": "serie",
+          "settings": {
+            "image": "shopify://shop_images/KsM-01.png",
+            "title": "ks3",
+            "link": "https://www.kieslect.com/?s=ks3"
+          }
+        },
         "serie_KTfmwY": {
           "type": "serie",
           "settings": {
@@ -145,6 +153,7 @@
         }
       },
       "block_order": [
+        "serie_RB6hJb",
         "serie_KTfmwY",
         "serie_a8PdDV",
         "serie_FjpmUd",
