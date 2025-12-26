@@ -1,74 +1,94 @@
-<div class="ai-launcher" onclick="toggleAIChat()" id="aiLauncher">
+<div class="ai-launcher" onclick="toggleAIChat()">
   <div class="ai-pulse"></div>
-  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-10a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm-4.5 4.5c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-3c0 1.66-1.34 3-3 3z"/></svg>
+  <svg viewBox="0 0 24 24"><path fill="#00D1FF" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
 </div>
 
 <div id="ai-chat-box" class="ai-window">
   <div class="ai-header">
-    <div class="ai-status">
-      <div class="status-indicator"></div>
-      <span>KIESLECT NEURAL CORE V.3</span>
-    </div>
+    <div class="ai-status"><div class="status-indicator"></div> KIESLECT GPT-CORE</div>
     <button onclick="toggleAIChat()" class="close-ai">✕</button>
   </div>
-  
   <div id="ai-messages" class="ai-body">
-    <div class="ai-msg bot">
-      <small>SYSTEM ONLINE</small>
-      Núcleo Kieslect activo. Estoy escaneando la tienda y los módulos de hardware. ¿En qué puedo asesorarte hoy?
-    </div>
+    <div class="ai-msg bot"><small>SYSTEM</small>Modo IA Completa activado. Pregúntame lo que quieras.</div>
   </div>
-
-  <div class="ai-typing" id="aiTyping" style="display:none;">
-    <span></span><span></span><span></span>
-  </div>
-
+  <div id="aiTyping" class="ai-typing" style="display:none;"><span></span><span></span><span></span></div>
   <div class="ai-footer">
     <input type="text" id="ai-input" placeholder="Pregunta lo que sea..." onkeypress="handleEnter(event)">
-    <button onclick="askAI()" id="sendBtn">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-    </button>
+    <button onclick="askAI()">🚀</button>
   </div>
 </div>
 
 <style>
-  :root { --k-neon: #00D1FF; --k-dark: #0a0a0a; --k-glass: rgba(255, 255, 255, 0.08); }
-  
-  .ai-launcher { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: var(--k-dark); border: 2px solid var(--k-neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10000; box-shadow: 0 0 30px rgba(0,209,255,0.4); transition: 0.3s; }
-  .ai-launcher:hover { transform: scale(1.1); }
-  .ai-pulse { position: absolute; width: 100%; height: 100%; border: 2px solid var(--k-neon); border-radius: 50%; animation: k-pulse-expand 2s infinite; }
-  .ai-launcher svg { width: 32px; fill: var(--k-neon); }
-
-  .ai-window { position: fixed; bottom: 110px; right: 30px; width: 400px; height: 600px; background: var(--k-dark); border: 1px solid rgba(0,209,255,0.2); border-radius: 28px; display: none; flex-direction: column; z-index: 10000; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.9); backdrop-filter: blur(25px); color: white; font-family: 'Segoe UI', Roboto, sans-serif; }
-  
-  .ai-header { padding: 20px; background: rgba(0,209,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; }
-  .ai-status { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: bold; color: var(--k-neon); letter-spacing: 1.5px; }
-  .status-indicator { width: 8px; height: 8px; background: var(--k-neon); border-radius: 50%; box-shadow: 0 0 10px var(--k-neon); animation: blink 1.2s infinite; }
-  
-  .ai-body { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; scrollbar-width: none; background: radial-gradient(circle at top right, rgba(0,209,255,0.05), transparent); }
-  
-  .ai-msg { padding: 14px 18px; border-radius: 20px; font-size: 14px; max-width: 85%; line-height: 1.5; animation: fadeIn 0.3s ease; }
-  .ai-msg.bot { background: var(--k-glass); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid rgba(255,255,255,0.1); color: #e0e0e0; }
-  .ai-msg.bot small { display: block; font-size: 9px; color: var(--k-neon); margin-bottom: 6px; font-weight: 900; text-transform: uppercase; }
-  .ai-msg.user { background: var(--k-neon); color: #000; align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,209,255,0.2); }
-
-  .ai-footer { padding: 20px; display: flex; gap: 10px; background: rgba(0,0,0,0.4); border-top: 1px solid rgba(255,255,255,0.05); }
-  .ai-footer input { flex-grow: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 12px 18px; color: #fff; outline: none; }
-  .ai-footer input:focus { border-color: var(--k-neon); }
-  
-  #sendBtn { background: var(--k-neon); border: none; width: 50px; border-radius: 15px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
-  #sendBtn:hover { transform: scale(1.05); background: #00b8e6; }
-
-  @keyframes k-pulse-expand { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.7); opacity: 0; } }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  
-  .ai-typing { display: flex; gap: 4px; padding: 10px; }
-  .ai-typing span { width: 5px; height: 5px; background: var(--k-neon); border-radius: 50%; animation: bounce 1s infinite; }
+  :root { --k-neon: #00D1FF; --k-dark: #0a0a0a; }
+  .ai-window { position: fixed; bottom: 100px; right: 20px; width: 350px; height: 500px; background: var(--k-dark); border: 1px solid var(--k-neon); border-radius: 20px; display: none; flex-direction: column; z-index: 99999; color: white; font-family: sans-serif; overflow: hidden; }
+  .ai-launcher { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #000; border: 2px solid var(--k-neon); border-radius: 50%; cursor: pointer; z-index: 99999; display: flex; align-items: center; justify-content: center; }
+  .ai-body { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+  .ai-msg { padding: 10px; border-radius: 10px; font-size: 13px; max-width: 80%; }
+  .ai-msg.bot { background: #1a1a1a; align-self: flex-start; border: 1px solid #333; }
+  .ai-msg.user { background: var(--k-neon); color: black; align-self: flex-end; font-weight: bold; }
+  .ai-footer { padding: 10px; display: flex; background: #111; }
+  .ai-footer input { flex: 1; background: #222; border: none; color: white; padding: 10px; border-radius: 5px; outline: none; }
+  .ai-footer button { background: var(--k-neon); border: none; padding: 10px; margin-left: 5px; border-radius: 5px; cursor: pointer; }
+  .ai-typing span { width: 6px; height: 6px; background: var(--k-neon); border-radius: 50%; display: inline-block; animation: bounce 1s infinite; }
   @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 </style>
 
 <script>
-  // BASE DE CONOCIMIENTO EXTENDIDA (IA COMPLETA)
-  const AI_BRAIN = {
-    "saludos": ["hola",
+  const OPENAI_API_KEY = "TU_API_KEY_AQUI"; // REEMPLAZA ESTO
+
+  function toggleAIChat() {
+    const chat = document.getElementById('ai-chat-box');
+    chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function handleEnter(e) { if (e.key === 'Enter') askAI(); }
+
+  async function askAI() {
+    const input = document.getElementById('ai-input');
+    const msgContainer = document.getElementById('ai-messages');
+    const typing = document.getElementById('aiTyping');
+    const userText = input.value.trim();
+
+    if (!userText) return;
+
+    // Agregar mensaje usuario
+    addMsg(userText, 'user');
+    input.value = "";
+    typing.style.display = "block";
+    msgContainer.scrollTop = msgContainer.scrollHeight;
+
+    try {
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${OPENAI_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [
+            {role: "system", content: "Eres el asistente experto de la tienda de relojes Kieslect. Responde de forma futurista, profesional y ayuda con cualquier duda general o técnica."},
+            {role: "user", content: userText}
+          ]
+        })
+      });
+
+      const data = await response.json();
+      const aiText = data.choices[0].message.content;
+      addMsg(aiText, 'bot');
+    } catch (error) {
+      addMsg("Error de conexión. Verifica la API Key.", 'bot');
+    } finally {
+      typing.style.display = "none";
+      msgContainer.scrollTop = msgContainer.scrollHeight;
+    }
+  }
+
+  function addMsg(text, type) {
+    const container = document.getElementById('ai-messages');
+    const div = document.createElement('div');
+    div.className = `ai-msg ${type}`;
+    div.innerHTML = type === 'bot' ? `<small style="display:block;color:#00D1FF;font-size:9px">KIESLECT CORE</small>${text}` : text;
+    container.appendChild(div);
+  }
+</script>
