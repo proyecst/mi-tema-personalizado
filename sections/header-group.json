@@ -95,6 +95,14 @@
     "series_ia_HmgFFW": {
       "type": "series-ia",
       "blocks": {
+        "serie_aPnfJq": {
+          "type": "serie",
+          "settings": {
+            "image": "shopify://shop_images/balncs.png",
+            "title": "balancs",
+            "link": "https://www.kieslect.com/?s=balancs"
+          }
+        },
         "serie_RB6hJb": {
           "type": "serie",
           "settings": {
@@ -153,6 +161,7 @@
         }
       },
       "block_order": [
+        "serie_aPnfJq",
         "serie_RB6hJb",
         "serie_KTfmwY",
         "serie_a8PdDV",
