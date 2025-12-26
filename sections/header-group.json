@@ -95,6 +95,14 @@
     "series_ia_HmgFFW": {
       "type": "series-ia",
       "blocks": {
+        "serie_KTfmwY": {
+          "type": "serie",
+          "settings": {
+            "image": "shopify://shop_images/KS2G-02.png",
+            "title": "ks2",
+            "link": "https://www.kieslect.com/?s=ks2"
+          }
+        },
         "serie_a8PdDV": {
           "type": "serie",
           "settings": {
@@ -107,7 +115,7 @@
           "type": "serie",
           "settings": {
             "image": "shopify://shop_images/LoraM-00.png",
-            "title": "lora reno",
+            "title": "lora reno 3",
             "link": "https://www.kieslect.com/es/?s=lora&trp-form-language=es"
           }
         },
@@ -137,6 +145,7 @@
         }
       },
       "block_order": [
+        "serie_KTfmwY",
         "serie_a8PdDV",
         "serie_FjpmUd",
         "serie_DkQNEm",
@@ -271,11 +280,7 @@
         "bg_color": "#000000",
         "text_color": "#ffffff",
         "accent_color": "#00d1ff",
-        "logo_text": "KIESLECT",
-        "description": "Elevando los estándares de la tecnología wearable con diseños innovadores y rendimiento excepcional.",
-        "menu_company": "",
-        "menu_support": "",
-        "contact_info": "Global Support: hello@kieslect.com"
+        "copyright_text": "KIESLECT TECHNOLOGY. ENGINEERED FOR THE FUTURE."
       }
     },
     "kieslect_ai_assistant_6Npar6": {
