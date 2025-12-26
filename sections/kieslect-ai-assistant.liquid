@@ -162,4 +162,14 @@
       botDiv.innerHTML = `<small>NEURAL ADVISOR RESPONSE</small>${response}`;
       msgContainer.appendChild(botDiv);
       msgContainer.scrollTop = msgContainer.scrollHeight;
-    }, 1
+    }, 1000);
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Kieslect AI Advisor",
+  "settings": [],
+  "presets": [ { "name": "Kieslect AI Advisor" } ]
+}
+{% endschema %}
