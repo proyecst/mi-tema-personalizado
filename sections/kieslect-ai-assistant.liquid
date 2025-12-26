@@ -7,7 +7,7 @@
   <div class="ai-header">
     <div class="ai-status">
       <div class="status-indicator"></div>
-      <span>KIESLECT NEURAL CORE V.2</span>
+      <span>KIESLECT NEURAL CORE V.3</span>
     </div>
     <button onclick="toggleAIChat()" class="close-ai">✕</button>
   </div>
@@ -15,7 +15,7 @@
   <div id="ai-messages" class="ai-body">
     <div class="ai-msg bot">
       <small>SYSTEM ONLINE</small>
-      Conexión establecida. Soy el asistente global de Kieslect. Puedo ayudarte con especificaciones, envíos, comparativas o soporte técnico. ¿Qué deseas consultar?
+      Núcleo Kieslect activo. Estoy escaneando la tienda y los módulos de hardware. ¿En qué puedo asesorarte hoy?
     </div>
   </div>
 
@@ -24,7 +24,7 @@
   </div>
 
   <div class="ai-footer">
-    <input type="text" id="ai-input" placeholder="Escribe cualquier duda aquí..." onkeypress="handleEnter(event)">
+    <input type="text" id="ai-input" placeholder="Pregunta lo que sea..." onkeypress="handleEnter(event)">
     <button onclick="askAI()" id="sendBtn">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
     </button>
@@ -32,90 +32,43 @@
 </div>
 
 <style>
-  :root { --k-neon: #00D1FF; --k-dark: #0d0d0d; --k-glass: rgba(255, 255, 255, 0.07); }
-  .ai-launcher { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: var(--k-dark); border: 2px solid var(--k-neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10000; box-shadow: 0 0 25px rgba(0,209,255,0.3); }
+  :root { --k-neon: #00D1FF; --k-dark: #0a0a0a; --k-glass: rgba(255, 255, 255, 0.08); }
+  
+  .ai-launcher { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: var(--k-dark); border: 2px solid var(--k-neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10000; box-shadow: 0 0 30px rgba(0,209,255,0.4); transition: 0.3s; }
+  .ai-launcher:hover { transform: scale(1.1); }
   .ai-pulse { position: absolute; width: 100%; height: 100%; border: 2px solid var(--k-neon); border-radius: 50%; animation: k-pulse-expand 2s infinite; }
   .ai-launcher svg { width: 32px; fill: var(--k-neon); }
-  .ai-window { position: fixed; bottom: 110px; right: 30px; width: 380px; height: 550px; background: var(--k-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; display: none; flex-direction: column; z-index: 10000; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); backdrop-filter: blur(20px); }
-  .ai-header { padding: 20px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
-  .ai-status { display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 900; color: var(--k-neon); letter-spacing: 2px; }
-  .status-indicator { width: 8px; height: 8px; background: var(--k-neon); border-radius: 50%; animation: blink 1s infinite; }
-  .ai-body { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; scrollbar-width: none; }
-  .ai-msg { padding: 12px 18px; border-radius: 18px; font-size: 14px; max-width: 85%; color: #fff; line-height: 1.4; }
-  .ai-msg.bot { background: var(--k-glass); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
-  .ai-msg.user { background: var(--k-neon); color: #000; align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 600; }
-  .ai-footer { padding: 15px; display: flex; gap: 10px; background: rgba(0,0,0,0.3); }
-  .ai-footer input { flex-grow: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px; color: #fff; outline: none; }
-  #sendBtn { background: var(--k-neon); border: none; width: 45px; border-radius: 12px; cursor: pointer; }
-  @keyframes k-pulse-expand { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.6); opacity: 0; } }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .ai-window { position: fixed; bottom: 110px; right: 30px; width: 400px; height: 600px; background: var(--k-dark); border: 1px solid rgba(0,209,255,0.2); border-radius: 28px; display: none; flex-direction: column; z-index: 10000; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.9); backdrop-filter: blur(25px); color: white; font-family: 'Segoe UI', Roboto, sans-serif; }
+  
+  .ai-header { padding: 20px; background: rgba(0,209,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; }
+  .ai-status { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: bold; color: var(--k-neon); letter-spacing: 1.5px; }
+  .status-indicator { width: 8px; height: 8px; background: var(--k-neon); border-radius: 50%; box-shadow: 0 0 10px var(--k-neon); animation: blink 1.2s infinite; }
+  
+  .ai-body { flex-grow: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; scrollbar-width: none; background: radial-gradient(circle at top right, rgba(0,209,255,0.05), transparent); }
+  
+  .ai-msg { padding: 14px 18px; border-radius: 20px; font-size: 14px; max-width: 85%; line-height: 1.5; animation: fadeIn 0.3s ease; }
+  .ai-msg.bot { background: var(--k-glass); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid rgba(255,255,255,0.1); color: #e0e0e0; }
+  .ai-msg.bot small { display: block; font-size: 9px; color: var(--k-neon); margin-bottom: 6px; font-weight: 900; text-transform: uppercase; }
+  .ai-msg.user { background: var(--k-neon); color: #000; align-self: flex-end; border-bottom-right-radius: 4px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,209,255,0.2); }
+
+  .ai-footer { padding: 20px; display: flex; gap: 10px; background: rgba(0,0,0,0.4); border-top: 1px solid rgba(255,255,255,0.05); }
+  .ai-footer input { flex-grow: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 12px 18px; color: #fff; outline: none; }
+  .ai-footer input:focus { border-color: var(--k-neon); }
+  
+  #sendBtn { background: var(--k-neon); border: none; width: 50px; border-radius: 15px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
+  #sendBtn:hover { transform: scale(1.05); background: #00b8e6; }
+
+  @keyframes k-pulse-expand { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.7); opacity: 0; } }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  
+  .ai-typing { display: flex; gap: 4px; padding: 10px; }
+  .ai-typing span { width: 5px; height: 5px; background: var(--k-neon); border-radius: 50%; animation: bounce 1s infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 </style>
 
 <script>
-  const KNOWLEDGE_BASE = [
-    { keywords: ["hola", "buenos", "quien eres"], resp: "Soy el núcleo de IA de Kieslect. Mi propósito es optimizar tu elección de wearables y resolver dudas técnicas. ¿En qué puedo asistirte?" },
-    { keywords: ["precio", "cuanto vale", "costo"], resp: "Nuestros dispositivos tienen precios competitivos. Puedes ver los precios actuales en la sección de 'Catálogo'. ¿Buscas un modelo de entrada o uno profesional?" },
-    { keywords: ["envio", "entrega", "donde esta", "llega"], resp: "Realizamos envíos a todo el país. El tiempo estimado es de 2 a 5 días hábiles. ¿Deseas rastrear un pedido?" },
-    { keywords: ["agua", "piscina", "nadar", "ip68"], resp: "La mayoría de nuestros modelos como el KS Pro tienen certificación IP68. Son resistentes a inmersiones accidentales y sudor intenso." },
-    { keywords: ["bateria", "duracion", "carga"], resp: "Nuestros relojes están optimizados para durar entre 5 y 9 días con una sola carga, dependiendo del uso de la pantalla Always-On." },
-    { keywords: ["llamadas", "hablar", "contestar"], resp: "Los modelos con tecnología 'Calling' permiten responder y hacer llamadas directamente desde el reloj vía Bluetooth 5.2." },
-    { keywords: ["garantia", "falla", "soporte"], resp: "Cuentas con garantía oficial Kieslect. Si tienes un problema técnico, puedo guiarte para contactar al servicio de post-venta." }
-  ];
-
-  function toggleAIChat() {
-    const chat = document.getElementById('ai-chat-box');
-    chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
-  }
-
-  function handleEnter(e) { if (e.key === 'Enter') askAI(); }
-
-  function askAI() {
-    const input = document.getElementById('ai-input');
-    const msgContainer = document.getElementById('ai-messages');
-    if (!input.value.trim()) return;
-
-    // Agregar mensaje de usuario
-    const userMsg = input.value;
-    addMessage(userMsg, 'user');
-    input.value = "";
-
-    // Lógica de respuesta "Universal"
-    setTimeout(() => {
-      let finalResponse = "He analizado tu consulta. Para darte una respuesta exacta sobre eso, te sugiero revisar nuestra documentación técnica o contactar a un asesor humano aquí: [Soporte]. ¿Hay algo específico de los modelos KS o KR que quieras saber?";
-      
-      const query = userMsg.toLowerCase();
-
-      // Buscar en base de datos local
-      for (let item of KNOWLEDGE_BASE) {
-        if (item.keywords.some(key => query.includes(key))) {
-          finalResponse = item.resp;
-          break;
-        }
-      }
-
-      // Si pregunta algo que no sabe, intenta ser un asistente útil
-      if (finalResponse.includes("He analizado") && query.length > 3) {
-        finalResponse = `Entiendo que tu duda es sobre "${userMsg}". Como asistente Kieslect, mi base de datos indica que esa función/tema está relacionada con nuestro ecosistema. ¿Te gustaría que te redirija con un especialista en vivo?`;
-      }
-
-      addMessage(finalResponse, 'bot');
-    }, 800);
-  }
-
-  function addMessage(text, type) {
-    const msgContainer = document.getElementById('ai-messages');
-    const div = document.createElement('div');
-    div.className = `ai-msg ${type}`;
-    div.innerHTML = type === 'bot' ? `<small>CORE RESPONSE</small>${text}` : text;
-    msgContainer.appendChild(div);
-    msgContainer.scrollTop = msgContainer.scrollHeight;
-  }
-</script>
-
-{% schema %}
-{
-  "name": "Kieslect Universal AI",
-  "settings": [],
-  "presets": [{ "name": "Kieslect Universal AI" }]
-}
-{% endschema %}
+  // BASE DE CONOCIMIENTO EXTENDIDA (IA COMPLETA)
+  const AI_BRAIN = {
+    "saludos": ["hola",
