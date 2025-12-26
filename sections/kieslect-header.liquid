@@ -9,6 +9,14 @@
   .k-drop-trigger:hover { color: var(--k-cyan); }
   .k-drop-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--k-bg); min-width: 280px; border: 1px solid #1a1a1a; border-radius: 12px; padding: 15px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
   .k-dropdown.is-open .k-drop-menu { display: block; animation: kSlideUp 0.25s ease forwards; }
+  
+  /* Soporte Interactivo */
+  .k-support-item { border-bottom: 1px solid #1a1a1a; }
+  .k-support-btn { width: 100%; background: none; border: none; padding: 12px 20px; text-align: left; color: #fff; font-size: 11px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .k-support-answer { max-height: 0; overflow: hidden; transition: all 0.3s ease; background: #111; padding: 0 20px; color: #888; font-size: 10px; line-height: 1.4; }
+  .k-support-item.is-active .k-support-answer { max-height: 100px; padding: 10px 20px; border-top: 1px solid #222; }
+  .k-support-item.is-active .k-support-icon { transform: rotate(45deg); color: var(--k-cyan); }
+
   .k-menu-label { display: block; padding: 12px 20px 5px; color: var(--k-cyan); font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; border-top: 1px solid #1a1a1a; margin-top: 5px; }
   .k-menu-label:first-child { border-top: none; margin-top: 0; padding-top: 5px; }
   .k-item { display: flex !important; align-items: center; justify-content: space-between; padding: 12px 20px; text-decoration: none; transition: background 0.2s ease; border: none; background: transparent; width: 100%; }
@@ -17,6 +25,7 @@
   .k-item-title { color: #fff; font-size: 11px; font-weight: 700; text-transform: uppercase; }
   .k-item-sub { color: #666; font-size: 9px; font-weight: 600; margin-top: 2px; }
   .k-item-icon { color: var(--k-cyan); font-size: 12px; }
+  
   @keyframes kSlideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   @media (max-width: 900px) { .k-nav-main { display: none; } }
 </style>
@@ -24,10 +33,8 @@
 <header class="k-header-wrapper">
   <div class="k-header-container">
     <div class="k-logo"><a href="/">KIESLECT</a></div>
-    
     <nav class="k-nav-main">
       <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
-
       {% assign menu_items = "Productos,Comunidad,Soporte" | split: "," %}
       {% for m_title in menu_items %}
         <div class="k-dropdown js-drop">
@@ -35,24 +42,39 @@
           <div class="k-drop-menu">
             {% for block in section.blocks %}
               {% if block.settings.parent == m_title %}
-                {% if block.type == 'seccion' %}
-                  <span class="k-menu-label">{{ block.settings.title }}</span>
-                {% elsif block.type == 'enlace' %}
-                  <a href="{{ block.settings.url }}" class="k-item" {% if block.settings.download %}download{% endif %}>
-                    <div class="k-item-info">
-                      <span class="k-item-title">{{ block.settings.title }}</span>
-                      {% if block.settings.sub != blank %}<span class="k-item-sub">{{ block.settings.sub }}</span>{% endif %}
+                {% case block.type %}
+                  {% when 'seccion' %}
+                    <span class="k-menu-label">{{ block.settings.title }}</span>
+                  {% when 'enlace' %}
+                    <a href="{{ block.settings.url }}" class="k-item" {% if block.settings.download %}download{% endif %}>
+                      <div class="k-item-info">
+                        <span class="k-item-title">{{ block.settings.title }}</span>
+                        {% if block.settings.sub != blank %}<span class="k-item-sub">{{ block.settings.sub }}</span>{% endif %}
+                      </div>
+                      <span class="k-item-icon">{% if block.settings.download %}⬇{% else %}→{% endif %}</span>
+                    </a>
+                  {% when 'solucion_rapida' %}
+                    <div class="k-support-item js-support-item">
+                      <button class="k-support-btn" onclick="kToggleSupport(this)">
+                        <span>{{ block.settings.question }}</span>
+                        <span class="k-support-icon">+</span>
+                      </button>
+                      <div class="k-support-answer">{{ block.settings.answer }}</div>
                     </div>
-                    <span class="k-item-icon">{% if block.settings.download %}⬇{% else %}→{% endif %}</span>
-                  </a>
-                {% endif %}
+                  {% when 'link_soporte' %}
+                    <a href="{{ block.settings.url }}" class="k-item" style="border-top: 1px dashed #333; margin-top: 10px;">
+                      <div class="k-item-info">
+                        <span class="k-item-title" style="color: var(--k-cyan);">{{ block.settings.title }}</span>
+                      </div>
+                      <span class="k-item-icon">↗</span>
+                    </a>
+                {% endcase %}
               {% endif %}
             {% endfor %}
           </div>
         </div>
       {% endfor %}
     </nav>
-
     <div class="k-actions-spacer"></div>
   </div>
 </header>
@@ -64,6 +86,12 @@
     document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
     if (!wasOpen) parent.classList.add('is-open');
   }
+  function kToggleSupport(btn) {
+    const item = btn.closest('.js-support-item');
+    const isActive = item.classList.contains('is-active');
+    document.querySelectorAll('.js-support-item').forEach(el => el.classList.remove('is-active'));
+    if (!isActive) item.classList.add('is-active');
+  }
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.js-drop')) {
       document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
@@ -73,7 +101,7 @@
 
 {% schema %}
 {
-  "name": "Kieslect Header Pro",
+  "name": "Kieslect Header Pro V2",
   "settings": [],
   "blocks": [
     {
@@ -112,8 +140,46 @@
         { "type": "url", "id": "url", "label": "URL" },
         { "type": "checkbox", "id": "download", "label": "¿Descarga?", "default": false }
       ]
+    },
+    {
+      "type": "solucion_rapida",
+      "name": "Asistente: Solución",
+      "settings": [
+        {
+          "type": "select",
+          "id": "parent",
+          "label": "Menú",
+          "default": "Soporte",
+          "options": [
+            {"value": "Productos", "label": "Productos"},
+            {"value": "Comunidad", "label": "Comunidad"},
+            {"value": "Soporte", "label": "Soporte"}
+          ]
+        },
+        { "type": "text", "id": "question", "label": "Pregunta", "default": "¿Cómo reiniciar?" },
+        { "type": "textarea", "id": "answer", "label": "Solución", "default": "Presiona el botón 10 segundos." }
+      ]
+    },
+    {
+      "type": "link_soporte",
+      "name": "Enlace Simple Soporte",
+      "settings": [
+        {
+          "type": "select",
+          "id": "parent",
+          "label": "Menú",
+          "default": "Soporte",
+          "options": [
+            {"value": "Productos", "label": "Productos"},
+            {"value": "Comunidad", "label": "Comunidad"},
+            {"value": "Soporte", "label": "Soporte"}
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Texto", "default": "Ver todo el soporte" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
     }
   ],
-  "presets": [{ "name": "Kieslect Header Pro" }]
+  "presets": [{ "name": "Kieslect Header Pro V2" }]
 }
 {% endschema %}
