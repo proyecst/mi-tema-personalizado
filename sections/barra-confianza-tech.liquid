@@ -20,7 +20,11 @@
   .trust-subtitle { color: #666; font-size: 10px; }
   
   .trust-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #080808; padding: 0 15px; }
-  .trust-item-wrapper.is-active .trust-content { max-height: 500px; padding: 10px 15px 20px 15px; border-top: 1px solid #1a1a1a; }
+  .trust-item-wrapper.is-active .trust-content { max-height: 450px; padding: 10px 15px 20px 15px; border-top: 1px solid #1a1a1a; }
+  
+  /* Bloques de Información (Add Blocks) */
+  .info-block { background: #111; padding: 12px; border-radius: 6px; border-left: 3px solid var(--k-cyan); margin-bottom: 10px; }
+  .info-block p { color: #ccc; font-size: 10px; margin: 0; line-height: 1.4; }
   
   .trust-form { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
   .trust-input { 
@@ -50,17 +54,16 @@
         </div>
         <div class="trust-text">
           <span class="trust-title">Envío Gratis</span>
-          <span class="trust-subtitle">Registra tus datos</span>
+          <span class="trust-subtitle">Datos de entrega</span>
         </div>
       </div>
       <div class="trust-content">
         <form action="/contact#contact_form" method="post" class="trust-form">
-          <p style="color:#888; font-size:9px; margin:0;">Completa para verificar cobertura:</p>
           <input type="text" name="contact[name]" class="trust-input" placeholder="Nombre completo" required>
-          <input type="email" name="contact[email]" class="trust-input" placeholder="Correo electrónico" required>
+          <input type="email" name="contact[email]" class="trust-input" placeholder="Email" required>
           <input type="tel" name="contact[phone]" class="trust-input" placeholder="Teléfono" required>
           <input type="text" name="contact[city]" class="trust-input" placeholder="Ciudad" required>
-          <button type="submit" class="trust-btn">Enviar Datos</button>
+          <button type="submit" class="trust-btn">Solicitar Envío</button>
         </form>
       </div>
     </div>
@@ -72,15 +75,14 @@
         </div>
         <div class="trust-text">
           <span class="trust-title">Pago Seguro</span>
-          <span class="trust-subtitle">Métodos y Entretenimiento</span>
+          <span class="trust-subtitle">Métodos de Pago</span>
         </div>
       </div>
       <div class="trust-content">
-        <p style="color:#888; font-size:9px; margin-bottom:8px;">Aceptamos: Visa, Mastercard, AMEX y Transferencia Bancaria Protegida.</p>
-        <hr style="border: 0; border-top: 1px solid #222; margin-bottom: 8px;">
-        <p style="color:#var(--k-cyan); font-size:9px; margin-bottom:8px; font-weight:bold;">¡Juega mientras esperas!</p>
-        <a href="TU_LINK_DEL_JUEGO_AQUI" target="_blank" class="trust-btn" style="background:#333; color:#fff; margin-bottom:5px;">Abrir Juego</a>
-        <button class="trust-btn" onclick="location.href='/pages/metodos-pago'">Info de Pagos</button>
+        <div class="info-block">
+          <p><strong>Transferencias:</strong> Aceptamos pagos directos y tarjetas de crédito. Los datos se encriptan mediante SSL de 256 bits.</p>
+        </div>
+        <button class="trust-btn" onclick="location.href='/pages/pagos'">Ver Detalles de Pago</button>
       </div>
     </div>
 
@@ -107,31 +109,4 @@
         <div class="trust-icon-wrapper">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path></svg>
         </div>
-        <div class="trust-text">
-          <span class="trust-title">Soporte 24/7</span>
-          <span class="trust-subtitle">Atención Humana</span>
-        </div>
-      </div>
-      <div class="trust-content">
-        <p style="color:#888; font-size:9px; margin-bottom:10px;">¿Necesitas ayuda? Nuestro equipo está listo para atenderte personalmente.</p>
-        <a href="TU_LINK_DE_SOPORTE_AQUI" class="trust-btn">Contactar Soporte</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<script>
-function toggleTrust(element) {
-  const wrapper = element.parentElement;
-  const isActive = wrapper.classList.contains('is-active');
-  
-  document.querySelectorAll('.trust-item-wrapper').forEach(item => {
-    item.classList.remove('is-active');
-  });
-
-  if (!isActive) {
-    wrapper.classList.add('is-active');
-  }
-}
-</script>
+        <div class="trust
