@@ -1,6 +1,6 @@
 <style>
   :root { --k-cyan: #00D1FF; --k-dark: #050505; }
-  .trust-bar-section { background-color: #000; padding: 40px 0; border-top: 1px solid #1a1a1a; font-family: sans-serif; }
+  .trust-bar-section { background-color: #000; padding: 40px 0; border-top: 1px solid #1a1a1a; font-family: 'Inter', sans-serif; }
   .trust-bar-grid { 
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
@@ -9,7 +9,46 @@
     margin: 0 auto; 
     padding: 0 20px; 
   }
-  .trust-item-wrapper { background: var(--k-dark); border-radius: 12px; border: 1px solid #1a1a1a; overflow: hidden; }
-  .trust-item-wrapper.is-active { border-color: var(--k-cyan); }
+  .trust-item-wrapper { background: var(--k-dark); border-radius: 12px; border: 1px solid #1a1a1a; transition: 0.3s; overflow: hidden; }
+  .trust-item-wrapper:hover { border-color: var(--k-cyan); }
+  .trust-item-wrapper.is-active { border-color: var(--k-cyan); box-shadow: 0 0 15px rgba(0, 209, 255, 0.1); }
   
-  .trust-header { display: flex; align-items: center; gap: 10px; padding:
+  .trust-header { display: flex; align-items: center; gap: 10px; padding: 15px; cursor: pointer; }
+  .trust-icon-wrapper { width: 24px; color: var(--k-cyan); display: flex; align-items: center; }
+  .trust-text { display: flex; flex-direction: column; }
+  .trust-title { color: #fff; font-weight: 700; font-size: 11px; text-transform: uppercase; display: block; }
+  .trust-subtitle { color: #666; font-size: 10px; }
+  
+  .trust-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #080808; padding: 0 15px; }
+  .trust-item-wrapper.is-active .trust-content { max-height: 350px; padding: 10px 15px 20px 15px; border-top: 1px solid #1a1a1a; }
+  
+  /* Estilo Bloque Manual (Add Block) */
+  .manual-block { background: #111; padding: 10px; border-radius: 6px; border: 1px dashed #333; margin-bottom: 10px; }
+  .manual-block p { color: #ccc; font-size: 10px; margin: 0; line-height: 1.4; }
+
+  .trust-btn { 
+    background: var(--k-cyan); color: #000; border: none; width: 100%; 
+    padding: 10px; border-radius: 5px; font-weight: 800; font-size: 10px; 
+    cursor: pointer; transition: 0.3s; text-transform: uppercase; text-decoration: none; display: block; text-align: center;
+  }
+  .trust-btn:hover { background: #fff; transform: translateY(-2px); }
+
+  @media (max-width: 1000px) { .trust-bar-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .trust-bar-grid { grid-template-columns: 1fr; } }
+</style>
+
+<section class="trust-bar-section">
+  <div class="trust-bar-grid">
+    
+    <div class="trust-item-wrapper">
+      <div class="trust-header" onclick="toggleTrust(this)">
+        <div class="trust-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11l4 4L19 7"></path></svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">Envío Gratis</span>
+          <span class="trust-subtitle">Aplica en tu zona</span>
+        </div>
+      </div>
+      <div class="trust-content">
+        <p style="color:#888; font-size:9px; margin-bottom:10
