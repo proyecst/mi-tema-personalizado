@@ -20,7 +20,7 @@
             "parent": "Soporte",
             "title": "heplkieslect@gmail.com",
             "sub": "Descripción",
-            "url": "",
+            "url": "https://www.kieslect.com/es/blogs/",
             "download": false
           }
         },
@@ -89,7 +89,6 @@
     },
     "barra_confianza_tech_Az8xPH": {
       "type": "barra-confianza-tech",
-      "disabled": true,
       "name": "Barra de Confianza Tech",
       "settings": {}
     },
