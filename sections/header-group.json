@@ -77,6 +77,11 @@
       "name": "Kieslect Header",
       "settings": {}
     },
+    "barra_confianza_tech_Az8xPH": {
+      "type": "barra-confianza-tech",
+      "name": "Barra de Confianza Tech",
+      "settings": {}
+    },
     "trust_bar_7X8Kwh": {
       "type": "trust-bar",
       "name": "Barra de Confianza",
@@ -153,18 +158,13 @@
         "bg_color": "#ffffff"
       }
     },
-    "barra_confianza_tech_Az8xPH": {
-      "type": "barra-confianza-tech",
-      "name": "Barra de Confianza Tech",
-      "settings": {}
-    },
     "series_ia_HmgFFW": {
       "type": "series-ia",
       "blocks": {
         "serie_RB6hJb": {
           "type": "serie",
           "settings": {
-            "image": "shopify://shop_images/KsM-01.png",
+            "image": "shopify://shop_images/kieslect-calling-watch-ks-3-2.webp",
             "title": "ks3",
             "link": "https://www.kieslect.com/?s=ks3"
           }
