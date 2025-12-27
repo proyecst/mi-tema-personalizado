@@ -5,38 +5,26 @@
 <div id="ai-chat-box" class="ai-window">
   <div class="ai-header">
     <span>KIESLECT AI ASSISTANT</span>
-    <button onclick="toggleAIChat()" style="background:none; border:none; color:var(--neon); font-size:20px; cursor:pointer;">✕</button>
+    <button onclick="toggleAIChat()" style="background:none; border:none; color:#000; font-weight:bold; cursor:pointer;">✕</button>
   </div>
-  
   <div id="ai-messages" class="ai-body">
     <div class="ai-msg bot">Hola, soy la IA de Kieslect. ¿En qué puedo ayudarte hoy?</div>
-    
-    <div id="ai-suggestions" class="ai-suggestions-container">
-       <button class="ai-suggest-btn" onclick="quickAsk('Soporte Técnico')">🛠️ Soporte</button>
-       <button class="ai-suggest-btn" onclick="quickAsk('Manuales de Usuario')">📖 Manuales</button>
-       <button class="ai-suggest-btn" onclick="quickAsk('Garantía')">🛡️ Garantía</button>
-       <button class="ai-suggest-btn" onclick="quickAsk('Estado de mi pedido')">📦 Mi Pedido</button>
-    </div>
   </div>
-
   <div class="ai-footer">
     <input type="text" id="ai-input" placeholder="Escribe tu duda técnica..." onkeypress="handleEnter(event)">
     <button onclick="askAI()">ENVIAR</button>
+
   </div>
 </div>
 
 <style>
-  :root { 
-    --neon: #00D1FF; 
-    --dark: #0a0a0a; 
-  }
+  :root { --neon: #00D1FF; --dark: #0a0a0a; }
   
   .ai-launcher {
     position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
     background: var(--dark); border: 2px solid var(--neon); border-radius: 50%;
     display: flex; align-items: center; justify-content: center; cursor: pointer;
     z-index: 10000; box-shadow: 0 0 20px rgba(0,209,255,0.4);
-    transition: 0.3s;
   }
   .ai-launcher svg { width: 30px; fill: var(--neon); }
 
@@ -44,92 +32,43 @@
     position: fixed; bottom: 100px; right: 30px; width: 350px; height: 500px;
     background: var(--dark); border: 1px solid #333; border-radius: 15px;
     display: none; flex-direction: column; z-index: 10000; overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
+    /* --- PEGAR ESTO AL FINAL DEL <style> --- */
+.ai-body {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: 380px;
+  overflow-y: auto;
+  gap: 10px;
+}
 
-  .ai-header {
-    background: #111; padding: 15px; display: flex; justify-content: space-between;
-    align-items: center; border-bottom: 1px solid #333; color: var(--neon); font-weight: bold;
-  }
+.ai-msg {
+  max-width: 85%;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
 
-  .ai-body {
-    flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
-    background: #0a0a0a;
-  }
+.ai-msg.bot {
+  align-self: flex-start;
+  background: #222;
+  color: #fff;
+  border: 1px solid #333;
+}
 
-  .ai-msg { padding: 10px 14px; border-radius: 15px; font-size: 14px; max-width: 80%; }
-  .ai-msg.bot { align-self: flex-start; background: #222; color: #eee; border: 1px solid #333; }
-  .ai-msg.user { align-self: flex-end; background: var(--neon); color: #000; font-weight: 500; }
+.ai-msg.user {
+  align-self: flex-end;
+  background: var(--neon);
+  color: #000;
+  font-weight: 500;
+}
 
-  /* Estilos de botones de sugerencia */
-  .ai-suggestions-container {
-    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px;
-  }
-  .ai-suggest-btn {
-    background: transparent; border: 1px solid var(--neon); color: var(--neon);
-    padding: 6px 12px; border-radius: 20px; font-size: 12px; cursor: pointer;
-    transition: 0.3s;
-  }
-  .ai-suggest-btn:hover { background: var(--neon); color: #000; }
+.support-card {
+  border: 1px dashed var(--neon);
+  padding: 10px;
+  margin-top: 5px;
+  background: #000;
+}
 
-  .ai-footer { padding: 15px; background: #111; display: flex; gap: 5px; }
-  #ai-input { flex: 1; background: #222; border: 1px solid #444; color: white; padding: 8px; border-radius: 5px; outline: none; }
-  .ai-footer button { background: var(--neon); border: none; color: black; padding: 8px 12px; border-radius: 5px; font-weight: bold; cursor: pointer; }
-
-  .support-card {
-    background: rgba(0, 209, 255, 0.1); border: 1px solid var(--neon);
-    padding: 10px; border-radius: 8px; font-size: 13px;
-  }
-</style>
-
-<script>
-  function toggleAIChat() {
-    const chat = document.getElementById('ai-chat-box');
-    chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
-  }
-
-  function handleEnter(event) {
-    if (event.key === 'Enter') { askAI(); }
-  }
-
-  // Función para los botones rápidos
-  function quickAsk(text) {
-    document.getElementById('ai-input').value = text;
-    askAI();
-  }
-
-  function askAI() {
-    const input = document.getElementById('ai-input');
-    const messages = document.getElementById('ai-messages');
-    const text = input.value.trim();
-
-    if (!text) return;
-
-    // Quitar sugerencias para limpiar el chat
-    const suggestions = document.getElementById('ai-suggestions');
-    if(suggestions) suggestions.style.display = 'none';
-
-    messages.innerHTML += `<div class="ai-msg user">${text}</div>`;
-    input.value = '';
-
-    setTimeout(() => {
-      let response = "";
-      const query = text.toLowerCase();
-
-      if (query.includes("soporte") || query.includes("ayuda")) {
-        response = `<div class="support-card">🛠️ <strong>Centro de Soporte:</strong><br>Email: soporte@kieslect.com<br>WhatsApp: +123 456 7890</div>`;
-      } else if (query.includes("garantía") || query.includes("garantia")) {
-        response = "🛡️ Nuestros productos tienen **1 año de garantía** limitada por defectos de fábrica.";
-      } else if (query.includes("pedido")) {
-        response = "📦 Para rastrear tu pedido, ingresa tu número de guía en la sección 'Rastreo' de nuestro menú.";
-      } else if (query.includes("manual")) {
-        response = "📖 Puedes descargar los manuales digitales en la sección de 'Descargas' de cada producto.";
-      } else {
-        response = "He recibido tu mensaje. ¿Deseas hablar con un agente humano de soporte?";
-      }
-
-      messages.innerHTML += `<div class="ai-msg bot">${response}</div>`;
-      messages.scrollTop = messages.scrollHeight;
-    }, 600);
-  }
-</script>
+<script> 
