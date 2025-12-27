@@ -89,6 +89,7 @@
     },
     "barra_confianza_tech_Az8xPH": {
       "type": "barra-confianza-tech",
+      "disabled": true,
       "name": "Barra de Confianza Tech",
       "settings": {}
     },
@@ -425,12 +426,20 @@
       "disabled": true,
       "name": "Grid de Categorías Smartwatch",
       "settings": {}
+    },
+    "galerias_de_series_WJ9CdX": {
+      "type": "galerias-de-series",
+      "name": "Galería de Series",
+      "settings": {
+        "title": "Galería de Series"
+      }
     }
   },
   "order": [
     "kieslect_header_7Bj6Gk",
     "trust_bar_7X8Kwh",
     "barra_efectiva_ty7y9a",
+    "galerias_de_series_WJ9CdX",
     "barra_confianza_tech_Az8xPH",
     "series_ia_HmgFFW",
     "kieslect_interactive_grid_wP7wWD",
