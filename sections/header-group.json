@@ -414,6 +414,11 @@
       "type": "chatbot-kieslect",
       "name": "Chatbot Kieslect",
       "settings": {}
+    },
+    "custom_section_cbV9pq": {
+      "type": "custom-section",
+      "name": "t:general.custom_section",
+      "settings": {}
     }
   },
   "order": [
@@ -433,6 +438,7 @@
     "kieslect_edu_center_4MnPmH",
     "kieslect_tech_newsletter_EMW4Nk",
     "kieslect_ai_assistant_6Npar6",
-    "chatbot_kieslect_kdMWME"
+    "chatbot_kieslect_kdMWME",
+    "custom_section_cbV9pq"
   ]
 }
