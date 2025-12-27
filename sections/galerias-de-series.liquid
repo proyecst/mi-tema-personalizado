@@ -1,101 +1,107 @@
-<div class="galeria-montaje" style="background-color: {{ section.settings.bg_color }};">
+<section class="galeria-series-custom" style="background-color: {{ section.settings.bg_color }};">
   {% if section.settings.title != blank %}
-    <h2 class="titulo-seccion">{{ section.settings.title }}</h2>
+    <h2 class="titulo-galeria">{{ section.settings.title }}</h2>
   {% endif %}
 
-  <div class="contenedor-grid">
-    {%- for block in section.blocks -%}
-      <div class="bloque-item" {{ block.shopify_attributes }}>
+  <div class="grid-series">
+    {% for block in section.blocks %}
+      <div class="tarjeta-serie" {{ block.shopify_attributes }}>
+        <div class="imagen-contenedor">
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title }}">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg-custom' }}
+          {% endif %}
+        </div>
         
-        <div class="imagen-wrapper">
-          {%- if block.settings.imagen_subida != blank -%}
-            <img src="{{ block.settings.imagen_subida | image_url: width: 800 }}" alt="{{ block.settings.texto_titulo }}">
-          {%- else -%}
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-          {%- endif -%}
+        <div class="texto-contenedor">
+          <h3>{{ block.settings.title }}</h3>
+          <div class="descripcion-corta">{{ block.settings.desc }}</div>
+          {% if block.settings.link != blank %}
+             <a href="{{ block.settings.link }}" class="boton-serie">Ver más</a>
+          {% endif %}
         </div>
-
-        <div class="contenido-texto">
-          <h3>{{ block.settings.texto_titulo }}</h3>
-          <div class="desc">{{ block.settings.texto_desc }}</div>
-        </div>
-
       </div>
-    {%- endfor -%}
+    {% endfor %}
   </div>
-</div>
+</section>
 
 <style>
-  .galeria-montaje { padding: 40px 20px; text-align: center; }
-  .titulo-seccion { margin-bottom: 30px; font-size: 24px; }
-  .contenedor-grid { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 20px; 
-    justify-content: center; 
+  .galeria-series-custom { padding: 50px 20px; max-width: 1400px; margin: 0 auto; text-align: center; }
+  .titulo-galeria { font-size: 2.5rem; margin-bottom: 40px; }
+  .grid-series { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; 
   }
-  .bloque-item { 
-    flex: 1 1 300px; 
-    max-width: 400px; 
-    border: 1px solid #eee; 
-    padding: 10px;
-    background: #fff;
-  }
-  .imagen-wrapper img, .placeholder-svg { 
+  .tarjeta-serie { border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background: #fff; }
+  .imagen-contenedor img, .placeholder-svg-custom { 
     width: 100%; 
-    height: 300px; 
+    height: 350px; 
     object-fit: cover; 
+    display: block;
+    background: #f0f0f0;
   }
-  .contenido-texto { padding: 15px; text-align: left; }
+  .texto-contenedor { padding: 20px; text-align: left; }
+  .texto-contenedor h3 { margin: 0 0 10px 0; font-size: 1.5rem; }
+  .descripcion-corta { margin-bottom: 20px; color: #666; }
+  .boton-serie { text-decoration: underline; font-weight: bold; color: #000; }
 </style>
 
 {% schema %}
 {
-  "name": "Mi Galería Manual",
+  "name": "Galería de Series",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Título de la Sección",
-      "default": "Galería Personalizada"
+      "default": "Nuestras Series"
     },
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Fondo de Sección",
+      "label": "Color de Fondo",
       "default": "#ffffff"
     }
   ],
   "blocks": [
     {
-      "type": "contenido_manual",
-      "name": "Bloque de Contenido",
+      "type": "bloque_serie",
+      "name": "Serie",
       "settings": [
         {
           "type": "image_picker",
-          "id": "imagen_subida",
-          "label": "Sube tu Imagen"
+          "id": "image",
+          "label": "Imagen de la Serie"
         },
         {
           "type": "text",
-          "id": "texto_titulo",
-          "label": "Título del bloque",
-          "default": "Nueva Serie"
+          "id": "title",
+          "label": "Título",
+          "default": "Nombre de la Serie"
         },
         {
           "type": "richtext",
-          "id": "texto_desc",
+          "id": "desc",
           "label": "Descripción",
-          "default": "<p>Escribe aquí el detalle de esta imagen.</p>"
+          "default": "<p>Agrega un resumen aquí.</p>"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Mi Galería Manual",
+      "name": "Galería de Series",
       "blocks": [
-        { "type": "contenido_manual" }
+        { "type": "bloque_serie" },
+        { "type": "bloque_serie" },
+        { "type": "bloque_serie" }
       ]
     }
   ]
