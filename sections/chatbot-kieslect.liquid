@@ -13,6 +13,7 @@
   <div class="ai-footer">
     <input type="text" id="ai-input" placeholder="Escribe tu duda técnica..." onkeypress="handleEnter(event)">
     <button onclick="askAI()">ENVIAR</button>
+
   </div>
 </div>
 
@@ -31,3 +32,41 @@
     position: fixed; bottom: 100px; right: 30px; width: 350px; height: 500px;
     background: var(--dark); border: 1px solid #333; border-radius: 15px;
     display: none; flex-direction: column; z-index: 10000; overflow: hidden;
+    /* --- PEGAR ESTO AL FINAL DEL <style> --- */
+.ai-body {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: 380px;
+  overflow-y: auto;
+  gap: 10px;
+}
+
+.ai-msg {
+  max-width: 85%;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.ai-msg.bot {
+  align-self: flex-start;
+  background: #222;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.ai-msg.user {
+  align-self: flex-end;
+  background: var(--neon);
+  color: #000;
+  font-weight: 500;
+}
+
+.support-card {
+  border: 1px dashed var(--neon);
+  padding: 10px;
+  margin-top: 5px;
+  background: #000;
+}
