@@ -22,7 +22,6 @@
   .trust-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #080808; padding: 0 15px; }
   .trust-item-wrapper.is-active .trust-content { max-height: 500px; padding: 10px 15px 20px 15px; border-top: 1px solid #1a1a1a; }
   
-  /* ESTILO ADD BLOCK */
   .add-block-info {
     background: rgba(0, 209, 255, 0.05);
     border: 1px dashed var(--k-cyan);
@@ -64,12 +63,13 @@
         </div>
       </div>
       <div class="trust-content">
-        <form action="/contact#contact_form" method="post" class="trust-form">
-          <input type="text" placeholder="Nombre completo" class="trust-input" required>
-          <input type="email" placeholder="Correo electrónico" class="trust-input" required>
-          <input type="text" placeholder="Ciudad y Dirección" class="trust-input" required>
-          <button type="submit" class="trust-btn">Enviar Formulario</button>
+        <form id="rea-form" class="trust-form">
+          <input type="text" name="contact[name]" placeholder="Nombre completo" class="trust-input" required>
+          <input type="email" name="contact[email]" placeholder="Correo electrónico" class="trust-input" required>
+          <input type="text" name="contact[address]" placeholder="Ciudad y Dirección" class="trust-input" required>
+          <button type="submit" class="trust-btn" id="btn-envio-rea">Enviar Formulario</button>
         </form>
+        <div id="rea-mensaje" style="font-size: 10px; margin-top: 10px; display: none;"></div>
       </div>
     </div>
 
@@ -130,6 +130,7 @@
 </section>
 
 <script>
+// --- FUNCIÓN ORIGINAL MANTENIDA ---
 function toggleTrust(element) {
   const wrapper = element.closest('.trust-item-wrapper');
   const isActive = wrapper.classList.contains('is-active');
@@ -140,6 +141,39 @@ function toggleTrust(element) {
     wrapper.classList.add('is-active');
   }
 }
+
+// --- NUEVA FUNCIÓN PARA ENVIAR REA/ERS A SHOPIFY ---
+document.getElementById('rea-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const btn = document.getElementById('btn-envio-rea');
+  const msg = document.getElementById('rea-mensaje');
+  const formData = new FormData(this);
+  
+  btn.innerText = 'ENVIANDO...';
+  btn.disabled = true;
+
+  // Usamos el endpoint nativo de Shopify para contacto (seguro para frontend)
+  fetch('/contact', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(() => {
+    msg.style.display = 'block';
+    msg.style.color = '#00D1FF';
+    msg.innerText = '✅ ¡Recibido! Nos contactaremos pronto.';
+    btn.innerText = 'ENVIADO';
+    this.reset();
+  })
+  .catch(error => {
+    msg.style.display = 'block';
+    msg.style.color = '#ff4444';
+    msg.innerText = '❌ Error al enviar. Intenta de nuevo.';
+    btn.innerText = 'REINTENTAR';
+    btn.disabled = false;
+  });
+});
 </script>
 
 {% schema %}
