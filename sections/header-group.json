@@ -87,7 +87,7 @@
       "type": "trust-bar-interactive",
       "name": "Trust Bar Acordeón",
       "settings": {
-        "add_block_text": "",
+        "add_block_text": "Aceptamos todas las tarjetas y pagos seguros.",
         "label_1": "Pagar con PayPal",
         "link_1": "",
         "label_2": "Ver Métodos",
