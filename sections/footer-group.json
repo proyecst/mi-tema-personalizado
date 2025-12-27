@@ -14,8 +14,10 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "menu": "",
-        "show_payment_icons": true
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "accent_color": "#ff4f01",
+        "copy_text": "KIESLECT TECHNOLOGY"
       }
     }
   },

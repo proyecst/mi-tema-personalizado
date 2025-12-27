@@ -79,18 +79,38 @@
     },
     "barra_confianza_tech_Az8xPH": {
       "type": "barra-confianza-tech",
-      "disabled": true,
       "name": "Barra de Confianza Tech",
       "settings": {}
     },
     "trust_bar_interactive_YDWdbw": {
       "type": "trust-bar-interactive",
+      "disabled": true,
       "name": "Trust Bar Acordeón",
+      "settings": {}
+    },
+    "hero_animado_kieslect_6NKX9X": {
+      "type": "hero-animado-kieslect",
+      "disabled": true,
+      "name": "Banner Animado Pro",
+      "settings": {
+        "title": "Kieslect KS3",
+        "subtitle": "El futuro de la tecnología con pantalla AMOLED y doble núcleo.",
+        "btn_text": "Comprar Ahora",
+        "btn_link": "",
+        "btn_color": "#e62e04",
+        "text_alignment": "flex-start",
+        "height_desktop": 80,
+        "height_mobile": 60
+      }
+    },
+    "trust_bar_v3_ahJkw9": {
+      "type": "trust-bar-v3",
+      "disabled": true,
+      "name": "Barra de Confianza V3",
       "settings": {}
     },
     "trust_bar_7X8Kwh": {
       "type": "trust-bar",
-      "disabled": true,
       "name": "Barra de Confianza",
       "settings": {}
     },
@@ -385,63 +405,14 @@
         "padding_bottom": 80
       }
     },
-    "kieslect_tech_footer_63wGGc": {
-      "type": "kieslect-tech-footer",
-      "name": "Kieslect Tech Footer",
-      "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "accent_color": "#00d1ff",
-        "copyright_text": "KIESLECT TECHNOLOGY. ENGINEERED FOR THE FUTURE."
-      }
-    },
     "kieslect_ai_assistant_6Npar6": {
       "type": "kieslect-ai-assistant",
       "name": "Kieslect AI Assistant",
       "settings": {}
     },
-    "caracteristicas_reloj_Vy3xdp": {
-      "type": "caracteristicas-reloj",
-      "disabled": true,
-      "name": "Características Principales Reloj",
-      "settings": {}
-    },
-    "listado_coleccion_avanzado_GJHFJY": {
-      "type": "listado-coleccion-avanzado",
-      "disabled": true,
-      "name": "Listado Profesional",
-      "settings": {}
-    },
-    "header": {
-      "type": "header",
-      "disabled": true,
-      "settings": {
-        "menu": ""
-      }
-    },
-    "hero_animado_kieslect_6NKX9X": {
-      "type": "hero-animado-kieslect",
-      "disabled": true,
-      "name": "Banner Animado Pro",
-      "settings": {
-        "title": "Kieslect KS3",
-        "subtitle": "El futuro de la tecnología con pantalla AMOLED y doble núcleo.",
-        "btn_text": "Comprar Ahora",
-        "btn_link": "",
-        "btn_color": "#e62e04",
-        "text_alignment": "flex-start",
-        "height_desktop": 80,
-        "height_mobile": 60
-      }
-    },
     "chatbot_kieslect_kdMWME": {
       "type": "chatbot-kieslect",
       "name": "Chatbot Kieslect",
-      "settings": {}
-    },
-    "trust_bar_v3_ahJkw9": {
-      "type": "trust-bar-v3",
-      "name": "Barra de Confianza V3",
       "settings": {}
     }
   },
@@ -449,6 +420,8 @@
     "kieslect_header_7Bj6Gk",
     "barra_confianza_tech_Az8xPH",
     "trust_bar_interactive_YDWdbw",
+    "hero_animado_kieslect_6NKX9X",
+    "trust_bar_v3_ahJkw9",
     "trust_bar_7X8Kwh",
     "hero_tech_yAaWMa",
     "barra_efectiva_ty7y9a",
@@ -459,13 +432,7 @@
     "kieslect_tech_comparator_4r3fhy",
     "kieslect_edu_center_4MnPmH",
     "kieslect_tech_newsletter_EMW4Nk",
-    "kieslect_tech_footer_63wGGc",
     "kieslect_ai_assistant_6Npar6",
-    "caracteristicas_reloj_Vy3xdp",
-    "listado_coleccion_avanzado_GJHFJY",
-    "header",
-    "hero_animado_kieslect_6NKX9X",
-    "chatbot_kieslect_kdMWME",
-    "trust_bar_v3_ahJkw9"
+    "chatbot_kieslect_kdMWME"
   ]
 }
