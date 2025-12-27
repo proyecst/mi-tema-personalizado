@@ -1,0 +1,53 @@
+<div id="theme-assistant-container" class="assistant-collapsed">
+  <div class="assistant-header">
+    <span>🤖 Theme Navigator AI</span>
+    <button onclick="toggleAssistant()">X</button>
+  </div>
+  
+  <div class="assistant-body">
+    <input type="text" id="assistant-search" placeholder="¿Qué sección buscas? (ej: banner, footer)..." onkeyup="searchSection()">
+    <div id="assistant-results"></div>
+    <div id="assistant-chat">
+      <p><small>Sugerencia: "Configuración de tipografía"</small></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  #theme-assistant-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: #fff;
+    border: 1px solid #202223;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    font-family: sans-serif;
+  }
+  .assistant-header {
+    background: #008060;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px 8px 0 0;
+  }
+  .assistant-body { padding: 15px; }
+  #assistant-search {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .result-item {
+    background: #f4f6f8;
+    padding: 8px;
+    margin-bottom: 5px;
+    border-left: 3px solid #008060;
+    cursor: pointer;
+    font-size: 13px;
+  }
+</style>
