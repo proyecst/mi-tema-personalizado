@@ -27,25 +27,26 @@
 </section>
 
 <style>
-  .galeria-series-custom { padding: 50px 20px; max-width: 1400px; margin: 0 auto; text-align: center; }
-  .titulo-galeria { font-size: 2.5rem; margin-bottom: 40px; }
+  .galeria-series-custom { padding: 50px 20px; max-width: 1400px; margin: 0 auto; text-align: center; color: #fff; }
+  .titulo-galeria { font-size: 2.5rem; margin-bottom: 40px; color: #fff; }
   .grid-series { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 25px; 
   }
-  .tarjeta-serie { border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background: #fff; }
+  .tarjeta-serie { border: 1px solid #333; border-radius: 10px; overflow: hidden; background: #1a1a1a; }
   .imagen-contenedor img, .placeholder-svg-custom { 
     width: 100%; 
     height: 350px; 
     object-fit: cover; 
     display: block;
-    background: #f0f0f0;
+    background: #222;
   }
   .texto-contenedor { padding: 20px; text-align: left; }
-  .texto-contenedor h3 { margin: 0 0 10px 0; font-size: 1.5rem; }
-  .descripcion-corta { margin-bottom: 20px; color: #666; }
-  .boton-serie { text-decoration: underline; font-weight: bold; color: #000; }
+  .texto-contenedor h3 { margin: 0 0 10px 0; font-size: 1.5rem; color: #fff; }
+  .descripcion-corta { margin-bottom: 20px; color: #ccc; }
+  .descripcion-corta p { margin: 0; color: #ccc; } /* Asegura el color en el richtext */
+  .boton-serie { text-decoration: underline; font-weight: bold; color: #fff; }
 </style>
 
 {% schema %}
@@ -62,7 +63,7 @@
       "type": "color",
       "id": "bg_color",
       "label": "Color de Fondo",
-      "default": "#ffffff"
+      "default": "#000000"
     }
   ],
   "blocks": [
@@ -89,7 +90,7 @@
         },
         {
           "type": "url",
-          "id": "link",
+          "id": "id_link",
           "label": "Enlace"
         }
       ]
