@@ -91,14 +91,21 @@
     document.querySelectorAll('.js-support-item').forEach(el => el.classList.remove('is-active'));
     if (!isActive) item.classList.add('is-active');
   }
+  
+  // Función para copiar el link
   function kCopyLink(url, element) {
     navigator.clipboard.writeText(url).then(() => {
       const titleSpan = element.querySelector('.k-item-title');
       const originalText = titleSpan.innerText;
       titleSpan.innerText = "¡COPIADO!";
-      setTimeout(() => { titleSpan.innerText = originalText; }, 2000);
+      setTimeout(() => {
+        titleSpan.innerText = originalText;
+      }, 2000);
+    }).catch(err => {
+      console.error('Error al copiar: ', err);
     });
   }
+
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.js-drop')) {
       document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
@@ -144,7 +151,7 @@
         },
         { "type": "text", "id": "title", "label": "Título", "default": "Enlace" },
         { "type": "text", "id": "sub", "label": "Subtítulo", "default": "Descripción" },
-        { "type": "url", "id": "url", "label": "URL" },
+        { "type": "url", "id": "id_url", "label": "URL" },
         { "type": "checkbox", "id": "download", "label": "¿Descarga?", "default": false }
       ]
     },
