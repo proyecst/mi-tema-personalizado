@@ -90,12 +90,21 @@
     "galerias_de_series_WJ9CdX": {
       "type": "galerias-de-series",
       "blocks": {
+        "bloque_serie_A3LdWx": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/LoraM-00.png",
+            "title": "Nombre de la Serie",
+            "desc": "<p>Agrega un resumen aquí.</p>",
+            "link": ""
+          }
+        },
         "bloque_serie_bjRzpL": {
           "type": "bloque_serie",
           "settings": {
             "image": "shopify://shop_images/KR3_dorado.jpg",
             "title": "kr3",
-            "desc": "<ul><li><strong>Pantalla:</strong> AMOLED de 2.1\" (Super grande, 60Hz, 1000 nits).</li><li><strong>Llamadas:</strong> Bluetooth 5.3 con micrófono y altavoz (puedes hablar desde el reloj).</li><li><strong>Procesador:</strong> Chip Dual-Core (sistema muy fluido).</li><li><strong>Salud:</strong> Monitoreo 24/7 de ritmo cardíaco, oxígeno (SpO2) y sueño.</li><li><strong>Deporte:</strong> +100 modos deportivos.</li><li><strong>Batería:</strong> 3-5 días de uso normal (hasta 10 en ahorro).</li><li><strong>Resistencia:</strong> Certificación IP68 (resistente al agua y polvo).</li><li><strong>Extras:</strong> Asistente de voz, juegos integrados y Always-on Display.</li></ul><p></p>",
+            "desc": "<h3></h3><ul><li><strong>Pantalla:</strong> AMOLED de <strong>1.43 pulgadas</strong> (Circular).</li><li><strong>Resolución:</strong> 466 x 466 píxeles (Imagen muy nítida).</li><li><strong>Llamadas:</strong> Bluetooth 5.3 (Micrófono y altavoz para contestar desde el reloj).</li><li><strong>Procesador:</strong> Chip Dual Core (Navegación fluida a 60 FPS).</li><li><strong>Salud:</strong> Sensor de frecuencia cardíaca, SpO2 (oxígeno), estrés y monitoreo de sueño.</li><li><strong>Deporte:</strong> Más de 100 modos deportivos.</li><li><strong>Batería:</strong> Hasta <strong>5-7 días</strong> de uso típico.</li><li><strong>Resistencia:</strong> Certificación <strong>IP68</strong> (Resistente a salpicaduras y polvo).</li><li><strong>Función especial:</strong> Always-On Display (Pantalla siempre encendida).</li></ul>",
             "link": ""
           }
         },
@@ -128,6 +137,7 @@
         }
       },
       "block_order": [
+        "bloque_serie_A3LdWx",
         "bloque_serie_bjRzpL",
         "bloque_serie_GppCVQ",
         "bloque_serie_3FzQNh",
