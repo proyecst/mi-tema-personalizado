@@ -90,6 +90,15 @@
     "galerias_de_series_WJ9CdX": {
       "type": "galerias-de-series",
       "blocks": {
+        "bloque_serie_GppCVQ": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/c8079620-18e9-45c9-9739-7fd94d775e8d.jpg",
+            "title": "pura",
+            "desc": "<p>Agrega un re1.19\" Crystal-Clear AMOLED Display.</p><p>Elegant and Streamlined Frame Design.</p><p>Dual Strap.</p><p>BT5.2 Calling.</p><p>IP68 Waterproof.</p><p>100+Sport Modes.sumen aquí.</p>",
+            "link": ""
+          }
+        },
         "bloque_serie_3FzQNh": {
           "type": "bloque_serie",
           "settings": {
@@ -110,6 +119,7 @@
         }
       },
       "block_order": [
+        "bloque_serie_GppCVQ",
         "bloque_serie_3FzQNh",
         "bloque_serie_RAnyy6"
       ],
