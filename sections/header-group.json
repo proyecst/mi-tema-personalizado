@@ -79,12 +79,12 @@
     },
     "barra_confianza_tech_Az8xPH": {
       "type": "barra-confianza-tech",
+      "disabled": true,
       "name": "Barra de Confianza Tech",
       "settings": {}
     },
     "trust_bar_interactive_YDWdbw": {
       "type": "trust-bar-interactive",
-      "disabled": true,
       "name": "Trust Bar Acordeón",
       "settings": {}
     },
