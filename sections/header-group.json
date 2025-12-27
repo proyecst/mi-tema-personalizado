@@ -93,8 +93,9 @@
         "bloque_serie_3FzQNh": {
           "type": "bloque_serie",
           "settings": {
-            "title": "Nombre de la Serie",
-            "desc": "<p>Agrega un resumen aquí.</p>",
+            "image": "shopify://shop_images/Kieslect_Smart_Calling_Watch_Actor_Leading-Negro-Frontal.png",
+            "title": "actor  leading",
+            "desc": "<ul><li>World Biggest 1.6\" LTPO Display</li><li>Premium Stainless Steel Buttons and Strap</li><li>La esencia del bisel cerámico</li><li>Clear & Stable Bluetooth Phone Call</li><li>Dual-Band GPS & 6 Satellites Positioning Systems</li><li>150+ Sports Modes</li><li>5 ATM Waterproof</li><li>24H Health Monitoring</li><li>Compatible with iOS & Android</li><li>Message Reminder</li></ul>",
             "link": ""
           }
         },
@@ -103,7 +104,7 @@
           "settings": {
             "image": "shopify://shop_images/KS2G-02.png",
             "title": "ks2",
-            "desc": "<p>2.01-inch FHD AMOLED display</p><p>Dual core, triple speed</p><p>Pantalla súper dinámica GPU 2.5D</p><p>Sensores biométricos avanzados</p><p>24/7 health management</p><p>Test 3 health indicators with one click</p><p>More than 100 sports modes</p><p>Reconocimiento de movimiento inteligente</p><p>3ATM resistente al agua</p><p>Music playback and control</p><p>Always on display</p><p>Editable dynamic watch face</p><p>Mostrar más<br/><br/></p>",
+            "desc": "<p>2.01-inch FHD AMOLED display</p><p>Dual core, triple speed</p><p>Pantalla súper dinámica GPU 2.5D</p><p>Sensores biométricos avanzados</p><p>24/7 health management</p><p>Test 3 health indicators with one click</p><p>More than 100 sports modes</p><p>Reconocimiento de movimiento inteligente</p><p>3ATM resistente al agua</p><p>Music playback and control</p><p>Always on display</p><p>Editable dynamic watch face</p><p><br/><br/></p>",
             "link": ""
           }
         }
