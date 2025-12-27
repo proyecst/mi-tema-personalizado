@@ -13,41 +13,20 @@
   </div>
 </div>
 
-<style>
+<style id="asistente-estilos">
   #theme-assistant-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    background: #fff;
-    border: 1px solid #202223;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 9999;
-    font-family: sans-serif;
-  }
-  .assistant-header {
-    background: #008060;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 8px 8px 0 0;
-  }
-  .assistant-body { padding: 15px; }
-  #assistant-search {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  .result-item {
-    background: #f4f6f8;
-    padding: 8px;
-    margin-bottom: 5px;
-    border-left: 3px solid #008060;
-    cursor: pointer;
-    font-size: 13px;
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 320px !important;
+    height: auto;
+    background: white !important;
+    border: 2px solid #008060 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+    z-index: 999999 !important; /* Valor muy alto para que no lo tape nada */
+    display: block !important; /* Forzamos la visibilidad */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
   }
 </style>
