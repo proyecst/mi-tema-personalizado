@@ -423,6 +423,18 @@
     },
     "custom_section_cbV9pq": {
       "type": "custom-section",
+      "blocks": {
+        "link_pago_gR4XGa": {
+          "type": "link_pago",
+          "settings": {
+            "link_text": "BOTÓN DE PAGO",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "link_pago_gR4XGa"
+      ],
       "name": "t:general.custom_section",
       "settings": {}
     }

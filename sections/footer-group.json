@@ -10,18 +10,6 @@
 {
   "type": "footer",
   "name": "t:general.footer",
-  "sections": {
-    "footer": {
-      "type": "footer",
-      "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "accent_color": "#ff4f01",
-        "copy_text": "KIESLECT TECHNOLOGY"
-      }
-    }
-  },
-  "order": [
-    "footer"
-  ]
+  "sections": {},
+  "order": []
 }
