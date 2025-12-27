@@ -95,7 +95,7 @@
           "settings": {
             "image": "shopify://shop_images/KR3_dorado.jpg",
             "title": "kr3",
-            "desc": "",
+            "desc": "<ul><li><strong>Pantalla:</strong> AMOLED de 2.1\" (Super grande, 60Hz, 1000 nits).</li><li><strong>Llamadas:</strong> Bluetooth 5.3 con micrófono y altavoz (puedes hablar desde el reloj).</li><li><strong>Procesador:</strong> Chip Dual-Core (sistema muy fluido).</li><li><strong>Salud:</strong> Monitoreo 24/7 de ritmo cardíaco, oxígeno (SpO2) y sueño.</li><li><strong>Deporte:</strong> +100 modos deportivos.</li><li><strong>Batería:</strong> 3-5 días de uso normal (hasta 10 en ahorro).</li><li><strong>Resistencia:</strong> Certificación IP68 (resistente al agua y polvo).</li><li><strong>Extras:</strong> Asistente de voz, juegos integrados y Always-on Display.</li></ul><p></p>",
             "link": ""
           }
         },
