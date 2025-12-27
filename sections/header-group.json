@@ -90,6 +90,15 @@
     "galerias_de_series_WJ9CdX": {
       "type": "galerias-de-series",
       "blocks": {
+        "bloque_serie_qnigEQ": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/lora2-gold_3.jpg",
+            "title": "lora 3",
+            "desc": "<p><strong>Pantalla:</strong> AMOLED de <strong>1.32 pulgadas</strong> (Circular).</p><p><strong>Resolución:</strong> $466 \\times 466$ píxeles con una densidad muy alta (imagen súper nítida).</p><p><strong>Fluidez:</strong> <strong>60 Hz</strong> (esto es clave, ya que se siente tan rápido como un celular moderno).</p><p><strong>Brillo:</strong> 850 nits (perfecto para ver la hora bajo el sol).</p><p><strong>Construcción:</strong> Cuerpo de aluminio con <strong>bisel de acero inoxidable</strong> (mucho más resistente que el plástico). un resumen aquí.</p>",
+            "link": ""
+          }
+        },
         "bloque_serie_A3LdWx": {
           "type": "bloque_serie",
           "settings": {
@@ -137,6 +146,7 @@
         }
       },
       "block_order": [
+        "bloque_serie_qnigEQ",
         "bloque_serie_A3LdWx",
         "bloque_serie_bjRzpL",
         "bloque_serie_GppCVQ",
