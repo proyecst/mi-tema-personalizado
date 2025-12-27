@@ -22,14 +22,16 @@
   .trust-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #080808; padding: 0 15px; }
   .trust-item-wrapper.is-active .trust-content { max-height: 500px; padding: 10px 15px 20px 15px; border-top: 1px solid #1a1a1a; }
   
-  .add-block-info {
-    background: rgba(0, 209, 255, 0.05);
-    border: 1px dashed var(--k-cyan);
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 12px;
+  /* ESTILO PARA LOS BLOQUES DE CONTENIDO (ADD BLOCKS) */
+  .add-block-custom {
+    background: #111;
+    border-left: 3px solid var(--k-cyan);
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
   }
-  .add-block-info p { color: #eee; font-size: 10px; margin: 0; line-height: 1.4; }
+  .add-block-custom p { color: #ccc; font-size: 11px; margin: 0; line-height: 1.5; }
+  .add-block-custom strong { color: var(--k-cyan); display: block; margin-bottom: 4px; }
 
   .trust-form { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
   .trust-input { 
@@ -39,12 +41,13 @@
   .trust-input:focus { border-color: var(--k-cyan); }
   
   .trust-btn { 
-    background: var(--k-cyan); color: #000; border: none; width: 100%; 
+    background: var(--k-cyan); color: #000 !important; border: none; width: 100%; 
     padding: 10px; border-radius: 5px; font-weight: 800; font-size: 10px; 
-    cursor: pointer; transition: 0.3s; text-transform: uppercase; text-decoration: none; display: block; text-align: center;
-    margin-bottom: 5px;
+    cursor: pointer; transition: 0.3s; text-transform: uppercase; text-decoration: none !important; display: block; text-align: center;
+    margin-bottom: 8px;
   }
-  .trust-btn:hover { background: #fff; }
+  .trust-btn:hover { background: #fff; transform: translateY(-2px); }
+  .trust-btn.secondary { background: #333; color: #fff !important; }
 
   @media (max-width: 1000px) { .trust-bar-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .trust-bar-grid { grid-template-columns: 1fr; } }
@@ -80,19 +83,27 @@
         </div>
         <div class="trust-text">
           <span class="trust-title">Pago Seguro</span>
-          <span class="trust-subtitle">Métodos de pago</span>
+          <span class="trust-subtitle">Acceso y Enlaces</span>
         </div>
       </div>
       <div class="trust-content">
-        <div class="add-block-info">
-          <p><strong>Nuestros Enlaces de Pago:</strong><br>
-          Haz clic en los botones de abajo para completar tu compra de forma segura.</p>
+        
+        <div class="add-block-custom">
+          <strong>CONTENIDO IMPORTANTE</strong>
+          <p>Inserta aquí cualquier texto informativo sobre tus promociones o métodos de pago seguros.</p>
         </div>
-        <a href="https://tu-link-aqui.com" target="_blank" class="trust-btn">Pagar con PayPal</a>
-        <a href="https://otro-link-aqui.com" target="_blank" class="trust-btn" style="background: #fff; color: #000;">Ver Catálogo</a>
-        <p style="color: #666; font-size: 9px; margin-top: 10px; text-align: center;">Transacciones cifradas con seguridad SSL.</p>
+
+        <a href="https://TU-LINK-1.com" target="_blank" class="trust-btn">Link de Pago #1</a>
+        <a href="https://TU-LINK-2.com" target="_blank" class="trust-btn">Link de Pago #2</a>
+        <a href="https://TU-LINK-3.com" target="_blank" class="trust-btn secondary">Ver otros servicios</a>
+
+        <div class="add-block-custom" style="border-color: #555; margin-top: 10px;">
+          <p>Dudas? <a href="#" style="color:var(--k-cyan)">Contacta con soporte</a></p>
+        </div>
+
       </div>
     </div>
+
     <div class="trust-item-wrapper">
       <div class="trust-header" onclick="toggleTrust(this)">
         <div class="trust-icon-wrapper">
@@ -122,9 +133,11 @@
         </div>
       </div>
       <div class="trust-content">
-        <div class="add-block-info">
-          <p><strong>Contacto Directo:</strong><br>Nuestro equipo está disponible para ayudarte con cualquier duda técnica o de pedido.</p>
+        <div class="add-block-custom">
+          <strong>Atención al cliente</strong>
+          <p>Atendemos vía WhatsApp o Correo de Lunes a Domingo.</p>
         </div>
+        <a href="mailto:soporte@tienda.com" class="trust-btn secondary">Enviar Email</a>
       </div>
     </div>
 
