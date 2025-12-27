@@ -79,11 +79,18 @@
     },
     "barra_confianza_tech_Az8xPH": {
       "type": "barra-confianza-tech",
+      "disabled": true,
       "name": "Barra de Confianza Tech",
+      "settings": {}
+    },
+    "trust_bar_interactive_YDWdbw": {
+      "type": "trust-bar-interactive",
+      "name": "Trust Bar Acordeón",
       "settings": {}
     },
     "trust_bar_7X8Kwh": {
       "type": "trust-bar",
+      "disabled": true,
       "name": "Barra de Confianza",
       "settings": {}
     },
@@ -436,6 +443,7 @@
   "order": [
     "kieslect_header_7Bj6Gk",
     "barra_confianza_tech_Az8xPH",
+    "trust_bar_interactive_YDWdbw",
     "trust_bar_7X8Kwh",
     "hero_tech_yAaWMa",
     "barra_efectiva_ty7y9a",
