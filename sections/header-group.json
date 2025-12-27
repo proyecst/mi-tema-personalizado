@@ -438,6 +438,11 @@
       "type": "chatbot-kieslect",
       "name": "Chatbot Kieslect",
       "settings": {}
+    },
+    "trust_bar_v3_ahJkw9": {
+      "type": "trust-bar-v3",
+      "name": "Barra de Confianza V3",
+      "settings": {}
     }
   },
   "order": [
@@ -460,6 +465,7 @@
     "listado_coleccion_avanzado_GJHFJY",
     "header",
     "hero_animado_kieslect_6NKX9X",
-    "chatbot_kieslect_kdMWME"
+    "chatbot_kieslect_kdMWME",
+    "trust_bar_v3_ahJkw9"
   ]
 }
