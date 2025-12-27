@@ -86,7 +86,13 @@
     "trust_bar_interactive_YDWdbw": {
       "type": "trust-bar-interactive",
       "name": "Trust Bar Acordeón",
-      "settings": {}
+      "settings": {
+        "add_block_text": "",
+        "label_1": "Pagar con PayPal",
+        "link_1": "",
+        "label_2": "Ver Métodos",
+        "link_2": ""
+      }
     },
     "hero_animado_kieslect_6NKX9X": {
       "type": "hero-animado-kieslect",
