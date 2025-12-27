@@ -95,6 +95,15 @@
     "galerias_de_series_WJ9CdX": {
       "type": "galerias-de-series",
       "blocks": {
+        "bloque_serie_aTpW4e": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/kieslect-calling-watch-ks-3-2.webp",
+            "title": "ks3",
+            "desc": "<p>GPS：Precision GPS Positioning & 6 Satellite Systems.</p><p>2.1 Adaptive Curved AMOLED Display.</p><p>Clear and Stable Bluetooth Calling.</p><p>Resistente al agua hasta 5 ATM.</p><p>Más de 150 modos deportivos.</p><p>Spin Navigation Wheel:Seamlessly scroll menus,adjust volume,and multitask with ease.</p><p>3D Floating Interface: Swipe the homepage to the right to see application cardslong-press to display the 3D rotation effect(all applicationcards arega un resumen aquí.</p>",
+            "id_link": ""
+          }
+        },
         "bloque_serie_qnigEQ": {
           "type": "bloque_serie",
           "settings": {
@@ -145,6 +154,7 @@
         }
       },
       "block_order": [
+        "bloque_serie_aTpW4e",
         "bloque_serie_qnigEQ",
         "bloque_serie_A3LdWx",
         "bloque_serie_bjRzpL",
