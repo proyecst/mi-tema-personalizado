@@ -87,6 +87,28 @@
       "name": "Barra Efectiva",
       "settings": {}
     },
+    "galerias_de_series_WJ9CdX": {
+      "type": "galerias-de-series",
+      "blocks": {
+        "bloque_serie_RAnyy6": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/KS2G-02.png",
+            "title": "ks2",
+            "desc": "<p>Agrega un resumen aquí.</p>",
+            "link": "shopify://products/kieslect-smartwatch-ks2"
+          }
+        }
+      },
+      "block_order": [
+        "bloque_serie_RAnyy6"
+      ],
+      "name": "Galería de Series",
+      "settings": {
+        "title": "Galería de Series",
+        "bg_color": "#ffffff"
+      }
+    },
     "barra_confianza_tech_Az8xPH": {
       "type": "barra-confianza-tech",
       "disabled": true,
@@ -426,13 +448,6 @@
       "disabled": true,
       "name": "Grid de Categorías Smartwatch",
       "settings": {}
-    },
-    "galerias_de_series_WJ9CdX": {
-      "type": "galerias-de-series",
-      "name": "Galería de Series",
-      "settings": {
-        "title": "Galería de Series"
-      }
     }
   },
   "order": [
