@@ -48,32 +48,19 @@
 
 {% schema %}
 {
-  "name": "Series Destacadas",
+  "name": "Galería de Series",  // <--- Cambia este nombre
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Título de la sección",
-      "default": "Nuestras Series Destacadas"
-    },
-    {
-      "type": "blog",
-      "id": "blog_selected",
-      "label": "Seleccionar Blog"
-    },
-    {
-      "type": "range",
-      "id": "post_limit",
-      "min": 2,
-      "max": 6,
-      "step": 1,
-      "label": "Posts a mostrar",
-      "default": 3
+      "default": "Galería de Series" // <--- Y este nombre
     }
+    // ... resto del código
   ],
   "presets": [
     {
-      "name": "Series Destacadas"
+      "name": "Galería de Series" // <--- Y este también
     }
   ]
 }
