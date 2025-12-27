@@ -4,67 +4,67 @@
   {% endif %}
   
   <div class="series-grid">
+    {% comment %} 
+      Cambiamos a un bucle que busca en una entrada de metaobjetos 
+      o bloques manuales si prefieres mezclarlos.
+    {% endcomment %}
+    
     {% for block in section.blocks %}
       <div class="serie-card" {{ block.shopify_attributes }}>
+        
+        {%- assign image = block.settings.image -%}
+        {%- assign title = block.settings.title -%}
+        {%- assign desc = block.settings.description -%}
+        {%- assign link = block.settings.link_url -%}
+
         <div class="serie-image">
-          {% if block.settings.image != blank %}
-            <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}">
+          {% if image != blank %}
+            <img src="{{ image | image_url: width: 600 }}" alt="{{ title }}">
           {% else %}
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
           {% endif %}
         </div>
 
         <div class="serie-content">
-          <h3>{{ block.settings.title | default: "Título de la Serie" }}</h3>
+          <h3>{{ title | default: "Título de Serie" }}</h3>
           <div class="serie-description">
-            {{ block.settings.description }}
+            {{ desc }}
           </div>
-          {% if block.settings.link_url != blank %}
-            <a href="{{ block.settings.link_url }}" class="btn-link">
-              {{ block.settings.link_text | default: "Ver más" }}
-            </a>
+          {% if link != blank %}
+            <a href="{{ link }}" class="btn-link">Ver detalles</a>
           {% endif %}
         </div>
       </div>
     {% endfor %}
+
+    {% if section.blocks.size == 0 %}
+      <p style="grid-column: 1/-1;">Haz clic en "Agregar Serie" en el editor de la izquierda para ver contenido.</p>
+    {% endif %}
   </div>
 </div>
 
 <style>
-  .series-destacadas-container { padding: 60px 20px; text-align: center; max-width: 1200px; margin: 0 auto; }
-  .section-title { margin-bottom: 40px; font-size: 2rem; }
+  .series-destacadas-container { padding: 50px 20px; max-width: 1200px; margin: 0 auto; font-family: sans-serif; }
+  .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 40px; }
   .series-grid { 
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 30px; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 25px; 
   }
   .serie-card { 
-    background: #fff;
-    border-radius: 12px; 
+    border: 1px solid #eee; 
+    border-radius: 15px; 
     overflow: hidden; 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
+    background: #fff;
+    transition: 0.3s ease;
   }
-  .serie-card:hover { transform: translateY(-10px); }
-  .serie-image img, .serie-image svg { 
-    width: 100%; 
-    height: 300px; 
-    object-fit: cover; 
-    background: #f4f4f4;
-  }
-  .serie-content { padding: 25px; text-align: left; flex-grow: 1; }
-  .serie-content h3 { margin: 0 0 15px 0; font-size: 1.4rem; }
-  .serie-description { margin-bottom: 20px; color: #555; line-height: 1.6; }
-  .btn-link { 
-    display: inline-block;
-    color: #000; 
-    font-weight: bold; 
-    text-decoration: none;
-    border-bottom: 2px solid #000;
-    padding-bottom: 2px;
-  }
+  .serie-card:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+  .serie-image img { width: 100%; height: 350px; object-fit: cover; display: block; }
+  .serie-content { padding: 20px; }
+  .serie-content h3 { margin: 0 0 10px 0; font-size: 1.5rem; color: #333; }
+  .serie-description { font-size: 1rem; color: #666; margin-bottom: 15px; }
+  .btn-link { font-weight: bold; color: #000; text-decoration: none; border-bottom: 2px solid #000; }
+  .placeholder-svg { width: 100%; height: 350px; background: #f0f0f0; }
 </style>
 
 {% schema %}
@@ -74,42 +74,36 @@
     {
       "type": "text",
       "id": "title",
-      "label": "Título de la sección",
-      "default": "Nuestras Series"
+      "label": "Título Principal de la Sección",
+      "default": "Mis Series Destacadas"
     }
   ],
   "blocks": [
     {
-      "type": "serie",
-      "name": "Nueva Serie",
+      "type": "serie_item",
+      "name": "Serie",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Imagen de la Serie"
+          "label": "Imagen (O conectar Metaobjeto)"
         },
         {
           "type": "text",
           "id": "title",
-          "label": "Título",
-          "default": "Nombre de la Serie"
+          "label": "Título de la Serie",
+          "default": "Nueva Serie"
         },
         {
           "type": "richtext",
           "id": "description",
-          "label": "Descripción",
-          "default": "<p>Describe aquí los detalles de esta serie destacada.</p>"
+          "label": "Descripción corta",
+          "default": "<p>Escribe aquí los detalles o conecta un campo dinámico.</p>"
         },
         {
           "type": "url",
           "id": "link_url",
-          "label": "Enlace (URL)"
-        },
-        {
-          "type": "text",
-          "id": "link_text",
-          "label": "Texto del botón",
-          "default": "Ver Serie"
+          "label": "Link de la página"
         }
       ]
     }
@@ -118,9 +112,8 @@
     {
       "name": "Galería de Series",
       "blocks": [
-        { "type": "serie" },
-        { "type": "serie" },
-        { "type": "serie" }
+        { "type": "serie_item" },
+        { "type": "serie_item" }
       ]
     }
   ]
