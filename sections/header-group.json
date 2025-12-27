@@ -90,6 +90,15 @@
     "galerias_de_series_WJ9CdX": {
       "type": "galerias-de-series",
       "blocks": {
+        "bloque_serie_bjRzpL": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/KR3_dorado.jpg",
+            "title": "kr3",
+            "desc": "",
+            "link": ""
+          }
+        },
         "bloque_serie_GppCVQ": {
           "type": "bloque_serie",
           "settings": {
@@ -119,6 +128,7 @@
         }
       },
       "block_order": [
+        "bloque_serie_bjRzpL",
         "bloque_serie_GppCVQ",
         "bloque_serie_3FzQNh",
         "bloque_serie_RAnyy6"
