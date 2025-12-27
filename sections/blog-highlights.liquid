@@ -1,0 +1,80 @@
+<div class="series-destacadas-container">
+  <h2 class="section-title">{{ section.settings.title }}</h2>
+  
+  <div class="series-grid">
+    {% assign blog_handle = section.settings.blog_selected %}
+    {% for article in blogs[blog_handle].articles limit: section.settings.post_limit %}
+      
+      <div class="serie-card">
+        <div class="serie-image">
+          {% if article.metafields.custom.imagen_serie %}
+            <img src="{{ article.metafields.custom.imagen_serie | image_url: width: 600 }}" alt="{{ article.title }}">
+          {% else %}
+            <img src="{{ article.image | image_url: width: 600 }}" alt="{{ article.title }}">
+          {% endif %}
+        </div>
+
+        <div class="serie-content">
+          <h3>{{ article.title }}</h3>
+          <p>
+            {% if article.metafields.custom.resumen_serie %}
+              {{ article.metafields.custom.resumen_serie }}
+            {% else %}
+              {{ article.excerpt | strip_html | truncate: 100 }}
+            {% endif %}
+          </p>
+          <a href="{{ article.url }}" class="btn-link">Ver Serie</a>
+        </div>
+      </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .series-destacadas-container { padding: 40px 20px; text-align: center; }
+  .series-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 20px; 
+    margin-top: 20px;
+  }
+  .serie-card { border: 1px solid #e8e8e8; border-radius: 8px; overflow: hidden; transition: 0.3s; }
+  .serie-card:hover { transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+  .serie-image img { width: 100%; height: 250px; object-fit: cover; }
+  .serie-content { padding: 15px; text-align: left; }
+  .btn-link { color: #000; font-weight: bold; text-decoration: underline; }
+</style>
+
+{% schema %}
+{
+  "name": "Series Destacadas",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de la sección",
+      "default": "Nuestras Series Destacadas"
+    },
+    {
+      "type": "blog",
+      "id": "blog_selected",
+      "label": "Seleccionar Blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Posts a mostrar",
+      "default": 3
+    }
+  ],
+  "presets": [
+    {
+      "name": "Series Destacadas"
+    }
+  ]
+}
+{% endschema %}
