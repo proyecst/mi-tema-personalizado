@@ -18,9 +18,9 @@
           "type": "enlace",
           "settings": {
             "parent": "Soporte",
-            "title": "helpkieslect@gmail.com",
+            "title": "https://www.kieslect.com/es/customer-service/",
             "sub": "Descripción",
-            "url": "https://www.kieslect.com/es/blogs/",
+            "url": "https://www.kieslect.com/es/customer-service/",
             "download": false
           }
         },
