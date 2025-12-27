@@ -83,8 +83,14 @@
       "name": "Barra de Confianza Tech",
       "settings": {}
     },
+    "trust_bar_v3_ahJkw9": {
+      "type": "trust-bar-v3",
+      "name": "Barra de Confianza V3",
+      "settings": {}
+    },
     "trust_bar_interactive_YDWdbw": {
       "type": "trust-bar-interactive",
+      "disabled": true,
       "name": "Trust Bar Acordeón",
       "settings": {
         "add_block_text": "Aceptamos todas las tarjetas y pagos seguros.",
@@ -108,12 +114,6 @@
         "height_desktop": 80,
         "height_mobile": 60
       }
-    },
-    "trust_bar_v3_ahJkw9": {
-      "type": "trust-bar-v3",
-      "disabled": true,
-      "name": "Barra de Confianza V3",
-      "settings": {}
     },
     "trust_bar_7X8Kwh": {
       "type": "trust-bar",
@@ -444,9 +444,9 @@
   "order": [
     "kieslect_header_7Bj6Gk",
     "barra_confianza_tech_Az8xPH",
+    "trust_bar_v3_ahJkw9",
     "trust_bar_interactive_YDWdbw",
     "hero_animado_kieslect_6NKX9X",
-    "trust_bar_v3_ahJkw9",
     "trust_bar_7X8Kwh",
     "hero_tech_yAaWMa",
     "barra_efectiva_ty7y9a",
