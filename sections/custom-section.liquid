@@ -1,3 +1,4 @@
+
 <div class="custom-section full-width">
   {% if section.settings.background_image %}
     <div class="custom-section__background">
@@ -6,55 +7,139 @@
   {% endif %}
 
   <div class="custom-section__content">
-    {% content_for 'blocks' %}
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        
+        {%- when 'link_pago' -%}
+          <div class="keislec-link-wrapper" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link_url }}" class="keislec-btn-link" target="_blank">
+              {{ block.settings.link_text }}
+            </a>
+          </div>
+
+        {%- when 'add_block' -%}
+          <div class="keislec-add-block" {{ block.shopify_attributes }}>
+            {% if block.settings.title != blank %}
+              <strong class="keislec-block-title">{{ block.settings.title }}</strong>
+            {% endif %}
+            <div class="keislec-block-text">{{ block.settings.content }}</div>
+          </div>
+          
+      {%- endcase -%}
+    {%- endfor -%}
   </div>
 </div>
 
-{% stylesheet %}
+<style>
   .custom-section {
     position: relative;
     overflow: hidden;
     width: 100%;
+    padding: 30px 0;
   }
   .custom-section__background {
     position: absolute;
     width: 100%;
     height: 100%;
     z-index: -1;
-    overflow: hidden;
+    top: 0; left: 0;
   }
   .custom-section__background img {
-    position: absolute;
     width: 100%;
-    height: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 100%;
+    object-fit: cover;
   }
   .custom-section__content {
-    display: grid;
-    grid-template-columns: var(--content-grid);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
-  .custom-section__content > * {
-    grid-column: 2;
+  .keislec-btn-link {
+    background: #00D1FF;
+    color: #000 !important;
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    font-size: 12px;
+    transition: 0.3s;
   }
-{% endstylesheet %}
+  .keislec-btn-link:hover { background: #fff; }
+  .keislec-add-block {
+    background: rgba(0, 0, 0, 0.7);
+    border-left: 4px solid #00D1FF;
+    padding: 15px;
+    border-radius: 2px;
+    color: #fff;
+  }
+  .keislec-block-title {
+    display: block;
+    color: #00D1FF;
+    margin-bottom: 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+  .keislec-block-text { font-size: 14px; line-height: 1.4; }
+</style>
 
 {% schema %}
 {
-  "name": "t:general.custom_section",
-  "blocks": [{ "type": "@theme" }],
+  "name": "Keislec Section",
   "settings": [
     {
       "type": "image_picker",
       "id": "background_image",
-      "label": "t:labels.background"
+      "label": "Imagen de Fondo"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_pago",
+      "name": "Link / Pago",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Texto del Botón",
+          "default": "PAGAR AHORA"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Enlace del Botón"
+        }
+      ]
+    },
+    {
+      "type": "add_block",
+      "name": "Add Block Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título del Bloque",
+          "default": "Información"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Contenido (Texto y Links)",
+          "default": "<p>Escribe tu contenido aquí.</p>"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "t:general.custom_section"
+      "name": "Keislec Section"
     }
   ]
 }
 {% endschema %}
+
