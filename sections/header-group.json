@@ -507,6 +507,12 @@
       "disabled": true,
       "name": "Grid de Categorías Smartwatch",
       "settings": {}
+    },
+    "main_product_iKw9dU": {
+      "type": "main-product",
+      "disabled": true,
+      "name": "K Main Product Pro",
+      "settings": {}
     }
   },
   "order": [
@@ -533,6 +539,7 @@
     "kieslect_hero_premium_JdR8nX",
     "kieslect_watch_banner_XzzeYB",
     "chatbot_kieslect_kdMWME",
-    "grid_categorias_HpFqHk"
+    "grid_categorias_HpFqHk",
+    "main_product_iKw9dU"
   ]
 }
