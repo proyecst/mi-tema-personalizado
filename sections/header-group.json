@@ -123,7 +123,6 @@
     },
     "barra_efectiva_ty7y9a": {
       "type": "barra-efectiva",
-      "disabled": true,
       "name": "Barra Efectiva",
       "settings": {}
     },
@@ -203,7 +202,6 @@
         "bloque_serie_3FzQNh",
         "bloque_serie_RAnyy6"
       ],
-      "disabled": true,
       "name": "Galería de Series",
       "settings": {
         "title": "Galería de Series",
