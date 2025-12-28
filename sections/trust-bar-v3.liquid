@@ -1,9 +1,9 @@
 <style>
-  :root { --k-cyan: #00D1FF; --k-dark: #050505; }
+  :root { --k-cyan: {{ section.settings.accent_color | default: '#00D1FF' }}; --k-dark: #050505; }
   .trust-bar-section { background-color: #000; padding: 40px 0; border-top: 1px solid #1a1a1a; font-family: 'Inter', sans-serif; }
   .trust-bar-grid { 
     display: grid; 
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat({{ section.blocks.size }}, 1fr); 
     gap: 15px; 
     max-width: 1400px; 
     margin: 0 auto; 
@@ -15,6 +15,8 @@
   
   .trust-header { display: flex; align-items: center; gap: 10px; padding: 15px; cursor: pointer; }
   .trust-icon-wrapper { width: 24px; color: var(--k-cyan); display: flex; align-items: center; }
+  .trust-icon-wrapper img { width: 100%; height: auto; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(175deg); } /* Aplica color cyan a iconos negros/blancos */
+  
   .trust-text { display: flex; flex-direction: column; }
   .trust-title { color: #fff; font-weight: 700; font-size: 11px; text-transform: uppercase; display: block; }
   .trust-subtitle { color: #666; font-size: 10px; }
@@ -36,7 +38,6 @@
     background: #111; border: 1px solid #222; color: #fff; padding: 8px; 
     border-radius: 4px; font-size: 10px; outline: none; width: 100%; box-sizing: border-box;
   }
-  .trust-input:focus { border-color: var(--k-cyan); }
   
   .trust-btn { 
     background: var(--k-cyan); color: #000; border: none; width: 100%; 
@@ -52,85 +53,55 @@
 <section class="trust-bar-section">
   <div class="trust-bar-grid">
     
-    <div class="trust-item-wrapper">
-      <div class="trust-header" onclick="toggleTrust(this)">
-        <div class="trust-icon-wrapper">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11l4 4L19 7"></path></svg>
+    {% for block in section.blocks %}
+      <div class="trust-item-wrapper" {{ block.shopify_attributes }}>
+        <div class="trust-header" onclick="toggleTrust(this)">
+          <div class="trust-icon-wrapper">
+            {% if block.settings.custom_icon != blank %}
+              <img src="{{ block.settings.custom_icon | img_url: '40x' }}" alt="{{ block.settings.title }}">
+            {% else %}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"></path></svg>
+            {% endif %}
+          </div>
+          <div class="trust-text">
+            <span class="trust-title">{{ block.settings.title }}</span>
+            <span class="trust-subtitle">{{ block.settings.subtitle }}</span>
+          </div>
         </div>
-        <div class="trust-text">
-          <span class="trust-title">Envío Gratis</span>
-          <span class="trust-subtitle">Rellena tus datos</span>
-        </div>
-      </div>
-      <div class="trust-content">
-        <form id="rea-form" class="trust-form">
-          <input type="text" name="contact[name]" placeholder="Nombre completo" class="trust-input" required>
-          <input type="email" name="contact[email]" placeholder="Correo electrónico" class="trust-input" required>
-          <input type="text" name="contact[address]" placeholder="Ciudad y Dirección" class="trust-input" required>
-          <button type="submit" class="trust-btn" id="btn-envio-rea">Enviar Formulario</button>
-        </form>
-        <div id="rea-mensaje" style="font-size: 10px; margin-top: 10px; display: none;"></div>
-      </div>
-    </div>
+        
+        <div class="trust-content">
+          {% if block.settings.info_text != blank %}
+            <div class="add-block-info">
+              <p>{{ block.settings.info_text }}</p>
+            </div>
+          {% endif %}
 
-    <div class="trust-item-wrapper">
-      <div class="trust-header" onclick="toggleTrust(this)">
-        <div class="trust-icon-wrapper">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg>
-        </div>
-        <div class="trust-text">
-          <span class="trust-title">Pago Seguro</span>
-          <span class="trust-subtitle">Métodos de pago</span>
-        </div>
-      </div>
-      <div class="trust-content">
-        <div class="add-block-info">
-          <p><strong>Información de Pago:</strong><br>Aceptamos tarjetas de crédito y transferencias bancarias. Todo el proceso es 100% seguro.</p>
-        </div>
-        <a href="/pages/metodos-de-pago" class="trust-btn">Ver métodos de pago</a>
-      </div>
-    </div>
+          {% case block.type %}
+            {% when 'formulario' %}
+              <form class="trust-form contact-form-native">
+                <input type="text" name="contact[name]" placeholder="Nombre completo" class="trust-input" required>
+                <input type="email" name="contact[email]" placeholder="Correo electrónico" class="trust-input" required>
+                <input type="text" name="contact[address]" placeholder="Ciudad y Dirección" class="trust-input" required>
+                <button type="submit" class="trust-btn">Enviar Formulario</button>
+              </form>
 
-    <div class="trust-item-wrapper">
-      <div class="trust-header" onclick="toggleTrust(this)">
-        <div class="trust-icon-wrapper">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-        </div>
-        <div class="trust-text">
-          <span class="trust-title">Entrega Rápida</span>
-          <span class="trust-subtitle">Seguimiento en línea</span>
-        </div>
-      </div>
-      <div class="trust-content">
-        <form action="/apps/tracking" method="post" class="trust-form">
-          <input type="text" class="trust-input" placeholder="Nro de Guía" required>
-          <button type="submit" class="trust-btn">Rastrear</button>
-        </form>
-      </div>
-    </div>
+            {% when 'link' %}
+              <a href="{{ block.settings.button_link }}" class="trust-btn">{{ block.settings.button_text }}</a>
 
-    <div class="trust-item-wrapper">
-      <div class="trust-header" onclick="toggleTrust(this)">
-        <div class="trust-icon-wrapper">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path></svg>
-        </div>
-        <div class="trust-text">
-          <span class="trust-title">Soporte 24/7</span>
-          <span class="trust-subtitle">Atención Directa</span>
+            {% when 'tracking' %}
+              <form action="/apps/tracking" method="post" class="trust-form">
+                <input type="text" class="trust-input" placeholder="Nro de Guía" required>
+                <button type="submit" class="trust-btn">Rastrear</button>
+              </form>
+          {% endcase %}
         </div>
       </div>
-      <div class="trust-content">
-        <div class="add-block-info">
-          <p><strong>Contacto Directo:</strong><br>Nuestro equipo está disponible para ayudarte con cualquier duda técnica o de pedido.</p>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
 
   </div>
 </section>
 
 <script>
-// --- FUNCIÓN ORIGINAL MANTENIDA ---
 function toggleTrust(element) {
   const wrapper = element.closest('.trust-item-wrapper');
   const isActive = wrapper.classList.contains('is-active');
@@ -141,48 +112,62 @@ function toggleTrust(element) {
     wrapper.classList.add('is-active');
   }
 }
-
-// --- NUEVA FUNCIÓN PARA ENVIAR REA/ERS A SHOPIFY ---
-document.getElementById('rea-form')?.addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const btn = document.getElementById('btn-envio-rea');
-  const msg = document.getElementById('rea-mensaje');
-  const formData = new FormData(this);
-  
-  btn.innerText = 'ENVIANDO...';
-  btn.disabled = true;
-
-  // Usamos el endpoint nativo de Shopify para contacto (seguro para frontend)
-  fetch('/contact', {
-    method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(() => {
-    msg.style.display = 'block';
-    msg.style.color = '#00D1FF';
-    msg.innerText = '✅ ¡Recibido! Nos contactaremos pronto.';
-    btn.innerText = 'ENVIADO';
-    this.reset();
-  })
-  .catch(error => {
-    msg.style.display = 'block';
-    msg.style.color = '#ff4444';
-    msg.innerText = '❌ Error al enviar. Intenta de nuevo.';
-    btn.innerText = 'REINTENTAR';
-    btn.disabled = false;
-  });
-});
 </script>
 
 {% schema %}
 {
-  "name": "Barra de Confianza V3",
-  "settings": [],
+  "name": "Barra de Confianza Pro",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color de Acento",
+      "default": "#00D1FF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Información y Link",
+      "settings": [
+        { "type": "image_picker", "id": "custom_icon", "label": "Subir Icono (PNG)" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Pago Seguro" },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Métodos de pago" },
+        { "type": "textarea", "id": "info_text", "label": "Texto Informativo", "default": "Aceptamos tarjetas y transferencias." },
+        { "type": "text", "id": "button_text", "label": "Texto Botón", "default": "Ver más" },
+        { "type": "url", "id": "button_link", "label": "Enlace del botón" }
+      ]
+    },
+    {
+      "type": "formulario",
+      "name": "Formulario Envío",
+      "settings": [
+        { "type": "image_picker", "id": "custom_icon", "label": "Subir Icono (PNG)" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Envío Gratis" },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Rellena tus datos" },
+        { "type": "textarea", "id": "info_text", "label": "Texto Informativo" }
+      ]
+    },
+    {
+      "type": "tracking",
+      "name": "Rastreador",
+      "settings": [
+        { "type": "image_picker", "id": "custom_icon", "label": "Subir Icono (PNG)" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Entrega Rápida" },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Seguimiento" }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Barra de Confianza V3"
+      "name": "Barra de Confianza Pro",
+      "blocks": [
+        { "type": "formulario" },
+        { "type": "link" },
+        { "type": "tracking" },
+        { "type": "link" }
+      ]
     }
   ]
 }
