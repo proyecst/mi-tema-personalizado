@@ -115,8 +115,8 @@
     <div class="footer-column">
       <h3>Redes & Legal</h3>
       <ul class="footer-list">
-        <li><a href="{{ settings.social_instagram_link }}">Instagram</a></li>
-        <li><a href="{{ settings.social_facebook_link }}">Facebook</a></li>
+        <li><a href="{{ section.settings.link_instagram }}">Instagram</a></li>
+        <li><a href="{{ section.settings.link_facebook }}">Facebook</a></li>
         <li><a href="{{ section.settings.link_privacidad }}">Política de Privacidad</a></li>
         <li><a href="{{ section.settings.link_terminos }}">Términos y Condiciones</a></li>
       </ul>
@@ -161,6 +161,10 @@
     { "type": "url", "id": "link_blog", "label": "Link Blog" },
     { "type": "url", "id": "link_recursos", "label": "Link Recursos" },
     { "type": "url", "id": "link_manuales", "label": "Link Manuales" },
+
+    { "type": "header", "content": "Links: Redes Sociales" },
+    { "type": "url", "id": "link_instagram", "label": "Link Instagram" },
+    { "type": "url", "id": "link_facebook", "label": "Link Facebook" },
 
     { "type": "header", "content": "Links: Legal" },
     { "type": "url", "id": "link_privacidad", "label": "Link Privacidad" },

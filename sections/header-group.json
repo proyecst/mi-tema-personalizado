@@ -386,39 +386,28 @@
     },
     "kieslect_tech_footer_WpP4Vm": {
       "type": "kieslect-tech-footer",
-      "blocks": {
-        "social_raAYC8": {
-          "type": "social",
-          "settings": {
-            "title": "Síguenos"
-          }
-        },
-        "brand_QXkLGT": {
-          "type": "brand",
-          "settings": {
-            "title": "KIESLECT",
-            "text": ""
-          }
-        },
-        "menu_dUFmPV": {
-          "type": "menu",
-          "settings": {
-            "title": "Menú",
-            "menu": ""
-          }
-        }
-      },
-      "block_order": [
-        "social_raAYC8",
-        "brand_QXkLGT",
-        "menu_dUFmPV"
-      ],
       "name": "Kieslect Footer Slim",
       "settings": {
         "bg_color": "#000000",
         "text_color": "#ffffff",
         "accent_color": "#00d1ff",
-        "copyright_text": "Kieslect"
+        "copyright_text": "Kieslect",
+        "link_sobre": "https://www.kieslect.com/es/about-us/",
+        "link_contacto": "",
+        "link_empleos": "",
+        "link_faq": "https://www.kieslect.com/es/shop/",
+        "link_envios": "https://www.kieslect.com/es/?s=envios&trp-form-language=es",
+        "link_devoluciones": "",
+        "link_garantia": "",
+        "link_smartwatches": "",
+        "link_accesorios": "",
+        "link_novedades": "",
+        "link_vendidos": "",
+        "link_blog": "",
+        "link_recursos": "",
+        "link_manuales": "",
+        "link_privacidad": "",
+        "link_terminos": ""
       }
     },
     "kieslect_ai_assistant_6Npar6": {
