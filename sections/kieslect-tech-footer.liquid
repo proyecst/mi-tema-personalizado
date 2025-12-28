@@ -140,7 +140,7 @@
 {% schema %}
 {
   "name": "Kieslect Footer Slim",
-  "max_blocks": 5,
+  "max_blocks": 8,
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
@@ -149,11 +149,36 @@
   ],
   "blocks": [
     {
+      "type": "brand",
+      "name": "Logo y Descripción",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT" },
+        { "type": "textarea", "id": "description", "label": "Descripción" }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menú",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Menú" },
+        { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" }
+      ]
+    },
+    {
+      "type": "image_link",
+      "name": "Imagen con Link",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Imagen" },
+        { "type": "image_picker", "id": "image", "label": "Seleccionar Imagen" },
+        { "type": "url", "id": "link", "label": "Enlace de Imagen" }
+      ]
+    },
+    {
       "type": "text_block",
       "name": "Texto",
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "Blog" },
-        { "type": "textarea", "id": "text", "label": "Contenido", "default": "Novedades tecnológicas." }
+        { "type": "textarea", "id": "text", "label": "Contenido" }
       ]
     },
     {
@@ -169,7 +194,9 @@
     {
       "name": "Kieslect Footer Slim",
       "blocks": [
-        { "type": "text_block" },
+        { "type": "brand" },
+        { "type": "menu" },
+        { "type": "image_link" },
         { "type": "social" }
       ]
     }
