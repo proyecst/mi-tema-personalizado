@@ -1,107 +1,196 @@
 {%- style -%}
-  .hero-kieslect-{{ section.id }} {
+  .kieslect-slider-wrapper {
     position: relative;
     width: 100%;
     height: {{ section.settings.height_desktop }}vh;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #000; /* Fondo negro elegante para resaltar relojes */
+    background-color: #000;
   }
 
   @media screen and (max-width: 749px) {
-    .hero-kieslect-{{ section.id }} {
+    .kieslect-slider-wrapper {
       height: {{ section.settings.height_mobile }}vh;
     }
   }
 
-  .hero-bg-kieslect {
+  .kieslect-slide {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
     z-index: 1;
   }
 
-  .hero-bg-kieslect img {
+  .kieslect-slide.active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .kieslect-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 8s ease-out; /* Zoom suave de marca premium */
+    transform: scale(1);
+    transition: transform 10s ease-out;
   }
 
-  /* El efecto se activa al pasar el mouse o al cargar si prefieres, 
-     aquí lo mantenemos al hover para interactividad */
-  .hero-kieslect-{{ section.id }}:hover .hero-bg-kieslect img {
-    transform: scale(1.08);
+  .kieslect-slide.active img {
+    transform: scale(1.1);
   }
 
-  /* Overlay sutil para dar profundidad sin tapar el reloj */
-  .hero-overlay-kieslect {
+  /* Flechas de Navegación */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+  }
+
+  .slider-arrow:hover {
+    background: rgba(255, 255, 255, 0.3);
+    scale: 1.1;
+  }
+
+  .arrow-prev { left: 20px; }
+  .arrow-next { right: 20px; }
+
+  .slider-arrow svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  .kieslect-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
-    z-index: 2;
+    background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.5) 100%);
+    z-index: 3;
     pointer-events: none;
   }
-
 {%- endstyle -%}
 
-<section class="hero-kieslect-{{ section.id }}">
-  <div class="hero-bg-kieslect">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2500 | image_tag: 
-        loading: 'eager', 
-        alt: 'Reloj Kieslect Premium',
-        class: 'kieslect-img' 
-      }}
-    {% else %}
-      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-    {% endif %}
-  </div>
-  
-  <div class="hero-overlay-kieslect"></div>
+<section class="kieslect-slider-wrapper" id="Slider-{{ section.id }}">
+  {%- for block in section.blocks -%}
+    <div class="kieslect-slide {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+      {% if block.settings.image != blank %}
+        {{ block.settings.image | image_url: width: 2500 | image_tag: loading: 'eager' }}
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  {%- endfor -%}
+
+  <div class="kieslect-overlay"></div>
+
+  {%- if section.blocks.size > 1 -%}
+    <button class="slider-arrow arrow-prev" aria-label="Anterior">
+      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="slider-arrow arrow-next" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  {%- endif -%}
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('#Slider-{{ section.id }}');
+    const slides = container.querySelectorAll('.kieslect-slide');
+    const nextBtn = container.querySelector('.arrow-next');
+    const prevBtn = container.querySelector('.arrow-prev');
+    let currentIndex = 0;
+
+    function updateSlides(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[index].classList.add('active');
+    }
+
+    if(nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlides(currentIndex);
+      });
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlides(currentIndex);
+      });
+    }
+
+    // Opcional: Auto-play cada 6 segundos
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlides(currentIndex);
+    }, 6000);
+  });
+</script>
 
 {% schema %}
 {
-  "name": "Kieslect Product Banner",
+  "name": "Kieslect Slider Pro",
+  "max_blocks": 5,
   "settings": [
-    { 
-      "type": "image_picker", 
-      "id": "image", 
-      "label": "Imagen del Reloj (Kieslect)",
-      "info": "Usa imágenes de alta resolución de relojes"
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Altura PC",
+      "default": 80
     },
-    { 
-      "type": "range", 
-      "id": "height_desktop", 
-      "min": 40, 
-      "max": 100, 
-      "step": 5, 
-      "unit": "vh", 
-      "label": "Altura Pantalla PC", 
-      "default": 80 
-    },
-    { 
-      "type": "range", 
-      "id": "height_mobile", 
-      "min": 30, 
-      "max": 100, 
-      "step": 5, 
-      "unit": "vh", 
-      "label": "Altura Pantalla Móvil", 
-      "default": 60 
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Altura Móvil",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Reloj",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen del Reloj"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Kieslect Product Banner"
+      "name": "Kieslect Slider Pro",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" }
+      ]
     }
   ]
 }

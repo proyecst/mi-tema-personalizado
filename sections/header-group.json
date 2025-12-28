@@ -100,12 +100,6 @@
       "type": "hero-animado-kieslect",
       "name": "Banner Animado Pro",
       "settings": {
-        "title": "Kieslect KS3",
-        "subtitle": "El futuro de la tecnología con pantalla AMOLED y doble núcleo.",
-        "btn_text": "Comprar Ahora",
-        "btn_link": "",
-        "btn_color": "#e62e04",
-        "text_alignment": "flex-start",
         "height_desktop": 80,
         "height_mobile": 60
       }
