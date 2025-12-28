@@ -440,6 +440,44 @@
       "settings": {
         "background_image": "shopify://shop_images/imagen-lifestyle-con-smartwatch-kieslect.png"
       }
+    },
+    "kieslect_tech_footer_4qYHqE": {
+      "type": "kieslect-tech-footer",
+      "blocks": {
+        "brand_pPYVC6": {
+          "type": "brand",
+          "settings": {
+            "title": "KIESLECT",
+            "description": "Tecnología wearable."
+          }
+        },
+        "menu_jCpr4z": {
+          "type": "menu",
+          "settings": {
+            "title": "Menú",
+            "menu": ""
+          }
+        },
+        "image_link_XEgJdV": {
+          "type": "image_link",
+          "settings": {
+            "title": "Imagen",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "brand_pPYVC6",
+        "menu_jCpr4z",
+        "image_link_XEgJdV"
+      ],
+      "name": "Kieslect Footer Final",
+      "settings": {
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "accent_color": "#00D1FF",
+        "copyright_text": "Kieslect Technology"
+      }
     }
   },
   "order": [
@@ -460,6 +498,7 @@
     "kieslect_tech_newsletter_EMW4Nk",
     "kieslect_ai_assistant_6Npar6",
     "chatbot_kieslect_kdMWME",
-    "custom_section_cbV9pq"
+    "custom_section_cbV9pq",
+    "kieslect_tech_footer_4qYHqE"
   ]
 }
