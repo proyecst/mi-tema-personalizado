@@ -1,31 +1,28 @@
-<section class="series-destacadas-ia" id="series-ia-{{ section.id }}" style="background-color: #000;">
-  <div class="container-width" style="max-width: 1300px; margin: 0 auto;">
+<section class="series-destacadas-ia" id="series-ia-{{ section.id }}">
+  <div class="container-width">
     {% if section.settings.title != blank %}
       <div class="heading-ia">
         <h2 class="title-ia">{{ section.settings.title }}</h2>
-        <p class="subtitle-ia">{{ section.settings.subtitle }}</p>
+        <p class="subtitle-ia">Controlado por Inteligencia Artificial</p>
       </div>
     {% endif %}
 
-    <div class="series-grid-ia">
+    <div class="series-grid-ia" id="grid-principal">
       {% for block in section.blocks %}
         <div class="card-serie-ia" 
              data-name="{{ block.settings.title | downcase }}" 
-             id="block-{{ block.id }}" 
-             {{ block.shopify_attributes }}>
-          <a href="{{ block.settings.link | default: '#' }}" class="card-link" style="text-decoration: none; color: inherit;">
+             id="block-{{ block.id }}">
+          <a href="{{ block.settings.link }}" class="card-link">
             <div class="img-container">
               {% if block.settings.image != blank %}
-                <img src="{{ block.settings.image | img_url: '600x600', crop: 'center' }}" 
-                     alt="{{ block.settings.title }}" 
-                     loading="lazy">
+                <img src="{{ block.settings.image | img_url: '600x600' }}" alt="{{ block.settings.title }}">
               {% else %}
-                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
               {% endif %}
               <div class="scan-line"></div>
             </div>
             <div class="info-ia">
-              <h3>{{ block.settings.title | default: "Nueva Serie" }}</h3>
+              <h3>{{ block.settings.title }}</h3>
               <span class="status-bot">SISTEMA ONLINE</span>
             </div>
           </a>
@@ -36,121 +33,122 @@
 </section>
 
 <div class="ia-floating-panel">
-  <div class="ia-chat-box" id="ia-box-{{ section.id }}">
+  <div class="ia-chat-box" id="ia-box">
     <div class="ia-header-chat">KIESLECT CORE AI</div>
-    <div class="ia-messages" id="ia-log-{{ section.id }}">
-      <div class="bot-txt">Escribe una serie (ej: "Lora" o "Calling") y la buscaré en la base de datos.</div>
+    <div class="ia-messages" id="ia-log">
+      <div class="bot-txt">Escribe una serie (ej: "Amoled") y la buscaré por ti.</div>
     </div>
     <div class="ia-input-group">
-      <input type="text" 
-             id="ia-input-{{ section.id }}" 
-             placeholder="Comando de sistema..." 
-             onkeypress="if(event.key==='Enter') procesarOrdenIA('{{ section.id }}')">
-      <button onclick="procesarOrdenIA('{{ section.id }}')">EXE</button>
+      <input type="text" id="ia-input" placeholder="Comando de voz/texto..." onkeypress="if(event.key==='Enter') procesarOrden()">
+      <button onclick="procesarOrden()">EXE</button>
     </div>
   </div>
-  <div class="ia-btn-toggle" onclick="toggleIA('{{ section.id }}')">
+  <div class="ia-btn-toggle" onclick="toggleIA()">
     <div class="ai-core"></div>
   </div>
 </div>
 
 <style>
-  .series-destacadas-ia { padding: 80px 20px; color: #fff; overflow: hidden; }
+  /* Base de la sección */
+  .series-destacadas-ia { 
+    background: #000; 
+    padding: 60px 20px; 
+    color: #fff; 
+    font-family: 'Inter', sans-serif;
+  }
   .heading-ia { text-align: center; margin-bottom: 50px; }
-  .title-ia { color: #00D1FF; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
-  .subtitle-ia { color: #555; letter-spacing: 4px; font-size: 10px; text-transform: uppercase; margin-top: 10px; }
+  .title-ia { color: #00D1FF; font-size: 3rem; font-weight: 900; margin: 0; text-transform: uppercase; }
+  .subtitle-ia { color: #555; letter-spacing: 3px; font-size: 12px; }
 
+  /* Rejilla */
   .series-grid-ia { 
     display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-    gap: 25px; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
   }
 
+  /* Tarjetas */
   .card-serie-ia { 
     background: #0a0a0a; 
     border: 1px solid #1a1a1a; 
-    border-radius: 15px; 
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 20px; 
+    overflow: hidden; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
     position: relative;
   }
-  
-  .card-serie-ia.active-ia { border-color: #00D1FF; box-shadow: 0 0 40px rgba(0, 209, 255, 0.2); transform: translateY(-10px); z-index: 2; }
-  .card-serie-ia.dim-ia { opacity: 0.15; filter: grayscale(1) blur(1px); transform: scale(0.95); }
+  .card-serie-ia.active-ia { border-color: #00D1FF; box-shadow: 0 0 30px rgba(0, 209, 255, 0.4); transform: scale(1.05); }
+  .card-serie-ia.dim-ia { opacity: 0.2; filter: blur(2px); }
 
-  .img-container { position: relative; aspect-ratio: 1/1; overflow: hidden; border-radius: 14px 14px 0 0; }
-  .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+  .img-container { position: relative; aspect-ratio: 1; background: #111; overflow: hidden; }
+  .img-container img { width: 100%; height: 100%; object-fit: cover; }
   
+  /* Efecto de escaneo IA */
   .scan-line { 
-    position: absolute; top: -100%; left: 0; width: 100%; height: 4px; 
-    background: #00D1FF; box-shadow: 0 0 20px #00D1FF; opacity: 0; z-index: 2;
+    position: absolute; top: -100%; left: 0; width: 100%; height: 5px; 
+    background: #00D1FF; box-shadow: 0 0 15px #00D1FF; opacity: 0; 
   }
-  .active-ia .scan-line { animation: scanning 2.5s linear infinite; opacity: 1; }
-  @keyframes scanning { 0% { top: -5%; } 100% { top: 105%; } }
+  .active-ia .scan-line { animation: scanning 2s infinite; opacity: 1; }
+  @keyframes scanning { 0% { top: 0%; } 100% { top: 100%; } }
 
-  .info-ia { padding: 25px; text-align: center; }
-  .info-ia h3 { font-size: 1.2rem; margin: 0 0 10px 0; letter-spacing: 1px; }
-  .status-bot { font-size: 8px; color: #00D1FF; border: 1px solid rgba(0,209,255,0.3); padding: 3px 10px; border-radius: 100px; font-weight: bold; }
+  .info-ia { padding: 20px; text-align: center; }
+  .status-bot { font-size: 9px; color: #00D1FF; border: 1px solid #00D1FF; padding: 2px 8px; border-radius: 4px; }
 
-  /* Panel IA */
-  .ia-floating-panel { position: fixed; bottom: 30px; right: 30px; z-index: 9999; font-family: monospace; }
+  /* Estilos del Panel IA */
+  .ia-floating-panel { position: fixed; bottom: 30px; right: 30px; z-index: 10001; }
   .ia-btn-toggle { 
-    width: 60px; height: 60px; background: #000; border: 1px solid #00D1FF; 
+    width: 65px; height: 65px; background: #000; border: 2px solid #00D1FF; 
     border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.4);
   }
-  .ai-core { width: 15px; height: 15px; background: #00D1FF; border-radius: 50%; box-shadow: 0 0 15px #00D1FF; animation: pulse-core 2s infinite; }
-  @keyframes pulse-core { 0% { box-shadow: 0 0 0px #00D1FF; } 50% { box-shadow: 0 0 20px #00D1FF; } 100% { box-shadow: 0 0 0px #00D1FF; } }
+  .ai-core { width: 20px; height: 20px; background: #00D1FF; border-radius: 50%; animation: pulse-core 1.5s infinite; }
+  @keyframes pulse-core { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
 
   .ia-chat-box { 
-    position: absolute; bottom: 80px; right: 0; width: 300px; background: #050505; 
-    border: 1px solid #1a1a1a; border-radius: 15px; display: none; flex-direction: column; 
-    box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+    position: absolute; bottom: 85px; right: 0; width: 320px; background: #000; 
+    border: 1px solid #333; border-radius: 20px; display: none; flex-direction: column; overflow: hidden;
   }
-  .ia-chat-box.visible { display: flex; animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
-  @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .ia-chat-box.visible { display: flex; animation: slideIn 0.3s ease forwards; }
+  @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-  .ia-header-chat { background: #00D1FF; color: #000; padding: 10px; font-weight: bold; font-size: 10px; text-align: center; border-radius: 14px 14px 0 0; }
-  .ia-messages { height: 180px; padding: 15px; overflow-y: auto; color: #fff; font-size: 12px; }
-  .bot-txt { background: #111; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 2px solid #00D1FF; line-height: 1.4; }
-  .ia-input-group { display: flex; padding: 10px; gap: 5px; }
-  .ia-input-group input { flex: 1; background: #000; border: 1px solid #222; color: #00D1FF; padding: 8px; border-radius: 5px; outline: none; font-size: 12px; }
-  .ia-input-group button { background: #00D1FF; border: none; padding: 0 12px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-  .ia-input-group button:hover { background: #fff; }
-
-  @media (max-width: 768px) {
-    .ia-floating-panel { bottom: 20px; right: 20px; }
-    .ia-chat-box { width: 260px; right: -10px; }
-  }
+  .ia-header-chat { background: #00D1FF; color: #000; padding: 12px; font-weight: 900; font-size: 11px; text-align: center; }
+  .ia-messages { height: 200px; padding: 15px; overflow-y: auto; color: #fff; font-size: 13px; }
+  .bot-txt { background: #111; padding: 10px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid #00D1FF; }
+  .ia-input-group { display: flex; padding: 10px; background: #080808; border-top: 1px solid #222; }
+  .ia-input-group input { flex: 1; background: #111; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 8px; outline: none; }
+  .ia-input-group button { background: #00D1FF; border: none; padding: 0 15px; margin-left: 8px; border-radius: 8px; font-weight: bold; cursor: pointer; }
 </style>
 
 <script>
-function toggleIA(id) {
-  document.getElementById('ia-box-' + id).classList.toggle('visible');
+function toggleIA() {
+  document.getElementById('ia-box').classList.toggle('visible');
 }
 
-function procesarOrdenIA(id) {
-  const input = document.getElementById('ia-input-' + id);
-  const log = document.getElementById('ia-log-' + id);
+function procesarOrden() {
+  const input = document.getElementById('ia-input');
+  const log = document.getElementById('ia-log');
   const orden = input.value.toLowerCase().trim();
-  const tarjetas = document.querySelectorAll('#series-ia-' + id + ' .card-serie-ia');
+  const tarjetas = document.querySelectorAll('.card-serie-ia');
   
   if(!orden) return;
 
-  log.innerHTML += `<div style="text-align:right; color:#00D1FF; margin-bottom:10px; opacity:0.6;">> ${input.value}</div>`;
+  log.innerHTML += `<div style="text-align:right; color:#00D1FF; margin-bottom:10px;">> ${input.value}</div>`;
   input.value = "";
 
   setTimeout(() => {
     let hallado = false;
     
-    if(["todo", "reiniciar", "limpiar", "all"].includes(orden)) {
-      tarjetas.forEach(t => t.classList.remove('dim-ia', 'active-ia'));
-      log.innerHTML += `<div class="bot-txt">Protocolo de visualización global restaurado.</div>`;
+    if(orden.includes("todo") || orden.includes("reiniciar") || orden.includes("limpiar")) {
+      tarjetas.forEach(t => { t.classList.remove('dim-ia', 'active-ia'); });
+      log.innerHTML += `<div class="bot-txt">Sistema reiniciado. Mostrando todas las series.</div>`;
     } else {
       tarjetas.forEach(t => {
         const nombre = t.getAttribute('data-name');
         if(nombre.includes(orden)) {
           t.classList.add('active-ia');
           t.classList.remove('dim-ia');
+          t.scrollIntoView({ behavior: 'smooth', block: 'center' });
           hallado = true;
         } else {
           t.classList.add('dim-ia');
@@ -159,16 +157,14 @@ function procesarOrdenIA(id) {
       });
 
       if(hallado) {
-        log.innerHTML += `<div class="bot-txt">Serie "${orden}" detectada. Sincronizando hardware...</div>`;
-        const primera = document.querySelector('.active-ia');
-        if(primera) primera.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        log.innerHTML += `<div class="bot-txt">He localizado la serie "${orden}". He activado el escaneo de hardware.</div>`;
       } else {
-        tarjetas.forEach(t => t.classList.remove('dim-ia', 'active-ia'));
-        log.innerHTML += `<div class="bot-txt">Error: "${orden}" no figura en la base de datos Kieslect.</div>`;
+        tarjetas.forEach(t => { t.classList.remove('dim-ia', 'active-ia'); });
+        log.innerHTML += `<div class="bot-txt">No hay registros de "${orden}". Intenta con palabras clave como "Amoled" o "Deporte".</div>`;
       }
     }
     log.scrollTop = log.scrollHeight;
-  }, 500);
+  }, 600);
 }
 </script>
 
@@ -176,29 +172,21 @@ function procesarOrdenIA(id) {
 {
   "name": "Series IA Interactiva",
   "settings": [
-    { "type": "text", "id": "title", "label": "Título Principal", "default": "SERIES KIESLECT" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Controlado por Inteligencia Artificial" }
+    { "type": "text", "id": "title", "label": "Título", "default": "SERIES KIESLECT" }
   ],
   "blocks": [
     {
       "type": "serie",
       "name": "Serie",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Imagen de la Serie" },
-        { "type": "text", "id": "title", "label": "Nombre (Ej: Amoled Calling)", "default": "Serie Nueva" },
-        { "type": "url", "id": "link", "label": "Enlace a Colección/Producto" }
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "title", "label": "Nombre de la Serie" },
+        { "type": "url", "id": "link", "label": "Enlace" }
       ]
     }
   ],
   "presets": [
-    { 
-      "name": "Series IA Interactiva",
-      "blocks": [
-        { "type": "serie" },
-        { "type": "serie" },
-        { "type": "serie" }
-      ]
-    }
+    { "name": "Series IA Interactiva" }
   ]
 }
 {% endschema %}
