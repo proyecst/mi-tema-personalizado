@@ -401,51 +401,6 @@
       "type": "chatbot-kieslect",
       "name": "Chatbot Kieslect",
       "settings": {}
-    },
-    "kieslect_tech_footer_3nyrpA": {
-      "type": "kieslect-tech-footer",
-      "blocks": {
-        "brand_W38zDp": {
-          "type": "brand",
-          "settings": {
-            "title": "KIESLECT",
-            "description": ""
-          }
-        },
-        "menu_9BM9Nd": {
-          "type": "menu",
-          "settings": {
-            "title": "Menú",
-            "menu": ""
-          }
-        },
-        "image_link_YiN7Qn": {
-          "type": "image_link",
-          "settings": {
-            "title": "Imagen",
-            "link": ""
-          }
-        },
-        "social_Gd8e4c": {
-          "type": "social",
-          "settings": {
-            "title": "Sigue"
-          }
-        }
-      },
-      "block_order": [
-        "brand_W38zDp",
-        "menu_9BM9Nd",
-        "image_link_YiN7Qn",
-        "social_Gd8e4c"
-      ],
-      "name": "Kieslect Footer Slim",
-      "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "accent_color": "#00D1FF",
-        "copyright_text": "Kieslect"
-      }
     }
   },
   "order": [
@@ -463,7 +418,6 @@
     "kieslect_edu_center_4MnPmH",
     "kieslect_tech_newsletter_EMW4Nk",
     "kieslect_ai_assistant_6Npar6",
-    "chatbot_kieslect_kdMWME",
-    "kieslect_tech_footer_3nyrpA"
+    "chatbot_kieslect_kdMWME"
   ]
 }
