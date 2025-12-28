@@ -360,51 +360,6 @@
         "padding_bottom": 80
       }
     },
-    "kieslect_tech_footer_WpP4Vm": {
-      "type": "kieslect-tech-footer",
-      "blocks": {
-        "brand_FEWkfM": {
-          "type": "brand",
-          "settings": {
-            "title": "KIESLECT",
-            "description": ""
-          }
-        },
-        "menu_dGXc7k": {
-          "type": "menu",
-          "settings": {
-            "title": "Menú",
-            "menu": ""
-          }
-        },
-        "image_link_tiMqWK": {
-          "type": "image_link",
-          "settings": {
-            "title": "Imagen",
-            "link": ""
-          }
-        },
-        "social_k7yjKC": {
-          "type": "social",
-          "settings": {
-            "title": "Sigue"
-          }
-        }
-      },
-      "block_order": [
-        "brand_FEWkfM",
-        "menu_dGXc7k",
-        "image_link_tiMqWK",
-        "social_k7yjKC"
-      ],
-      "name": "Kieslect Footer Slim",
-      "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "accent_color": "#00D1FF",
-        "copyright_text": "Kieslect"
-      }
-    },
     "kieslect_edu_center_4MnPmH": {
       "type": "kieslect-edu-center",
       "name": "Kieslect Academy",
@@ -429,6 +384,35 @@
         "padding_bottom": 80
       }
     },
+    "kieslect_tech_footer_WpP4Vm": {
+      "type": "kieslect-tech-footer",
+      "blocks": {
+        "brand_FEWkfM": {
+          "type": "brand",
+          "settings": {
+            "title": "KIESLECT",
+            "text": ""
+          }
+        },
+        "social_k7yjKC": {
+          "type": "social",
+          "settings": {
+            "title": "Sigue"
+          }
+        }
+      },
+      "block_order": [
+        "brand_FEWkfM",
+        "social_k7yjKC"
+      ],
+      "name": "Kieslect Footer Slim",
+      "settings": {
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "accent_color": "#00d1ff",
+        "copyright_text": "Kieslect"
+      }
+    },
     "kieslect_ai_assistant_6Npar6": {
       "type": "kieslect-ai-assistant",
       "name": "Kieslect AI Assistant",
@@ -436,6 +420,7 @@
     },
     "chatbot_kieslect_kdMWME": {
       "type": "chatbot-kieslect",
+      "disabled": true,
       "name": "Chatbot Kieslect",
       "settings": {}
     }

@@ -1,90 +1,99 @@
 {%- style -%}
-  /* Contenedor Principal - Altura Mínima */
+  /* Contenedor Principal - Ahora más largo verticalmente */
   .k-footer {
     background-color: {{ section.settings.bg_color }};
     color: {{ section.settings.text_color }};
-    padding: 15px 0 5px 0; /* Padding vertical mínimo */
+    padding: 60px 0 30px 0; /* Aumentado para dar más altura */
     font-family: 'Inter', sans-serif;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Ancho máximo hacia los lados */
+  /* Mantenemos el ancho al 95% */
   .footer-container {
     max-width: 95%; 
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
     display: grid;
     grid-template-columns: repeat(4, 1fr) 1.5fr;
-    gap: 15px; 
+    gap: 30px; 
     align-items: start;
   }
 
-  /* Títulos compactos */
+  /* Títulos con más espacio abajo */
   .footer-column h3 {
-    font-size: 0.65rem; 
+    font-size: 0.8rem; 
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 6px; 
+    margin-bottom: 20px; /* Más espacio bajo el título */
     color: {{ section.settings.accent_color }};
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
   }
 
-  /* Listas ultra compactas */
+  /* Listas con más interlineado (más largo) */
   .footer-list { list-style: none; padding: 0; margin: 0; }
   .footer-list li { 
-    margin-bottom: 2px; 
+    margin-bottom: 12px; /* Aumentado de 2px a 12px para mayor longitud */
     display: flex; 
     align-items: center; 
-    line-height: 1.2;
+    line-height: 1.4;
   } 
   
   .footer-list li::before {
     content: "●";
-    font-size: 5px;
-    margin-right: 5px;
+    font-size: 6px;
+    margin-right: 10px;
     color: {{ section.settings.accent_color }};
-    opacity: 0.5;
+    opacity: 0.6;
   }
 
   .footer-list a {
     text-decoration: none;
     color: {{ section.settings.text_color }};
     opacity: 0.7;
-    font-size: 0.68rem; 
+    font-size: 0.75rem; 
     transition: 0.2s;
   }
 
-  .footer-list a:hover { opacity: 1; }
+  .footer-list a:hover { 
+    opacity: 1; 
+    padding-left: 5px; /* Pequeño efecto de movimiento al pasar el mouse */
+  }
 
-  /* Barra inferior delgada */
+  /* Barra inferior con más margen */
   .footer-bottom {
     max-width: 95%;
-    margin: 10px auto 0;
-    padding: 8px 20px;
+    margin: 50px auto 0; /* Mucho más espacio antes del copyright */
+    padding: 20px 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
-    font-size: 0.6rem;
-    opacity: 0.4;
+    font-size: 0.7rem;
+    opacity: 0.5;
   }
 
-  .social-icons-box { display: flex; gap: 6px; margin-top: 5px; }
+  .social-icons-box { display: flex; gap: 10px; margin-top: 15px; }
   .social-icon { 
     color: {{ section.settings.text_color }}; 
     text-decoration: none; 
-    font-size: 0.6rem; 
+    font-size: 0.7rem; 
     border: 1px solid rgba(255,255,255,0.1);
-    padding: 2px 5px;
-    border-radius: 3px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: 0.3s;
   }
 
-  /* Ajuste para móviles */
+  .social-icon:hover {
+    background: {{ section.settings.accent_color }};
+    color: #000;
+    border-color: {{ section.settings.accent_color }};
+  }
+
   @media (max-width: 768px) {
     .footer-container { 
       grid-template-columns: 1fr 1fr; 
-      gap: 15px; 
+      gap: 30px; 
     }
-    .k-footer { padding: 10px 0; }
+    .k-footer { padding: 40px 0; }
   }
 {%- endstyle -%}
 
@@ -127,16 +136,15 @@
 
     <div class="footer-column">
       {% for block in section.blocks %}
-        <div style="margin-bottom: 8px;" {{ block.shopify_attributes }}>
+        <div style="margin-bottom: 20px;" {{ block.shopify_attributes }}>
           <h3>{{ block.settings.title }}</h3>
           {% if block.settings.text != blank %}
-            <p style="font-size: 0.65rem; opacity: 0.6; line-height: 1.2; margin: 0;">{{ block.settings.text }}</p>
+            <p style="font-size: 0.75rem; opacity: 0.6; line-height: 1.5; margin: 0;">{{ block.settings.text }}</p>
           {% endif %}
           {% if block.type == 'social' %}
              <div class="social-icons-box">
-               <a href="{{ settings.social_instagram_link }}" class="social-icon">IG</a>
-               <a href="{{ settings.social_facebook_link }}" class="social-icon">FB</a>
-               <a href="{{ settings.social_twitter_link }}" class="social-icon">TW</a>
+               <a href="{{ settings.social_instagram_link }}" class="social-icon">INSTAGRAM</a>
+               <a href="{{ settings.social_facebook_link }}" class="social-icon">FACEBOOK</a>
              </div>
           {% endif %}
         </div>
