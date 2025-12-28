@@ -1,200 +1,131 @@
 {%- style -%}
-  .kieslect-wrapper-{{ section.id }} {
+  .k-slider-{{ section.id }} {
     position: relative;
     width: 100%;
     height: {{ section.settings.height_desktop }}vh;
+    background-color: #1a1a1a; /* Fondo gris oscuro por si falla la imagen */
     overflow: hidden;
-    background-color: #000;
   }
 
   @media screen and (max-width: 749px) {
-    .kieslect-wrapper-{{ section.id }} {
+    .k-slider-{{ section.id }} {
       height: {{ section.settings.height_mobile }}vh;
     }
   }
 
-  .kieslect-slider-inner {
+  .k-track {
     display: flex;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s ease-in-out;
   }
 
-  .kieslect-slide {
+  .k-slide {
     min-width: 100%;
     height: 100%;
-    position: relative;
+    flex-shrink: 0;
   }
 
-  .kieslect-slide img {
+  .k-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  /* Flechas minimalistas */
-  .kieslect-btn {
+  .k-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.15);
+    z-index: 20;
+    background: rgba(255,255,255,0.2);
     border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+    color: white;
+    padding: 15px;
     cursor: pointer;
+    font-size: 20px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(10px);
+    width: 50px;
+    height: 50px;
+  }
+
+  .k-prev { left: 20px; }
+  .k-next { right: 20px; }
+
+  /* Si no hay bloques, mostrar mensaje de ayuda */
+  .k-empty {
     color: white;
-    transition: all 0.3s;
-  }
-
-  .kieslect-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    scale: 1.1;
-  }
-
-  .kieslect-btn-prev { left: 20px; }
-  .kieslect-btn-next { right: 20px; }
-
-  .kieslect-btn svg {
-    width: 24px;
-    height: 24px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-  }
-
-  /* Overlay para que se vea Pro */
-  .kieslect-vignette {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.4) 100%);
-    z-index: 5;
-    pointer-events: none;
+    text-align: center;
+    padding: 50px;
+    font-family: sans-serif;
   }
 {%- endstyle -%}
 
-<section class="kieslect-wrapper-{{ section.id }}" id="Slider-{{ section.id }}">
-  <div class="kieslect-vignette"></div>
+<section class="k-slider-{{ section.id }}">
+  {% if section.blocks.size > 0 %}
+    <div class="k-track" id="Ktrack-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="k-slide" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 2000 }}" alt="Kieslect">
+          {% else %}
+            <div class="k-empty">Imagen no seleccionada - Haz clic en el bloque para subir una</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
 
-  <div class="kieslect-slider-inner" id="Track-{{ section.id }}">
-    {%- for block in section.blocks -%}
-      <div class="kieslect-slide" {{ block.shopify_attributes }}>
-        {% if block.settings.image != blank %}
-          {{ block.settings.image | image_url: width: 2500 | image_tag: loading: 'eager' }}
-        {% else %}
-          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-        {% endif %}
-      </div>
-    {%- endfor -%}
-  </div>
-
-  {%- if section.blocks.size > 1 -%}
-    <button class="kieslect-btn kieslect-btn-prev" aria-label="Anterior">
-      <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-    <button class="kieslect-btn kieslect-btn-next" aria-label="Siguiente">
-      <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
-  {%- endif -%}
+    {% if section.blocks.size > 1 %}
+      <button class="k-arrow k-prev" onclick="moveKSlider(-1, '{{ section.id }}')">❮</button>
+      <button class="k-arrow k-next" onclick="moveKSlider(1, '{{ section.id }}')">❯</button>
+    {% endif %}
+  {% else %}
+    <div class="k-empty">
+      <h2>Banner Kieslect</h2>
+      <p>Haz clic en <strong>"Agregar Imagen de Reloj"</strong> en el menú de la izquierda para ver el contenido.</p>
+    </div>
+  {% endif %}
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const track = document.getElementById('Track-{{ section.id }}');
-    const slides = track.querySelectorAll('.kieslect-slide');
-    const nextBtn = document.querySelector('.kieslect-btn-next');
-    const prevBtn = document.querySelector('.kieslect-btn-prev');
-    
-    let index = 0;
-    const totalSlides = slides.length;
+  let kIndex = 0;
+  function moveKSlider(direction, id) {
+    const track = document.getElementById('Ktrack-' + id);
+    const slides = track.querySelectorAll('.k-slide');
+    kIndex = (kIndex + direction + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (kIndex * 100) + '%)';
+  }
 
-    function moveSlider() {
-      track.style.transform = `translateX(-${index * 100}%)`;
-    }
-
-    function nextSlide() {
-      index = (index + 1) % totalSlides;
-      moveSlider();
-    }
-
-    function prevSlide() {
-      index = (index - 1 + totalSlides) % totalSlides;
-      moveSlider();
-    }
-
-    // Auto-play cada 4 segundos
-    let autoPlay = setInterval(nextSlide, 4000);
-
-    // Detener auto-play si el usuario hace clic
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        clearInterval(autoPlay);
-        nextSlide();
-        autoPlay = setInterval(nextSlide, 4000); // Reiniciar timer
-      });
-
-      prevBtn.addEventListener('click', () => {
-        clearInterval(autoPlay);
-        prevSlide();
-        autoPlay = setInterval(nextSlide, 4000); // Reiniciar timer
-      });
-    }
-  });
+  // Auto-paso cada 4 segundos
+  setInterval(() => {
+    moveKSlider(1, '{{ section.id }}');
+  }, 4000);
 </script>
 
 {% schema %}
 {
-  "name": "Kieslect Auto Slider",
-  "max_blocks": 10,
+  "name": "Kieslect Slider Pro",
+  "max_blocks": 8,
   "settings": [
-    {
-      "type": "range",
-      "id": "height_desktop",
-      "min": 40,
-      "max": 100,
-      "step": 5,
-      "unit": "vh",
-      "label": "Altura PC",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "height_mobile",
-      "min": 30,
-      "max": 100,
-      "step": 5,
-      "unit": "vh",
-      "label": "Altura Móvil",
-      "default": 60
-    }
+    { "type": "range", "id": "height_desktop", "min": 40, "max": 100, "step": 5, "unit": "vh", "label": "Altura PC", "default": 80 },
+    { "type": "range", "id": "height_mobile", "min": 30, "max": 100, "step": 5, "unit": "vh", "label": "Altura Móvil", "default": 60 }
   ],
   "blocks": [
     {
       "type": "image",
       "name": "Imagen de Reloj",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Selecciona la imagen"
-        }
+        { "type": "image_picker", "id": "image", "label": "Imagen" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Kieslect Auto Slider",
+      "name": "Kieslect Slider Pro",
       "blocks": [
-        { "type": "image" },
         { "type": "image" }
       ]
     }
