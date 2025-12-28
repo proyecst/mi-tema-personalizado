@@ -88,18 +88,6 @@
       "name": "Barra de Confianza V3",
       "settings": {}
     },
-    "trust_bar_interactive_YDWdbw": {
-      "type": "trust-bar-interactive",
-      "disabled": true,
-      "name": "Trust Bar Acordeón",
-      "settings": {
-        "add_block_text": "Aceptamos todas las tarjetas y pagos seguros.",
-        "label_1": "Pagar con PayPal",
-        "link_1": "",
-        "label_2": "Ver Métodos",
-        "link_2": ""
-      }
-    },
     "hero_animado_kieslect_6NKX9X": {
       "type": "hero-animado-kieslect",
       "name": "Banner Animado Pro",
@@ -296,14 +284,6 @@
         "title": "SERIES KIESLECT"
       }
     },
-    "kieslect_interactive_grid_wP7wWD": {
-      "type": "kieslect-interactive-grid",
-      "name": "Kieslect Interactive Grid",
-      "settings": {
-        "main_title": "KIESLECT SERIES",
-        "bg_color": "#000000"
-      }
-    },
     "kieslect_tech_testimonials_3nkryh": {
       "type": "kieslect-tech-testimonials",
       "blocks": {
@@ -421,25 +401,69 @@
       "type": "chatbot-kieslect",
       "name": "Chatbot Kieslect",
       "settings": {}
+    },
+    "kieslect_tech_footer_3nyrpA": {
+      "type": "kieslect-tech-footer",
+      "blocks": {
+        "brand_W38zDp": {
+          "type": "brand",
+          "settings": {
+            "title": "KIESLECT",
+            "description": ""
+          }
+        },
+        "menu_9BM9Nd": {
+          "type": "menu",
+          "settings": {
+            "title": "Menú",
+            "menu": ""
+          }
+        },
+        "image_link_YiN7Qn": {
+          "type": "image_link",
+          "settings": {
+            "title": "Imagen",
+            "link": ""
+          }
+        },
+        "social_Gd8e4c": {
+          "type": "social",
+          "settings": {
+            "title": "Sigue"
+          }
+        }
+      },
+      "block_order": [
+        "brand_W38zDp",
+        "menu_9BM9Nd",
+        "image_link_YiN7Qn",
+        "social_Gd8e4c"
+      ],
+      "name": "Kieslect Footer Slim",
+      "settings": {
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "accent_color": "#00D1FF",
+        "copyright_text": "Kieslect"
+      }
     }
   },
   "order": [
     "kieslect_header_7Bj6Gk",
     "barra_confianza_tech_Az8xPH",
     "trust_bar_v3_ahJkw9",
-    "trust_bar_interactive_YDWdbw",
     "hero_animado_kieslect_6NKX9X",
     "trust_bar_7X8Kwh",
     "hero_tech_yAaWMa",
     "barra_efectiva_ty7y9a",
     "galerias_de_series_WJ9CdX",
     "series_ia_HmgFFW",
-    "kieslect_interactive_grid_wP7wWD",
     "kieslect_tech_testimonials_3nkryh",
     "kieslect_tech_comparator_4r3fhy",
     "kieslect_edu_center_4MnPmH",
     "kieslect_tech_newsletter_EMW4Nk",
     "kieslect_ai_assistant_6Npar6",
-    "chatbot_kieslect_kdMWME"
+    "chatbot_kieslect_kdMWME",
+    "kieslect_tech_footer_3nyrpA"
   ]
 }
