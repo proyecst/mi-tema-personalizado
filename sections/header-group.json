@@ -360,40 +360,6 @@
         "padding_bottom": 80
       }
     },
-    "kieslect_edu_center_4MnPmH": {
-      "type": "kieslect-edu-center",
-      "name": "Kieslect Academy",
-      "settings": {
-        "title": "Domina tu Ecosistema",
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
-    "kieslect_tech_newsletter_EMW4Nk": {
-      "type": "kieslect-tech-newsletter",
-      "name": "Kieslect Tech Newsletter",
-      "settings": {
-        "badge_text": "Exclusive Access",
-        "title": "Kieslect Insider",
-        "subtitle": "Únete a la vanguardia. Recibe actualizaciones de firmware, lanzamientos exclusivos y un 15% en tu primera compra.",
-        "btn_text": "Unirme ahora",
-        "bg_color": "#000000",
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
-    "kieslect_ai_assistant_6Npar6": {
-      "type": "kieslect-ai-assistant",
-      "name": "Kieslect AI Assistant",
-      "settings": {}
-    },
-    "chatbot_kieslect_kdMWME": {
-      "type": "chatbot-kieslect",
-      "name": "Chatbot Kieslect",
-      "settings": {}
-    },
     "kieslect_tech_footer_WpP4Vm": {
       "type": "kieslect-tech-footer",
       "blocks": {
@@ -438,6 +404,40 @@
         "accent_color": "#00D1FF",
         "copyright_text": "Kieslect"
       }
+    },
+    "kieslect_edu_center_4MnPmH": {
+      "type": "kieslect-edu-center",
+      "name": "Kieslect Academy",
+      "settings": {
+        "title": "Domina tu Ecosistema",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "kieslect_tech_newsletter_EMW4Nk": {
+      "type": "kieslect-tech-newsletter",
+      "name": "Kieslect Tech Newsletter",
+      "settings": {
+        "badge_text": "Exclusive Access",
+        "title": "Kieslect Insider",
+        "subtitle": "Únete a la vanguardia. Recibe actualizaciones de firmware, lanzamientos exclusivos y un 15% en tu primera compra.",
+        "btn_text": "Unirme ahora",
+        "bg_color": "#000000",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "kieslect_ai_assistant_6Npar6": {
+      "type": "kieslect-ai-assistant",
+      "name": "Kieslect AI Assistant",
+      "settings": {}
+    },
+    "chatbot_kieslect_kdMWME": {
+      "type": "chatbot-kieslect",
+      "name": "Chatbot Kieslect",
+      "settings": {}
     }
   },
   "order": [
