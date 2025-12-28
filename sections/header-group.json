@@ -79,6 +79,19 @@
     },
     "trust_bar_v3_ahJkw9": {
       "type": "trust-bar-v3",
+      "blocks": {
+        "formulario_Pr3Dfx": {
+          "type": "formulario",
+          "settings": {
+            "title": "Envío Gratis",
+            "subtitle": "Rellena tus datos",
+            "info_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "formulario_Pr3Dfx"
+      ],
       "name": "Barra de Confianza V3",
       "settings": {}
     },
