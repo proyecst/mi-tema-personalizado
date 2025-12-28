@@ -7,13 +7,24 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .footer-container {
-    max-width: 1100px; /* Más estrecho */
+  ..footer-container {
+    max-width: 1400px; /* Aumentado de 1100px a 1400px */
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;   /* Más espacio en los bordes para móviles/tablets */
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 1.2fr;
-    gap: 20px; /* Menos espacio entre columnas */
+    grid-template-columns: repeat(4, 1fr) 1.5fr; /* Ajustado el ancho de la última columna */
+    gap: 40px; /* Aumentado el espacio entre columnas para aprovechar el ancho */
+  }
+
+  .footer-bottom {
+    max-width: 1400px; /* Debe coincidir con el contenedor de arriba */
+    margin: 25px auto 0;
+    padding: 15px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    opacity: 0.4;
   }
 
   .footer-column h3 {
