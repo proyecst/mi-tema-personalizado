@@ -11,15 +11,10 @@
     max-width: 95%; 
     margin: 0 auto;
     padding: 0 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-  }
-
-  .footer-column {
-    flex: 1;
-    min-width: 180px;
+    display: grid;
+    /* 5 columnas para que todo quepa a lo ancho */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px;
   }
 
   .footer-column h3 {
@@ -29,22 +24,22 @@
     margin-bottom: 20px;
     color: {{ section.settings.accent_color }};
     letter-spacing: 1px;
+    min-height: 40px; /* Alinea los títulos */
   }
 
   .footer-list { list-style: none; padding: 0; margin: 0; }
   .footer-list li { 
-    margin-bottom: 12px; 
+    margin-bottom: 15px; 
     display: flex; 
     align-items: center; 
-    line-height: 1.4;
   } 
   
   .footer-list li::before {
     content: "●";
     font-size: 6px;
-    margin-right: 10px;
+    margin-right: 12px;
     color: {{ section.settings.accent_color }};
-    opacity: 0.6;
+    opacity: 0.8;
   }
 
   .footer-list a {
@@ -55,10 +50,16 @@
     transition: 0.2s;
   }
 
-  .footer-list a:hover { 
-    opacity: 1; 
-    padding-left: 5px;
+  .footer-list a:hover { opacity: 1; padding-left: 5px; }
+
+  .social-icons-box { display: flex; flex-direction: column; gap: 10px; }
+  .social-link {
+    text-decoration: none;
+    color: {{ section.settings.text_color }};
+    font-size: 0.75rem;
+    opacity: 0.7;
   }
+  .social-link:hover { opacity: 1; }
 
   .footer-bottom {
     max-width: 95%;
@@ -68,64 +69,68 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.7rem;
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
-  .social-icons-box { display: flex; gap: 10px; margin-top: 15px; }
-  .social-icon { 
-    color: {{ section.settings.text_color }}; 
-    text-decoration: none; 
-    font-size: 0.65rem; 
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 6px 12px;
-    border-radius: 4px;
-    transition: 0.3s;
-  }
-
-  .social-icon:hover {
-    background: {{ section.settings.accent_color }};
-    color: #000;
+  @media (max-width: 1024px) {
+    .footer-container { grid-template-columns: repeat(3, 1fr); }
   }
 
   @media (max-width: 768px) {
-    .footer-container { flex-direction: column; }
-    .footer-column { min-width: 100%; }
+    .footer-container { grid-template-columns: 1fr 1fr; }
   }
 {%- endstyle -%}
 
 <footer class="k-footer">
   <div class="footer-container">
     
-    {%- for block in section.blocks -%}
-      <div class="footer-column" {{ block.shopify_attributes }}>
-        
-        {%- case block.type -%}
-          {%- when 'menu' -%}
-            <h3>{{ block.settings.title }}</h3>
-            <ul class="footer-list">
-              {%- for link in block.settings.menu.links -%}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-              {%- endfor -%}
-            </ul>
+    <div class="footer-column">
+      <h3>Compañía</h3>
+      <ul class="footer-list">
+        <li><a href="/pages/sobre-kieslect">Sobre Kieslect</a></li>
+        <li><a href="/pages/contacto">Contacto</a></li>
+        <li><a href="/pages/empleos">Empleos</a></li>
+      </ul>
+    </div>
 
-          {%- when 'brand' -%}
-            {% if block.settings.image != blank %}
-              <img src="{{ block.settings.image | img_url: '200x' }}" style="margin-bottom: 15px; max-width: 150px;">
-            {% endif %}
-            <h3>{{ block.settings.title }}</h3>
-            <p style="font-size: 0.75rem; opacity: 0.6;">{{ block.settings.text }}</p>
+    <div class="footer-column">
+      <h3>Atención al Cliente</h3>
+      <ul class="footer-list">
+        <li><a href="/pages/faq">FAQ</a></li>
+        <li><a href="/pages/envios">Envíos</a></li>
+        <li><a href="/pages/devoluciones">Devoluciones</a></li>
+        <li><a href="/pages/garantia">Garantía</a></li>
+      </ul>
+    </div>
 
-          {%- when 'social' -%}
-            <h3>{{ block.settings.title }}</h3>
-            <div class="social-icons-box">
-               <a href="{{ settings.social_instagram_link }}" class="social-icon">INSTAGRAM</a>
-               <a href="{{ settings.social_facebook_link }}" class="social-icon">FACEBOOK</a>
-               <a href="{{ settings.social_tiktok_link }}" class="social-icon">TIKTOK</a>
-            </div>
-        {%- endcase -%}
+    <div class="footer-column">
+      <h3>Tienda</h3>
+      <ul class="footer-list">
+        <li><a href="/collections/smartwatches">Smartwatches</a></li>
+        <li><a href="/collections/accesorios">Accesorios</a></li>
+        <li><a href="/collections/novedades">Novedades</a></li>
+        <li><a href="/collections/mas-vendidos">Más Vendidos</a></li>
+      </ul>
+    </div>
 
-      </div>
-    {%- endfor -%}
+    <div class="footer-column">
+      <h3>Blog & Recursos</h3>
+      <ul class="footer-list">
+        <li><a href="/blogs/news">Nuestro Blog</a></li>
+        <li><a href="/pages/recursos">Recursos</a></li>
+        <li><a href="/pages/manuales">Manuales</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3>Redes & Legal</h3>
+      <ul class="footer-list">
+        <li><a href="{{ settings.social_instagram_link }}">Instagram</a></li>
+        <li><a href="{{ settings.social_facebook_link }}">Facebook</a></li>
+        <li><a href="/pages/politica-privacidad">Política de Privacidad</a></li>
+        <li><a href="/pages/terminos-condiciones">Términos y Condiciones</a></li>
+      </ul>
+    </div>
 
   </div>
 
@@ -138,49 +143,15 @@
 {% schema %}
 {
   "name": "Kieslect Footer Slim",
-  "max_blocks": 8,
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
     { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#00D1FF" },
     { "type": "text", "id": "copyright_text", "label": "Copyright", "default": "Kieslect" }
   ],
-  "blocks": [
-    {
-      "type": "menu",
-      "name": "Columna de Links",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título de Columna", "default": "Menú" },
-        { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" }
-      ]
-    },
-    {
-      "type": "brand",
-      "name": "Logo/Info",
-      "settings": [
-        { "type": "image_picker", "id": "image", "label": "Logo" },
-        { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT" },
-        { "type": "textarea", "id": "text", "label": "Descripción" }
-      ]
-    },
-    {
-      "type": "social",
-      "name": "Redes Sociales",
-      "limit": 1,
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Síguenos" }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "Kieslect Footer Slim",
-      "blocks": [
-        { "type": "menu", "settings": { "title": "Compañía" } },
-        { "type": "menu", "settings": { "title": "Atención al Cliente" } },
-        { "type": "menu", "settings": { "title": "Tienda" } },
-        { "type": "social" }
-      ]
+      "name": "Kieslect Footer Slim"
     }
   ]
 }
