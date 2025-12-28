@@ -422,44 +422,6 @@
       "type": "chatbot-kieslect",
       "name": "Chatbot Kieslect",
       "settings": {}
-    },
-    "kieslect_tech_footer_xWLEtb": {
-      "type": "kieslect-tech-footer",
-      "blocks": {
-        "brand_E67pNd": {
-          "type": "brand",
-          "settings": {
-            "title": "KIESLECT",
-            "description": "Tecnología wearable."
-          }
-        },
-        "menu_nXUUgj": {
-          "type": "menu",
-          "settings": {
-            "title": "Menú",
-            "menu": ""
-          }
-        },
-        "image_link_fYCqC3": {
-          "type": "image_link",
-          "settings": {
-            "title": "Imagen",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "brand_E67pNd",
-        "menu_nXUUgj",
-        "image_link_fYCqC3"
-      ],
-      "name": "Kieslect Footer Final",
-      "settings": {
-        "bg_color": "#000000",
-        "text_color": "#ffffff",
-        "accent_color": "#00D1FF",
-        "copyright_text": "Kieslect Technology"
-      }
     }
   },
   "order": [
@@ -479,7 +441,6 @@
     "kieslect_edu_center_4MnPmH",
     "kieslect_tech_newsletter_EMW4Nk",
     "kieslect_ai_assistant_6Npar6",
-    "chatbot_kieslect_kdMWME",
-    "kieslect_tech_footer_xWLEtb"
+    "chatbot_kieslect_kdMWME"
   ]
 }
