@@ -138,6 +138,7 @@
 {% schema %}
 {
   "name": "Kieslect Footer Final",
+  "max_blocks": 6,
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
@@ -146,11 +147,27 @@
   ],
   "blocks": [
     {
+      "type": "brand",
+      "name": "Logo y Descripción",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT" },
+        { "type": "textarea", "id": "description", "label": "Descripción", "default": "Elevando los estándares de la tecnología wearable." }
+      ]
+    },
+    {
       "type": "text_block",
       "name": "Bloque de Texto/Blog",
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "Blog & Recursos" },
         { "type": "textarea", "id": "text", "label": "Contenido", "default": "Suscríbete para recibir noticias y ofertas." }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menú de Navegación",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Menú" },
+        { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" }
       ]
     },
     {
@@ -166,6 +183,7 @@
     {
       "name": "Kieslect Footer Final",
       "blocks": [
+        { "type": "brand" },
         { "type": "text_block" },
         { "type": "social" }
       ]
