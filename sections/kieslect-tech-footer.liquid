@@ -1,7 +1,7 @@
 {%- style -%}
   .k-footer {
-    background-color: {{ section.settings.bg_color }};
-    color: {{ section.settings.text_color }};
+    background-color: {{ section.settings.bg_color | default: '#000000' }};
+    color: {{ section.settings.text_color | default: '#ffffff' }};
     padding: 60px 0 30px 0;
     font-family: 'Inter', sans-serif;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -11,9 +11,15 @@
     max-width: 95%; 
     margin: 0 auto;
     padding: 0 40px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .footer-column {
+    flex: 1;
+    min-width: 180px;
   }
 
   .footer-column h3 {
@@ -21,9 +27,8 @@
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 20px;
-    color: {{ section.settings.accent_color }};
+    color: {{ section.settings.accent_color | default: '#00D1FF' }};
     letter-spacing: 1px;
-    min-height: 40px;
   }
 
   .footer-list { list-style: none; padding: 0; margin: 0; }
@@ -37,13 +42,13 @@
     content: "●";
     font-size: 6px;
     margin-right: 12px;
-    color: {{ section.settings.accent_color }};
+    color: {{ section.settings.accent_color | default: '#00D1FF' }};
     opacity: 0.8;
   }
 
   .footer-list a {
     text-decoration: none;
-    color: {{ section.settings.text_color }};
+    color: {{ section.settings.text_color | default: '#ffffff' }};
     opacity: 0.7;
     font-size: 0.75rem; 
     transition: 0.2s;
@@ -62,12 +67,9 @@
     opacity: 0.4;
   }
 
-  @media (max-width: 1024px) {
-    .footer-container { grid-template-columns: repeat(3, 1fr); }
-  }
-
   @media (max-width: 768px) {
-    .footer-container { grid-template-columns: 1fr 1fr; }
+    .footer-container { flex-direction: column; }
+    .footer-column { min-width: 100%; }
   }
 {%- endstyle -%}
 
@@ -77,48 +79,48 @@
     <div class="footer-column">
       <h3>Compañía</h3>
       <ul class="footer-list">
-        <li><a href="{{ section.settings.link_sobre }}">Sobre Kieslect</a></li>
-        <li><a href="{{ section.settings.link_contacto }}">Contacto</a></li>
-        <li><a href="{{ section.settings.link_empleos }}">Empleos</a></li>
+        <li><a href="{{ section.settings.link_sobre | default: '#' }}">Sobre Kieslect</a></li>
+        <li><a href="{{ section.settings.link_contacto | default: '#' }}">Contacto</a></li>
+        <li><a href="{{ section.settings.link_empleos | default: '#' }}">Empleos</a></li>
       </ul>
     </div>
 
     <div class="footer-column">
       <h3>Atención al Cliente</h3>
       <ul class="footer-list">
-        <li><a href="{{ section.settings.link_faq }}">FAQ</a></li>
-        <li><a href="{{ section.settings.link_envios }}">Envíos</a></li>
-        <li><a href="{{ section.settings.link_devoluciones }}">Devoluciones</a></li>
-        <li><a href="{{ section.settings.link_garantia }}">Garantía</a></li>
+        <li><a href="{{ section.settings.link_faq | default: '#' }}">FAQ</a></li>
+        <li><a href="{{ section.settings.link_envios | default: '#' }}">Envíos</a></li>
+        <li><a href="{{ section.settings.link_devoluciones | default: '#' }}">Devoluciones</a></li>
+        <li><a href="{{ section.settings.link_garantia | default: '#' }}">Garantía</a></li>
       </ul>
     </div>
 
     <div class="footer-column">
       <h3>Tienda</h3>
       <ul class="footer-list">
-        <li><a href="{{ section.settings.link_smartwatches }}">Smartwatches</a></li>
-        <li><a href="{{ section.settings.link_accesorios }}">Accesorios</a></li>
-        <li><a href="{{ section.settings.link_novedades }}">Novedades</a></li>
-        <li><a href="{{ section.settings.link_vendidos }}">Más Vendidos</a></li>
+        <li><a href="{{ section.settings.link_smartwatches | default: '#' }}">Smartwatches</a></li>
+        <li><a href="{{ section.settings.link_accesorios | default: '#' }}">Accesorios</a></li>
+        <li><a href="{{ section.settings.link_novedades | default: '#' }}">Novedades</a></li>
+        <li><a href="{{ section.settings.link_vendidos | default: '#' }}">Más Vendidos</a></li>
       </ul>
     </div>
 
     <div class="footer-column">
       <h3>Blog & Recursos</h3>
       <ul class="footer-list">
-        <li><a href="{{ section.settings.link_blog }}">Nuestro Blog</a></li>
-        <li><a href="{{ section.settings.link_recursos }}">Recursos</a></li>
-        <li><a href="{{ section.settings.link_manuales }}">Manuales</a></li>
+        <li><a href="{{ section.settings.link_blog | default: '#' }}">Nuestro Blog</a></li>
+        <li><a href="{{ section.settings.link_recursos | default: '#' }}">Recursos</a></li>
+        <li><a href="{{ section.settings.link_manuales | default: '#' }}">Manuales</a></li>
       </ul>
     </div>
 
     <div class="footer-column">
       <h3>Redes & Legal</h3>
       <ul class="footer-list">
-        <li><a href="{{ section.settings.link_instagram }}">Instagram</a></li>
-        <li><a href="{{ section.settings.link_facebook }}">Facebook</a></li>
-        <li><a href="{{ section.settings.link_privacidad }}">Política de Privacidad</a></li>
-        <li><a href="{{ section.settings.link_terminos }}">Términos y Condiciones</a></li>
+        <li><a href="{{ section.settings.link_instagram | default: '#' }}">Instagram</a></li>
+        <li><a href="{{ section.settings.link_facebook | default: '#' }}">Facebook</a></li>
+        <li><a href="{{ section.settings.link_privacidad | default: '#' }}">Política de Privacidad</a></li>
+        <li><a href="{{ section.settings.link_terminos | default: '#' }}">Términos y Condiciones</a></li>
       </ul>
     </div>
 
@@ -134,41 +136,39 @@
 {
   "name": "Kieslect Footer Slim",
   "settings": [
-    { "type": "header", "content": "Colores y General" },
+    { "type": "header", "content": "Colores" },
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
     { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#00D1FF" },
     { "type": "text", "id": "copyright_text", "label": "Copyright", "default": "Kieslect" },
     
-    { "type": "header", "content": "Links: Compañía" },
-    { "type": "url", "id": "link_sobre", "label": "Link Sobre Kieslect" },
-    { "type": "url", "id": "link_contacto", "label": "Link Contacto" },
-    { "type": "url", "id": "link_empleos", "label": "Link Empleos" },
+    { "type": "header", "content": "Links Compañía" },
+    { "type": "url", "id": "link_sobre", "label": "Sobre Kieslect" },
+    { "type": "url", "id": "link_contacto", "label": "Contacto" },
+    { "type": "url", "id": "link_empleos", "label": "Empleos" },
 
-    { "type": "header", "content": "Links: Atención al Cliente" },
-    { "type": "url", "id": "link_faq", "label": "Link FAQ" },
-    { "type": "url", "id": "link_envios", "label": "Link Envíos" },
-    { "type": "url", "id": "link_devoluciones", "label": "Link Devoluciones" },
-    { "type": "url", "id": "link_garantia", "label": "Link Garantía" },
+    { "type": "header", "content": "Links Atención al Cliente" },
+    { "type": "url", "id": "link_faq", "label": "FAQ" },
+    { "type": "url", "id": "link_envios", "label": "Envíos" },
+    { "type": "url", "id": "link_devoluciones", "label": "Devoluciones" },
+    { "type": "url", "id": "link_garantia", "label": "Garantía" },
 
-    { "type": "header", "content": "Links: Tienda" },
-    { "type": "url", "id": "link_smartwatches", "label": "Link Smartwatches" },
-    { "type": "url", "id": "link_accesorios", "label": "Link Accesorios" },
-    { "type": "url", "id": "link_novedades", "label": "Link Novedades" },
-    { "type": "url", "id": "link_vendidos", "label": "Link Más Vendidos" },
+    { "type": "header", "content": "Links Tienda" },
+    { "type": "url", "id": "link_smartwatches", "label": "Smartwatches" },
+    { "type": "url", "id": "link_accesorios", "label": "Accesorios" },
+    { "type": "url", "id": "link_novedades", "label": "Novedades" },
+    { "type": "url", "id": "link_vendidos", "label": "Más Vendidos" },
 
-    { "type": "header", "content": "Links: Blog y Recursos" },
-    { "type": "url", "id": "link_blog", "label": "Link Blog" },
-    { "type": "url", "id": "link_recursos", "label": "Link Recursos" },
-    { "type": "url", "id": "link_manuales", "label": "Link Manuales" },
+    { "type": "header", "content": "Links Blog & Recursos" },
+    { "type": "url", "id": "link_blog", "label": "Nuestro Blog" },
+    { "type": "url", "id": "link_recursos", "label": "Recursos" },
+    { "type": "url", "id": "link_manuales", "label": "Manuales" },
 
-    { "type": "header", "content": "Links: Redes Sociales" },
-    { "type": "url", "id": "link_instagram", "label": "Link Instagram" },
-    { "type": "url", "id": "link_facebook", "label": "Link Facebook" },
-
-    { "type": "header", "content": "Links: Legal" },
-    { "type": "url", "id": "link_privacidad", "label": "Link Privacidad" },
-    { "type": "url", "id": "link_terminos", "label": "Link Términos" }
+    { "type": "header", "content": "Links Redes & Legal" },
+    { "type": "url", "id": "link_instagram", "label": "Instagram" },
+    { "type": "url", "id": "link_facebook", "label": "Facebook" },
+    { "type": "url", "id": "link_privacidad", "label": "Política de Privacidad" },
+    { "type": "url", "id": "link_terminos", "label": "Términos y Condiciones" }
   ],
   "presets": [
     {
