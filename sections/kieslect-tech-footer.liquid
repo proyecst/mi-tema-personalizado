@@ -1,86 +1,90 @@
 {%- style -%}
+  /* Contenedor Principal - Altura Mínima */
   .k-footer {
     background-color: {{ section.settings.bg_color }};
     color: {{ section.settings.text_color }};
-    padding: 30px 0 15px 0; /* Antes 60px/30px */
+    padding: 15px 0 5px 0; /* Padding vertical mínimo */
     font-family: 'Inter', sans-serif;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  ..footer-container {
-    max-width: 1400px; /* Aumentado de 1100px a 1400px */
+  /* Ancho máximo hacia los lados */
+  .footer-container {
+    max-width: 95%; 
     margin: 0 auto;
-    padding: 0 40px;   /* Más espacio en los bordes para móviles/tablets */
+    padding: 0 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 1.5fr; /* Ajustado el ancho de la última columna */
-    gap: 40px; /* Aumentado el espacio entre columnas para aprovechar el ancho */
+    grid-template-columns: repeat(4, 1fr) 1.5fr;
+    gap: 15px; 
+    align-items: start;
   }
 
-  .footer-bottom {
-    max-width: 1400px; /* Debe coincidir con el contenedor de arriba */
-    margin: 25px auto 0;
-    padding: 15px 40px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.65rem;
-    opacity: 0.4;
-  }
-
+  /* Títulos compactos */
   .footer-column h3 {
-    font-size: 0.75rem; /* Más pequeño */
+    font-size: 0.65rem; 
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 12px; /* Menos margen */
+    margin-bottom: 6px; 
     color: {{ section.settings.accent_color }};
     letter-spacing: 0.5px;
   }
 
+  /* Listas ultra compactas */
   .footer-list { list-style: none; padding: 0; margin: 0; }
-  .footer-list li { margin-bottom: 6px; display: flex; align-items: center; } /* Interlineado compacto */
+  .footer-list li { 
+    margin-bottom: 2px; 
+    display: flex; 
+    align-items: center; 
+    line-height: 1.2;
+  } 
   
   .footer-list li::before {
     content: "●";
-    font-size: 6px; /* Punto más pequeño */
-    margin-right: 8px;
+    font-size: 5px;
+    margin-right: 5px;
     color: {{ section.settings.accent_color }};
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   .footer-list a {
     text-decoration: none;
     color: {{ section.settings.text_color }};
     opacity: 0.7;
-    font-size: 0.75rem; /* Texto pequeño */
+    font-size: 0.68rem; 
     transition: 0.2s;
   }
 
   .footer-list a:hover { opacity: 1; }
 
+  /* Barra inferior delgada */
   .footer-bottom {
-    max-width: 1100px;
-    margin: 25px auto 0;
-    padding: 15px 20px;
+    max-width: 95%;
+    margin: 10px auto 0;
+    padding: 8px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
-    font-size: 0.65rem; /* Copyright extra pequeño */
+    font-size: 0.6rem;
     opacity: 0.4;
   }
 
-  .social-icons-box { display: flex; gap: 10px; margin-top: 10px; }
+  .social-icons-box { display: flex; gap: 6px; margin-top: 5px; }
   .social-icon { 
     color: {{ section.settings.text_color }}; 
     text-decoration: none; 
-    font-size: 0.7rem; /* Iconos pequeños */
+    font-size: 0.6rem; 
     border: 1px solid rgba(255,255,255,0.1);
-    padding: 4px 8px;
-    border-radius: 4px;
+    padding: 2px 5px;
+    border-radius: 3px;
   }
 
+  /* Ajuste para móviles */
   @media (max-width: 768px) {
-    .footer-container { grid-template-columns: 1fr 1fr; gap: 15px; }
-    .k-footer { padding: 20px 0; }
+    .footer-container { 
+      grid-template-columns: 1fr 1fr; 
+      gap: 15px; 
+    }
+    .k-footer { padding: 10px 0; }
   }
 {%- endstyle -%}
 
@@ -102,7 +106,6 @@
         <li><a href="/pages/faq">FAQ</a></li>
         <li><a href="/pages/envios">Envíos</a></li>
         <li><a href="/pages/devoluciones">Devoluciones</a></li>
-        <li><a href="/pages/garantia">Garantía</a></li>
       </ul>
     </div>
 
@@ -111,7 +114,6 @@
       <ul class="footer-list">
         <li><a href="/collections/smartwatches">Smartwatches</a></li>
         <li><a href="/collections/accesorios">Accesorios</a></li>
-        <li><a href="/collections/novedades">Novedades</a></li>
       </ul>
     </div>
 
@@ -125,15 +127,16 @@
 
     <div class="footer-column">
       {% for block in section.blocks %}
-        <div style="margin-bottom: 15px;" {{ block.shopify_attributes }}>
+        <div style="margin-bottom: 8px;" {{ block.shopify_attributes }}>
           <h3>{{ block.settings.title }}</h3>
           {% if block.settings.text != blank %}
-            <p style="font-size: 0.7rem; opacity: 0.6; line-height: 1.4; margin: 0;">{{ block.settings.text }}</p>
+            <p style="font-size: 0.65rem; opacity: 0.6; line-height: 1.2; margin: 0;">{{ block.settings.text }}</p>
           {% endif %}
           {% if block.type == 'social' %}
              <div class="social-icons-box">
-               <a href="{{ settings.social_instagram_link }}" class="social-icon">INSTAGRAM</a>
-               <a href="{{ settings.social_facebook_link }}" class="social-icon">FACEBOOK</a>
+               <a href="{{ settings.social_instagram_link }}" class="social-icon">IG</a>
+               <a href="{{ settings.social_facebook_link }}" class="social-icon">FB</a>
+               <a href="{{ settings.social_twitter_link }}" class="social-icon">TW</a>
              </div>
           {% endif %}
         </div>
@@ -164,40 +167,15 @@
       "name": "Logo y Descripción",
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT" },
-        { "type": "textarea", "id": "description", "label": "Descripción" }
-      ]
-    },
-    {
-      "type": "menu",
-      "name": "Menú",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Menú" },
-        { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" }
-      ]
-    },
-    {
-      "type": "image_link",
-      "name": "Imagen con Link",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Imagen" },
-        { "type": "image_picker", "id": "image", "label": "Seleccionar Imagen" },
-        { "type": "url", "id": "link", "label": "Enlace de Imagen" }
-      ]
-    },
-    {
-      "type": "text_block",
-      "name": "Texto",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Blog" },
         { "type": "textarea", "id": "text", "label": "Contenido" }
       ]
     },
     {
       "type": "social",
-      "name": "Redes",
+      "name": "Redes Sociales",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Sigue" }
+        { "type": "text", "id": "title", "label": "Título", "default": "Siguenos" }
       ]
     }
   ],
@@ -206,8 +184,6 @@
       "name": "Kieslect Footer Slim",
       "blocks": [
         { "type": "brand" },
-        { "type": "menu" },
-        { "type": "image_link" },
         { "type": "social" }
       ]
     }
