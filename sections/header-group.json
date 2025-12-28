@@ -387,6 +387,13 @@
     "kieslect_tech_footer_WpP4Vm": {
       "type": "kieslect-tech-footer",
       "blocks": {
+        "brand_QXkLGT": {
+          "type": "brand",
+          "settings": {
+            "title": "KIESLECT",
+            "text": ""
+          }
+        },
         "menu_dUFmPV": {
           "type": "menu",
           "settings": {
@@ -402,6 +409,7 @@
         }
       },
       "block_order": [
+        "brand_QXkLGT",
         "menu_dUFmPV",
         "social_k7yjKC"
       ],
