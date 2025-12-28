@@ -134,11 +134,10 @@
     <div>Kieslect Official Store</div>
   </div>
 </footer>
-
 {% schema %}
 {
   "name": "Kieslect Footer Final",
-  "max_blocks": 6,
+  "max_blocks": 8,
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
@@ -151,20 +150,20 @@
       "name": "Logo y Descripción",
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT" },
-        { "type": "textarea", "id": "description", "label": "Descripción", "default": "Elevando los estándares de la tecnología wearable." }
+        { "type": "textarea", "id": "description", "label": "Descripción", "default": "Tecnología wearable." }
       ]
     },
     {
       "type": "text_block",
-      "name": "Bloque de Texto/Blog",
+      "name": "Bloque de Texto",
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "Blog & Recursos" },
-        { "type": "textarea", "id": "text", "label": "Contenido", "default": "Suscríbete para recibir noticias y ofertas." }
+        { "type": "textarea", "id": "text", "label": "Contenido", "default": "Información adicional aquí." }
       ]
     },
     {
       "type": "menu",
-      "name": "Menú de Navegación",
+      "name": "Menú",
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "Menú" },
         { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" }
@@ -177,6 +176,15 @@
       "settings": [
         { "type": "text", "id": "title", "label": "Título", "default": "Síguenos" }
       ]
+    },
+    {
+      "type": "image_link",
+      "name": "Imagen con Link",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Imagen" },
+        { "type": "image_picker", "id": "image", "label": "Seleccionar Imagen" },
+        { "type": "url", "id": "link", "label": "Enlace de Imagen" }
+      ]
     }
   ],
   "presets": [
@@ -184,8 +192,8 @@
       "name": "Kieslect Footer Final",
       "blocks": [
         { "type": "brand" },
-        { "type": "text_block" },
-        { "type": "social" }
+        { "type": "menu" },
+        { "type": "image_link" }
       ]
     }
   ]
