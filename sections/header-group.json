@@ -79,21 +79,22 @@
     },
     "trust_bar_v3_ahJkw9": {
       "type": "trust-bar-v3",
-      "blocks": {
-        "formulario_Pr3Dfx": {
-          "type": "formulario",
-          "settings": {
-            "title": "Envío Gratis",
-            "subtitle": "Rellena tus datos",
-            "info_text": ""
-          }
-        }
-      },
-      "block_order": [
-        "formulario_Pr3Dfx"
-      ],
       "name": "Barra de Confianza V3",
-      "settings": {}
+      "settings": {
+        "accent_color": "#00d1ff",
+        "title_1": "Envío Gratis",
+        "sub_1": "Rellena tus datos",
+        "title_2": "Pago Seguro",
+        "sub_2": "Métodos de pago",
+        "info_2": "Aceptamos tarjetas de crédito y transferencias bancarias.",
+        "link_2": "https://www.kieslect.com/es/payment-method/",
+        "title_3": "Entrega Rápida",
+        "sub_3": "Seguimiento en línea",
+        "link_tracking": "",
+        "title_4": "Soporte 24/7",
+        "sub_4": "Atención Directa",
+        "info_4": "Nuestro equipo está disponible para ayudarte."
+      }
     },
     "hero_animado_kieslect_6NKX9X": {
       "type": "hero-animado-kieslect",
