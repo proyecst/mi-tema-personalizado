@@ -387,6 +387,12 @@
     "kieslect_tech_footer_WpP4Vm": {
       "type": "kieslect-tech-footer",
       "blocks": {
+        "social_raAYC8": {
+          "type": "social",
+          "settings": {
+            "title": "Síguenos"
+          }
+        },
         "brand_QXkLGT": {
           "type": "brand",
           "settings": {
@@ -400,18 +406,12 @@
             "title": "Menú",
             "menu": ""
           }
-        },
-        "social_k7yjKC": {
-          "type": "social",
-          "settings": {
-            "title": "Sigue"
-          }
         }
       },
       "block_order": [
+        "social_raAYC8",
         "brand_QXkLGT",
-        "menu_dUFmPV",
-        "social_k7yjKC"
+        "menu_dUFmPV"
       ],
       "name": "Kieslect Footer Slim",
       "settings": {

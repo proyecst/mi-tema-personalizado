@@ -19,7 +19,7 @@
 
   .footer-column {
     flex: 1;
-    min-width: 200px;
+    min-width: 180px;
   }
 
   .footer-column h3 {
@@ -75,11 +75,16 @@
   .social-icon { 
     color: {{ section.settings.text_color }}; 
     text-decoration: none; 
-    font-size: 0.7rem; 
+    font-size: 0.65rem; 
     border: 1px solid rgba(255,255,255,0.1);
     padding: 6px 12px;
     border-radius: 4px;
     transition: 0.3s;
+  }
+
+  .social-icon:hover {
+    background: {{ section.settings.accent_color }};
+    color: #000;
   }
 
   @media (max-width: 768px) {
@@ -104,16 +109,18 @@
             </ul>
 
           {%- when 'brand' -%}
-            <h3>{{ block.settings.title }}</h3>
-            {% if block.settings.text != blank %}
-              <p style="font-size: 0.75rem; opacity: 0.6; line-height: 1.5; margin: 0;">{{ block.settings.text }}</p>
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | img_url: '200x' }}" style="margin-bottom: 15px; max-width: 150px;">
             {% endif %}
+            <h3>{{ block.settings.title }}</h3>
+            <p style="font-size: 0.75rem; opacity: 0.6;">{{ block.settings.text }}</p>
 
           {%- when 'social' -%}
             <h3>{{ block.settings.title }}</h3>
             <div class="social-icons-box">
                <a href="{{ settings.social_instagram_link }}" class="social-icon">INSTAGRAM</a>
                <a href="{{ settings.social_facebook_link }}" class="social-icon">FACEBOOK</a>
+               <a href="{{ settings.social_tiktok_link }}" class="social-icon">TIKTOK</a>
             </div>
         {%- endcase -%}
 
@@ -141,18 +148,19 @@
   "blocks": [
     {
       "type": "menu",
-      "name": "Menú",
+      "name": "Columna de Links",
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Navegación" },
+        { "type": "text", "id": "title", "label": "Título de Columna", "default": "Menú" },
         { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" }
       ]
     },
     {
       "type": "brand",
-      "name": "Texto Informativo",
+      "name": "Logo/Info",
       "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo" },
         { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT" },
-        { "type": "textarea", "id": "text", "label": "Contenido" }
+        { "type": "textarea", "id": "text", "label": "Descripción" }
       ]
     },
     {
@@ -168,7 +176,9 @@
     {
       "name": "Kieslect Footer Slim",
       "blocks": [
-        { "type": "menu" },
+        { "type": "menu", "settings": { "title": "Compañía" } },
+        { "type": "menu", "settings": { "title": "Atención al Cliente" } },
+        { "type": "menu", "settings": { "title": "Tienda" } },
         { "type": "social" }
       ]
     }
