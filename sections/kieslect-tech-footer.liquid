@@ -1,14 +1,12 @@
 {%- style -%}
-  /* Contenedor Principal - Ahora más largo verticalmente */
   .k-footer {
     background-color: {{ section.settings.bg_color }};
     color: {{ section.settings.text_color }};
-    padding: 60px 0 30px 0; /* Aumentado para dar más altura */
+    padding: 60px 0 30px 0;
     font-family: 'Inter', sans-serif;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Mantenemos el ancho al 95% */
   .footer-container {
     max-width: 95%; 
     margin: 0 auto;
@@ -19,20 +17,18 @@
     align-items: start;
   }
 
-  /* Títulos con más espacio abajo */
   .footer-column h3 {
     font-size: 0.8rem; 
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 20px; /* Más espacio bajo el título */
+    margin-bottom: 20px;
     color: {{ section.settings.accent_color }};
     letter-spacing: 1px;
   }
 
-  /* Listas con más interlineado (más largo) */
   .footer-list { list-style: none; padding: 0; margin: 0; }
   .footer-list li { 
-    margin-bottom: 12px; /* Aumentado de 2px a 12px para mayor longitud */
+    margin-bottom: 12px; 
     display: flex; 
     align-items: center; 
     line-height: 1.4;
@@ -56,13 +52,12 @@
 
   .footer-list a:hover { 
     opacity: 1; 
-    padding-left: 5px; /* Pequeño efecto de movimiento al pasar el mouse */
+    padding-left: 5px;
   }
 
-  /* Barra inferior con más margen */
   .footer-bottom {
     max-width: 95%;
-    margin: 50px auto 0; /* Mucho más espacio antes del copyright */
+    margin: 50px auto 0;
     padding: 20px 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
@@ -80,12 +75,6 @@
     padding: 6px 12px;
     border-radius: 4px;
     transition: 0.3s;
-  }
-
-  .social-icon:hover {
-    background: {{ section.settings.accent_color }};
-    color: #000;
-    border-color: {{ section.settings.accent_color }};
   }
 
   @media (max-width: 768px) {
@@ -164,18 +153,47 @@
   "name": "Kieslect Footer Slim",
   "max_blocks": 8,
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
-    { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#00D1FF" },
-    { "type": "text", "id": "copyright_text", "label": "Copyright", "default": "Kieslect" }
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Fondo",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Color Acento",
+      "default": "#00D1FF"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright",
+      "default": "Kieslect"
+    }
   ],
   "blocks": [
     {
       "type": "brand",
-      "name": "Logo y Descripción",
+      "name": "Texto Informativo",
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT" },
-        { "type": "textarea", "id": "text", "label": "Contenido" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "KIESLECT"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Contenido"
+        }
       ]
     },
     {
@@ -183,7 +201,12 @@
       "name": "Redes Sociales",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Siguenos" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Siguenos"
+        }
       ]
     }
   ],
