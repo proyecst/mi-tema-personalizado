@@ -1,41 +1,41 @@
 {%- style -%}
+  /* Contenedor Principal - Ahora más largo verticalmente */
   .k-footer {
     background-color: {{ section.settings.bg_color }};
     color: {{ section.settings.text_color }};
-    padding: 60px 0 30px 0;
+    padding: 60px 0 30px 0; /* Aumentado para dar más altura */
     font-family: 'Inter', sans-serif;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  /* Mantenemos el ancho al 95% */
   .footer-container {
     max-width: 95%; 
     margin: 0 auto;
     padding: 0 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 1.5fr;
+    gap: 30px; 
+    align-items: start;
   }
 
-  .footer-column {
-    flex: 1;
-    min-width: 180px;
-  }
-
+  /* Títulos con más espacio abajo */
   .footer-column h3 {
     font-size: 0.8rem; 
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Más espacio bajo el título */
     color: {{ section.settings.accent_color }};
     letter-spacing: 1px;
   }
 
+  /* Listas con más interlineado (más largo) */
   .footer-list { list-style: none; padding: 0; margin: 0; }
   .footer-list li { 
-    margin-bottom: 12px; 
+    margin-bottom: 12px; /* Aumentado de 2px a 12px para mayor longitud */
     display: flex; 
     align-items: center; 
+    line-height: 1.4;
   } 
   
   .footer-list li::before {
@@ -56,17 +56,17 @@
 
   .footer-list a:hover { 
     opacity: 1; 
-    padding-left: 5px;
+    padding-left: 5px; /* Pequeño efecto de movimiento al pasar el mouse */
   }
 
+  /* Barra inferior con más margen */
   .footer-bottom {
     max-width: 95%;
-    margin: 50px auto 0;
+    margin: 50px auto 0; /* Mucho más espacio antes del copyright */
     padding: 20px 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
-    align-items: center;
     font-size: 0.7rem;
     opacity: 0.5;
   }
@@ -75,7 +75,7 @@
   .social-icon { 
     color: {{ section.settings.text_color }}; 
     text-decoration: none; 
-    font-size: 0.65rem; 
+    font-size: 0.7rem; 
     border: 1px solid rgba(255,255,255,0.1);
     padding: 6px 12px;
     border-radius: 4px;
@@ -85,96 +85,97 @@
   .social-icon:hover {
     background: {{ section.settings.accent_color }};
     color: #000;
+    border-color: {{ section.settings.accent_color }};
   }
 
   @media (max-width: 768px) {
-    .footer-container { flex-direction: column; }
-    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .footer-container { 
+      grid-template-columns: 1fr 1fr; 
+      gap: 30px; 
+    }
+    .k-footer { padding: 40px 0; }
   }
 {%- endstyle -%}
 
 <footer class="k-footer">
   <div class="footer-container">
-    {%- for block in section.blocks -%}
-      <div class="footer-column" {{ block.shopify_attributes }}>
-        
-        {%- case block.type -%}
-          {%- when 'menu' -%}
-            {%- if block.settings.title != blank -%}
-              <h3>{{ block.settings.title }}</h3>
-            {%- endif -%}
-            <ul class="footer-list">
-              {%- for link in block.settings.menu.links -%}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-              {%- endfor -%}
-            </ul>
+    
+    <div class="footer-column">
+      <h3>Compañía</h3>
+      <ul class="footer-list">
+        <li><a href="/pages/sobre-kieslect">Sobre Kieslect</a></li>
+        <li><a href="/pages/contacto">Contacto</a></li>
+        <li><a href="/pages/empleos">Empleos</a></li>
+      </ul>
+    </div>
 
-          {%- when 'text' -%}
-            {%- if block.settings.title != blank -%}
-              <h3>{{ block.settings.title }}</h3>
-            {%- endif -%}
-            <div style="font-size: 0.75rem; opacity: 0.7; line-height: 1.6;">
-              {{ block.settings.content }}
-            </div>
-            {%- if block.settings.link_text != blank -%}
-              <a href="{{ block.settings.link_url }}" style="color: {{ section.settings.accent_color }}; text-decoration: none; font-size: 0.75rem; margin-top: 10px; display: inline-block;">
-                {{ block.settings.link_text }} →
-              </a>
-            {%- endif -%}
+    <div class="footer-column">
+      <h3>Soporte</h3>
+      <ul class="footer-list">
+        <li><a href="/pages/faq">FAQ</a></li>
+        <li><a href="/pages/envios">Envíos</a></li>
+        <li><a href="/pages/devoluciones">Devoluciones</a></li>
+      </ul>
+    </div>
 
-          {%- when 'social' -%}
-            {%- if block.settings.title != blank -%}
-              <h3>{{ block.settings.title }}</h3>
-            {%- endif -%}
-            <div class="social-icons-box">
-              {%- if settings.social_facebook_link != blank -%}<a href="{{ settings.social_facebook_link }}" class="social-icon">FACEBOOK</a>{%- endif -%}
-              {%- if settings.social_instagram_link != blank -%}<a href="{{ settings.social_instagram_link }}" class="social-icon">INSTAGRAM</a>{%- endif -%}
-              {%- if settings.social_tiktok_link != blank -%}<a href="{{ settings.social_tiktok_link }}" class="social-icon">TIKTOK</a>{%- endif -%}
-            </div>
-        {%- endcase -%}
+    <div class="footer-column">
+      <h3>Tienda</h3>
+      <ul class="footer-list">
+        <li><a href="/collections/smartwatches">Smartwatches</a></li>
+        <li><a href="/collections/accesorios">Accesorios</a></li>
+      </ul>
+    </div>
 
-      </div>
-    {%- endfor -%}
+    <div class="footer-column">
+      <h3>Legal</h3>
+      <ul class="footer-list">
+        <li><a href="/pages/politica-privacidad">Privacidad</a></li>
+        <li><a href="/pages/terminos-condiciones">Términos</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      {% for block in section.blocks %}
+        <div style="margin-bottom: 20px;" {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.title }}</h3>
+          {% if block.settings.text != blank %}
+            <p style="font-size: 0.75rem; opacity: 0.6; line-height: 1.5; margin: 0;">{{ block.settings.text }}</p>
+          {% endif %}
+          {% if block.type == 'social' %}
+             <div class="social-icons-box">
+               <a href="{{ settings.social_instagram_link }}" class="social-icon">INSTAGRAM</a>
+               <a href="{{ settings.social_facebook_link }}" class="social-icon">FACEBOOK</a>
+             </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
   </div>
 
   <div class="footer-bottom">
     <div>&copy; {{ 'now' | date: "%Y" }} {{ section.settings.copyright_text }}</div>
-    <div style="display: flex; gap: 20px;">
-        <a href="{{ section.settings.bottom_link_url }}" style="color: inherit; text-decoration: none;">{{ section.settings.bottom_link_text }}</a>
-        <span>Kieslect Official</span>
-    </div>
+    <div>Kieslect Official</div>
   </div>
 </footer>
 
 {% schema %}
 {
-  "name": "Kieslect Footer Pro",
-  "max_blocks": 5,
+  "name": "Kieslect Footer Slim",
+  "max_blocks": 8,
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
     { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#00D1FF" },
-    { "type": "text", "id": "copyright_text", "label": "Texto Copyright", "default": "Kieslect" },
-    { "type": "text", "id": "bottom_link_text", "label": "Link inferior (ej. Privacidad)", "default": "Términos y Condiciones" },
-    { "type": "url", "id": "bottom_link_url", "label": "URL Link inferior" }
+    { "type": "text", "id": "copyright_text", "label": "Copyright", "default": "Kieslect" }
   ],
   "blocks": [
     {
-      "type": "menu",
-      "name": "Menú de Navegación",
+      "type": "brand",
+      "name": "Logo y Descripción",
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Menú" },
-        { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Bloque de Texto/Link",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Sobre Nosotros" },
-        { "type": "richtext", "id": "content", "label": "Contenido", "default": "<p>Escribe aquí tu información de marca.</p>" },
-        { "type": "text", "id": "link_text", "label": "Texto del botón", "default": "Saber más" },
-        { "type": "url", "id": "link_url", "label": "Enlace del botón" }
+        { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT" },
+        { "type": "textarea", "id": "text", "label": "Contenido" }
       ]
     },
     {
@@ -182,17 +183,15 @@
       "name": "Redes Sociales",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Síguenos" }
+        { "type": "text", "id": "title", "label": "Título", "default": "Siguenos" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Kieslect Footer Pro",
+      "name": "Kieslect Footer Slim",
       "blocks": [
-        { "type": "menu" },
-        { "type": "menu" },
-        { "type": "text" },
+        { "type": "brand" },
         { "type": "social" }
       ]
     }
