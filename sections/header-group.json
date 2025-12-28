@@ -435,6 +435,7 @@
       "block_order": [
         "link_pago_gR4XGa"
       ],
+      "disabled": true,
       "name": "t:general.custom_section",
       "settings": {
         "background_image": "shopify://shop_images/imagen-lifestyle-con-smartwatch-kieslect.png"
