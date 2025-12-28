@@ -98,6 +98,45 @@
     },
     "hero_animado_kieslect_6NKX9X": {
       "type": "hero-animado-kieslect",
+      "blocks": {
+        "image_W8VzVj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/KR3_dorado.jpg"
+          }
+        },
+        "image_mVVTtm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/LoraM-00.png"
+          }
+        },
+        "image_iz74bh": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Kieslect_Smart_Calling_Watch_Actor_Leading-Negro-Frontal.png"
+          }
+        },
+        "image_kMzLyX": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Kieslect-Lady-Calling-Smartwatch-Pure-1.webp"
+          }
+        },
+        "image_6CMPeT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/kieslect-calling-watch-ks-3-2.webp"
+          }
+        }
+      },
+      "block_order": [
+        "image_W8VzVj",
+        "image_mVVTtm",
+        "image_iz74bh",
+        "image_kMzLyX",
+        "image_6CMPeT"
+      ],
       "name": "Banner Animado Pro",
       "settings": {
         "height_desktop": 80,
