@@ -387,11 +387,11 @@
     "kieslect_tech_footer_WpP4Vm": {
       "type": "kieslect-tech-footer",
       "blocks": {
-        "brand_FEWkfM": {
-          "type": "brand",
+        "menu_dUFmPV": {
+          "type": "menu",
           "settings": {
-            "title": "KIESLECT",
-            "text": ""
+            "title": "Menú",
+            "menu": ""
           }
         },
         "social_k7yjKC": {
@@ -402,7 +402,7 @@
         }
       },
       "block_order": [
-        "brand_FEWkfM",
+        "menu_dUFmPV",
         "social_k7yjKC"
       ],
       "name": "Kieslect Footer Slim",
