@@ -102,7 +102,6 @@
     },
     "hero_animado_kieslect_6NKX9X": {
       "type": "hero-animado-kieslect",
-      "disabled": true,
       "name": "Banner Animado Pro",
       "settings": {
         "title": "Kieslect KS3",
