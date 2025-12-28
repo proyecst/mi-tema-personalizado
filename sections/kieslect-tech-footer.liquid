@@ -2,71 +2,74 @@
   .k-footer {
     background-color: {{ section.settings.bg_color }};
     color: {{ section.settings.text_color }};
-    padding: 60px 0 30px 0;
+    padding: 30px 0 15px 0; /* Antes 60px/30px */
     font-family: 'Inter', sans-serif;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .footer-container {
-    max-width: 1300px;
+    max-width: 1100px; /* Más estrecho */
     margin: 0 auto;
-    padding: 0 25px;
+    padding: 0 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 1.5fr; /* 5 columnas */
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr) 1.2fr;
+    gap: 20px; /* Menos espacio entre columnas */
   }
 
   .footer-column h3 {
-    font-size: 0.9rem;
+    font-size: 0.75rem; /* Más pequeño */
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 12px; /* Menos margen */
     color: {{ section.settings.accent_color }};
+    letter-spacing: 0.5px;
   }
 
   .footer-list { list-style: none; padding: 0; margin: 0; }
-  .footer-list li { margin-bottom: 12px; display: flex; align-items: center; }
+  .footer-list li { margin-bottom: 6px; display: flex; align-items: center; } /* Interlineado compacto */
   
-  /* El punto decorativo que pediste */
   .footer-list li::before {
     content: "●";
-    font-size: 8px;
-    margin-right: 10px;
+    font-size: 6px; /* Punto más pequeño */
+    margin-right: 8px;
     color: {{ section.settings.accent_color }};
-    opacity: 0.8;
+    opacity: 0.6;
   }
 
   .footer-list a {
     text-decoration: none;
     color: {{ section.settings.text_color }};
     opacity: 0.7;
-    font-size: 0.85rem;
-    transition: 0.3s;
+    font-size: 0.75rem; /* Texto pequeño */
+    transition: 0.2s;
   }
 
-  .footer-list a:hover { opacity: 1; padding-left: 5px; }
+  .footer-list a:hover { opacity: 1; }
 
   .footer-bottom {
-    max-width: 1300px;
-    margin: 40px auto 0;
-    padding: 20px 25px;
+    max-width: 1100px;
+    margin: 25px auto 0;
+    padding: 15px 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
-    font-size: 0.75rem;
-    opacity: 0.5;
+    font-size: 0.65rem; /* Copyright extra pequeño */
+    opacity: 0.4;
   }
 
-  .social-icons-box { display: flex; gap: 15px; margin-top: 15px; }
-  .social-icon { color: {{ section.settings.text_color }}; text-decoration: none; font-size: 1.2rem; }
-
-  @media (max-width: 1024px) {
-    .footer-container { grid-template-columns: 1fr 1fr; }
+  .social-icons-box { display: flex; gap: 10px; margin-top: 10px; }
+  .social-icon { 
+    color: {{ section.settings.text_color }}; 
+    text-decoration: none; 
+    font-size: 0.7rem; /* Iconos pequeños */
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
   }
 
-  @media (max-width: 600px) {
-    .footer-container { grid-template-columns: 1fr; text-align: center; }
-    .footer-list li { justify-content: center; }
+  @media (max-width: 768px) {
+    .footer-container { grid-template-columns: 1fr 1fr; gap: 15px; }
+    .k-footer { padding: 20px 0; }
   }
 {%- endstyle -%}
 
@@ -83,7 +86,7 @@
     </div>
 
     <div class="footer-column">
-      <h3>Atención al Cliente</h3>
+      <h3>Soporte</h3>
       <ul class="footer-list">
         <li><a href="/pages/faq">FAQ</a></li>
         <li><a href="/pages/envios">Envíos</a></li>
@@ -98,29 +101,28 @@
         <li><a href="/collections/smartwatches">Smartwatches</a></li>
         <li><a href="/collections/accesorios">Accesorios</a></li>
         <li><a href="/collections/novedades">Novedades</a></li>
-        <li><a href="/collections/mas-vendidos">Más Vendidos</a></li>
       </ul>
     </div>
 
     <div class="footer-column">
       <h3>Legal</h3>
       <ul class="footer-list">
-        <li><a href="/pages/politica-privacidad">Política de Privacidad</a></li>
-        <li><a href="/pages/terminos-condiciones">Términos y Condiciones</a></li>
+        <li><a href="/pages/politica-privacidad">Privacidad</a></li>
+        <li><a href="/pages/terminos-condiciones">Términos</a></li>
       </ul>
     </div>
 
     <div class="footer-column">
       {% for block in section.blocks %}
-        <div style="margin-bottom: 30px;" {{ block.shopify_attributes }}>
+        <div style="margin-bottom: 15px;" {{ block.shopify_attributes }}>
           <h3>{{ block.settings.title }}</h3>
           {% if block.settings.text != blank %}
-            <p style="font-size: 0.85rem; opacity: 0.7; line-height: 1.6;">{{ block.settings.text }}</p>
+            <p style="font-size: 0.7rem; opacity: 0.6; line-height: 1.4; margin: 0;">{{ block.settings.text }}</p>
           {% endif %}
           {% if block.type == 'social' %}
              <div class="social-icons-box">
-               <a href="{{ settings.social_instagram_link }}" class="social-icon">IG</a>
-               <a href="{{ settings.social_facebook_link }}" class="social-icon">FB</a>
+               <a href="{{ settings.social_instagram_link }}" class="social-icon">INSTAGRAM</a>
+               <a href="{{ settings.social_facebook_link }}" class="social-icon">FACEBOOK</a>
              </div>
           {% endif %}
         </div>
@@ -131,69 +133,44 @@
 
   <div class="footer-bottom">
     <div>&copy; {{ 'now' | date: "%Y" }} {{ section.settings.copyright_text }}</div>
-    <div>Kieslect Official Store</div>
+    <div>Kieslect Official</div>
   </div>
 </footer>
+
 {% schema %}
 {
-  "name": "Kieslect Footer Final",
-  "max_blocks": 8,
+  "name": "Kieslect Footer Slim",
+  "max_blocks": 5,
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Color Acento (Puntos)", "default": "#00D1FF" },
-    { "type": "text", "id": "copyright_text", "label": "Copyright", "default": "Kieslect Technology" }
+    { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#00D1FF" },
+    { "type": "text", "id": "copyright_text", "label": "Copyright", "default": "Kieslect" }
   ],
   "blocks": [
     {
-      "type": "brand",
-      "name": "Logo y Descripción",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT" },
-        { "type": "textarea", "id": "description", "label": "Descripción", "default": "Tecnología wearable." }
-      ]
-    },
-    {
       "type": "text_block",
-      "name": "Bloque de Texto",
+      "name": "Texto",
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Blog & Recursos" },
-        { "type": "textarea", "id": "text", "label": "Contenido", "default": "Información adicional aquí." }
-      ]
-    },
-    {
-      "type": "menu",
-      "name": "Menú",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Menú" },
-        { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" }
+        { "type": "text", "id": "title", "label": "Título", "default": "Blog" },
+        { "type": "textarea", "id": "text", "label": "Contenido", "default": "Novedades tecnológicas." }
       ]
     },
     {
       "type": "social",
-      "name": "Redes Sociales",
+      "name": "Redes",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Síguenos" }
-      ]
-    },
-    {
-      "type": "image_link",
-      "name": "Imagen con Link",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Imagen" },
-        { "type": "image_picker", "id": "image", "label": "Seleccionar Imagen" },
-        { "type": "url", "id": "link", "label": "Enlace de Imagen" }
+        { "type": "text", "id": "title", "label": "Título", "default": "Sigue" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Kieslect Footer Final",
+      "name": "Kieslect Footer Slim",
       "blocks": [
-        { "type": "brand" },
-        { "type": "menu" },
-        { "type": "image_link" }
+        { "type": "text_block" },
+        { "type": "social" }
       ]
     }
   ]
