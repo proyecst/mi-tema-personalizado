@@ -1,207 +1,90 @@
-{%- style -%}
-  .k-footer {
-    background-color: {{ section.settings.bg_color }};
-    color: {{ section.settings.text_color }};
-    padding: 80px 0 40px 0;
-    font-family: 'Inter', sans-serif;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    position: relative;
-  }
-
-  /* Ajuste de tipografía estilo Kieslect */
-  .footer-container h2, .footer-container h3 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 900; /* Extra Bold */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .footer-container {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 25px;
-    display: grid;
-    grid-template-columns: 2fr repeat(3, 1fr);
-    gap: 50px;
-  }
-
-  /* El color naranja de tu botón "Comprar Ahora" */
-  .accent-text {
-    color: {{ section.settings.accent_color }};
-  }
-
-  .footer-brand h2 {
-    font-size: 2.2rem;
-    margin: 0 0 10px 0;
-  }
-
-  .footer-brand p {
-    font-size: 0.9rem;
-    opacity: 0.7;
-    margin-bottom: 25px;
-  }
-
-  .footer-column h3 {
-    font-size: 0.9rem;
-    margin-bottom: 25px;
-    color: {{ section.settings.text_color }};
-  }
-
-  .footer-list { list-style: none; padding: 0; margin: 0; }
-  .footer-list li { margin-bottom: 12px; }
-  
-  .footer-list a {
-    text-decoration: none;
-    color: {{ section.settings.text_color }};
-    opacity: 0.6;
-    font-size: 0.85rem;
-    transition: 0.3s;
-  }
-
-  .footer-list a:hover {
-    opacity: 1;
-    color: {{ section.settings.accent_color }};
-    padding-left: 5px;
-  }
-
-  /* Botón estilo "Comprar Ahora" */
-  .footer-btn {
-    display: inline-block;
-    background-color: {{ section.settings.accent_color }};
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    transition: 0.3s;
-  }
-
-  .footer-btn:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-  }
-
-  .footer-bottom {
-    max-width: 1300px;
-    margin: 60px auto 0 auto;
-    padding: 30px 25px 0 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.7rem;
-    opacity: 0.5;
-    letter-spacing: 2px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    .footer-container { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media screen and (max-width: 600px) {
-    .footer-container { grid-template-columns: 1fr; text-align: center; }
-    .footer-bottom { flex-direction: column; gap: 20px; align-items: center; }
-  }
-{%- endstyle -%}
-
-<footer class="k-footer">
-  <div class="footer-container">
-    
-    {% for block in section.blocks %}
-      <div class="footer-column {% if block.type == 'brand' %}footer-brand{% endif %}" {{ block.shopify_attributes }}>
-        
-        {% case block.type %}
-          {% when 'brand' %}
-            {% if block.settings.logo_img != blank %}
-               <img src="{{ block.settings.logo_img | img_url: '300x' }}" style="max-width: 200px; margin-bottom:15px;">
-            {% else %}
-               <h2>{{ block.settings.logo_text }}</h2>
-            {% endif %}
-            <p>{{ block.settings.description }}</p>
-            {% if block.settings.btn_link != blank %}
-              <a href="{{ block.settings.btn_link }}" class="footer-btn">{{ block.settings.btn_text }}</a>
-            {% endif %}
-
-          {% when 'menu' %}
-            <h3>{{ block.settings.title }}</h3>
-            <ul class="footer-list">
-              {% for link in linklists[block.settings.menu].links %}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-              {% endfor %}
-            </ul>
-
-          {% when 'image_info' %}
-            <h3>{{ block.settings.title }}</h3>
-            {% if block.settings.image != blank %}
-              <a href="{{ block.settings.link }}">
-                <img src="{{ block.settings.image | img_url: '500x' }}" style="width:100%; border-radius:4px; margin-bottom:15px;">
-              </a>
-            {% endif %}
-            <p style="font-size: 0.8rem; opacity: 0.6;">{{ block.settings.info_text }}</p>
-
-        {% endcase %}
-      </div>
-    {% endfor %}
-
-  </div>
-
-  <div class="footer-bottom">
-    <div>&copy; {{ 'now' | date: "%Y" }} {{ section.settings.copy_text }}</div>
-    <div style="text-transform: uppercase;">Premium Smartwatches</div>
-  </div>
-</footer>
-
-{% schema %}
-{
-  "name": "Kieslect Footer Black",
-  "settings": [
-    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
-    { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Color Naranja (Botón)", "default": "#FF4F01" },
-    { "type": "text", "id": "copy_text", "label": "Copyright", "default": "KIESLECT TECHNOLOGY" }
-  ],
-  "blocks": [
-    {
-      "type": "brand",
-      "name": "Marca y Botón",
-      "settings": [
-        { "type": "image_picker", "id": "logo_img", "label": "Imagen de Logo" },
-        { "type": "text", "id": "logo_text", "label": "Texto de Logo", "default": "KIESLECT" },
-        { "type": "textarea", "id": "description", "label": "Descripción corta" },
-        { "type": "text", "id": "btn_text", "label": "Texto Botón", "default": "COMPRAR AHORA" },
-        { "type": "url", "id": "btn_link", "label": "Link Botón" }
-      ]
-    },
-    {
-      "type": "menu",
-      "name": "Menú",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Menú" },
-        { "type": "link_list", "id": "menu", "label": "Seleccionar Menú" }
-      ]
-    },
-    {
-      "type": "image_info",
-      "name": "Imagen Informativa",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Título", "default": "Soporte" },
-        { "type": "image_picker", "id": "image", "label": "Imagen Informativa" },
-        { "type": "url", "id": "link", "label": "Link de Imagen" },
-        { "type": "textarea", "id": "info_text", "label": "Texto informativo" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Kieslect Footer Black",
-      "blocks": [
-        { "type": "brand" },
-        { "type": "menu" },
-        { "type": "menu" },
-        { "type": "image_info" }
-      ]
-    }
-  ]
+.custom-footer {
+  background-color: #1a1a1a; /* Color oscuro elegante */
+  color: #ffffff;
+  padding: 60px 20px 20px;
+  font-family: 'Arial', sans-serif;
 }
-{% endschema %}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 30px;
+  padding: 0 15px;
+}
+
+.footer-column h3 {
+  color: #ffffff;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.footer-column ul li a:hover {
+  color: #ffffff;
+}
+
+.block-text p {
+  color: #b3b3b3;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.social-links {
+  margin: 15px 0 25px;
+}
+
+.social-links a {
+  color: #ffffff;
+  margin-right: 15px;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+  .footer-column {
+    flex: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-column {
+    flex: 100%;
+    text-align: center;
+  }
+}
