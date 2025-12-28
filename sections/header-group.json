@@ -99,6 +99,12 @@
     "hero_animado_kieslect_6NKX9X": {
       "type": "hero-animado-kieslect",
       "blocks": {
+        "image_ERrniX": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/KS2G-02.png"
+          }
+        },
         "image_W8VzVj": {
           "type": "image",
           "settings": {
@@ -131,6 +137,7 @@
         }
       },
       "block_order": [
+        "image_ERrniX",
         "image_W8VzVj",
         "image_mVVTtm",
         "image_iz74bh",
