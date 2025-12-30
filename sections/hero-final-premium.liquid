@@ -1,0 +1,147 @@
+<section class="hero-smart-v2" style="background: {{ section.settings.bg_color }}; color: {{ section.settings.txt_color }};">
+  <div class="hero-wrapper-v2">
+    
+    <div class="hero-content-v2">
+      <h1 class="hero-title-v2">
+        {{ section.settings.title_main }}
+      </h1>
+      
+      <h2 class="hero-subtitle-v2">
+        {{ section.settings.subtitle }}
+      </h2>
+      
+      <p class="hero-desc-v2">
+        {{ section.settings.description }}
+      </p>
+
+      <div class="hero-actions-v2">
+        {% if section.settings.btn_link != blank %}
+          <a href="{{ section.settings.btn_link }}" class="hero-btn-v2">
+            {{ section.settings.btn_label }}
+          </a>
+        {% endif %}
+      </div>
+      
+      <p class="hero-slogan-v2">
+        {{ section.settings.slogan }}
+      </p>
+    </div>
+
+    <div class="hero-image-v2">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="Smartwatch">
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @font-face {
+    font-family: 'Ethnocentric';
+    src: url('https://db.onlinewebfonts.com/t/625330384ef8f0607921389809635532.woff2') format('woff2');
+  }
+
+  .hero-smart-v2 {
+    padding: 60px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+    overflow: hidden;
+  }
+  .hero-wrapper-v2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .hero-title-v2 {
+    font-family: 'Ethnocentric', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ffffff, {{ section.settings.accent_color }}, #ffffff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineNeonV2 3s linear infinite;
+  }
+
+  @keyframes shineNeonV2 {
+    to { background-position: 200% center; }
+  }
+
+  .hero-subtitle-v2 {
+    font-size: 1.4rem;
+    color: {{ section.settings.accent_color }};
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+
+  .hero-desc-v2 { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.8; }
+
+  .hero-btn-v2 {
+    display: inline-block;
+    background-color: {{ section.settings.accent_color }};
+    color: #fff;
+    padding: 15px 45px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+  }
+
+  .hero-btn-v2:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px {{ section.settings.accent_color }};
+  }
+
+  .hero-slogan-v2 {
+    margin-top: 25px;
+    font-style: italic;
+    border-left: 3px solid {{ section.settings.accent_color }};
+    padding-left: 15px;
+  }
+
+  .hero-image-v2 img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 25px {{ section.settings.accent_color }}44);
+  }
+
+  @media (max-width: 768px) {
+    .hero-wrapper-v2 { flex-direction: column; text-align: center; }
+    .hero-slogan-v2 { border-left: none; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "A-Hero Futurista",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
+    { "type": "color", "id": "txt_color", "label": "Texto", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Color Neon", "default": "#00f2ff" },
+    { "type": "text", "id": "title_main", "label": "Titulo", "default": "Relojes Smartwatch para Mujer y Hombre" },
+    { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnologia Premium" },
+    { "type": "textarea", "id": "description", "label": "Info", "default": "Descubre nuestras pantallas AMOLED." },
+    { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj." },
+    { "type": "text", "id": "btn_label", "label": "Texto Boton", "default": "VER AHORA" },
+    { "type": "url", "id": "btn_link", "label": "Link Boton" },
+    { "type": "image_picker", "id": "image", "label": "Imagen" }
+  ],
+  "presets": [
+    {
+      "name": "A-Hero Futurista"
+    }
+  ]
+}
+{% endschema %}
