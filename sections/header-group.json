@@ -55,25 +55,34 @@
           "type": "feature",
           "settings": {
             "feature_icon": "shopify://shop_images/Kieslect-Lady-Calling-Smartwatch-Pure-1.webp",
-            "feature_text": "Pantallas AMOLED curvas"
+            "feature_text": "Pantallas AMOLED curvas",
+            "feature_link": "",
+            "open_new_tab": false
           }
         },
         "feature_8EUxVx": {
           "type": "feature",
           "settings": {
-            "feature_text": "Llamadas Bluetooth ultra claras"
+            "feature_text": "Llamadas Bluetooth ultra claras",
+            "feature_link": "",
+            "open_new_tab": false
           }
         },
         "feature_ixUBUJ": {
           "type": "feature",
           "settings": {
-            "feature_text": "Monitoreo de salud 24/7"
+            "feature_icon": "shopify://shop_images/medical-report_6181431.png",
+            "feature_text": "Monitoreo de salud 24/7",
+            "feature_link": "",
+            "open_new_tab": false
           }
         },
         "feature_pceDdx": {
           "type": "feature",
           "settings": {
-            "feature_text": "100+ modos deportivos"
+            "feature_text": "100+ modos deportivos",
+            "feature_link": "",
+            "open_new_tab": false
           }
         }
       },
