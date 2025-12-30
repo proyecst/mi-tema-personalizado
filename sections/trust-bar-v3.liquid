@@ -1,6 +1,27 @@
 <style>
-  :root { --k-cyan: {{ section.settings.accent_color | default: '#00D1FF' }}; --k-dark: #050505; }
-  .trust-bar-section { background-color: #000; padding: 40px 0; border-top: 1px solid #1a1a1a; font-family: 'Inter', sans-serif; }
+  /* 1. IMPORTACIÓN DE TIPOGRAFÍA */
+  @font-face {
+    font-family: 'Ethnocentric';
+    /* Asegúrate de que el link sea el mismo que usaste en el Header */
+    src: url('LINK_DE_TU_ARCHIVO_OTF_AQUI') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root { 
+    --k-cyan: {{ section.settings.accent_color | default: '#00D1FF' }}; 
+    --k-dark: #050505; 
+    --k-font: 'Ethnocentric', sans-serif;
+  }
+
+  .trust-bar-section { 
+    background-color: #000; 
+    padding: 40px 0; 
+    border-top: 1px solid #1a1a1a; 
+    font-family: sans-serif; /* General en sans-serif para lectura rápida */
+  }
+
   .trust-bar-grid { 
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
@@ -9,41 +30,66 @@
     margin: 0 auto; 
     padding: 0 20px; 
   }
-  .trust-item-wrapper { background: var(--k-dark); border-radius: 12px; border: 1px solid #1a1a1a; transition: 0.3s; overflow: hidden; position: relative; }
+
+  .trust-item-wrapper { 
+    background: var(--k-dark); 
+    border-radius: 4px; /* Bordes más rectos para look tech */
+    border: 1px solid #1a1a1a; 
+    transition: 0.3s; 
+    overflow: hidden; 
+    position: relative; 
+  }
+
   .trust-item-wrapper:hover { border-color: var(--k-cyan); }
   .trust-item-wrapper.is-active { border-color: var(--k-cyan); box-shadow: 0 0 15px rgba(0, 209, 255, 0.1); }
   
   .trust-header { display: flex; align-items: center; gap: 10px; padding: 15px; cursor: pointer; }
-  .trust-icon-wrapper { width: 24px; color: var(--k-cyan); display: flex; align-items: center; }
+  .trust-icon-wrapper { width: 22px; color: var(--k-cyan); display: flex; align-items: center; }
+  
   .trust-text { display: flex; flex-direction: column; }
-  .trust-title { color: #fff; font-weight: 700; font-size: 11px; text-transform: uppercase; display: block; }
-  .trust-subtitle { color: #666; font-size: 10px; }
+  
+  /* APLICANDO ETHNOCENTRIC A LOS TÍTULOS */
+  .trust-title { 
+    color: #fff; 
+    font-family: var(--k-font);
+    font-size: 9px; /* Ajustado por el ancho de la fuente */
+    letter-spacing: 1px;
+    text-transform: uppercase; 
+    display: block; 
+  }
+
+  .trust-subtitle { 
+    color: #666; 
+    font-size: 10px; 
+    margin-top: 4px;
+  }
   
   .trust-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #080808; padding: 0 15px; }
   .trust-item-wrapper.is-active .trust-content { max-height: 500px; padding: 10px 15px 20px 15px; border-top: 1px solid #1a1a1a; }
   
-  .add-block-info {
-    background: rgba(0, 209, 255, 0.05);
-    border: 1px dashed var(--k-cyan);
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 12px;
-  }
-  .add-block-info p { color: #eee; font-size: 10px; margin: 0; line-height: 1.4; }
-
-  .trust-form { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
   .trust-input { 
-    background: #111; border: 1px solid #222; color: #fff; padding: 8px; 
-    border-radius: 4px; font-size: 10px; outline: none; width: 100%; box-sizing: border-box;
+    background: #111; border: 1px solid #222; color: #fff; padding: 10px; 
+    border-radius: 2px; font-size: 11px; outline: none; width: 100%; box-sizing: border-box;
+    font-family: sans-serif;
   }
-  .trust-input:focus { border-color: var(--k-cyan); }
-  
+
   .trust-btn { 
-    background: var(--k-cyan); color: #000; border: none; width: 100%; 
-    padding: 10px; border-radius: 5px; font-weight: 800; font-size: 10px; 
-    cursor: pointer; transition: 0.3s; text-transform: uppercase; text-decoration: none; display: block; text-align: center;
+    background: var(--k-cyan); 
+    color: #000; 
+    border: none; 
+    width: 100%; 
+    padding: 12px; 
+    font-family: var(--k-font);
+    font-size: 8px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    text-transform: uppercase; 
+    text-decoration: none; 
+    display: block; 
+    text-align: center;
   }
-  .trust-btn:hover { background: #fff; }
+
+  .add-block-info p { font-size: 11px; color: #ccc; line-height: 1.4; }
 
   @media (max-width: 1000px) { .trust-bar-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .trust-bar-grid { grid-template-columns: 1fr; } }
@@ -63,13 +109,13 @@
         </div>
       </div>
       <div class="trust-content">
-        <form id="rea-form" class="trust-form">
+        <form id="rea-form" class="trust-form" style="display: flex; flex-direction: column; gap: 8px;">
           <input type="text" name="contact[name]" placeholder="Nombre completo" class="trust-input" required>
           <input type="email" name="contact[email]" placeholder="Correo electrónico" class="trust-input" required>
           <input type="text" name="contact[address]" placeholder="Ciudad y Dirección" class="trust-input" required>
-          <button type="submit" class="trust-btn" id="btn-envio-rea">Enviar Formulario</button>
+          <button type="submit" class="trust-btn" id="btn-envio-rea">ENVIAR</button>
         </form>
-        <div id="rea-mensaje" style="font-size: 10px; margin-top: 10px; display: none;"></div>
+        <div id="rea-mensaje" style="font-size: 10px; margin-top: 10px; display: none; font-family: sans-serif;"></div>
       </div>
     </div>
 
@@ -87,7 +133,7 @@
         <div class="add-block-info">
           <p>{{ section.settings.info_2 }}</p>
         </div>
-        <a href="{{ section.settings.link_2 }}" class="trust-btn">Ver métodos de pago</a>
+        <a href="{{ section.settings.link_2 }}" class="trust-btn">MÉTODOS DE PAGO</a>
       </div>
     </div>
 
@@ -102,9 +148,9 @@
         </div>
       </div>
       <div class="trust-content">
-        <form action="{{ section.settings.link_tracking }}" method="post" class="trust-form">
+        <form action="{{ section.settings.link_tracking }}" method="get" class="trust-form" style="display: flex; flex-direction: column; gap: 8px;">
           <input type="text" class="trust-input" placeholder="Nro de Guía" required>
-          <button type="submit" class="trust-btn">Rastrear</button>
+          <button type="submit" class="trust-btn">RASTREAR</button>
         </form>
       </div>
     </div>
@@ -133,40 +179,25 @@
 function toggleTrust(element) {
   const wrapper = element.closest('.trust-item-wrapper');
   const isActive = wrapper.classList.contains('is-active');
-  document.querySelectorAll('.trust-item-wrapper').forEach(item => {
-    item.classList.remove('is-active');
-  });
-  if (!isActive) {
-    wrapper.classList.add('is-active');
-  }
+  document.querySelectorAll('.trust-item-wrapper').forEach(item => item.classList.remove('is-active'));
+  if (!isActive) wrapper.classList.add('is-active');
 }
 
+// Lógica de formulario simplificada
 document.getElementById('rea-form')?.addEventListener('submit', function(e) {
   e.preventDefault();
   const btn = document.getElementById('btn-envio-rea');
   const msg = document.getElementById('rea-mensaje');
-  const formData = new FormData(this);
   btn.innerText = 'ENVIANDO...';
-  btn.disabled = true;
-
+  
   fetch('/contact', {
     method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(() => {
+    body: new FormData(this)
+  }).then(() => {
     msg.style.display = 'block';
-    msg.style.color = '#00D1FF';
-    msg.innerText = '✅ ¡Recibido! Nos contactaremos pronto.';
-    btn.innerText = 'ENVIADO';
+    msg.innerHTML = '✅ ENVIADO CORRECTAMENTE';
+    btn.innerText = 'LISTO';
     this.reset();
-  })
-  .catch(error => {
-    msg.style.display = 'block';
-    msg.style.color = '#ff4444';
-    msg.innerText = '❌ Error al enviar.';
-    btn.innerText = 'REINTENTAR';
-    btn.disabled = false;
   });
 });
 </script>
@@ -176,25 +207,19 @@ document.getElementById('rea-form')?.addEventListener('submit', function(e) {
   "name": "Barra de Confianza V3",
   "settings": [
     { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#00D1FF" },
-    { "type": "header", "content": "Bloque 1: Envío" },
-    { "type": "text", "id": "title_1", "label": "Título 1", "default": "Envío Gratis" },
+    { "type": "text", "id": "title_1", "label": "Título 1", "default": "ENVÍO GRATIS" },
     { "type": "text", "id": "sub_1", "label": "Subtítulo 1", "default": "Rellena tus datos" },
-    { "type": "header", "content": "Bloque 2: Pago" },
-    { "type": "text", "id": "title_2", "label": "Título 2", "default": "Pago Seguro" },
+    { "type": "text", "id": "title_2", "label": "Título 2", "default": "PAGO SEGURO" },
     { "type": "text", "id": "sub_2", "label": "Subtítulo 2", "default": "Métodos de pago" },
-    { "type": "textarea", "id": "info_2", "label": "Info Pago", "default": "Aceptamos tarjetas de crédito y transferencias bancarias." },
+    { "type": "textarea", "id": "info_2", "label": "Info Pago", "default": "Aceptamos tarjetas y transferencias." },
     { "type": "url", "id": "link_2", "label": "Link Botón Pago" },
-    { "type": "header", "content": "Bloque 3: Entrega" },
-    { "type": "text", "id": "title_3", "label": "Título 3", "default": "Entrega Rápida" },
+    { "type": "text", "id": "title_3", "label": "Título 3", "default": "RASTREO" },
     { "type": "text", "id": "sub_3", "label": "Subtítulo 3", "default": "Seguimiento en línea" },
-    { "type": "url", "id": "link_tracking", "label": "Link de App de Rastreo" },
-    { "type": "header", "content": "Bloque 4: Soporte" },
-    { "type": "text", "id": "title_4", "label": "Título 4", "default": "Soporte 24/7" },
+    { "type": "url", "id": "link_tracking", "label": "Link Rastreo" },
+    { "type": "text", "id": "title_4", "label": "Título 4", "default": "SOPORTE" },
     { "type": "text", "id": "sub_4", "label": "Subtítulo 4", "default": "Atención Directa" },
-    { "type": "textarea", "id": "info_4", "label": "Info Soporte", "default": "Nuestro equipo está disponible para ayudarte." }
+    { "type": "textarea", "id": "info_4", "label": "Info Soporte", "default": "Atención 24/7 para ti." }
   ],
-  "presets": [
-    { "name": "Barra de Confianza V3" }
-  ]
+  "presets": [{ "name": "Barra de Confianza V3" }]
 }
 {% endschema %}
