@@ -63,6 +63,7 @@
         "feature_8EUxVx": {
           "type": "feature",
           "settings": {
+            "feature_icon": "shopify://shop_images/app_15645560.png",
             "feature_text": "Llamadas Bluetooth ultra claras",
             "feature_link": "",
             "open_new_tab": false
