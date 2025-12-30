@@ -1,12 +1,15 @@
-<section class="k-gallery" id="section-{{ section.id }}">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
+<section class="k-galeria-futurista">
   {% if section.settings.title != blank %}
-    <h2 class="k-title">{{ section.settings.title }}</h2>
+    <h2 class="k-titulo-principal">{{ section.settings.title }}</h2>
   {% endif %}
 
-  <div class="k-grid">
+  <div class="k-grid-container">
     {% for block in section.blocks %}
-      <article class="k-card" {{ block.shopify_attributes }}>
-        <div class="k-img-wrapper">
+      <div class="k-tarjeta" {{ block.shopify_attributes }}>
+        
+        <div class="k-imagen-box">
           {% if block.settings.image != blank %}
             <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title }}" loading="lazy">
           {% else %}
@@ -14,126 +17,132 @@
           {% endif %}
         </div>
         
-        <div class="k-info">
-          <h3 class="k-card-title">{{ block.settings.title }}</h3>
-          <div class="k-card-desc">{{ block.settings.desc }}</div>
+        <div class="k-contenido">
+          <h3>{{ block.settings.title }}</h3>
+          <div class="k-desc">{{ block.settings.desc }}</div>
           
           {% if block.settings.id_link != blank %}
-             <a href="{{ block.settings.id_link }}" class="k-cta">
-               VER DETALLES
-               <span class="k-line"></span>
+             <a href="{{ block.settings.id_link }}" class="k-boton">
+               VER MÁS
+               <span class="k-linea-roja"></span>
              </a>
           {% endif %}
         </div>
-      </article>
+
+      </div>
     {% endfor %}
   </div>
 </section>
 
 <style>
-  /* 1. IMPORTACIÓN DE FUENTE (Sube tu archivo a Shopify > Archivos) */
-  @font-face {
-    font-family: 'Ethnocentric';
-    src: url('URL_DE_TU_ARCHIVO_AQUI') format('woff2'); /* Reemplaza esto */
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  .k-galeria-futurista { 
+    padding: 60px 20px; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+    background-color: #ffffff; 
   }
 
-  .k-gallery {
-    padding: 60px 20px;
-    max-width: 1400px;
-    margin: 0 auto;
-    background: #fff;
-  }
-
-  .k-title {
-    font-family: 'Ethnocentric', sans-serif;
-    font-size: clamp(1.2rem, 4vw, 2rem);
+  /* TIPOGRAFÍA ESTILO ETHNOCENTRIC (SYNC OPATE) */
+  .k-titulo-principal { 
+    font-family: 'Syncopate', sans-serif; 
+    font-weight: 700;
+    font-size: 1.8rem; 
     text-align: center;
-    letter-spacing: 2px;
-    margin-bottom: 50px;
-    color: #000;
+    margin-bottom: 50px; 
+    color: #000; 
+    text-transform: uppercase;
+    letter-spacing: 5px; /* Efecto extendido */
   }
 
-  .k-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+  .k-grid-container { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
   }
 
-  .k-card {
-    border: 1px solid #f0f0f0;
-    transition: all 0.4s ease;
+  .k-tarjeta { 
+    background: #ffffff; 
+    border: 1px solid #eeeeee; 
+    transition: all 0.3s ease;
   }
 
-  .k-card:hover {
-    border-color: #000;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  .k-tarjeta:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transform: translateY(-5px);
   }
 
-  .k-img-wrapper {
-    aspect-ratio: 1 / 1.2;
+  .k-imagen-box { 
+    aspect-ratio: 1/1;
     overflow: hidden;
   }
 
-  .k-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-
-  .k-card:hover .k-img-wrapper img {
-    transform: scale(1.05);
-  }
-
-  .k-info {
-    padding: 25px;
-  }
-
-  .k-card-title {
-    font-family: 'Ethnocentric', sans-serif;
-    font-size: 14px;
-    margin: 0 0 12px 0;
-    color: #000;
-  }
-
-  .k-card-desc {
-    font-family: sans-serif; /* Texto de cuerpo simple para legibilidad */
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 20px;
-  }
-
-  .k-cta {
-    font-family: 'Ethnocentric', sans-serif;
-    font-size: 10px;
-    text-decoration: none;
-    color: #000;
-    display: inline-block;
-  }
-
-  .k-line {
+  .k-imagen-box img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
     display: block;
-    width: 30px;
+  }
+
+  .k-contenido { 
+    padding: 25px; 
+    text-align: left; 
+  }
+
+  .k-contenido h3 { 
+    font-family: 'Syncopate', sans-serif;
+    font-size: 14px; 
+    font-weight: 700;
+    color: #000; 
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+
+  .k-desc, .k-desc p { 
+    font-family: sans-serif; 
+    font-size: 14px; 
+    color: #666; 
+    line-height: 1.5;
+    margin-bottom: 20px; 
+  }
+
+  .k-boton { 
+    display: inline-block;
+    font-family: 'Syncopate', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    color: #000; 
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .k-linea-roja { 
+    display: block;
+    width: 25px;
     height: 2px;
     background: #ff0000;
     margin-top: 5px;
     transition: width 0.3s ease;
   }
 
-  .k-cta:hover .k-line {
+  .k-boton:hover .k-linea-roja {
     width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .k-titulo-principal { font-size: 1.3rem; letter-spacing: 2px; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Galería Ethnocentric",
+  "name": "Galería Futurista Auto",
   "settings": [
-    { "type": "text", "id": "title", "label": "Título", "default": "SERIES" }
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "SERIES KIESLECT"
+    }
   ],
   "blocks": [
     {
@@ -141,12 +150,14 @@
       "name": "Serie",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Imagen" },
-        { "type": "text", "id": "title", "label": "Título", "default": "K-SERIE" },
+        { "type": "text", "id": "title", "label": "Título", "default": "K-SERIES" },
         { "type": "richtext", "id": "desc", "label": "Descripción" },
         { "type": "url", "id": "id_link", "label": "Enlace" }
       ]
     }
   ],
-  "presets": [{ "name": "Galería Ethnocentric" }]
+  "presets": [
+    { "name": "Galería Futurista Auto" }
+  ]
 }
 {% endschema %}
