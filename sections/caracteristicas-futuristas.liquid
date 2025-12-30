@@ -1,26 +1,23 @@
-<section class="feat-futuro-section" style="background: {{ section.settings.bg_color }};">
-  <div class="feat-futuro-container">
+<section class="marquee-feat-section" style="background: {{ section.settings.bg_color }};">
+  <div class="marquee-feat-wrapper">
     
-    <h2 class="feat-futuro-main-title">
+    <h2 class="marquee-feat-title">
       {{ section.settings.section_title }}
     </h2>
 
-    <div class="feat-futuro-grid">
-      {% for block in section.blocks %}
-        <div class="feat-futuro-item" {{ block.shopify_attributes }}>
-          <div class="feat-futuro-icon" style="color: {{ section.settings.accent_color }};">
-            ●
-          </div>
-          <div class="feat-futuro-text-box">
-            <h3 class="feat-futuro-item-title" style="color: {{ section.settings.accent_color }};">
-              {{ block.settings.feature_text }}
-            </h3>
-          </div>
-        </div>
-      {% endfor %}
+    <div class="marquee-feat-container" style="border-top: 1px solid {{ section.settings.accent_color }}44; border-bottom: 1px solid {{ section.settings.accent_color }}44;">
+      <div class="marquee-feat-content">
+        {%- comment -%} Repetimos el bucle 3 veces para que no haya huecos en el movimiento {%- endcomment -%}
+        {% for i in (1..3) %}
+          {% for block in section.blocks %}
+            <span class="marquee-feat-item" style="color: {{ section.settings.accent_color }};" {{ block.shopify_attributes }}>
+              <span class="feat-dot">●</span> {{ block.settings.feature_text }}
+            </span>
+          {% endfor %}
+        {% endfor %}
+      </div>
     </div>
 
-    <div class="feat-futuro-line" style="background: {{ section.settings.accent_color }};"></div>
   </div>
 </section>
 
@@ -30,110 +27,104 @@
     src: url('https://db.onlinewebfonts.com/t/625330384ef8f0607921389809635532.woff2') format('woff2');
   }
 
-  .feat-futuro-section {
-    padding: 80px 5%;
+  .marquee-feat-section {
+    padding: 60px 0;
     overflow: hidden;
+    width: 100%;
   }
 
-  .feat-futuro-container {
-    max-width: 1200px;
-    margin: 0 auto;
+  .marquee-feat-wrapper {
+    width: 100%;
     text-align: center;
   }
 
-  .feat-futuro-main-title {
+  /* TÍTULO PRINCIPAL CON ETHNOCENTRIC */
+  .marquee-feat-title {
     font-family: 'Ethnocentric', sans-serif;
-    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    font-size: clamp(1.2rem, 3vw, 2rem);
     color: #ffffff;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, #fff, {{ section.settings.accent_color }}, #fff);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shineText 5s linear infinite;
+    letter-spacing: 3px;
+    padding: 0 5%;
   }
 
-  .feat-futuro-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-
-  .feat-futuro-item {
-    background: rgba(255, 255, 255, 0.03);
-    padding: 25px;
-    border-radius: 8px;
-    border-left: 3px solid {{ section.settings.accent_color }};
-    transition: 0.3s ease;
+  /* CONTENEDOR DEL MOVIMIENTO */
+  .marquee-feat-container {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 20px 0;
+    position: relative;
   }
 
-  .feat-futuro-item:hover {
-    background: rgba(255, 255, 255, 0.07);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px {{ section.settings.accent_color }}22;
+  .marquee-feat-content {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scrollLinear {{ section.settings.speed }}s linear infinite;
   }
 
-  .feat-futuro-icon {
-    font-size: 1.2rem;
-    filter: drop-shadow(0 0 5px {{ section.settings.accent_color }});
-  }
-
-  .feat-futuro-item-title {
+  .marquee-feat-item {
     font-family: 'Ethnocentric', sans-serif;
-    font-size: 0.85rem;
-    line-height: 1.4;
-    margin: 0;
+    font-size: 1.1rem;
+    display: inline-block;
+    padding: 0 40px;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
   }
 
-  .feat-futuro-line {
-    height: 1px;
-    width: 80%;
-    margin: 50px auto 0;
-    opacity: 0.3;
-    box-shadow: 0 0 10px {{ section.settings.accent_color }};
+  .feat-dot {
+    margin-right: 15px;
+    font-size: 0.8rem;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 5px currentColor);
   }
 
-  @keyframes shineText {
-    to { background-position: 200% center; }
+  /* ANIMACIÓN DE DESPLAZAMIENTO */
+  @keyframes scrollLinear {
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.33%); }
+  }
+
+  /* Pausar al pasar el mouse */
+  .marquee-feat-container:hover .marquee-feat-content {
+    animation-play-state: paused;
   }
 
   @media (max-width: 768px) {
-    .feat-futuro-grid { grid-template-columns: 1fr; }
+    .marquee-feat-item { font-size: 0.9rem; padding: 0 25px; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Características 8K",
+  "name": "Características Scroll",
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "accent_color", "label": "Color Neón", "default": "#00f2ff" },
-    { "type": "text", "id": "section_title", "label": "Título", "default": "Características" }
+    { "type": "text", "id": "section_title", "label": "Título Sección", "default": "Especificaciones 8K" },
+    { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 5, "unit": "s", "label": "Velocidad (Segundos)", "default": 20 }
   ],
   "blocks": [
     {
       "type": "feature",
       "name": "Punto",
       "settings": [
-        { "type": "text", "id": "feature_text", "label": "Texto", "default": "Pantalla AMOLED" }
+        { "type": "text", "id": "feature_text", "label": "Característica", "default": "Pantalla AMOLED" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Características 8K",
+      "name": "Características Scroll",
       "blocks": [
         { "type": "feature", "settings": { "feature_text": "Pantallas AMOLED curvas" } },
         { "type": "feature", "settings": { "feature_text": "Llamadas Bluetooth ultra claras" } },
         { "type": "feature", "settings": { "feature_text": "Monitoreo de salud 24/7" } },
-        { "type": "feature", "settings": { "feature_text": "100+ modos deportivos" } }
+        { "type": "feature", "settings": { "feature_text": "100+ modos deportivos" } },
+        { "type": "feature", "settings": { "feature_text": "Compatibles con iPhone y Android" } }
       ]
     }
   ]
