@@ -1,29 +1,136 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+</style>
+
 {%- style -%}
-  /* Mantengo tu estilo original que está excelente */
   #shopify-section-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    --k-neon: #00D1FF;
+    --k-dark: #0a0a0a;
+    --font-futurista: 'Michroma', sans-serif;
   }
-  :root { --k-neon: #00D1FF; --k-dark: #0a0a0a; }
+
   .news-promo-container {
-    max-width: 900px; margin: 0 auto; padding: 60px 40px;
-    background: var(--k-dark); border-radius: 30px; text-align: center;
-    position: relative; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 1000px; 
+    margin: 0 auto; 
+    padding: 80px 40px;
+    background: var(--k-dark); 
+    border-radius: 0px; /* Bordes rectos industriales */
+    text-align: center;
+    position: relative; 
+    overflow: hidden; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
+
+  /* --- BADGE ESTILO BOT --- */
   .news-promo-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(0, 209, 255, 0.1); color: var(--k-neon);
-    padding: 8px 20px; border-radius: 50px; font-size: 11px;
-    font-weight: 900; margin-bottom: 25px; text-transform: uppercase;
+    font-family: var(--font-futurista) !important;
+    display: inline-flex; 
+    align-items: center; 
+    gap: 10px;
+    background: rgba(0, 209, 255, 0.05); 
+    color: var(--k-neon);
+    padding: 10px 25px; 
+    font-size: 9px;
+    font-weight: 400; 
+    margin-bottom: 30px; 
+    text-transform: uppercase;
+    letter-spacing: 2px;
     border: 1px solid var(--k-neon);
   }
-  .news-promo-title { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; color: #fff; margin-bottom: 15px; }
-  .news-promo-subtitle { color: #888; margin-bottom: 40px; }
-  .news-promo-form { display: flex; background: rgba(255,255,255,0.05); padding: 8px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); }
-  .news-promo-input { flex-grow: 1; padding: 15px 25px; background: transparent; border: none; outline: none; color: #fff; }
-  .news-promo-submit { padding: 15px 35px; background: var(--k-neon); color: #000; border: none; border-radius: 100px; font-weight: 900; cursor: pointer; }
-  .news-promo-success { color: var(--k-neon); padding: 20px; border: 1px dashed var(--k-neon); border-radius: 15px; }
+
+  /* --- TÍTULO CON BRILLO ANIMADO --- */
+  .news-promo-title { 
+    font-family: var(--font-futurista) !important;
+    font-size: clamp(1.5rem, 5vw, 2.5rem); 
+    font-weight: 700; 
+    text-transform: uppercase;
+    letter-spacing: 8px !important; /* Espaciado estilo Ethnocentric */
+    margin-bottom: 20px;
+    line-height: 1.2;
+    background: linear-gradient(120deg, rgba(255,255,255,0.1) 30%, #fff 50%, rgba(255,255,255,0.1) 70%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: rgba(255, 255, 255, 0.9);
+    animation: newsShine 4s infinite linear;
+  }
+
+  @keyframes newsShine {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .news-promo-subtitle { 
+    font-family: var(--font-futurista) !important;
+    color: #888; 
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 50px; 
+    text-transform: uppercase;
+  }
+
+  /* --- FORMULARIO TÉCNICO --- */
+  .news-promo-form { 
+    display: flex; 
+    background: #000; 
+    padding: 5px; 
+    border-radius: 0px; 
+    border: 1px solid rgba(255,255,255,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .news-promo-input { 
+    flex-grow: 1; 
+    padding: 20px 25px; 
+    background: transparent; 
+    border: none; 
+    outline: none; 
+    color: #fff; 
+    font-family: sans-serif;
+    font-size: 14px;
+  }
+
+  .news-promo-submit { 
+    font-family: var(--font-futurista) !important;
+    padding: 0 40px; 
+    background: var(--k-neon); 
+    color: #000; 
+    border: none; 
+    border-radius: 0px; 
+    font-size: 10px;
+    font-weight: 700; 
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+
+  .news-promo-submit:hover {
+    background: #fff;
+    letter-spacing: 3px;
+  }
+
+  .news-promo-success { 
+    font-family: var(--font-futurista) !important;
+    color: var(--k-neon); 
+    padding: 20px; 
+    border: 1px solid var(--k-neon); 
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .pulse-dot { width: 6px; height: 6px; background: var(--k-neon); border-radius: 50%; animation: k-pulse 1.5s infinite; }
+  @keyframes k-pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+  @media (max-width: 768px) {
+    .news-promo-form { flex-direction: column; background: transparent; border: none; gap: 10px; }
+    .news-promo-input { background: #000; border: 1px solid rgba(255,255,255,0.1); }
+    .news-promo-submit { padding: 20px; }
+    .news-promo-title { letter-spacing: 4px !important; }
+  }
 {%- endstyle -%}
 
 <div class="page-width">
@@ -42,10 +149,10 @@
         
         {% if form.posted_successfully? %}
           <div class="news-promo-success">
-            <p>¡SISTEMA ACTUALIZADO! Revisa tu email para ver tu sorpresa.</p>
+            <p>CONEXIÓN ESTABLECIDA. REVISA TU BANDEJA DE ENTRADA.</p>
           </div>
         {% else %}
-          <input type="email" name="contact[email]" class="news-promo-input" placeholder="Tu mejor e-mail" required>
+          <input type="email" name="contact[email]" class="news-promo-input" placeholder="INGRESA TU E-MAIL" required>
           <button type="submit" class="news-promo-submit">
             <span>{{ section.settings.btn_text }}</span>
           </button>
@@ -55,23 +162,18 @@
   </div>
 </div>
 
-<style>
-  .pulse-dot { width: 6px; height: 6px; background: var(--k-neon); border-radius: 50%; animation: k-pulse 1.5s infinite; }
-  @keyframes k-pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
-</style>
-
 {% schema %}
 {
-  "name": "Kieslect Tech Newsletter",
+  "name": "Newsletter Futurista",
   "settings": [
-    { "type": "text", "id": "badge_text", "label": "Etiqueta", "default": "ACCESO EXCLUSIVO" },
+    { "type": "text", "id": "badge_text", "label": "Etiqueta", "default": "ACCESO AL CORE" },
     { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT INSIDER" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "Suscríbete para recibir un 15% de descuento." },
-    { "type": "text", "id": "btn_text", "label": "Botón", "default": "UNIRME" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtítulo", "default": "ÚNETE A LA RED Y RECIBE UN 15% DE DESCUENTO." },
+    { "type": "text", "id": "btn_text", "label": "Botón", "default": "CONECTAR" },
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 60, "unit": "px", "label": "Padding Top" },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "default": 60, "unit": "px", "label": "Padding Bottom" }
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Superior" },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Inferior" }
   ],
-  "presets": [{ "name": "Kieslect Tech Newsletter" }]
+  "presets": [{ "name": "Newsletter Futurista" }]
 }
 {% endschema %}
