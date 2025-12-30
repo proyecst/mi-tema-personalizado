@@ -13,64 +13,6 @@
   "sections": {
     "kieslect_header_7Bj6Gk": {
       "type": "kieslect-header",
-      "blocks": {
-        "enlace_hhn8qw": {
-          "type": "enlace",
-          "settings": {
-            "parent": "Soporte",
-            "title": "https://www.kieslect.com/es/customer-service/",
-            "sub": "Descripción",
-            "url": "https://www.kieslect.com/es/customer-service/"
-          }
-        },
-        "seccion_ByBirc": {
-          "type": "seccion",
-          "settings": {
-            "parent": "Soporte",
-            "title": "SOPORTE"
-          }
-        },
-        "enlace_AzYjLM": {
-          "type": "enlace",
-          "settings": {
-            "parent": "Comunidad",
-            "title": "Enlace",
-            "sub": "Descripción",
-            "url": "https://www.kieslect.com/es/market-shooting/"
-          }
-        },
-        "seccion_itfTXy": {
-          "type": "seccion",
-          "settings": {
-            "parent": "Comunidad",
-            "title": "COMUNIDAD"
-          }
-        },
-        "enlace_iekMWC": {
-          "type": "enlace",
-          "settings": {
-            "parent": "Productos",
-            "title": "Enlace",
-            "sub": "Descripción",
-            "url": "https://www.kieslect.com/shop/"
-          }
-        },
-        "seccion_T8ffb9": {
-          "type": "seccion",
-          "settings": {
-            "parent": "Productos",
-            "title": "SERIES"
-          }
-        }
-      },
-      "block_order": [
-        "enlace_hhn8qw",
-        "seccion_ByBirc",
-        "enlace_AzYjLM",
-        "seccion_itfTXy",
-        "enlace_iekMWC",
-        "seccion_T8ffb9"
-      ],
       "name": "Kieslect Header",
       "settings": {}
     },
@@ -158,7 +100,7 @@
       "settings": {
         "image": "shopify://shop_images/KR3_dorado.jpg",
         "title_1": "Kieslect",
-        "title_2": "kr3",
+        "title_2": "KR3",
         "subtitle": "Pantalla: AMOLED de 1.43 pulgadas (Circular).\nResolución: 466 x 466 píxeles (Imagen muy nítida).\nLlamadas: Bluetooth 5.3 (Micrófono y altavoz para contestar desde el reloj).\nProcesador: Chip Dual Core (Navegación fluida a 60 FPS).\nSalud: Sensor de frecuencia cardíaca, SpO2 (oxígeno), estrés y monitoreo de sueño.\nDeporte: Más de 100 modos deportivos.\nBatería: Hasta 5-7 días de uso típico.\nResistencia: Certificación IP68 (Resistente a salpicaduras y polvo).\nFunción especial: Always-On Display (Pantalla siempre encendida).",
         "btn_text": "ver",
         "link": "https://www.kieslect.com/es/?s=kr3&trp-form-language=es",
