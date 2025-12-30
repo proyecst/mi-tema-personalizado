@@ -1,0 +1,146 @@
+<section class="hero-smartwatch-section" style="background-color: {{ section.settings.bg_color }};">
+  <div class="hero-container">
+    
+    <div class="hero-content">
+      <h1 class="hero-title">{{ section.settings.title }}</h1>
+      <div class="hero-description">
+        {{ section.settings.description }}
+      </div>
+      
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="hero-button">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+      
+      <p class="hero-slogan">{{ section.settings.slogan }}</p>
+    </div>
+
+    <div class="hero-image">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="Smartwatch">
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Smartwatch",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Color de fondo",
+      "default": "#0f172a"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Relojes Smartwatch para Mujer y Hombre"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Descripción",
+      "default": "<p>Tecnología Premium para tu Estilo. Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7.</p>"
+    },
+    {
+      "type": "text",
+      "id": "slogan",
+      "label": "Slogan inferior",
+      "default": "Tu estilo, tu reloj inteligente."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen del Producto"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón",
+      "default": "Comprar Ahora"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Smartwatch",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .hero-smartwatch-section {
+    padding: 60px 20px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+  }
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+  }
+  .hero-content {
+    flex: 1;
+    min-width: 300px;
+  }
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .hero-description {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+  }
+  .hero-description strong { color: white; }
+  .hero-button {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+  }
+  .hero-button:hover { transform: scale(1.05); }
+  .hero-slogan {
+    margin-top: 25px;
+    font-style: italic;
+    color: #94a3b8;
+  }
+  .hero-image {
+    flex: 1;
+    text-align: center;
+    min-width: 300px;
+  }
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+  }
+  @media (max-width: 768px) {
+    .hero-content { text-align: center; }
+  }
+</style>
