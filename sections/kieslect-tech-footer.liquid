@@ -2,74 +2,99 @@
   .k-footer {
     background-color: {{ section.settings.bg_color | default: '#000000' }};
     color: {{ section.settings.text_color | default: '#ffffff' }};
-    padding: 60px 0 30px 0;
+    padding: 80px 0 40px 0;
     font-family: 'Inter', sans-serif;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .footer-container {
-    max-width: 95%; 
+    max-width: 1400px; 
     margin: 0 auto;
     padding: 0 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    /* 5 columnas para que Redes & Legal esté al lado */
+    grid-template-columns: repeat(5, 1fr); 
     gap: 30px;
   }
 
   .footer-column {
-    flex: 1;
-    min-width: 180px;
+    min-width: 150px;
   }
 
+  /* --- ANIMACIÓN DE BRILLO EN TÍTULOS --- */
   .footer-column h3 {
-    font-size: 0.8rem; 
-    font-weight: 700;
+    font-size: 0.85rem; 
+    font-weight: 800;
     text-transform: uppercase;
-    margin-bottom: 20px;
-    color: {{ section.settings.accent_color | default: '#00D1FF' }};
-    letter-spacing: 1px;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    
+    /* Efecto Shine */
+    background: linear-gradient(120deg, rgba(255,255,255,0) 30%, {{ section.settings.accent_color | default: '#00D1FF' }} 50%, rgba(255,255,255,0) 70%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: rgba(255, 255, 255, 0.3); /* Color base */
+    animation: footerTitleShine 5s infinite linear;
+  }
+
+  @keyframes footerTitleShine {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
 
   .footer-list { list-style: none; padding: 0; margin: 0; }
   .footer-list li { 
-    margin-bottom: 15px; 
+    margin-bottom: 12px; 
     display: flex; 
     align-items: center; 
   } 
   
   .footer-list li::before {
-    content: "●";
-    font-size: 6px;
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
     margin-right: 12px;
-    color: {{ section.settings.accent_color | default: '#00D1FF' }};
-    opacity: 0.8;
+    background-color: {{ section.settings.accent_color | default: '#00D1FF' }};
+    box-shadow: 0 0 5px {{ section.settings.accent_color | default: '#00D1FF' }};
+    opacity: 0.6;
   }
 
   .footer-list a {
     text-decoration: none;
     color: {{ section.settings.text_color | default: '#ffffff' }};
-    opacity: 0.7;
-    font-size: 0.75rem; 
-    transition: 0.2s;
+    opacity: 0.6;
+    font-size: 0.78rem; 
+    transition: all 0.3s ease;
   }
 
-  .footer-list a:hover { opacity: 1; padding-left: 5px; }
+  .footer-list a:hover { 
+    opacity: 1; 
+    color: {{ section.settings.accent_color | default: '#00D1FF' }};
+    transform: translateX(5px);
+    display: inline-block;
+  }
 
   .footer-bottom {
-    max-width: 95%;
-    margin: 50px auto 0;
+    max-width: 1400px;
+    margin: 60px auto 0;
     padding: 20px 40px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;
     font-size: 0.7rem;
     opacity: 0.4;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 1024px) {
+    .footer-container { grid-template-columns: repeat(3, 1fr); }
   }
 
   @media (max-width: 768px) {
-    .footer-container { flex-direction: column; }
-    .footer-column { min-width: 100%; }
+    .footer-container { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
   }
 {%- endstyle -%}
 
@@ -86,7 +111,7 @@
     </div>
 
     <div class="footer-column">
-      <h3>Atención al Cliente</h3>
+      <h3>Soporte</h3>
       <ul class="footer-list">
         <li><a href="{{ section.settings.link_faq | default: '#' }}">FAQ</a></li>
         <li><a href="{{ section.settings.link_envios | default: '#' }}">Envíos</a></li>
@@ -101,16 +126,15 @@
         <li><a href="{{ section.settings.link_smartwatches | default: '#' }}">Smartwatches</a></li>
         <li><a href="{{ section.settings.link_accesorios | default: '#' }}">Accesorios</a></li>
         <li><a href="{{ section.settings.link_novedades | default: '#' }}">Novedades</a></li>
-        <li><a href="{{ section.settings.link_vendidos | default: '#' }}">Más Vendidos</a></li>
       </ul>
     </div>
 
     <div class="footer-column">
-      <h3>Blog & Recursos</h3>
+      <h3>Recursos</h3>
       <ul class="footer-list">
-        <li><a href="{{ section.settings.link_blog | default: '#' }}">Nuestro Blog</a></li>
-        <li><a href="{{ section.settings.link_recursos | default: '#' }}">Recursos</a></li>
+        <li><a href="{{ section.settings.link_blog | default: '#' }}">Blog</a></li>
         <li><a href="{{ section.settings.link_manuales | default: '#' }}">Manuales</a></li>
+        <li><a href="{{ section.settings.link_recursos | default: '#' }}">Media Kit</a></li>
       </ul>
     </div>
 
@@ -119,22 +143,22 @@
       <ul class="footer-list">
         <li><a href="{{ section.settings.link_instagram | default: '#' }}">Instagram</a></li>
         <li><a href="{{ section.settings.link_facebook | default: '#' }}">Facebook</a></li>
-        <li><a href="{{ section.settings.link_privacidad | default: '#' }}">Política de Privacidad</a></li>
-        <li><a href="{{ section.settings.link_terminos | default: '#' }}">Términos y Condiciones</a></li>
+        <li><a href="{{ section.settings.link_privacidad | default: '#' }}">Privacidad</a></li>
+        <li><a href="{{ section.settings.link_terminos | default: '#' }}">Términos</a></li>
       </ul>
     </div>
 
   </div>
 
   <div class="footer-bottom">
-    <div>&copy; {{ 'now' | date: "%Y" }} {{ section.settings.copyright_text }}</div>
-    <div>Kieslect Official</div>
+    <div>&copy; {{ 'now' | date: "%Y" }} {{ section.settings.copyright_text }} OFFICIAL STORE</div>
+    <div>DESIGNED FOR SMART LIFE</div>
   </div>
 </footer>
 
 {% schema %}
 {
-  "name": "Kieslect Footer Slim",
+  "name": "Kieslect Footer Pro",
   "settings": [
     { "type": "header", "content": "Colores" },
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
@@ -142,29 +166,20 @@
     { "type": "color", "id": "accent_color", "label": "Color Acento", "default": "#00D1FF" },
     { "type": "text", "id": "copyright_text", "label": "Copyright", "default": "Kieslect" },
     
-    { "type": "header", "content": "Links Compañía" },
+    { "type": "header", "content": "Links" },
     { "type": "url", "id": "link_sobre", "label": "Sobre Kieslect" },
     { "type": "url", "id": "link_contacto", "label": "Contacto" },
     { "type": "url", "id": "link_empleos", "label": "Empleos" },
-
-    { "type": "header", "content": "Links Atención al Cliente" },
     { "type": "url", "id": "link_faq", "label": "FAQ" },
     { "type": "url", "id": "link_envios", "label": "Envíos" },
     { "type": "url", "id": "link_devoluciones", "label": "Devoluciones" },
     { "type": "url", "id": "link_garantia", "label": "Garantía" },
-
-    { "type": "header", "content": "Links Tienda" },
     { "type": "url", "id": "link_smartwatches", "label": "Smartwatches" },
     { "type": "url", "id": "link_accesorios", "label": "Accesorios" },
     { "type": "url", "id": "link_novedades", "label": "Novedades" },
-    { "type": "url", "id": "link_vendidos", "label": "Más Vendidos" },
-
-    { "type": "header", "content": "Links Blog & Recursos" },
-    { "type": "url", "id": "link_blog", "label": "Nuestro Blog" },
+    { "type": "url", "id": "link_blog", "label": "Blog" },
     { "type": "url", "id": "link_recursos", "label": "Recursos" },
     { "type": "url", "id": "link_manuales", "label": "Manuales" },
-
-    { "type": "header", "content": "Links Redes & Legal" },
     { "type": "url", "id": "link_instagram", "label": "Instagram" },
     { "type": "url", "id": "link_facebook", "label": "Facebook" },
     { "type": "url", "id": "link_privacidad", "label": "Política de Privacidad" },
@@ -172,7 +187,7 @@
   ],
   "presets": [
     {
-      "name": "Kieslect Footer Slim"
+      "name": "Kieslect Footer Pro"
     }
   ]
 }
