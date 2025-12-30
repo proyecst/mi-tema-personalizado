@@ -1,43 +1,147 @@
 <style>
-  :root { --k-cyan: #00D1FF; --k-bg: #0a0a0a; }
-  .k-header-wrapper { width: 100%; background: #000; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; z-index: 9999; font-family: 'Inter', sans-serif; }
-  .k-header-container { max-width: 1300px; height: 80px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
-  .k-logo a { color: #fff; text-decoration: none; font-size: 22px; font-weight: 900; letter-spacing: 2px; }
+  /* 1. IMPORTACIÓN DE TIPOGRAFÍA */
+  @font-face {
+    font-family: 'Ethnocentric';
+    /* REEMPLAZA ESTE LINK POR EL QUE TE DA SHOPIFY AL SUBIR EL ARCHIVO */
+    src: url('LINK_DE_TU_ARCHIVO_OTF_AQUI') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root { 
+    --k-cyan: #00D1FF; 
+    --k-bg: #0a0a0a; 
+    --k-font: 'Ethnocentric', sans-serif; /* Aplicamos tu fuente */
+  }
+
+  .k-header-wrapper { 
+    width: 100%; 
+    background: #000; 
+    border-bottom: 1px solid #1a1a1a; 
+    position: sticky; 
+    top: 0; 
+    z-index: 9999; 
+    font-family: var(--k-font); /* Fuente en todo el header */
+  }
+
+  .k-header-container { 
+    max-width: 1300px; 
+    height: 80px; 
+    margin: 0 auto; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 0 20px; 
+  }
+
+  /* NOMBRE DE MARCA KIESLECTECT */
+  .k-logo a { 
+    color: #fff; 
+    text-decoration: none; 
+    font-size: 20px; 
+    font-weight: normal; 
+    letter-spacing: 1px;
+    font-family: var(--k-font);
+  }
+
   .k-nav-main { display: flex; gap: 5px; }
   .k-dropdown { position: relative; }
-  .k-drop-trigger { background: transparent; color: #fff; border: none; padding: 10px 15px; font-size: 12px; font-weight: 700; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: color 0.3s ease; }
+  
+  .k-drop-trigger { 
+    background: transparent; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 15px; 
+    font-size: 10px; /* Reducido por el ancho de la fuente */
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+    transition: color 0.3s ease; 
+    font-family: var(--k-font);
+    text-transform: uppercase;
+  }
+
   .k-drop-trigger:hover { color: var(--k-cyan); }
-  .k-drop-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--k-bg); min-width: 280px; border: 1px solid #1a1a1a; border-radius: 12px; padding: 15px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
+  
+  .k-drop-menu { 
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    background: var(--k-bg); 
+    min-width: 280px; 
+    border: 1px solid #1a1a1a; 
+    border-radius: 4px; 
+    padding: 15px 0; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
+  }
+
   .k-dropdown.is-open .k-drop-menu { display: block; animation: kSlideUp 0.25s ease forwards; }
   
-  .k-support-item { border-bottom: 1px solid #1a1a1a; }
-  .k-support-btn { width: 100%; background: none; border: none; padding: 12px 20px; text-align: left; color: #fff; font-size: 11px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-  .k-support-answer { max-height: 0; overflow: hidden; transition: all 0.3s ease; background: #111; padding: 0 20px; color: #888; font-size: 10px; line-height: 1.4; }
-  .k-support-item.is-active .k-support-answer { max-height: 100px; padding: 10px 20px; border-top: 1px solid #222; }
-  .k-support-item.is-active .k-support-icon { transform: rotate(45deg); color: var(--k-cyan); }
+  .k-menu-label { 
+    display: block; 
+    padding: 12px 20px 5px; 
+    color: var(--k-cyan); 
+    font-size: 8px; 
+    letter-spacing: 1px; 
+    text-transform: uppercase; 
+    font-family: var(--k-font);
+  }
 
-  .k-menu-label { display: block; padding: 12px 20px 5px; color: var(--k-cyan); font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; border-top: 1px solid #1a1a1a; margin-top: 5px; }
-  .k-menu-label:first-child { border-top: none; margin-top: 0; padding-top: 5px; }
-  .k-item { display: flex !important; align-items: center; justify-content: space-between; padding: 12px 20px; text-decoration: none; transition: background 0.2s ease; border: none; background: transparent; width: 100%; text-align: left; cursor: pointer; }
-  .k-item:hover { background: rgba(0, 209, 255, 0.08); }
-  .k-item-info { display: flex; flex-direction: column; pointer-events: none; }
-  .k-item-title { color: #fff; font-size: 11px; font-weight: 700; text-transform: uppercase; }
-  .k-item-sub { color: #666; font-size: 9px; font-weight: 600; margin-top: 2px; }
-  .k-item-icon { color: var(--k-cyan); font-size: 12px; }
-  
+  .k-item { 
+    display: flex !important; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 12px 20px; 
+    text-decoration: none; 
+    background: transparent; 
+    width: 100%; 
+    cursor: pointer; 
+  }
+
+  .k-item-title { 
+    color: #fff; 
+    font-size: 9px; 
+    font-family: var(--k-font); 
+    text-transform: uppercase; 
+  }
+
+  .k-item-sub { 
+    color: #666; 
+    font-size: 7px; 
+    margin-top: 5px;
+    font-family: sans-serif; /* Subtítulos en sans-serif para legibilidad */
+  }
+
+  .k-support-btn { 
+    width: 100%; 
+    background: none; 
+    border: none; 
+    padding: 12px 20px; 
+    text-align: left; 
+    color: #fff; 
+    font-size: 9px; 
+    cursor: pointer; 
+    font-family: var(--k-font);
+    display: flex;
+    justify-content: space-between;
+  }
+
   @keyframes kSlideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   @media (max-width: 900px) { .k-nav-main { display: none; } }
 </style>
 
 <header class="k-header-wrapper">
   <div class="k-header-container">
-    <div class="k-logo"><a href="/">KIESLECT</a></div>
+    <div class="k-logo"><a href="/">KIESLECTECT</a></div>
     <nav class="k-nav-main">
-      <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
+      <a href="/" class="k-drop-trigger" style="text-decoration:none;">INICIO</a>
       {% assign menu_items = "Productos,Comunidad,Soporte" | split: "," %}
       {% for m_title in menu_items %}
         <div class="k-dropdown js-drop">
-          <button class="k-drop-trigger" onclick="kToggle(this)">{{ m_title }} ▼</button>
+          <button class="k-drop-trigger" onclick="kToggle(this)">{{ m_title | uppercase }}</button>
           <div class="k-drop-menu">
             {% for block in section.blocks %}
               {% if block.settings.parent == m_title %}
@@ -50,22 +154,14 @@
                         <span class="k-item-title">{{ block.settings.title }}</span>
                         {% if block.settings.sub != blank %}<span class="k-item-sub">{{ block.settings.sub }}</span>{% endif %}
                       </div>
-                      <span class="k-item-icon">{% if block.settings.download %}⬇{% else %}→{% endif %}</span>
                     </a>
                   {% when 'solucion_rapida' %}
                     <div class="k-support-item js-support-item">
                       <button class="k-support-btn" onclick="kToggleSupport(this)">
                         <span>{{ block.settings.question }}</span>
-                        <span class="k-support-icon">+</span>
+                        <span>+</span>
                       </button>
-                      <div class="k-support-answer">{{ block.settings.answer }}</div>
-                    </div>
-                  {% when 'link_soporte' %}
-                    <div class="k-item k-copy-btn" style="border-top: 1px dashed #333; margin-top: 10px;" onclick="copySupportLink('{{ block.settings.url }}', this)">
-                      <div class="k-item-info">
-                        <span class="k-item-title" style="color: var(--k-cyan);">{{ block.settings.title }}</span>
-                      </div>
-                      <span class="k-item-icon">📋</span>
+                      <div class="k-support-answer" style="font-family: sans-serif; padding: 0 20px; font-size: 12px;">{{ block.settings.answer }}</div>
                     </div>
                 {% endcase %}
               {% endif %}
@@ -87,28 +183,8 @@
   }
   function kToggleSupport(btn) {
     const item = btn.closest('.js-support-item');
-    const isActive = item.classList.contains('is-active');
-    document.querySelectorAll('.js-support-item').forEach(el => el.classList.remove('is-active'));
-    if (!isActive) item.classList.add('is-active');
+    item.classList.toggle('is-active');
   }
-
-  // Nueva función robusta para copiar
-  function copySupportLink(url, element) {
-    if (!url) return;
-    navigator.clipboard.writeText(url).then(() => {
-      const titleSpan = element.querySelector('.k-item-title');
-      const originalText = titleSpan.innerText;
-      titleSpan.innerText = "¡COPIADO!";
-      element.style.pointerEvents = "none"; // Evita múltiples clics
-      setTimeout(() => {
-        titleSpan.innerText = originalText;
-        element.style.pointerEvents = "auto";
-      }, 2000);
-    }).catch(err => {
-      console.error('Error al copiar: ', err);
-    });
-  }
-
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.js-drop')) {
       document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
@@ -125,74 +201,17 @@
       "type": "seccion",
       "name": "Título de Sección",
       "settings": [
-        {
-          "type": "select",
-          "id": "parent",
-          "label": "Menú",
-          "options": [
-            {"value": "Productos", "label": "Productos"},
-            {"value": "Comunidad", "label": "Comunidad"},
-            {"value": "Soporte", "label": "Soporte"}
-          ]
-        },
-        { "type": "text", "id": "title", "label": "Texto", "default": "NUEVA SECCIÓN" }
+        { "type": "select", "id": "parent", "label": "Menú", "options": [{"value": "Productos", "label": "Productos"},{"value": "Comunidad", "label": "Comunidad"},{"value": "Soporte", "label": "Soporte"}]},
+        { "type": "text", "id": "title", "label": "Texto", "default": "CATEGORÍA" }
       ]
     },
     {
       "type": "enlace",
       "name": "Link o Archivo",
       "settings": [
-        {
-          "type": "select",
-          "id": "parent",
-          "label": "Menú",
-          "options": [
-            {"value": "Productos", "label": "Productos"},
-            {"value": "Comunidad", "label": "Comunidad"},
-            {"value": "Soporte", "label": "Soporte"}
-          ]
-        },
-        { "type": "text", "id": "title", "label": "Título", "default": "Enlace" },
-        { "type": "text", "id": "sub", "label": "Subtítulo", "default": "Descripción" },
-        { "type": "url", "id": "url", "label": "URL" },
-        { "type": "checkbox", "id": "download", "label": "¿Descarga?", "default": false }
-      ]
-    },
-    {
-      "type": "solucion_rapida",
-      "name": "Asistente: Solución",
-      "settings": [
-        {
-          "type": "select",
-          "id": "parent",
-          "label": "Menú",
-          "default": "Soporte",
-          "options": [
-            {"value": "Productos", "label": "Productos"},
-            {"value": "Comunidad", "label": "Comunidad"},
-            {"value": "Soporte", "label": "Soporte"}
-          ]
-        },
-        { "type": "text", "id": "question", "label": "Pregunta", "default": "¿Cómo reiniciar?" },
-        { "type": "textarea", "id": "answer", "label": "Solución", "default": "Presiona el botón 10 segundos." }
-      ]
-    },
-    {
-      "type": "link_soporte",
-      "name": "Enlace Simple Soporte",
-      "settings": [
-        {
-          "type": "select",
-          "id": "parent",
-          "label": "Menú",
-          "default": "Soporte",
-          "options": [
-            {"value": "Productos", "label": "Productos"},
-            {"value": "Comunidad", "label": "Comunidad"},
-            {"value": "Soporte", "label": "Soporte"}
-          ]
-        },
-        { "type": "text", "id": "title", "label": "Texto", "default": "Ver todo el soporte" },
+        { "type": "select", "id": "parent", "label": "Menú", "options": [{"value": "Productos", "label": "Productos"},{"value": "Comunidad", "label": "Comunidad"},{"value": "Soporte", "label": "Soporte"}]},
+        { "type": "text", "id": "title", "label": "Título", "default": "ENLACE" },
+        { "type": "text", "id": "sub", "label": "Subtítulo" },
         { "type": "url", "id": "url", "label": "URL" }
       ]
     }
