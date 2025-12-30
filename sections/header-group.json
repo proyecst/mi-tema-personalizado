@@ -404,11 +404,13 @@
     },
     "kieslect_ai_assistant_6Npar6": {
       "type": "kieslect-ai-assistant",
+      "disabled": true,
       "name": "Kieslect AI Assistant",
       "settings": {}
     },
     "chatbot_kieslect_kdMWME": {
       "type": "chatbot-kieslect",
+      "disabled": true,
       "name": "Chatbot Kieslect",
       "settings": {}
     }
