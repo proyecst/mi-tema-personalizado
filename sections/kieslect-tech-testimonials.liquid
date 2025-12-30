@@ -1,3 +1,7 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+</style>
+
 {%- style -%}
   #shopify-section-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
@@ -8,35 +12,42 @@
     --k-border: rgba(255, 255, 255, 0.1);
     color: {{ section.settings.text_color }};
     overflow: hidden;
+    font-family: sans-serif;
   }
 
-  .testi-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .testi-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
 
-  /* --- ANIMACIÓN DEL TÍTULO --- */
+  /* --- FUENTE FUTURISTA APLICADA --- */
+  .k-futurista {
+    font-family: 'Michroma', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+  }
+
   .testi-title {
     text-align: center; 
     margin-bottom: 60px; 
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 900; 
+    font-family: 'Michroma', sans-serif !important;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 700; 
     text-transform: uppercase; 
-    letter-spacing: -1px;
+    letter-spacing: 6px !important;
     
-    /* Efecto de Brillo */
-    background: linear-gradient(120deg, rgba(255,255,255,0) 30%, {{ section.settings.text_color }} 50%, rgba(255,255,255,0) 70%);
+    background: linear-gradient(120deg, rgba(255,255,255,0.1) 30%, var(--k-cyan) 50%, rgba(255,255,255,0.1) 70%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
-    color: rgba(255, 255, 255, 0.2); /* Color base tenue */
+    color: rgba(255, 255, 255, 0.9);
     animation: shineTitle 4s infinite linear;
   }
 
   .testi-title span { 
     color: var(--k-cyan); 
     display: block; 
-    font-size: 0.4em; 
-    letter-spacing: 5px; 
-    margin-bottom: 10px;
-    animation: pulseSub 2s infinite ease-in-out;
+    font-size: 0.35em; 
+    letter-spacing: 8px; 
+    margin-bottom: 15px;
+    opacity: 0.8;
   }
 
   @keyframes shineTitle {
@@ -44,59 +55,82 @@
     100% { background-position: -200% 0; }
   }
 
-  @keyframes pulseSub {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(0.98); }
+  /* --- TARJETAS --- */
+  .testi-card {
+    background: var(--k-glass); 
+    backdrop-filter: blur(15px); 
+    padding: 40px; 
+    border-radius: 0px; /* Bordes rectos futuristas */
+    border: 1px solid var(--k-border);
+    display: flex; flex-direction: column; gap: 20px;
+    transition: all 0.4s ease;
+    width: 380px; flex-shrink: 0;
   }
 
-  /* --- RESTO DEL ESTILO --- */
-  .marquee-viewport { overflow: hidden; width: 100%; position: relative; }
+  .testi-card:hover { border-color: var(--k-cyan); background: rgba(255,255,255,0.06); }
 
+  .testi-stars { color: var(--k-cyan); font-size: 12px; letter-spacing: 4px; }
+  
+  .testi-text { 
+    font-size: 1rem; 
+    line-height: 1.6; 
+    opacity: 0.8; 
+    min-height: 80px; 
+    font-family: sans-serif;
+  }
+
+  .user-name-txt {
+    font-family: 'Michroma', sans-serif !important;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin: 0;
+    color: {{ section.settings.text_color }};
+  }
+
+  /* --- FORMULARIO --- */
+  .form-wrapper { 
+    max-width: 600px; 
+    margin: 80px auto 0; 
+    padding: 40px; 
+    border: 1px solid var(--k-border); 
+    background: rgba(255,255,255,0.02); 
+  }
+
+  .form-title {
+    font-family: 'Michroma', sans-serif !important;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+  }
+
+  .form-wrapper input, .form-wrapper textarea {
+    width: 100%; background: #111; border: 1px solid var(--k-border); 
+    padding: 15px; color: #fff; margin-bottom: 15px; border-radius: 0; 
+    font-family: sans-serif; outline: none;
+  }
+
+  .form-wrapper input:focus, .form-wrapper textarea:focus { border-color: var(--k-cyan); }
+
+  .btn-kieslect {
+    width: 100%; background: var(--k-cyan); color: #000; border: none; 
+    padding: 20px; font-weight: 700; text-transform: uppercase; cursor: pointer;
+    font-family: 'Michroma', sans-serif !important;
+    font-size: 12px; letter-spacing: 2px;
+    transition: 0.3s;
+  }
+
+  .btn-kieslect:hover { background: #fff; letter-spacing: 4px; }
+
+  /* --- MARQUEE --- */
+  .marquee-viewport { overflow: hidden; width: 100%; position: relative; }
   .testi-grid {
     display: flex; gap: 30px; padding: 20px 0; width: max-content;
-    {% if section.settings.enable_infinite_scroll %}
-      animation: scroll-kieslect {{ section.settings.speed }}s linear infinite;
-    {% endif %}
+    animation: scroll-kieslect {{ section.settings.speed }}s linear infinite;
   }
-
   @keyframes scroll-kieslect {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
-  }
-
-  .testi-card {
-    background: var(--k-glass); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-    padding: 35px; border-radius: 24px; border: 1px solid var(--k-border);
-    display: flex; flex-direction: column; gap: 20px;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    position: relative; width: 350px; flex-shrink: 0;
-  }
-
-  .testi-card:hover { transform: translateY(-10px); border-color: var(--k-cyan); }
-
-  .testi-stars { color: var(--k-cyan); font-size: 14px; letter-spacing: 3px; display: flex; gap: 2px; }
-  .testi-text { font-size: 1.05rem; line-height: 1.6; opacity: 0.9; margin: 0; min-height: 80px; color: {{ section.settings.text_color }}; }
-
-  .testi-user-info { display: flex; align-items: center; gap: 15px; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--k-border); }
-
-  .photo-wrapper { position: relative; width: 55px; height: 55px; flex-shrink: 0; }
-  .testi-photo-alt { 
-    width: 100%; height: 100%; border-radius: 50%; background: #111; 
-    display: flex; align-items: center; justify-content: center; 
-    font-weight: bold; color: var(--k-cyan); border: 2px solid var(--k-border);
-    font-size: 1.2rem;
-  }
-
-  .status-dot { position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: #27ae60; border-radius: 50%; border: 2px solid #000; }
-
-  .form-wrapper { max-width: 600px; margin: 60px auto; padding: 40px; border-radius: 24px; border: 1px solid var(--k-border); background: rgba(255,255,255,0.01); }
-  .form-wrapper input, .form-wrapper textarea {
-    width: 100%; background: #000; border: 1px solid var(--k-border); 
-    padding: 15px; color: #fff; margin-bottom: 15px; border-radius: 12px; font-family: inherit;
-  }
-  .btn-kieslect {
-    width: 100%; background: var(--k-cyan); color: #000; border: none; 
-    padding: 18px; border-radius: 12px; font-weight: 900; text-transform: uppercase; cursor: pointer;
   }
 {%- endstyle -%}
 
@@ -113,13 +147,9 @@
             <div class="testi-stars">★★★★★</div>
             <p class="testi-text">"{{ block.settings.review_text }}"</p>
             <div class="testi-user-info">
-              <div class="photo-wrapper">
-                <div class="testi-photo-alt">{{ block.settings.user_name | slice: 0 | uppercase }}</div>
-                <div class="status-dot"></div>
-              </div>
               <div>
-                <p style="margin:0; font-weight:800; color: {{ section.settings.text_color }};">{{ block.settings.user_name | uppercase }}</p>
-                <small style="color:var(--k-cyan); font-weight:700;">VERIFIED USER</small>
+                <p class="user-name-txt">{{ block.settings.user_name | uppercase }}</p>
+                <small style="color:var(--k-cyan); font-weight:700; font-size: 9px; letter-spacing: 1px;">VERIFIED USER</small>
               </div>
             </div>
           </div>
@@ -127,14 +157,12 @@
       {% endcapture %}
 
       {{ original_blocks }}
-      {% if section.settings.enable_infinite_scroll %}
-        {{ original_blocks }}
-      {% endif %}
+      {{ original_blocks }}
     </div>
   </div>
 
   <div class="form-wrapper">
-    <h3 style="text-align: center; margin-bottom: 25px; text-transform: uppercase; color: {{ section.settings.text_color }};">Deja tu comentario</h3>
+    <h3 class="form-title">Deja tu comentario</h3>
     <form id="kieslectForm">
       <input type="text" id="k-name" placeholder="Tu Nombre" required>
       <textarea id="k-text" placeholder="Escribe tu opinión aquí..." rows="4" required></textarea>
@@ -154,13 +182,9 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="testi-stars">★★★★★</div>
         <p class="testi-text">"${text}"</p>
         <div class="testi-user-info">
-          <div class="photo-wrapper">
-            <div class="testi-photo-alt">${name.charAt(0).toUpperCase()}</div>
-            <div class="status-dot"></div>
-          </div>
           <div>
-            <p style="margin:0; font-weight:800; color: {{ section.settings.text_color }};">${name.toUpperCase()}</p>
-            <small style="color:#00D1FF; font-weight:700;">RECENT REVIEW</small>
+            <p class="user-name-txt">${name.toUpperCase()}</p>
+            <small style="color:#00D1FF; font-weight:700; font-size: 9px;">RECENT REVIEW</small>
           </div>
         </div>
       </div>`;
@@ -183,12 +207,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% schema %}
 {
-  "name": "Kieslect Community",
+  "name": "Comunidad Futurista",
   "settings": [
-    { "type": "text", "id": "title", "label": "Título", "default": "Comunidad" },
+    { "type": "text", "id": "title", "label": "Título", "default": "COMUNIDAD" },
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
-    { "type": "checkbox", "id": "enable_infinite_scroll", "label": "Activar Scroll Infinito", "default": true },
     { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 1, "unit": "s", "label": "Velocidad Scroll", "default": 30 },
     { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 1, "unit": "px", "label": "Padding Superior", "default": 80 },
     { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "label": "Padding Inferior", "default": 80 }
@@ -204,12 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   ],
   "presets": [
-    {
-      "name": "Kieslect Community",
-      "blocks": [
-        { "type": "testimonial" }
-      ]
-    }
+    { "name": "Comunidad Futurista" }
   ]
 }
 {% endschema %}
