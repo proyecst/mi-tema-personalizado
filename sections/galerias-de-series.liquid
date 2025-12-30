@@ -1,175 +1,180 @@
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
 
-<section class="galeria-series-custom">
+<section class="k-gallery" id="section-{{ section.id }}">
   {% if section.settings.title != blank %}
-    <h2 class="titulo-galeria">{{ section.settings.title }}</h2>
+    <h2 class="k-title">{{ section.settings.title }}</h2>
   {% endif %}
 
-  <div class="grid-series">
+  <div class="k-grid">
     {% for block in section.blocks %}
-      <div class="tarjeta-serie" {{ block.shopify_attributes }}>
-        
-        <div class="imagen-contenedor">
+      <article class="k-card" {{ block.shopify_attributes }}>
+        <div class="k-img-wrapper">
           {% if block.settings.image != blank %}
-            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title }}" loading="lazy">
+            <img 
+              src="{{ block.settings.image | image_url: width: 700 }}" 
+              alt="{{ block.settings.title | escape }}"
+              loading="lazy"
+              width="700"
+              height="auto">
           {% else %}
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg-custom' }}
+            {{ 'image' | placeholder_svg_tag: 'k-placeholder' }}
           {% endif %}
-          <div class="glow-effect"></div>
         </div>
         
-        <div class="texto-contenedor">
-          <h3>{{ block.settings.title }}</h3>
-          <div class="descripcion-corta">{{ block.settings.desc }}</div>
+        <div class="k-info">
+          <h3 class="k-card-title">{{ block.settings.title }}</h3>
+          <div class="k-card-desc">{{ block.settings.desc }}</div>
           
           {% if block.settings.id_link != blank %}
-             <a href="{{ block.settings.id_link }}" class="boton-serie">
-               <span>Explorar Unidad</span>
-               <div class="btn-line"></div>
+             <a href="{{ block.settings.id_link }}" class="k-cta">
+               EXPLORAR
+               <span class="k-line"></span>
              </a>
           {% endif %}
         </div>
-
-      </div>
+      </article>
     {% endfor %}
   </div>
 </section>
 
 <style>
+  /* Variables para fácil mantenimiento */
   :root {
-    --font-futurista: 'Orbitron', sans-serif;
-    --font-cuerpo: 'Rajdhani', sans-serif;
-    --color-accent: #ff0000; /* Rojo Kieslect */
-    --color-dark: #000000;
+    --k-font-main: 'Orbitron', sans-serif;
+    --k-font-body: 'Rajdhani', sans-serif;
+    --k-accent: #ff0000;
+    --k-text: #000000;
+    --k-bg: #ffffff;
   }
 
-  .galeria-series-custom { 
-    padding: 80px 20px; 
-    max-width: 1400px; 
-    margin: 0 auto; 
-    text-align: center; 
-    background-color: #ffffff !important; 
+  .k-gallery {
+    padding: 4rem 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--k-bg);
   }
 
-  .titulo-galeria { 
-    font-family: var(--font-futurista); 
-    font-size: 2.5rem; 
-    font-weight: 700;
-    margin-bottom: 60px; 
-    color: var(--color-dark); 
+  .k-title {
+    font-family: var(--k-font-main);
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    text-align: center;
     text-transform: uppercase;
-    letter-spacing: 6px;
-    position: relative;
+    letter-spacing: 0.3em;
+    margin-bottom: 3rem;
+    color: var(--k-text);
   }
 
-  /* Subrayado decorativo para el título */
-  .titulo-galeria::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--color-accent);
-    margin: 15px auto 0;
+  .k-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
   }
 
-  .grid-series { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 40px; 
+  .k-card {
+    background: var(--k-bg);
+    border: 1px solid #eee;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .tarjeta-serie { 
-    background: #ffffff; 
-    border: 1px solid #e0e0e0; 
-    border-radius: 0px; /* Bordes rectos para look más técnico/industrial */
-    overflow: hidden; 
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
+  .k-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-color: var(--k-text);
   }
 
-  .tarjeta-serie:hover {
-    transform: translateY(-12px);
-    border-color: var(--color-dark);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  }
-
-  .imagen-contenedor {
-    position: relative;
+  .k-img-wrapper {
+    aspect-ratio: 3/4;
     overflow: hidden;
+    background: #f9f9f9;
   }
 
-  .imagen-contenedor img { 
-    width: 100%; 
-    height: 400px; 
-    object-fit: cover; 
-    display: block;
-    transition: transform 0.8s ease;
+  .k-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
   }
 
-  .tarjeta-serie:hover .imagen-contenedor img {
+  .k-card:hover .k-img-wrapper img {
     transform: scale(1.05);
   }
 
-  .texto-contenedor { 
-    padding: 35px; 
-    text-align: left; 
-    background: #fff;
+  .k-info {
+    padding: 2rem;
   }
 
-  .texto-contenedor h3 { 
-    font-family: var(--font-futurista);
-    font-size: 18px; 
+  .k-card-title {
+    font-family: var(--k-font-main);
+    font-size: 1.1rem;
+    margin: 0 0 1rem 0;
+    letter-spacing: 1px;
+  }
+
+  .k-card-desc {
+    font-family: var(--k-font-body);
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .k-cta {
+    display: inline-flex;
+    flex-direction: column;
+    font-family: var(--k-font-main);
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--color-dark); 
-    margin: 0 0 15px 0;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  .descripcion-corta, 
-  .descripcion-corta p { 
-    font-family: var(--font-cuerpo);
-    font-size: 16px; 
-    color: #444; 
-    line-height: 1.4;
-    margin-bottom: 30px; 
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
-
-  .boton-serie { 
-    display: inline-block;
-    color: var(--color-dark); 
-    font-family: var(--font-futurista);
-    font-weight: 700; 
-    font-size: 11px;
-    text-transform: uppercase;
     text-decoration: none;
+    color: var(--k-text);
     letter-spacing: 2px;
-    position: relative;
-    transition: 0.3s;
   }
 
-  .btn-line {
-    width: 40%;
+  .k-line {
+    width: 30%;
     height: 2px;
-    background: var(--color-accent);
-    margin-top: 5px;
-    transition: width 0.4s ease;
+    background: var(--k-accent);
+    margin-top: 4px;
+    transition: width 0.3s ease;
   }
 
-  .boton-serie:hover .btn-line {
+  .k-cta:hover .k-line {
     width: 100%;
   }
 
-  .boton-serie:hover {
-    color: var(--color-accent);
-  }
-
-  /* Media Queries */
-  @media (max-width: 768px) {
-    .titulo-galeria { font-size: 1.8rem; letter-spacing: 3px; }
-    .imagen-contenedor img { height: 320px; }
-    .grid-series { gap: 20px; }
+  .k-placeholder {
+    width: 100%;
+    height: 100%;
+    fill: #ddd;
   }
 </style>
+
+{% schema %}
+{
+  "name": "Galería Futurista Pro",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "SERIES KIESLECT"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bloque_serie",
+      "name": "Serie",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "title", "label": "Título", "default": "K-SERIES" },
+        { "type": "richtext", "id": "desc", "label": "Descripción", "default": "<p>Tecnología de última generación.</p>" },
+        { "type": "url", "id": "id_link", "label": "Enlace" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Galería Futurista Pro" }
+  ]
+}
+{% endschema %}
