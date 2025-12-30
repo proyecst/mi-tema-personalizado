@@ -16,8 +16,14 @@
 
       <div class="hero-actions-v2">
         {% if section.settings.btn_link != blank %}
-          <a href="{{ section.settings.btn_link }}" class="hero-btn-v2">
+          <a href="{{ section.settings.btn_link }}" class="hero-btn-v2 main-btn">
             {{ section.settings.btn_label }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.btn_more_link != blank %}
+          <a href="{{ section.settings.btn_more_link }}" class="hero-btn-v2 secondary-btn">
+            {{ section.settings.btn_more_label }}
           </a>
         {% endif %}
       </div>
@@ -87,21 +93,42 @@
 
   .hero-desc-v2 { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.8; }
 
+  /* CONTENEDOR DE BOTONES */
+  .hero-actions-v2 {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
   .hero-btn-v2 {
     display: inline-block;
-    background-color: {{ section.settings.accent_color }};
-    color: #fff;
-    padding: 15px 45px;
+    padding: 15px 35px;
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
     text-transform: uppercase;
     transition: 0.3s ease;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .main-btn {
+    background-color: {{ section.settings.accent_color }};
+    color: #000;
+    border: 2px solid {{ section.settings.accent_color }};
+  }
+
+  .secondary-btn {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
   }
 
   .hero-btn-v2:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 20px {{ section.settings.accent_color }};
+    filter: brightness(1.1);
   }
 
   .hero-slogan-v2 {
@@ -119,7 +146,8 @@
 
   @media (max-width: 768px) {
     .hero-wrapper-v2 { flex-direction: column; text-align: center; }
-    .hero-slogan-v2 { border-left: none; }
+    .hero-actions-v2 { justify-content: center; }
+    .hero-slogan-v2 { border-left: none; padding-left: 0; }
   }
 </style>
 
@@ -134,8 +162,13 @@
     { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnologia Premium" },
     { "type": "textarea", "id": "description", "label": "Info", "default": "Descubre nuestras pantallas AMOLED." },
     { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj." },
-    { "type": "text", "id": "btn_label", "label": "Texto Boton", "default": "VER AHORA" },
-    { "type": "url", "id": "btn_link", "label": "Link Boton" },
+    { "type": "header", "content": "Boton Principal" },
+    { "type": "text", "id": "btn_label", "label": "Texto Boton 1", "default": "VER AHORA" },
+    { "type": "url", "id": "btn_link", "label": "Link Boton 1" },
+    { "type": "header", "content": "Boton Secundario" },
+    { "type": "text", "id": "btn_more_label", "label": "Texto Boton 2", "default": "VER MAS" },
+    { "type": "url", "id": "btn_more_link", "label": "Link Boton 2" },
+    { "type": "header", "content": "Imagen" },
     { "type": "image_picker", "id": "image", "label": "Imagen" }
   ],
   "presets": [
