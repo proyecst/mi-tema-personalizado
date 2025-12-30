@@ -2,7 +2,7 @@
   <div class="hero-smartwatch-container">
     
     <div class="hero-smartwatch-content">
-      <h1 class="hero-smartwatch-title">
+      <h1 class="hero-smartwatch-title futurista-animado">
         {{ section.settings.title_main }}
       </h1>
       
@@ -39,12 +39,16 @@
 </section>
 
 <style>
+  /* Importacion de fuente futurista */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+
   .shopify-section-hero-smartwatch {
     padding: 80px 5%;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 600px;
+    overflow: hidden;
   }
   .hero-smartwatch-container {
     max-width: 1200px;
@@ -58,12 +62,28 @@
     flex: 1;
     min-width: 320px;
   }
-  .hero-smartwatch-title {
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 10px;
+
+  /* EFECTO FUTURISTA ANIMADO */
+  .hero-smartwatch-title.futurista-animado {
+    font-family: 'Orbitron', sans-serif; /* Letra estilo Ethnocentric */
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    
+    /* Animacion de Brillo */
+    background: linear-gradient(90deg, #fff, {{ section.settings.accent_color }}, #fff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine-text 3s linear infinite;
   }
+
+  @keyframes shine-text {
+    to { background-position: 200% center; }
+  }
+
   .hero-smartwatch-subtitle {
     font-size: 1.5rem;
     font-weight: 600;
@@ -85,10 +105,13 @@
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
-    transition: transform 0.2s ease;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
   .hero-btn-main:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 20px {{ section.settings.accent_color }};
   }
   .hero-smartwatch-slogan {
     margin-top: 25px;
@@ -105,7 +128,7 @@
   .hero-smartwatch-image img {
     max-width: 100%;
     height: auto;
-    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
   }
   @media (max-width: 768px) {
     .shopify-section-hero-smartwatch { text-align: center; padding: 40px 20px; }
@@ -120,13 +143,13 @@
   "settings": [
     { "type": "color", "id": "background_color", "label": "Color de Fondo", "default": "#1a1a1a" },
     { "type": "color", "id": "text_color", "label": "Color de Texto", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Color de Acento (Botón)", "default": "#007bff" },
-    { "type": "text", "id": "title_main", "label": "Título Principal", "default": "Relojes Smartwatch para Mujer y Hombre" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Tecnología Premium para tu Estilo" },
-    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7." },
+    { "type": "color", "id": "accent_color", "label": "Color de Acento (Boton)", "default": "#00f2ff" },
+    { "type": "text", "id": "title_main", "label": "Titulo Principal", "default": "Relojes Smartwatch para Mujer y Hombre" },
+    { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnologia Premium para tu Estilo" },
+    { "type": "textarea", "id": "description", "label": "Descripcion", "default": "Descubre smartwatches diseñados para tu dia a dia: pantallas AMOLED, bateria de larga duracion, llamadas Bluetooth y monitoreo de salud 24/7." },
     { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj inteligente." },
-    { "type": "text", "id": "button_label", "label": "Texto del Botón", "default": "Ver Colección" },
-    { "type": "url", "id": "button_link", "label": "Link del Botón" },
+    { "type": "text", "id": "button_label", "label": "Texto del Boton", "default": "Ver Coleccion" },
+    { "type": "url", "id": "button_link", "label": "Link del Boton" },
     { "type": "image_picker", "id": "product_image", "label": "Imagen del Reloj" }
   ],
   "presets": [
