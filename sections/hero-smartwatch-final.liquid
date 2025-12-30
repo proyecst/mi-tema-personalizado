@@ -1,0 +1,169 @@
+<section class="shopify-section-hero-smartwatch" style="background: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+  <div class="hero-smartwatch-container">
+    
+    <div class="hero-smartwatch-content">
+      <h1 class="hero-smartwatch-title">
+        {{ section.settings.title_main }}
+      </h1>
+      
+      <h2 class="hero-smartwatch-subtitle">
+        {{ section.settings.subtitle }}
+      </h2>
+      
+      <p class="hero-smartwatch-description">
+        {{ section.settings.description }}
+      </p>
+
+      <div class="hero-smartwatch-actions">
+        {% if section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="hero-btn-main">
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
+      </div>
+      
+      <p class="hero-smartwatch-slogan">
+        {{ section.settings.slogan }}
+      </p>
+    </div>
+
+    <div class="hero-smartwatch-image">
+      {% if section.settings.product_image != blank %}
+        <img src="{{ section.settings.product_image | image_url: width: 800 }}" alt="Smartwatch Premium">
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* IMPORTACIÓN DE FUENTE ETHNOCENTRIC */
+  @font-face {
+    font-family: 'Ethnocentric';
+    src: url('https://db.onlinewebfonts.com/t/625330384ef8f0607921389809635532.woff2') format('woff2');
+  }
+
+  .shopify-section-hero-smartwatch {
+    padding: 80px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+  }
+  .hero-smartwatch-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 50px;
+  }
+  .hero-smartwatch-content {
+    flex: 1;
+    min-width: 320px;
+  }
+
+  /* TITULO CON TIPOGRAFÍA ETHNOCENTRIC Y EFECTO ANIMADO */
+  .hero-smartwatch-title {
+    font-family: 'Ethnocentric', sans-serif;
+    font-size: 3rem;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    
+    /* Efecto Visual Animado de Brillo */
+    background: linear-gradient(90deg, #ffffff, {{ section.settings.accent_color }}, #ffffff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineNeon 4s linear infinite;
+  }
+
+  @keyframes shineNeon {
+    to { background-position: 200% center; }
+  }
+
+  .hero-smartwatch-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: {{ section.settings.accent_color }};
+  }
+  .hero-smartwatch-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+
+  /* ESTILO DEL BOTON */
+  .hero-btn-main {
+    display: inline-block;
+    background-color: {{ section.settings.accent_color }};
+    color: #fff;
+    padding: 15px 45px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px {{ section.settings.accent_color }}44;
+  }
+  .hero-btn-main:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px {{ section.settings.accent_color }}66;
+    filter: brightness(1.1);
+  }
+
+  .hero-smartwatch-slogan {
+    margin-top: 25px;
+    font-style: italic;
+    font-size: 1rem;
+    border-left: 3px solid {{ section.settings.accent_color }};
+    padding-left: 15px;
+  }
+  .hero-smartwatch-image {
+    flex: 1;
+    min-width: 320px;
+    text-align: center;
+  }
+  .hero-smartwatch-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.2));
+  }
+
+  @media (max-width: 768px) {
+    .shopify-section-hero-smartwatch { text-align: center; padding: 40px 20px; }
+    .hero-smartwatch-container { flex-direction: column; }
+    .hero-smartwatch-slogan { border-left: none; padding-left: 0; }
+    .hero-smartwatch-title { font-size: 2rem; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero Smartwatch Premium",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Color de Fondo", "default": "#1a1a1a" },
+    { "type": "color", "id": "text_color", "label": "Color de Texto", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Color de Acento", "default": "#007bff" },
+    { "type": "text", "id": "title_main", "label": "Titulo Principal", "default": "Relojes Smartwatch para Mujer y Hombre" },
+    { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnologia Premium para tu Estilo" },
+    { "type": "textarea", "id": "description", "label": "Descripcion", "default": "Descubre smartwatches diseñados para tu dia a dia: pantallas AMOLED, bateria de larga duracion y monitoreo de salud 24/7." },
+    { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj inteligente." },
+    { "type": "text", "id": "button_label", "label": "Texto del Boton", "default": "Ver Coleccion" },
+    { "type": "url", "id": "button_link", "label": "Enlace del Boton" },
+    { "type": "image_picker", "id": "product_image", "label": "Imagen del Reloj" }
+  ],
+  "presets": [
+    {
+      "name": "Hero Smartwatch Premium"
+    }
+  ]
+}
+{% endschema %}
