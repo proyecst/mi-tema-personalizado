@@ -1,44 +1,84 @@
-
-<section class="h-fut" style="background:#000;color:#fff;padding:60px 20px;text-align:center;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <h1 style="font-family:sans-serif;font-size:40px;color:{{ section.settings.accent }};">
+<section style="background-color: #000000; color: #ffffff; padding: 50px 20px; text-align: center; font-family: sans-serif;">
+  <div style="max-width: 1000px; margin: 0 auto;">
+    
+    <h1 style="font-size: 40px; text-transform: uppercase; margin-bottom: 10px;">
       {{ section.settings.title }}
     </h1>
-    <p style="font-size:18px;opacity:0.8;">{{ section.settings.subtitle }}</p>
     
-    <div style="margin:30px 0;">
-      {% if section.settings.image != blank %}
-        <img src="{{ section.settings.image | image_url: width: 600 }}" style="max-width:100%;height:auto;animation:pulse 3s infinite;">
-      {% endif %}
-    </div>
+    <h2 style="font-size: 20px; font-weight: normal; margin-bottom: 20px;">
+      {{ section.settings.subtitle }}
+    </h2>
+    
+    <p style="font-size: 16px; margin-bottom: 30px; opacity: 0.8;">
+      {{ section.settings.description }}
+    </p>
 
-    <a href="{{ section.settings.link }}" style="background:{{ section.settings.accent }};color:#000;padding:15px 30px;text-decoration:none;font-weight:bold;border-radius:4px;">
+    {% if section.settings.image != blank %}
+      <div style="margin-bottom: 30px;">
+        <img src="{{ section.settings.image | image_url: width: 600 }}" style="max-width: 100%; height: auto;">
+      </div>
+    {% endif %}
+
+    <a href="{{ section.settings.link }}" style="display: inline-block; background-color: #ffffff; color: #000000; padding: 15px 30px; text-decoration: none; font-weight: bold;">
       {{ section.settings.btn_label }}
     </a>
+
+    <p style="margin-top: 30px; font-style: italic; opacity: 0.6;">
+      {{ section.settings.slogan }}
+    </p>
+
   </div>
 </section>
 
-<style>
-@keyframes pulse {
-  0% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.02); filter: brightness(1.2); }
-  100% { transform: scale(1); filter: brightness(1); }
-}
-</style>
-
 {% schema %}
 {
-  "name": "Test Hero",
+  "name": "Hero Basico",
   "settings": [
-    { "type": "color", "id": "accent", "label": "Color", "default": "#00f2ff" },
-    { "type": "text", "id": "title", "label": "Titulo", "default": "Relojes Smartwatch" },
-    { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnología Premium para tu Estilo" },
-    { "type": "text", "id": "btn_label", "label": "Boton", "default": "COMPRAR AHORA" },
-    { "type": "url", "id": "link", "label": "Link" },
-    { "type": "image_picker", "id": "image", "label": "Imagen" }
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titulo",
+      "default": "Relojes Smartwatch para Mujer y Hombre"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitulo",
+      "default": "Tecnologia Premium para tu Estilo"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Descripcion",
+      "default": "Descubre smartwatches diseñados para tu dia a dia: pantallas AMOLED, bateria de larga duracion, llamadas Bluetooth y monitoreo de salud 24/7."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Boton",
+      "default": "COMPRAR AHORA"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Enlace"
+    },
+    {
+      "type": "text",
+      "id": "slogan",
+      "label": "Eslogan",
+      "default": "Tu estilo, tu reloj inteligente."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen"
+    }
   ],
   "presets": [
-    { "name": "Test Hero" }
+    {
+      "name": "Hero Basico"
+    }
   ]
 }
 {% endschema %}
