@@ -7,11 +7,19 @@
 
     <div class="marquee-feat-container" style="border-top: 1px solid {{ section.settings.accent_color }}44; border-bottom: 1px solid {{ section.settings.accent_color }}44;">
       <div class="marquee-feat-content">
-        {%- comment -%} Repetimos el bucle 3 veces para que no haya huecos en el movimiento {%- endcomment -%}
         {% for i in (1..3) %}
           {% for block in section.blocks %}
             <span class="marquee-feat-item" style="color: {{ section.settings.accent_color }};" {{ block.shopify_attributes }}>
-              <span class="feat-dot">●</span> {{ block.settings.feature_text }}
+              
+              {% if block.settings.feature_icon != blank %}
+                <img src="{{ block.settings.feature_icon | image_url: width: 50 }}" 
+                     alt="{{ block.settings.feature_text }}" 
+                     class="feat-custom-icon">
+              {% else %}
+                <span class="feat-dot">●</span>
+              {% endif %}
+
+              {{ block.settings.feature_text }}
             </span>
           {% endfor %}
         {% endfor %}
@@ -38,7 +46,6 @@
     text-align: center;
   }
 
-  /* TÍTULO PRINCIPAL CON ETHNOCENTRIC */
   .marquee-feat-title {
     font-family: 'Ethnocentric', sans-serif;
     font-size: clamp(1.2rem, 3vw, 2rem);
@@ -49,13 +56,12 @@
     padding: 0 5%;
   }
 
-  /* CONTENEDOR DEL MOVIMIENTO */
   .marquee-feat-container {
     display: flex;
     overflow: hidden;
     white-space: nowrap;
     background: rgba(255, 255, 255, 0.02);
-    padding: 20px 0;
+    padding: 25px 0;
     position: relative;
   }
 
@@ -68,33 +74,40 @@
   .marquee-feat-item {
     font-family: 'Ethnocentric', sans-serif;
     font-size: 1.1rem;
-    display: inline-block;
-    padding: 0 40px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 50px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: 0.3s;
+  }
+
+  /* ESTILO PARA LA IMAGEN/ICONO */
+  .feat-custom-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 15px;
+    filter: drop-shadow(0 0 5px {{ section.settings.accent_color }});
   }
 
   .feat-dot {
     margin-right: 15px;
     font-size: 0.8rem;
-    vertical-align: middle;
     filter: drop-shadow(0 0 5px currentColor);
   }
 
-  /* ANIMACIÓN DE DESPLAZAMIENTO */
   @keyframes scrollLinear {
     from { transform: translateX(0); }
     to { transform: translateX(-33.33%); }
   }
 
-  /* Pausar al pasar el mouse */
   .marquee-feat-container:hover .marquee-feat-content {
     animation-play-state: paused;
   }
 
   @media (max-width: 768px) {
-    .marquee-feat-item { font-size: 0.9rem; padding: 0 25px; }
+    .marquee-feat-item { font-size: 0.9rem; padding: 0 30px; }
+    .feat-custom-icon { width: 22px; height: 22px; }
   }
 </style>
 
@@ -105,27 +118,21 @@
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "accent_color", "label": "Color Neón", "default": "#00f2ff" },
     { "type": "text", "id": "section_title", "label": "Título Sección", "default": "Especificaciones 8K" },
-    { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 5, "unit": "s", "label": "Velocidad (Segundos)", "default": 20 }
+    { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 5, "unit": "s", "label": "Velocidad", "default": 20 }
   ],
   "blocks": [
     {
       "type": "feature",
       "name": "Punto",
       "settings": [
-        { "type": "text", "id": "feature_text", "label": "Característica", "default": "Pantalla AMOLED" }
+        { "type": "image_picker", "id": "feature_icon", "label": "Icono o Imagen" },
+        { "type": "text", "id": "feature_text", "label": "Texto", "default": "Pantalla AMOLED" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Características Scroll",
-      "blocks": [
-        { "type": "feature", "settings": { "feature_text": "Pantallas AMOLED curvas" } },
-        { "type": "feature", "settings": { "feature_text": "Llamadas Bluetooth ultra claras" } },
-        { "type": "feature", "settings": { "feature_text": "Monitoreo de salud 24/7" } },
-        { "type": "feature", "settings": { "feature_text": "100+ modos deportivos" } },
-        { "type": "feature", "settings": { "feature_text": "Compatibles con iPhone y Android" } }
-      ]
+      "name": "Características Scroll"
     }
   ]
 }
