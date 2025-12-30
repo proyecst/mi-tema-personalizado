@@ -39,6 +39,12 @@
 </section>
 
 <style>
+  /* IMPORTACIÓN DE FUENTE ETHNOCENTRIC */
+  @font-face {
+    font-family: 'Ethnocentric';
+    src: url('https://db.onlinewebfonts.com/t/625330384ef8f0607921389809635532.woff2') format('woff2');
+  }
+
   .shopify-section-hero-smartwatch {
     padding: 80px 5%;
     display: flex;
@@ -58,12 +64,28 @@
     flex: 1;
     min-width: 320px;
   }
+
+  /* TITULO CON TIPOGRAFÍA ETHNOCENTRIC Y EFECTO ANIMADO */
   .hero-smartwatch-title {
+    font-family: 'Ethnocentric', sans-serif;
     font-size: 3rem;
-    font-weight: 800;
+    font-weight: normal;
     line-height: 1.2;
     margin-bottom: 10px;
+    text-transform: uppercase;
+    
+    /* Efecto Visual Animado */
+    background: linear-gradient(90deg, #ffffff, {{ section.settings.accent_color }}, #ffffff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineNeon 4s linear infinite;
   }
+
+  @keyframes shineNeon {
+    to { background-position: 200% center; }
+  }
+
   .hero-smartwatch-subtitle {
     font-size: 1.5rem;
     font-weight: 600;
@@ -111,6 +133,7 @@
     .shopify-section-hero-smartwatch { text-align: center; padding: 40px 20px; }
     .hero-smartwatch-container { flex-direction: column; }
     .hero-smartwatch-slogan { border-left: none; padding-left: 0; }
+    .hero-smartwatch-title { font-size: 2rem; }
   }
 </style>
 
@@ -120,13 +143,13 @@
   "settings": [
     { "type": "color", "id": "background_color", "label": "Color de Fondo", "default": "#1a1a1a" },
     { "type": "color", "id": "text_color", "label": "Color de Texto", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Color de Acento (Botón)", "default": "#007bff" },
-    { "type": "text", "id": "title_main", "label": "Título Principal", "default": "Relojes Smartwatch para Mujer y Hombre" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Tecnología Premium para tu Estilo" },
-    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7." },
+    { "type": "color", "id": "accent_color", "label": "Color de Acento (Boton)", "default": "#007bff" },
+    { "type": "text", "id": "title_main", "label": "Titulo Principal", "default": "Relojes Smartwatch para Mujer y Hombre" },
+    { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnologia Premium para tu Estilo" },
+    { "type": "textarea", "id": "description", "label": "Descripcion", "default": "Descubre smartwatches diseñados para tu dia a dia: pantallas AMOLED, bateria de larga duracion, llamadas Bluetooth y monitoreo de salud 24/7." },
     { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj inteligente." },
-    { "type": "text", "id": "button_label", "label": "Texto del Botón", "default": "Ver Colección" },
-    { "type": "url", "id": "button_link", "label": "Link del Botón" },
+    { "type": "text", "id": "button_label", "label": "Texto del Boton", "default": "Ver Coleccion" },
+    { "type": "url", "id": "button_link", "label": "Link del Boton" },
     { "type": "image_picker", "id": "product_image", "label": "Imagen del Reloj" }
   ],
   "presets": [
