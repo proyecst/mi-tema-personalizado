@@ -1,3 +1,7 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+</style>
+
 <section class="series-destacadas-ia" id="series-ia-{{ section.id }}">
   <div class="container-width">
     {% if section.settings.title != blank %}
@@ -22,7 +26,7 @@
               <div class="scan-line"></div>
             </div>
             <div class="info-ia">
-              <h3>{{ block.settings.title }}</h3>
+              <h3 class="k-ethno-font">{{ block.settings.title }}</h3>
               <span class="status-bot">SISTEMA ONLINE</span>
             </div>
           </a>
@@ -34,13 +38,13 @@
 
 <div class="ia-floating-panel">
   <div class="ia-chat-box" id="ia-box">
-    <div class="ia-header-chat">KIESLECT CORE AI</div>
+    <div class="ia-header-chat k-ethno-font">KIESLECT CORE AI</div>
     <div class="ia-messages" id="ia-log">
       <div class="bot-txt">Escribe una serie (ej: "Amoled") y la buscaré por ti.</div>
     </div>
     <div class="ia-input-group">
       <input type="text" id="ia-input" placeholder="Comando de voz/texto..." onkeypress="if(event.key==='Enter') procesarOrden()">
-      <button onclick="procesarOrden()">EXE</button>
+      <button onclick="procesarOrden()" class="k-ethno-font">EXE</button>
     </div>
   </div>
   <div class="ia-btn-toggle" onclick="toggleIA()">
@@ -49,28 +53,35 @@
 </div>
 
 <style>
-  /* Base de la sección */
+  /* --- RESET TIPOGRÁFICO --- */
+  .k-ethno-font {
+    font-family: 'Michroma', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+  }
+
   .series-destacadas-ia { 
     background: #000; 
-    padding: 60px 20px; 
+    padding: 80px 20px; 
     color: #fff; 
-    font-family: 'Inter', sans-serif;
+    font-family: sans-serif;
   }
-  .heading-ia { text-align: center; margin-bottom: 50px; }
 
-  /* --- ANIMACIÓN DEL TÍTULO --- */
+  .heading-ia { text-align: center; margin-bottom: 60px; }
+
+  /* TÍTULO PRINCIPAL (EFECTO ETHNOCENTRIC) */
   .title-ia { 
-    font-size: clamp(2rem, 6vw, 4rem); 
-    font-weight: 900; 
-    margin: 0; 
-    text-transform: uppercase;
-    
-    /* Efecto de Brillo Animado */
-    background: linear-gradient(120deg, rgba(255,255,255,0) 30%, #00D1FF 50%, rgba(255,255,255,0) 70%);
+    font-family: 'Michroma', sans-serif !important;
+    font-size: clamp(1.8rem, 5vw, 3rem) !important; 
+    font-weight: 700 !important;
+    margin: 0 !important; 
+    text-transform: uppercase !important;
+    letter-spacing: 8px !important; /* Espaciado extra estilo Ethnocentric */
+    background: linear-gradient(120deg, rgba(255,255,255,0.1) 30%, #00D1FF 50%, rgba(255,255,255,0.1) 70%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
-    color: rgba(0, 209, 255, 0.2); /* Color base antes del brillo */
+    color: rgba(255, 255, 255, 0.9);
     animation: iaShineTitle 4s infinite linear;
   }
 
@@ -80,77 +91,88 @@
   }
 
   .subtitle-ia { 
+    font-family: 'Michroma', sans-serif !important;
     color: #555; 
-    letter-spacing: 3px; 
-    font-size: 11px; 
+    letter-spacing: 4px; 
+    font-size: 10px; 
     text-transform: uppercase;
+    margin-top: 15px;
     animation: pulseGhost 3s infinite ease-in-out;
   }
 
-  @keyframes pulseGhost {
-    0%, 100% { opacity: 0.4; letter-spacing: 3px; }
-    50% { opacity: 0.8; letter-spacing: 5px; color: #00D1FF; }
-  }
-
-  /* Rejilla */
+  /* TARJETAS */
   .series-grid-ia { 
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 30px; 
-    max-width: 1200px; 
+    max-width: 1300px; 
     margin: 0 auto; 
   }
 
-  /* Tarjetas */
   .card-serie-ia { 
     background: #0a0a0a; 
     border: 1px solid #1a1a1a; 
-    border-radius: 20px; 
+    border-radius: 0px; /* Bordes rectos para look más industrial */
     overflow: hidden; 
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    transition: all 0.4s ease;
     position: relative;
   }
-  .card-serie-ia.active-ia { border-color: #00D1FF; box-shadow: 0 0 30px rgba(0, 209, 255, 0.4); transform: scale(1.05); }
-  .card-serie-ia.dim-ia { opacity: 0.2; filter: blur(2px); }
 
-  .img-container { position: relative; aspect-ratio: 1; background: #111; overflow: hidden; }
-  .img-container img { width: 100%; height: 100%; object-fit: cover; }
-  
-  /* Efecto de escaneo IA */
-  .scan-line { 
-    position: absolute; top: -100%; left: 0; width: 100%; height: 5px; 
-    background: #00D1FF; box-shadow: 0 0 15px #00D1FF; opacity: 0; 
+  .card-serie-ia.active-ia { 
+    border-color: #00D1FF; 
+    box-shadow: 0 0 40px rgba(0, 209, 255, 0.2); 
+    transform: scale(1.02); 
   }
-  .active-ia .scan-line { animation: scanning 2s infinite; opacity: 1; }
+
+  .info-ia h3 { 
+    font-family: 'Michroma', sans-serif !important;
+    font-size: 14px !important;
+    color: #fff !important;
+    margin-bottom: 15px;
+  }
+
+  .status-bot { 
+    font-family: 'Michroma', sans-serif !important;
+    font-size: 8px; 
+    color: #00D1FF; 
+    border: 1px solid #00D1FF; 
+    padding: 3px 10px; 
+    letter-spacing: 1px;
+  }
+
+  /* PANEL CHAT IA */
+  .ia-header-chat { 
+    background: #00D1FF; 
+    color: #000; 
+    padding: 15px; 
+    font-size: 10px; 
+    text-align: center;
+  }
+
+  .ia-input-group input { 
+    font-family: sans-serif; /* Texto legible para escribir */
+    font-size: 13px;
+  }
+
+  .ia-input-group button { 
+    font-size: 10px;
+    padding: 0 20px;
+  }
+
+  .bot-txt { 
+    font-family: sans-serif;
+    line-height: 1.4;
+  }
+
+  /* ANIMACIONES */
   @keyframes scanning { 0% { top: 0%; } 100% { top: 100%; } }
-
-  .info-ia { padding: 20px; text-align: center; }
-  .info-ia h3 { margin-bottom: 10px; font-weight: 800; text-transform: uppercase; }
-  .status-bot { font-size: 9px; color: #00D1FF; border: 1px solid #00D1FF; padding: 2px 8px; border-radius: 4px; letter-spacing: 1px; }
-
-  /* Estilos del Panel IA */
-  .ia-floating-panel { position: fixed; bottom: 30px; right: 30px; z-index: 10001; }
-  .ia-btn-toggle { 
-    width: 65px; height: 65px; background: #000; border: 2px solid #00D1FF; 
-    border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 20px rgba(0, 209, 255, 0.4);
-  }
-  .ai-core { width: 20px; height: 20px; background: #00D1FF; border-radius: 50%; animation: pulse-core 1.5s infinite; }
   @keyframes pulse-core { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
+  @keyframes pulseGhost { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.9; color: #00D1FF; } }
 
-  .ia-chat-box { 
-    position: absolute; bottom: 85px; right: 0; width: 320px; background: #000; 
-    border: 1px solid #333; border-radius: 20px; display: none; flex-direction: column; overflow: hidden;
-  }
-  .ia-chat-box.visible { display: flex; animation: slideIn 0.3s ease forwards; }
-  @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-  .ia-header-chat { background: #00D1FF; color: #000; padding: 12px; font-weight: 900; font-size: 11px; text-align: center; letter-spacing: 1px; }
-  .ia-messages { height: 200px; padding: 15px; overflow-y: auto; color: #fff; font-size: 13px; }
-  .bot-txt { background: #111; padding: 10px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid #00D1FF; }
-  .ia-input-group { display: flex; padding: 10px; background: #080808; border-top: 1px solid #222; }
-  .ia-input-group input { flex: 1; background: #111; border: 1px solid #333; color: #fff; padding: 10px; border-radius: 8px; outline: none; font-family: inherit; }
-  .ia-input-group button { background: #00D1FF; border: none; padding: 0 15px; margin-left: 8px; border-radius: 8px; font-weight: bold; cursor: pointer; color: #000; }
+  .card-link { text-decoration: none; color: inherit; }
+  .img-container { position: relative; aspect-ratio: 1; background: #111; overflow: hidden; }
+  .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+  .card-serie-ia:hover img { transform: scale(1.1); }
 </style>
 
 <script>
@@ -166,7 +188,7 @@ function procesarOrden() {
   
   if(!orden) return;
 
-  log.innerHTML += `<div style="text-align:right; color:#00D1FF; margin-bottom:10px;">> ${input.value}</div>`;
+  log.innerHTML += `<div style="text-align:right; color:#00D1FF; font-family:sans-serif; margin-bottom:10px; font-size:12px;">> ${input.value}</div>`;
   input.value = "";
 
   setTimeout(() => {
@@ -174,7 +196,7 @@ function procesarOrden() {
     
     if(orden.includes("todo") || orden.includes("reiniciar") || orden.includes("limpiar")) {
       tarjetas.forEach(t => { t.classList.remove('dim-ia', 'active-ia'); });
-      log.innerHTML += `<div class="bot-txt">Sistema reiniciado. Mostrando todas las series.</div>`;
+      log.innerHTML += `<div class="bot-txt">SISTEMA REINICIADO. UNIDADES LOCALIZADAS.</div>`;
     } else {
       tarjetas.forEach(t => {
         const nombre = t.getAttribute('data-name');
@@ -190,10 +212,10 @@ function procesarOrden() {
       });
 
       if(hallado) {
-        log.innerHTML += `<div class="bot-txt">He localizado la serie "${orden}". He activado el escaneo de hardware.</div>`;
+        log.innerHTML += `<div class="bot-txt">ANÁLISIS COMPLETO: SERIE "${orden.toUpperCase()}" DETECTADA.</div>`;
       } else {
         tarjetas.forEach(t => { t.classList.remove('dim-ia', 'active-ia'); });
-        log.innerHTML += `<div class="bot-txt">No hay registros de "${orden}". Intenta con "Amoled" o el nombre de un modelo.</div>`;
+        log.innerHTML += `<div class="bot-txt">ERROR: NO SE ENCUENTRA "${orden.toUpperCase()}". REINTENTE.</div>`;
       }
     }
     log.scrollTop = log.scrollHeight;
@@ -203,7 +225,7 @@ function procesarOrden() {
 
 {% schema %}
 {
-  "name": "Series IA Interactiva",
+  "name": "IA Series Ethnocentric",
   "settings": [
     { "type": "text", "id": "title", "label": "Título", "default": "SERIES KIESLECT" }
   ],
@@ -219,7 +241,7 @@ function procesarOrden() {
     }
   ],
   "presets": [
-    { "name": "Series IA Interactiva" }
+    { "name": "IA Series Ethnocentric" }
   ]
 }
 {% endschema %}
