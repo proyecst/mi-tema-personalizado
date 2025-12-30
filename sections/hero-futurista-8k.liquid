@@ -1,172 +1,212 @@
-<section class="hero-8k-{{ section.id }}">
-  <div class="particles"></div>
-
+<section class="hero-8k-wrapper-{{ section.id }}">
+  <div class="glow-overlay"></div>
+  
   <div class="hero-8k-container">
     <div class="hero-8k-content">
-      <div class="hero-8k-badge" data-aos="fade-down">{{ section.settings.badge }}</div>
+      <div class="hero-badge" data-aos="fade-down">{{ section.settings.badge }}</div>
       
-      <h1 class="hero-8k-title" data-aos="fade-right">
+      <h1 class="hero-title">
         {{ section.settings.title_main }}
       </h1>
       
-      <h2 class="hero-8k-subtitle" data-aos="fade-right" data-aos-delay="200">
-        {{ section.settings.subtitle }}
-      </h2>
-      
-      <p class="hero-8k-description" data-aos="fade-up" data-aos-delay="400">
-        {{ section.settings.description }}
-      </p>
+      <div class="hero-premium-box">
+        <h2 class="hero-subtitle">{{ section.settings.subtitle }}</h2>
+        <p class="hero-description">{{ section.settings.description }}</p>
+      </div>
 
-      <div class="hero-8k-actions" data-aos="zoom-in" data-aos-delay="600">
-        <a href="{{ section.settings.button_link }}" class="btn-8k">
-          <span>{{ section.settings.button_label }}</span>
+      <div class="hero-actions">
+        <a href="{{ section.settings.button_link }}" class="btn-futuristic">
+          <span class="btn-text">{{ section.settings.button_label }}</span>
+          <span class="btn-glitch"></span>
         </a>
       </div>
       
-      <p class="hero-8k-slogan">{{ section.settings.slogan }}</p>
+      <div class="hero-slogan-box">
+        <span class="slogan-line"></span>
+        <p class="hero-slogan">{{ section.settings.slogan }}</p>
+      </div>
     </div>
 
-    <div class="hero-8k-image" data-aos="fade-left" data-aos-delay="300">
-      {% if section.settings.product_image != blank %}
-        <img src="{{ section.settings.product_image | image_url: width: 1200 }}" alt="Smartwatch 8K" class="img-main">
-      {% else %}
-        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-      <div class="image-glow"></div>
+    <div class="hero-8k-image-box">
+      <div class="main-image-wrapper">
+        {% if section.settings.product_image != blank %}
+          <img src="{{ section.settings.product_image | image_url: width: 1200 }}" alt="Smartwatch Tech" class="floating-image">
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg futuristic-placeholder' }}
+        {% endif %}
+        <div class="image-scanner"></div>
+      </div>
+      <div class="outer-glow"></div>
     </div>
   </div>
 </section>
 
 <style>
-  /* Importación de fuente similar a Ethnocentric / Tech futurista */
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;600&display=swap');
+  /* IMPORTACIÓN DE FUENTE FUTURISTA */
+  @import url('https://fonts.cdnfonts.com/css/ethnocentric');
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap');
 
-  .hero-8k-{{ section.id }} {
+  .hero-8k-wrapper-{{ section.id }} {
     position: relative;
-    background: radial-gradient(circle at center, #1a1c2c 0%, #050505 100%);
-    min-height: 90vh;
+    background: #050505;
+    min-height: 85vh;
     display: flex;
     align-items: center;
     overflow: hidden;
+    padding: 60px 5%;
     color: #ffffff;
     font-family: 'Rajdhani', sans-serif;
   }
 
-  /* Título con estilo Ethnocentric */
-  .hero-8k-title {
-    font-family: 'Orbitron', sans-serif; /* Lo más parecido a Ethnocentric */
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    line-height: 0.9;
-    margin: 15px 0;
-    background: linear-gradient(180deg, #fff 30%, {{ section.settings.accent_color }});
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 15px {{ section.settings.accent_color }}55);
+  .glow-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 80% 20%, {{ section.settings.accent_color }}15 0%, transparent 40%);
+    pointer-events: none;
   }
 
   .hero-8k-container {
-    width: 90%;
     max-width: 1400px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    z-index: 2;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    z-index: 5;
+    width: 100%;
   }
 
-  .hero-8k-badge {
-    background: {{ section.settings.accent_color }};
-    color: white;
-    padding: 5px 20px;
-    font-family: 'Orbitron', sans-serif;
+  /* ESTILO DE TÍTULO ETHNOCENTRIC */
+  .hero-title {
+    font-family: 'ethnocentric', sans-serif;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    line-height: 1;
+    margin: 20px 0;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #fff, {{ section.settings.accent_color }});
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px {{ section.settings.accent_color }}44);
+  }
+
+  .hero-badge {
+    font-family: 'ethnocentric', sans-serif;
     font-size: 0.7rem;
-    display: inline-block;
-    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    color: {{ section.settings.accent_color }};
+    letter-spacing: 3px;
+    border-left: 2px solid {{ section.settings.accent_color }};
+    padding-left: 15px;
     margin-bottom: 10px;
   }
 
-  .hero-8k-subtitle {
-    font-size: 1.8rem;
-    font-weight: 300;
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: {{ section.settings.accent_color }};
-    margin-bottom: 20px;
   }
 
-  .hero-8k-description {
-    font-size: 1.2rem;
-    max-width: 500px;
-    opacity: 0.8;
+  .hero-description {
+    font-size: 1.1rem;
+    color: #cccccc;
     line-height: 1.6;
+    max-width: 550px;
+    margin-bottom: 35px;
   }
 
-  /* Botón Futurista */
-  .btn-8k {
+  /* BOTÓN FUTURISTA 8K */
+  .btn-futuristic {
     position: relative;
-    display: inline-block;
-    padding: 20px 50px;
+    padding: 20px 45px;
+    background: transparent;
     color: #fff;
     text-decoration: none;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
+    font-family: 'ethnocentric', sans-serif;
+    font-size: 0.8rem;
     border: 1px solid {{ section.settings.accent_color }};
-    overflow: hidden;
-    transition: 0.5s;
-    background: transparent;
+    transition: 0.3s;
+    display: inline-block;
+    letter-spacing: 2px;
   }
 
-  .btn-8k:hover {
+  .btn-futuristic:hover {
     background: {{ section.settings.accent_color }};
-    box-shadow: 0 0 40px {{ section.settings.accent_color }};
+    box-shadow: 0 0 30px {{ section.settings.accent_color }};
+    color: #000;
   }
 
-  /* Animación de la Imagen */
-  .hero-8k-image { position: relative; }
-  .img-main {
+  .hero-slogan-box {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .slogan-line {
+    width: 50px;
+    height: 1px;
+    background: {{ section.settings.accent_color }};
+  }
+
+  .hero-slogan {
+    font-style: italic;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    opacity: 0.7;
+  }
+
+  /* IMAGEN Y ANIMACIÓN */
+  .hero-8k-image-box { position: relative; display: flex; justify-content: center; }
+  
+  .floating-image {
     width: 100%;
-    filter: drop-shadow(0 0 50px {{ section.settings.accent_color }}44);
-    animation: floating 6s ease-in-out infinite;
+    max-width: 500px;
+    filter: drop-shadow(0 0 60px {{ section.settings.accent_color }}33);
+    animation: float8K 6s ease-in-out infinite;
   }
 
-  @keyframes floating {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-25px) rotate(2deg); }
+  @keyframes float8K {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.02); }
   }
 
-  .image-glow {
+  .image-scanner {
     position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px; height: 300px;
+    top: 0; left: 0; width: 100%; height: 5px;
     background: {{ section.settings.accent_color }};
-    filter: blur(150px);
+    box-shadow: 0 0 20px {{ section.settings.accent_color }};
     opacity: 0.3;
-    z-index: -1;
+    animation: scan 4s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes scan {
+    0% { top: 0%; }
+    100% { top: 100%; }
   }
 
   @media (max-width: 990px) {
     .hero-8k-container { grid-template-columns: 1fr; text-align: center; }
-    .hero-8k-description { margin: 0 auto 30px; }
+    .hero-description { margin: 0 auto 30px; }
+    .hero-slogan-box { justify-content: center; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Hero 8K Futurista",
+  "name": "Hero Futurista 8K",
   "settings": [
-    { "type": "color", "id": "accent_color", "label": "Color Neón / Acento", "default": "#00f2ff" },
-    { "type": "text", "id": "badge", "label": "Etiqueta", "default": "NEXT GEN TECHNOLOGY" },
+    { "type": "color", "id": "accent_color", "label": "Color Neón Acento", "default": "#00f2ff" },
+    { "type": "text", "id": "badge", "label": "Tag Superior", "default": "PREMIUM TECH 2024" },
     { "type": "text", "id": "title_main", "label": "Título", "default": "Relojes Smartwatch" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Tecnología Premium 8K" },
-    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Pantallas AMOLED, batería de larga duración y monitoreo de salud 24/7." },
-    { "type": "text", "id": "button_label", "label": "Botón", "default": "ADQUIRIR AHORA" },
-    { "type": "url", "id": "button_link", "label": "Enlace" },
-    { "type": "text", "id": "slogan", "label": "Eslogan", "default": "// TU ESTILO, TU SMARTWATCH" },
-    { "type": "image_picker", "id": "product_image", "label": "Imagen del Producto" }
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Tecnología Premium para tu Estilo" },
+    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7." },
+    { "type": "text", "id": "button_label", "label": "Texto Botón", "default": "EXPLORAR AHORA" },
+    { "type": "url", "id": "button_link", "label": "Link Botón" },
+    { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj inteligente." },
+    { "type": "image_picker", "id": "product_image", "label": "Imagen del Reloj (PNG)" }
   ],
-  "presets": [{ "name": "Hero 8K Futurista" }]
+  "presets": [{ "name": "Hero Futurista 8K" }]
 }
 {% endschema %}
