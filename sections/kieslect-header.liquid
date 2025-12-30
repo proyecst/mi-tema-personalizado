@@ -72,11 +72,15 @@
     font-size: 10px; text-transform: uppercase; cursor: pointer; font-family: var(--k-font);
   }
 
-  /* --- TRUST BAR STYLES --- */
+  /* --- TRUST BAR STYLES (SOLO RASTREO Y SOPORTE) --- */
   .trust-bar-section { background: #000; padding: 40px 0; border-top: 1px solid #1a1a1a; }
   .trust-bar-grid { 
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; 
-    max-width: 1400px; margin: 0 auto; padding: 0 20px; 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); /* Ajustado a 2 columnas */
+    gap: 15px; 
+    max-width: 800px; /* Reducido para que no se vea tan estirado */
+    margin: 0 auto; 
+    padding: 0 20px; 
   }
 
   .trust-item-wrapper { 
@@ -104,8 +108,10 @@
   @keyframes kShine { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
   @keyframes kPulse { 0%, 100% { filter: drop-shadow(0 0 2px var(--k-red)); } 50% { filter: drop-shadow(0 0 8px var(--k-red)); } }
 
-  @media (max-width: 1000px) { .trust-bar-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .trust-bar-grid { grid-template-columns: 1fr; } .k-nav-main { display: none; } }
+  @media (max-width: 600px) { 
+    .trust-bar-grid { grid-template-columns: 1fr; } 
+    .k-nav-main { display: none; } 
+  }
 </style>
 
 <header class="k-header-wrapper">
@@ -128,18 +134,17 @@
     <div class="trust-item-wrapper">
       <div class="trust-header" onclick="toggleTrust(this)">
         <div style="width:20px; color:var(--k-cyan)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11l4 4L19 7"></path></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
         </div>
         <div class="trust-text">
-          <span class="trust-title">{{ section.settings.title_1 | default: 'ENVÍO GRATIS' }}</span>
-          <br><span class="trust-subtitle">Rellena tus datos</span>
+          <span class="trust-title">RASTREO</span>
+          <br><span class="trust-subtitle">Sigue tu pedido</span>
         </div>
       </div>
       <div class="trust-content">
-        <form id="rea-form">
-          <input type="text" placeholder="Nombre completo" class="trust-input" required>
-          <input type="email" placeholder="Correo electrónico" class="trust-input" required>
-          <button type="submit" class="trust-btn">ENVIAR</button>
+        <form action="{{ section.settings.link_tracking }}" method="get">
+          <input type="text" placeholder="Nro de Guía" class="trust-input" required>
+          <button type="submit" class="trust-btn">RASTREAR</button>
         </form>
       </div>
     </div>
@@ -147,15 +152,15 @@
     <div class="trust-item-wrapper">
       <div class="trust-header" onclick="toggleTrust(this)">
         <div style="width:20px; color:var(--k-cyan)">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path></svg>
         </div>
         <div class="trust-text">
-          <span class="trust-title">PAGO SEGURO</span>
-          <br><span class="trust-subtitle">Transacción protegida</span>
+          <span class="trust-title">SOPORTE 24/7</span>
+          <br><span class="trust-subtitle">Atención Directa</span>
         </div>
       </div>
       <div class="trust-content">
-        <p style="color:#ccc; font-size:11px;">Aceptamos todas las tarjetas de crédito y transferencias seguras.</p>
+        <p style="color:#ccc; font-size:11px;">{{ section.settings.info_4 | default: 'Nuestro equipo está disponible para ayudarte en cualquier momento.' }}</p>
       </div>
     </div>
 
@@ -173,10 +178,12 @@ function toggleTrust(element) {
 
 {% schema %}
 {
-  "name": "Kieslect Full Section",
+  "name": "Kieslect Header & Trust",
   "settings": [
-    { "type": "text", "id": "title_1", "label": "Título Bloque 1", "default": "ENVÍO GRATIS" }
+    { "type": "url", "id": "link_tracking", "label": "Link de App de Rastreo" },
+    { "type": "textarea", "id": "info_4", "label": "Info Soporte", "default": "Nuestro equipo está disponible para ayudarte." }
   ],
-  "presets": [{ "name": "Kieslect Full Section" }]
+  "presets": [{ "name": "Kieslect Header & Trust" }]
 }
 {% endschema %}
+
