@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+
 <section class="galeria-series-custom">
   {% if section.settings.title != blank %}
     <h2 class="titulo-galeria">{{ section.settings.title }}</h2>
@@ -9,10 +11,11 @@
         
         <div class="imagen-contenedor">
           {% if block.settings.image != blank %}
-            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title }}">
+            <img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title }}" loading="lazy">
           {% else %}
             {{ 'image' | placeholder_svg_tag: 'placeholder-svg-custom' }}
           {% endif %}
+          <div class="glow-effect"></div>
         </div>
         
         <div class="texto-contenedor">
@@ -20,7 +23,10 @@
           <div class="descripcion-corta">{{ block.settings.desc }}</div>
           
           {% if block.settings.id_link != blank %}
-             <a href="{{ block.settings.id_link }}" class="boton-serie">Ver más</a>
+             <a href="{{ block.settings.id_link }}" class="boton-serie">
+               <span>Explorar Unidad</span>
+               <div class="btn-line"></div>
+             </a>
           {% endif %}
         </div>
 
@@ -30,8 +36,15 @@
 </section>
 
 <style>
+  :root {
+    --font-futurista: 'Orbitron', sans-serif;
+    --font-cuerpo: 'Rajdhani', sans-serif;
+    --color-accent: #ff0000; /* Rojo Kieslect */
+    --color-dark: #000000;
+  }
+
   .galeria-series-custom { 
-    padding: 60px 20px; 
+    padding: 80px 20px; 
     max-width: 1400px; 
     margin: 0 auto; 
     text-align: center; 
@@ -39,32 +52,50 @@
   }
 
   .titulo-galeria { 
-    font-family: 'Ethnocentric', sans-serif; 
-    font-size: 2.2rem; 
-    margin-bottom: 50px; 
-    color: #000000; 
+    font-family: var(--font-futurista); 
+    font-size: 2.5rem; 
+    font-weight: 700;
+    margin-bottom: 60px; 
+    color: var(--color-dark); 
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 6px;
+    position: relative;
+  }
+
+  /* Subrayado decorativo para el título */
+  .titulo-galeria::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--color-accent);
+    margin: 15px auto 0;
   }
 
   .grid-series { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 30px; 
+    gap: 40px; 
   }
 
   .tarjeta-serie { 
     background: #ffffff; 
-    border: 1px solid #f0f0f0; 
-    border-radius: 12px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 0px; /* Bordes rectos para look más técnico/industrial */
     overflow: hidden; 
-    transition: all 0.4s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
   }
 
   .tarjeta-serie:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    transform: translateY(-12px);
+    border-color: var(--color-dark);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  .imagen-contenedor {
+    position: relative;
+    overflow: hidden;
   }
 
   .imagen-contenedor img { 
@@ -72,104 +103,73 @@
     height: 400px; 
     object-fit: cover; 
     display: block;
-    background-color: #f7f7f7;
+    transition: transform 0.8s ease;
+  }
+
+  .tarjeta-serie:hover .imagen-contenedor img {
+    transform: scale(1.05);
   }
 
   .texto-contenedor { 
-    padding: 30px; 
+    padding: 35px; 
     text-align: left; 
+    background: #fff;
   }
 
   .texto-contenedor h3 { 
-    font-family: 'Ethnocentric', sans-serif;
-    font-size: 16px; 
-    color: #000000; 
+    font-family: var(--font-futurista);
+    font-size: 18px; 
+    font-weight: 700;
+    color: var(--color-dark); 
     margin: 0 0 15px 0;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
 
   .descripcion-corta, 
   .descripcion-corta p { 
-    font-size: 14px; 
-    color: #555555; 
-    line-height: 1.6;
-    margin-bottom: 25px; 
+    font-family: var(--font-cuerpo);
+    font-size: 16px; 
+    color: #444; 
+    line-height: 1.4;
+    margin-bottom: 30px; 
+    font-weight: 500;
+    letter-spacing: 0.5px;
   }
 
   .boton-serie { 
     display: inline-block;
-    color: #000000; 
-    font-weight: bold; 
-    font-size: 12px;
+    color: var(--color-dark); 
+    font-family: var(--font-futurista);
+    font-weight: 700; 
+    font-size: 11px;
     text-transform: uppercase;
     text-decoration: none;
-    border-bottom: 2px solid #ff0000; /* Detalle rojo Kieslect */
-    padding-bottom: 4px;
+    letter-spacing: 2px;
+    position: relative;
     transition: 0.3s;
   }
 
-  .boton-serie:hover {
-    color: #ff0000;
-    letter-spacing: 1px;
+  .btn-line {
+    width: 40%;
+    height: 2px;
+    background: var(--color-accent);
+    margin-top: 5px;
+    transition: width 0.4s ease;
   }
 
-  /* Ajuste para pantallas pequeñas */
+  .boton-serie:hover .btn-line {
+    width: 100%;
+  }
+
+  .boton-serie:hover {
+    color: var(--color-accent);
+  }
+
+  /* Media Queries */
   @media (max-width: 768px) {
-    .titulo-galeria { font-size: 1.6rem; }
-    .imagen-contenedor img { height: 300px; }
+    .titulo-galeria { font-size: 1.8rem; letter-spacing: 3px; }
+    .imagen-contenedor img { height: 320px; }
+    .grid-series { gap: 20px; }
   }
 </style>
-
-{% schema %}
-{
-  "name": "Galería de Series Blanco",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Título de la Sección",
-      "default": "Nuestras Series"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "bloque_serie",
-      "name": "Serie",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Imagen de la Serie"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Título",
-          "default": "Nombre de la Serie"
-        },
-        {
-          "type": "richtext",
-          "id": "desc",
-          "label": "Descripción",
-          "default": "<p>Agrega un resumen aquí.</p>"
-        },
-        {
-          "type": "url",
-          "id": "id_link",
-          "label": "Enlace"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Galería de Series Blanco",
-      "blocks": [
-        { "type": "bloque_serie" },
-        { "type": "bloque_serie" },
-        { "type": "bloque_serie" }
-      ]
-    }
-  ]
-}
-{% endschema %}
