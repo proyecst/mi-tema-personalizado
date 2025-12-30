@@ -445,10 +445,26 @@
       "disabled": true,
       "name": "Chatbot Kieslect",
       "settings": {}
+    },
+    "main_hero_banner_BCgJTy": {
+      "type": "main-hero-banner",
+      "name": "Hero Smartwatch Premium",
+      "settings": {
+        "background_color": "#1a1a1a",
+        "text_color": "#ffffff",
+        "accent_color": "#007bff",
+        "title_main": "Relojes Smartwatch para Mujer y Hombre",
+        "subtitle": "Tecnología Premium para tu Estilo",
+        "description": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7.",
+        "slogan": "Tu estilo, tu reloj inteligente.",
+        "button_label": "Ver Colección",
+        "button_link": ""
+      }
     }
   },
   "order": [
     "kieslect_header_7Bj6Gk",
+    "main_hero_banner_BCgJTy",
     "trust_bar_v3_ahJkw9",
     "hero_animado_kieslect_6NKX9X",
     "trust_bar_7X8Kwh",
