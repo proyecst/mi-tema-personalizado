@@ -1,141 +1,140 @@
 <style>
-  /* 1. IMPORTACIÓN DE FUENTE */
-  @font-face {
-    font-family: 'Ethnocentric';
-    src: url('URL_DE_TU_ARCHIVO_OTF') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  :root { 
-    --k-cyan: #00D1FF; 
-    --k-bg: #0a0a0a; 
-    --k-red: #ff0000;
-    --k-font: 'Ethnocentric', sans-serif;
-  }
-
-  /* --- HEADER STYLES --- */
-  .k-header-wrapper { 
-    width: 100%; 
-    background: #000; 
-    border-bottom: 1px solid #1a1a1a; 
-    position: sticky; 
-    top: 0; 
-    z-index: 9999; 
-    font-family: var(--k-font);
-  }
-
-  .k-header-container { 
-    max-width: 1400px; 
-    height: 80px; 
-    margin: 0 auto; 
-    display: flex; 
-    align-items: center; 
-    justify-content: space-between; 
-    padding: 0 20px; 
-  }
-
-  /* --- LOGO ANIMADO KIESLECT --- */
-  .k-logo-container { 
-    display: flex; 
-    align-items: center; 
-    text-decoration: none; 
-    outline: none;
-  }
-  
-  /* Animación de Pulso en la K Roja */
-  .k-icon-k {
-    position: relative;
-    width: 20px;
-    height: 24px;
-    margin-right: 6px;
-    animation: kPulse 3s infinite ease-in-out;
-  }
-  .k-icon-k::before {
-    content: ""; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: var(--k-red);
-  }
-  .k-icon-k::after {
-    content: ""; position: absolute; left: 1px; top: 1px; width: 14px; height: 14px;
-    border-top: 5px solid var(--k-red); border-right: 5px solid var(--k-red);
-    transform: rotate(45deg); transform-origin: top left;
-  }
-
-  /* Animación de Brillo en las Letras */
-  .k-logo-text {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 22px;
-    background: linear-gradient(120deg, transparent 30%, #fff 50%, transparent 70%);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: kShine 4s infinite linear;
-    line-height: 1;
-    letter-spacing: 1px;
-  }
-
-  /* --- NAVEGACIÓN --- */
-  .k-nav-main { display: flex; gap: 15px; }
-  
-  .k-nav-link { 
-    background: transparent; 
-    color: #fff; 
-    text-decoration: none;
-    padding: 10px;
-    font-size: 10px; 
-    text-transform: uppercase; 
-    cursor: pointer; 
-    font-family: var(--k-font);
-    transition: 0.3s ease;
-  }
-
-  .k-nav-link:hover { 
-    color: var(--k-cyan); 
-    text-shadow: 0 0 8px rgba(0, 209, 255, 0.5);
-  }
-
-  /* ANIMACIONES KEYFRAMES */
-  @keyframes kShine { 
-    0% { background-position: 200% 0; } 
-    100% { background-position: -200% 0; } 
-  }
-  
-  @keyframes kPulse { 
-    0%, 100% { filter: drop-shadow(0 0 2px var(--k-red)); opacity: 1; } 
-    50% { filter: drop-shadow(0 0 10px var(--k-red)); opacity: 0.8; } 
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) { 
-    .k-nav-main { display: none; } /* Ocultar menú en móvil para usar el nativo de Shopify */
-    .k-header-container { justify-content: center; }
-  }
-</style>
-
-<header class="k-header-wrapper">
-  <div class="k-header-container">
-    
-    <a href="/" class="k-logo-container">
-      <div class="k-icon-k"></div>
-      <span class="k-logo-text">IESLECT</span>
-    </a>
-
-    <nav class="k-nav-main">
-      <a href="/" class="k-nav-link">Inicio</a>
-      <a href="/collections/all" class="k-nav-link">Productos</a>
-      <a href="/pages/comunidad" class="k-nav-link">Comunidad</a>
-    </nav>
-
-    <div style="width: 120px;" class="k-desktop-only"></div>
-
-  </div>
-</header>
-
-{% schema %}
-{
-  "name": "Kieslect Header Solo",
-  "settings": [],
-  "presets": [{ "name": "Kieslect Header Solo" }]
-}
-{% endschema %}
-
+    /* 1. IMPORTACIÓN DE FUENTE */
+      @font-face {
+          font-family: 'Ethnocentric';
+              src: url('URL_DE_TU_ARCHIVO_OTF') format('opentype');
+                  font-weight: normal;
+                      font-style: normal;
+                          font-display: swap;
+                            }
+                            
+                              :root { 
+                                  --k-cyan: #00D1FF; 
+                                      --k-bg: #0a0a0a; 
+                                          --k-red: #ff0000;
+                                              --k-font: 'Ethnocentric', sans-serif;
+                                                }
+                                                
+                                                  /* --- HEADER STYLES --- */
+                                                    .k-header-wrapper { 
+                                                        width: 100%; 
+                                                            background: #000; 
+                                                                border-bottom: 1px solid #1a1a1a; 
+                                                                    position: sticky; 
+                                                                        top: 0; 
+                                                                            z-index: 9999; 
+                                                                                font-family: var(--k-font);
+                                                                                  }
+                                                                                  
+                                                                                    .k-header-container { 
+                                                                                        max-width: 1400px; 
+                                                                                            height: 80px; 
+                                                                                                margin: 0 auto; 
+                                                                                                    display: flex; 
+                                                                                                        align-items: center; 
+                                                                                                            justify-content: space-between; 
+                                                                                                                padding: 0 20px; 
+                                                                                                                  }
+                                                                                                                  
+                                                                                                                    /* --- LOGO ANIMADO KIESLECT --- */
+                                                                                                                      .k-logo-container { 
+                                                                                                                          display: flex; 
+                                                                                                                              align-items: center; 
+                                                                                                                                  text-decoration: none; 
+                                                                                                                                      outline: none;
+                                                                                                                                        }
+                                                                                                                                          
+                                                                                                                                            /* Animación de Pulso en la K Roja */
+                                                                                                                                              .k-icon-k {
+                                                                                                                                                  position: relative;
+                                                                                                                                                      width: 20px;
+                                                                                                                                                          height: 24px;
+                                                                                                                                                              margin-right: 6px;
+                                                                                                                                                                  animation: kPulse 3s infinite ease-in-out;
+                                                                                                                                                                    }
+                                                                                                                                                                      .k-icon-k::before {
+                                                                                                                                                                          content: ""; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: var(--k-red);
+                                                                                                                                                                            }
+                                                                                                                                                                              .k-icon-k::after {
+                                                                                                                                                                                  content: ""; position: absolute; left: 1px; top: 1px; width: 14px; height: 14px;
+                                                                                                                                                                                      border-top: 5px solid var(--k-red); border-right: 5px solid var(--k-red);
+                                                                                                                                                                                          transform: rotate(45deg); transform-origin: top left;
+                                                                                                                                                                                            }
+                                                                                                                                                                                            
+                                                                                                                                                                                              /* Animación de Brillo en las Letras */
+                                                                                                                                                                                                .k-logo-text {
+                                                                                                                                                                                                    color: rgba(255, 255, 255, 0.3);
+                                                                                                                                                                                                        font-size: 22px;
+                                                                                                                                                                                                            background: linear-gradient(120deg, transparent 30%, #fff 50%, transparent 70%);
+                                                                                                                                                                                                                background-size: 200% 100%;
+                                                                                                                                                                                                                    -webkit-background-clip: text;
+                                                                                                                                                                                                                        background-clip: text;
+                                                                                                                                                                                                                            animation: kShine 4s infinite linear;
+                                                                                                                                                                                                                                line-height: 1;
+                                                                                                                                                                                                                                    letter-spacing: 1px;
+                                                                                                                                                                                                                                      }
+                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                        /* --- NAVEGACIÓN --- */
+                                                                                                                                                                                                                                          .k-nav-main { display: flex; gap: 15px; }
+                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                              .k-nav-link { 
+                                                                                                                                                                                                                                                  background: transparent; 
+                                                                                                                                                                                                                                                      color: #fff; 
+                                                                                                                                                                                                                                                          text-decoration: none;
+                                                                                                                                                                                                                                                              padding: 10px;
+                                                                                                                                                                                                                                                                  font-size: 10px; 
+                                                                                                                                                                                                                                                                      text-transform: uppercase; 
+                                                                                                                                                                                                                                                                          cursor: pointer; 
+                                                                                                                                                                                                                                                                              font-family: var(--k-font);
+                                                                                                                                                                                                                                                                                  transition: 0.3s ease;
+                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                      .k-nav-link:hover { 
+                                                                                                                                                                                                                                                                                          color: var(--k-cyan); 
+                                                                                                                                                                                                                                                                                              text-shadow: 0 0 8px rgba(0, 209, 255, 0.5);
+                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                  /* ANIMACIONES KEYFRAMES */
+                                                                                                                                                                                                                                                                                                    @keyframes kShine { 
+                                                                                                                                                                                                                                                                                                        0% { background-position: 200% 0; } 
+                                                                                                                                                                                                                                                                                                            100% { background-position: -200% 0; } 
+                                                                                                                                                                                                                                                                                                              }
+                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                  @keyframes kPulse { 
+                                                                                                                                                                                                                                                                                                                      0%, 100% { filter: drop-shadow(0 0 2px var(--k-red)); opacity: 1; } 
+                                                                                                                                                                                                                                                                                                                          50% { filter: drop-shadow(0 0 10px var(--k-red)); opacity: 0.8; } 
+                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                              /* RESPONSIVE */
+                                                                                                                                                                                                                                                                                                                                @media (max-width: 768px) { 
+                                                                                                                                                                                                                                                                                                                                    .k-nav-main { display: none; } /* Ocultar menú en móvil para usar el nativo de Shopify */
+                                                                                                                                                                                                                                                                                                                                        .k-header-container { justify-content: center; }
+                                                                                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                                                                                          </style>
+                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                          <header class="k-header-wrapper">
+                                                                                                                                                                                                                                                                                                                                            <div class="k-header-container">
+                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                    <a href="/" class="k-logo-container">
+                                                                                                                                                                                                                                                                                                                                                          <div class="k-icon-k"></div>
+                                                                                                                                                                                                                                                                                                                                                                <span class="k-logo-text">IESLECT</span>
+                                                                                                                                                                                                                                                                                                                                                                    </a>
+                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                        <nav class="k-nav-main">
+                                                                                                                                                                                                                                                                                                                                                                              <a href="/" class="k-nav-link">Inicio</a>
+                                                                                                                                                                                                                                                                                                                                                                                    <a href="/collections/all" class="k-nav-link">Productos</a>
+                                                                                                                                                                                                                                                                                                                                                                                          <a href="/pages/comunidad" class="k-nav-link">Comunidad</a>
+                                                                                                                                                                                                                                                                                                                                                                                              </nav>
+                                                                                                                                                                                                                                                                                                                                                                                              
+                                                                                                                                                                                                                                                                                                                                                                                                  <div style="width: 120px;" class="k-desktop-only"></div>
+                                                                                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                    </header>
+                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                    {% schema %}
+                                                                                                                                                                                                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                                                                                                                                                                                      "name": "Kieslect Header Solo",
+                                                                                                                                                                                                                                                                                                                                                                                                        "settings": [],
+                                                                                                                                                                                                                                                                                                                                                                                                          "presets": [{ "name": "Kieslect Header Solo" }]
+                                                                                                                                                                                                                                                                                                                                                                                                          }
+                                                                                                                                                                                                                                                                                                                                                                                                          {% endschema %}>
