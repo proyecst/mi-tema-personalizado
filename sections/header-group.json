@@ -20,6 +20,8 @@
       "type": "main-hero-banner",
       "name": "Hero Smartwatch Premium",
       "settings": {
+        "bg_color": "#000000",
+        "txt_color": "#ffffff",
         "accent_color": "#007bff",
         "title_main": "Relojes Smartwatch para Mujer y Hombre",
         "subtitle": "Tecnología Premium para tu Estilo",
@@ -470,7 +472,50 @@
         "description": "Descubre nuestras pantallas AMOLED.",
         "slogan": "Tu estilo, tu reloj.",
         "btn_label": "VER AHORA",
-        "btn_link": ""
+        "btn_link": "",
+        "btn_more_label": "VER MAS",
+        "btn_more_link": ""
+      }
+    },
+    "caracteristicas_futuristas_RgDcUW": {
+      "type": "caracteristicas-futuristas",
+      "blocks": {
+        "feature_BYmDNQ": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Pantallas AMOLED curvas"
+          }
+        },
+        "feature_8EUxVx": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Llamadas Bluetooth ultra claras"
+          }
+        },
+        "feature_ixUBUJ": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Monitoreo de salud 24/7"
+          }
+        },
+        "feature_pceDdx": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "100+ modos deportivos"
+          }
+        }
+      },
+      "block_order": [
+        "feature_BYmDNQ",
+        "feature_8EUxVx",
+        "feature_ixUBUJ",
+        "feature_pceDdx"
+      ],
+      "name": "Características 8K",
+      "settings": {
+        "bg_color": "#000000",
+        "accent_color": "#00f2ff",
+        "section_title": "Características"
       }
     }
   },
@@ -491,6 +536,7 @@
     "kieslect_tech_footer_WpP4Vm",
     "kieslect_ai_assistant_6Npar6",
     "chatbot_kieslect_kdMWME",
-    "hero_final_premium_Dtb439"
+    "hero_final_premium_Dtb439",
+    "caracteristicas_futuristas_RgDcUW"
   ]
 }
