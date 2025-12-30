@@ -1,53 +1,44 @@
-<section class="h8k" style="background:#000;color:#fff;padding:80px 5%;font-family:sans-serif;overflow:hidden;position:relative;">
-  <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;">
-    
-    <div style="flex:1;min-width:300px;z-index:2;">
-      <p style="color:{{ section.settings.accent }};font-family:sans-serif;letter-spacing:4px;font-weight:bold;margin:0;">{{ section.settings.badge }}</p>
-      <h1 style="font-family:'Orbitron',sans-serif;font-size:60px;margin:20px 0;line-height:1;text-transform:uppercase;">{{ section.settings.title }}</h1>
-      <h2 style="font-size:24px;margin-bottom:15px;opacity:0.8;">{{ section.settings.subtitle }}</h2>
-      <p style="font-size:18px;line-height:1.6;opacity:0.6;max-width:500px;">{{ section.settings.desc }}</p>
-      
-      <div style="margin:40px 0;">
-        <a href="{{ section.settings.link }}" style="display:inline-block;padding:20px 40px;border:1px solid {{ section.settings.accent }};color:#fff;text-decoration:none;font-weight:bold;letter-spacing:2px;box-shadow: 0 0 15px {{ section.settings.accent }}66;">
-          {{ section.settings.btn }}
-        </a>
-      </div>
-      <p style="font-style:italic;opacity:0.5;border-left:2px solid {{ section.settings.accent }};padding-left:15px;">{{ section.settings.slogan }}</p>
-    </div>
 
-    <div style="flex:1;min-width:300px;text-align:center;position:relative;">
-      {% if section.settings.img != blank %}
-        <img src="{{ section.settings.img | image_url: width: 800 }}" style="width:100%;max-width:500px;filter:drop-shadow(0 0 30px {{ section.settings.accent }}44);animation:float8k 5s ease-in-out infinite;">
-      {% else %}
-        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+<section class="h-fut" style="background:#000;color:#fff;padding:60px 20px;text-align:center;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <h1 style="font-family:sans-serif;font-size:40px;color:{{ section.settings.accent }};">
+      {{ section.settings.title }}
+    </h1>
+    <p style="font-size:18px;opacity:0.8;">{{ section.settings.subtitle }}</p>
+    
+    <div style="margin:30px 0;">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 600 }}" style="max-width:100%;height:auto;animation:pulse 3s infinite;">
       {% endif %}
     </div>
 
+    <a href="{{ section.settings.link }}" style="background:{{ section.settings.accent }};color:#000;padding:15px 30px;text-decoration:none;font-weight:bold;border-radius:4px;">
+      {{ section.settings.btn_label }}
+    </a>
   </div>
 </section>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
-  @keyframes float8k {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
+@keyframes pulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.02); filter: brightness(1.2); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
 </style>
 
 {% schema %}
 {
-  "name": "Hero 8K",
+  "name": "Test Hero",
   "settings": [
     { "type": "color", "id": "accent", "label": "Color", "default": "#00f2ff" },
-    { "type": "text", "id": "badge", "label": "Tag", "default": "PREMIUM TECH" },
-    { "type": "text", "id": "title", "label": "Titulo", "default": "SMARTWATCH" },
-    { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnología Premium" },
-    { "type": "textarea", "id": "desc", "label": "Info", "default": "Pantallas AMOLED y monitoreo 24/7." },
-    { "type": "text", "id": "btn", "label": "Boton", "default": "COMPRAR" },
+    { "type": "text", "id": "title", "label": "Titulo", "default": "Relojes Smartwatch" },
+    { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnología Premium para tu Estilo" },
+    { "type": "text", "id": "btn_label", "label": "Boton", "default": "COMPRAR AHORA" },
     { "type": "url", "id": "link", "label": "Link" },
-    { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj." },
-    { "type": "image_picker", "id": "img", "label": "Imagen" }
+    { "type": "image_picker", "id": "image", "label": "Imagen" }
   ],
-  "presets": [ { "name": "Hero 8K" } ]
+  "presets": [
+    { "name": "Test Hero" }
+  ]
 }
 {% endschema %}
