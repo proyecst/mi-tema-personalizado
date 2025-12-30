@@ -1,3 +1,7 @@
+{<style>
+  @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+</style>
+
 {%- style -%}
   #shopify-section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
@@ -10,32 +14,34 @@
     --k-accent: #00D1FF;
     --k-dark-bg: #111111;
     --k-border: rgba(255, 255, 255, 0.1);
+    --font-futurista: 'Michroma', sans-serif;
   }
 
   .comp-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
   .comp-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
   }
 
-  /* --- ANIMACIÓN DE BRILLO EN EL TÍTULO --- */
+  /* --- TÍTULO CON ESTILO ETHNOCENTRIC --- */
   .comp-title {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: -1px;
+    font-family: var(--font-futurista) !important;
+    font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 6px !important;
     margin: 0;
-    
-    background: linear-gradient(120deg, rgba(255,255,255,0) 30%, {{ section.settings.text_color }} 50%, rgba(255,255,255,0) 70%);
+    line-height: 1.2;
+    background: linear-gradient(120deg, rgba(255,255,255,0.1) 30%, {{ section.settings.text_color }} 50%, rgba(255,255,255,0.1) 70%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
-    color: rgba(255, 255, 255, 0.3); /* Base tenue para resaltar el brillo */
+    color: rgba(255, 255, 255, 0.9);
     animation: kTitleShine 4s infinite linear;
   }
 
@@ -45,21 +51,20 @@
   }
 
   .comp-subtitle {
+    font-family: var(--font-futurista) !important;
     color: var(--k-accent);
-    letter-spacing: 3px;
-    font-size: 12px;
-    font-weight: 700;
+    letter-spacing: 4px;
+    font-size: 10px;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
-  /* --- TABLA Y CONTENIDO --- */
+  /* --- TABLA FUTURISTA --- */
   .comp-table-wrapper {
     overflow-x: auto;
-    border-radius: 24px;
-    background: var(--k-dark-bg);
+    border-radius: 0px; /* Bordes rectos industriales */
+    background: #000;
     border: 1px solid var(--k-border);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
   }
 
   .comp-table {
@@ -69,132 +74,98 @@
   }
 
   .comp-table th, .comp-table td {
-    padding: 25px;
+    padding: 30px 20px;
     text-align: center;
     border-bottom: 1px solid var(--k-border);
   }
 
   .comp-feature-label {
+    font-family: var(--font-futurista) !important;
     text-align: left !important;
     background-color: rgba(255,255,255,0.02);
-    font-weight: 700;
-    width: 200px;
-    color: #888;
-    text-transform: uppercase;
-    font-size: 11px;
+    font-size: 10px !important;
     letter-spacing: 1px;
+    color: #888;
+    width: 220px;
     border-right: 1px solid var(--k-border);
   }
 
-  .comp-table th:not(.comp-feature-label) {
-    background: rgba(255,255,255,0.03);
-    vertical-align: bottom;
-  }
-
   .comp-model-badge {
+    font-family: var(--font-futurista) !important;
     background: var(--k-accent);
     color: #000;
-    font-size: 10px;
-    font-weight: 900;
-    padding: 4px 10px;
-    border-radius: 4px;
+    font-size: 8px;
+    padding: 4px 8px;
+    margin-bottom: 15px;
     display: inline-block;
-    margin-bottom: 10px;
   }
 
   .comp-model-name {
-    font-size: 1.8rem;
-    font-weight: 900;
+    font-family: var(--font-futurista) !important;
+    font-size: 1.2rem;
     color: #fff;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
   }
 
   .comp-price {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-family: var(--font-futurista) !important;
+    font-size: 14px;
     color: var(--k-accent);
-    opacity: 0.9;
   }
 
   .comp-spec-value {
-    color: #fff;
-    font-weight: 500;
+    font-family: sans-serif;
     font-size: 15px;
+    color: #fff;
   }
 
   .comp-check-wrapper {
+    font-family: var(--font-futurista) !important;
+    font-size: 9px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 8px;
-    color: #fff;
-  }
-
-  .comp-icon-box {
-    width: 24px;
-    height: 24px;
-    background: rgba(0, 209, 255, 0.1);
-    border: 1px solid var(--k-accent);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--k-accent);
   }
 
-  .comp-dash { opacity: 0.3; font-weight: 300; }
-
-  /* --- BOTÓN CTA ANIMADO --- */
-  .comp-cta-container {
-    text-align: center;
-    margin-top: 50px;
+  .comp-icon-box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--k-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
   }
 
+  /* --- BOTÓN CTA --- */
   .comp-btn {
+    font-family: var(--font-futurista) !important;
     display: inline-flex;
     align-items: center;
     gap: 15px;
-    padding: 18px 45px;
+    padding: 20px 50px;
     background-color: var(--k-accent);
     color: #000;
     text-decoration: none;
-    border-radius: 12px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 0 20px rgba(0, 209, 255, 0.2);
-    position: relative;
-    overflow: hidden;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    border-radius: 0px;
   }
 
   .comp-btn:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 209, 255, 0.5);
+    background: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 209, 255, 0.3);
   }
 
-  /* Efecto de brillo pasando por el botón */
-  .comp-btn::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 20%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.4);
-    transform: rotate(30deg);
-    transition: none;
-  }
-
-  .comp-btn:hover::after {
-    left: 120%;
-    transition: all 0.7s ease-in-out;
-  }
-
-  .comp-table-wrapper::-webkit-scrollbar { height: 6px; }
-  .comp-table-wrapper::-webkit-scrollbar-track { background: #111; }
-  .comp-table-wrapper::-webkit-scrollbar-thumb { background: var(--k-accent); border-radius: 10px; }
+  .comp-table-wrapper::-webkit-scrollbar { height: 4px; }
+  .comp-table-wrapper::-webkit-scrollbar-thumb { background: var(--k-accent); }
 {%- endstyle -%}
 
 <div class="comp-container">
@@ -232,16 +203,17 @@
             <td>
               {% if block.settings.feat_calls %}
                 <div class="comp-check-wrapper">
-                  <div class="comp-icon-box">✓</div> <span>Dual-Mode</span>
+                  <div class="comp-icon-box">✓</div>
+                  <span>DUAL-MODE</span>
                 </div>
               {% else %}
-                <span class="comp-dash">—</span>
+                <span class="comp-dash" style="opacity:0.3">—</span>
               {% endif %}
             </td>
           {% endfor %}
         </tr>
         <tr>
-          <td class="comp-feature-label">Autonomía (Uso Típico)</td>
+          <td class="comp-feature-label">Autonomía</td>
           {% for block in section.blocks %}
             <td class="comp-spec-value">{{ block.settings.spec_battery }}</td>
           {% endfor %}
@@ -250,7 +222,7 @@
           <td class="comp-feature-label">Algoritmos Deportivos</td>
           {% for block in section.blocks %}
             <td class="comp-spec-value">
-              <span style="color:var(--k-accent)">+</span>{{ block.settings.spec_sports }} Modos
+              <span style="color:var(--k-accent); font-weight: bold;">+</span>{{ block.settings.spec_sports }} MODOS
             </td>
           {% endfor %}
         </tr>
@@ -261,12 +233,12 @@
               {% if block.settings.feat_voice %}
                 <div class="comp-check-wrapper">
                   <div class="comp-icon-box">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
                   </div> 
-                  <span>Activo</span>
+                  <span>ACTIVO</span>
                 </div>
               {% else %}
-                <span class="comp-dash">—</span>
+                <span class="comp-dash" style="opacity:0.3">—</span>
               {% endif %}
             </td>
           {% endfor %}
@@ -276,10 +248,10 @@
   </div>
 
   {% if section.settings.cta_text != blank %}
-    <div class="comp-cta-container">
+    <div class="comp-cta-container" style="text-align: center; margin-top: 60px;">
       <a href="{{ section.settings.cta_link }}" class="comp-btn">
         {{ section.settings.cta_text }}
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   {% endif %}
@@ -287,13 +259,13 @@
 
 {% schema %}
 {
-  "name": "Kieslect Comparator",
+  "name": "Kieslect Comparator V3",
   "max_blocks": 3,
   "settings": [
-    { "type": "text", "id": "title", "label": "Título", "default": "Encuentra tu Kieslect ideal" },
+    { "type": "text", "id": "title", "label": "Título", "default": "COMPARATIVA TÉCNICA" },
     { "type": "color", "id": "bg_color", "label": "Fondo Sección", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Color Texto", "default": "#ffffff" },
-    { "type": "text", "id": "cta_text", "label": "Texto Botón", "default": "Ver Todos los Modelos" },
+    { "type": "text", "id": "cta_text", "label": "Texto Botón", "default": "EXPLORAR TODOS" },
     { "type": "url", "id": "cta_link", "label": "Link Botón" },
     { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Superior" },
     { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Inferior" }
@@ -307,7 +279,7 @@
         { "type": "text", "id": "price", "label": "Precio", "default": "$129.00" },
         { "type": "text", "id": "spec_screen", "label": "Pantalla", "default": "Ultra AMOLED 2.1\"" },
         { "type": "checkbox", "id": "feat_calls", "label": "Llamadas BT", "default": true },
-        { "type": "text", "id": "spec_battery", "label": "Batería", "default": "Up to 15 days" },
+        { "type": "text", "id": "spec_battery", "label": "Batería", "default": "15 Días" },
         { "type": "text", "id": "spec_sports", "label": "Nº Deportes", "default": "150" },
         { "type": "checkbox", "id": "feat_voice", "label": "Asistente Voz", "default": true }
       ]
@@ -315,11 +287,7 @@
   ],
   "presets": [
     {
-      "name": "Kieslect Comparator",
-      "blocks": [
-        { "type": "model", "settings": { "model_name": "KS3" } },
-        { "type": "model", "settings": { "model_name": "KR Pro" } }
-      ]
+      "name": "Kieslect Comparator V3"
     }
   ]
 }
