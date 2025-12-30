@@ -1,3 +1,7 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+</style>
+
 {%- style -%}
   #shopify-section-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
@@ -6,69 +10,108 @@
     color: {{ section.settings.text_color }};
     --k-cyan: #00D1FF;
     --k-border: rgba(255, 255, 255, 0.1);
+    font-family: sans-serif;
   }
 
-  .edu-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; font-family: 'Inter', sans-serif; }
+  .edu-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
   
-  .edu-header { text-align: center; margin-bottom: 50px; }
-  .edu-header h2 { font-size: 2.8rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0; }
-  .k-line { width: 60px; height: 3px; background: var(--k-cyan); margin: 15px auto; box-shadow: 0 0 15px var(--k-cyan); }
+  .edu-header { text-align: center; margin-bottom: 60px; }
 
-  /* FORMULARIO DE CREACIÓN */
+  /* --- TÍTULO CON ESTILO ETHNOCENTRIC --- */
+  .edu-header h2 { 
+    font-family: 'Michroma', sans-serif !important;
+    font-size: clamp(1.5rem, 5vw, 2.5rem); 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 8px !important; 
+    margin: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.1) 30%, {{ section.settings.text_color }} 50%, rgba(255,255,255,0.1) 70%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: rgba(255, 255, 255, 0.9);
+    animation: eduShineTitle 4s infinite linear;
+  }
+
+  @keyframes eduShineTitle {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .k-line { 
+    width: 80px; height: 2px; 
+    background: var(--k-cyan); 
+    margin: 20px auto; 
+    box-shadow: 0 0 15px var(--k-cyan); 
+  }
+
+  /* --- FORMULARIO DE CREACIÓN (LOOK INDUSTRIAL) --- */
   .edu-creator-box {
     max-width: 600px;
-    margin: 0 auto 60px auto;
+    margin: 0 auto 80px auto;
     background: #0a0a0a;
-    padding: 35px;
-    border-radius: 24px;
+    padding: 40px;
+    border-radius: 0px; /* Bordes rectos */
     border: 1px solid var(--k-border);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   }
-  .edu-creator-box h4 { margin-top: 0; color: var(--k-cyan); text-transform: uppercase; font-size: 14px; letter-spacing: 2px; text-align: center; }
+
+  .edu-creator-box h4 { 
+    font-family: 'Michroma', sans-serif !important;
+    margin-top: 0; 
+    color: var(--k-cyan); 
+    text-transform: uppercase; 
+    font-size: 10px; 
+    letter-spacing: 2px; 
+    text-align: center; 
+    margin-bottom: 25px;
+  }
 
   .edu-form { display: flex; flex-direction: column; gap: 15px; }
   .edu-form input {
     background: #000;
     border: 1px solid #222;
     padding: 15px;
-    border-radius: 12px;
+    border-radius: 0px; 
     color: #fff;
     outline: none;
+    font-size: 13px;
     transition: 0.3s;
   }
   .edu-form input:focus { border-color: var(--k-cyan); }
 
   .edu-btn-submit {
+    font-family: 'Michroma', sans-serif !important;
     background: var(--k-cyan);
     color: #000;
     border: none;
-    padding: 18px;
-    border-radius: 12px;
-    font-weight: 900;
+    padding: 20px;
+    font-size: 11px;
+    font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
+    letter-spacing: 1px;
     transition: 0.3s;
   }
-  .edu-btn-submit:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 209, 255, 0.4); }
+  .edu-btn-submit:hover { background: #fff; transform: translateY(-3px); }
 
-  /* GRID DE TARJETAS (GUÍAS) */
+  /* --- GRID DE TARJETAS --- */
   .edu-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
   }
 
   .edu-card {
     background: #0a0a0a;
     border: 1px solid var(--k-border);
-    padding: 35px;
-    border-radius: 20px;
+    padding: 40px;
+    border-radius: 0px; /* Consistencia visual */
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.4s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 200px;
+    min-height: 220px;
   }
 
   .edu-card:hover {
@@ -77,27 +120,33 @@
     background: #111;
   }
 
-  .edu-card h3 { color: #fff; margin: 0; font-size: 1.4rem; font-weight: 800; line-height: 1.3; }
+  .edu-card h3 { 
+    font-family: 'Michroma', sans-serif !important;
+    color: #fff; 
+    margin: 0; 
+    font-size: 14px; 
+    font-weight: 400; 
+    line-height: 1.6; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
   
-  .edu-card .card-footer {
+  .badge-link {
+    font-family: 'Michroma', sans-serif !important;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--k-cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 8px;
     margin-top: 30px;
   }
 
-  .badge-link {
-    font-size: 10px;
-    font-weight: 900;
-    color: var(--k-cyan);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  @media (max-width: 768px) { 
+    .edu-header h2 { letter-spacing: 3px !important; }
   }
-
-  @media (max-width: 900px) { .edu-grid { grid-template-columns: 1fr; } }
 {%- endstyle -%}
 
 <div class="edu-container">
@@ -109,8 +158,8 @@
   <div class="edu-creator-box">
     <h4>Publicar nueva opción</h4>
     <div class="edu-form">
-      <input type="text" id="input-title" placeholder="Título de la guía (Ej: Manual KS Pro)">
-      <input type="text" id="input-url" placeholder="Pega el Link aquí (https://...)">
+      <input type="text" id="input-title" placeholder="TÍTULO DE LA GUÍA (EJ: MANUAL KS PRO)">
+      <input type="text" id="input-url" placeholder="PEGA EL LINK AQUÍ (HTTPS://...)">
       <button class="edu-btn-submit" id="btn-add-guide">Publicar en el sitio</button>
     </div>
   </div>
@@ -132,11 +181,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('btn-add-guide');
   const grid = document.getElementById('guides-display');
 
-  // Función para crear la tarjeta física
   function createCard(title, url) {
     const card = document.createElement('a');
     card.href = url.startsWith('http') ? url : 'https://' + url;
-    card.target = "_blank"; // Se abre en pestaña nueva
+    card.target = "_blank";
     card.className = 'edu-card';
     card.innerHTML = `
       <h3>${title.toUpperCase()}</h3>
@@ -147,26 +195,19 @@ document.addEventListener('DOMContentLoaded', function() {
     return card;
   }
 
-  // 1. Cargar guías guardadas en el navegador
   const savedData = JSON.parse(localStorage.getItem('kieslect_guides_db') || '[]');
   savedData.forEach(item => {
     grid.prepend(createCard(item.t, item.u));
   });
 
-  // 2. Guardar y Publicar
   btn.addEventListener('click', function() {
     const tVal = document.getElementById('input-title').value.trim();
     const uVal = document.getElementById('input-url').value.trim();
 
     if (tVal && uVal) {
-      // Agregar al grid
       grid.prepend(createCard(tVal, uVal));
-
-      // Guardar en memoria
       savedData.push({ t: tVal, u: uVal });
       localStorage.setItem('kieslect_guides_db', JSON.stringify(savedData));
-
-      // Limpiar inputs
       document.getElementById('input-title').value = "";
       document.getElementById('input-url').value = "";
     } else {
@@ -178,9 +219,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% schema %}
 {
-  "name": "Kieslect Academy Links",
+  "name": "Kieslect Academy V3",
   "settings": [
-    { "type": "text", "id": "title", "label": "Título", "default": "Kieslect Academy" },
+    { "type": "text", "id": "title", "label": "Título", "default": "KIESLECT ACADEMY" },
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#ffffff" },
     { "type": "range", "id": "padding_top", "min": 0, "max": 100, "default": 80, "unit": "px", "label": "Padding Superior" },
@@ -196,6 +237,6 @@ document.addEventListener('DOMContentLoaded', function() {
       ]
     }
   ],
-  "presets": [{ "name": "Kieslect Academy Links" }]
+  "presets": [{ "name": "Kieslect Academy V3" }]
 }
 {% endschema %}
