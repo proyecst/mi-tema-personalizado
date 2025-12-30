@@ -1,15 +1,19 @@
 <style>
-  /* 1. IMPORTACIÓN DE FUENTE ETHNOCENTRIC */
+  /* 1. FUENTE TÉCNICA */
   @font-face {
     font-family: 'Ethnocentric';
-    /* Sube el archivo .otf a Shopify > Contenido > Archivos y pega el link aquí */
-    src: url('TU_LINK_DE_ARCHIVO_OTF') format('opentype');
+    src: url('URL_DE_TU_ARCHIVO') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
 
-  :root { --k-cyan: #00D1FF; --k-bg: #0a0a0a; --k-font: 'Ethnocentric', sans-serif; }
+  :root { 
+    --k-cyan: #00D1FF; 
+    --k-bg: #0a0a0a; 
+    --k-font: 'Ethnocentric', sans-serif;
+    --k-red: #ff0000;
+  }
 
   .k-header-wrapper { 
     width: 100%; 
@@ -18,21 +22,68 @@
     position: sticky; 
     top: 0; 
     z-index: 9999; 
-    font-family: var(--k-font); /* Aplicada a todo el header */
+    font-family: var(--k-font);
   }
 
-  .k-header-container { max-width: 1300px; height: 80px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
-  
-  /* MARCA ACTUALIZADA A KIESLECTECT */
-  .k-logo a { 
-    color: #fff; 
-    text-decoration: none; 
-    font-size: 20px; 
-    font-weight: normal; 
-    letter-spacing: 1px; 
+  .k-header-container { 
+    max-width: 1300px; 
+    height: 80px; 
+    margin: 0 auto; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 0 20px; 
   }
 
-  .k-nav-main { display: flex; gap: 5px; }
+  /* --- LOGO KIESLECT ESTILIZADO --- */
+  .k-logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
+
+  .k-icon-css {
+    position: relative;
+    width: 20px;
+    height: 24px;
+    margin-right: 6px;
+  }
+
+  /* Palo vertical de la K */
+  .k-icon-css::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--k-red);
+  }
+
+  /* Flecha/Diagonal de la K */
+  .k-icon-css::after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 14px;
+    height: 14px;
+    border-top: 5px solid var(--k-red);
+    border-right: 5px solid var(--k-red);
+    transform: rotate(45deg);
+    transform-origin: top left;
+  }
+
+  .k-logo-text {
+    line-height: 1;
+    margin-top: 2px;
+  }
+
+  /* --- NAVEGACIÓN --- */
+  .k-nav-main { display: flex; gap: 10px; }
   .k-dropdown { position: relative; }
   
   .k-drop-trigger { 
@@ -46,29 +97,50 @@
     display: flex; 
     align-items: center; 
     gap: 6px; 
-    transition: color 0.3s ease; 
     font-family: var(--k-font);
   }
 
   .k-drop-trigger:hover { color: var(--k-cyan); }
-  .k-drop-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--k-bg); min-width: 280px; border: 1px solid #1a1a1a; border-radius: 4px; padding: 15px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
+  
+  .k-drop-menu { 
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    background: var(--k-bg); 
+    min-width: 260px; 
+    border: 1px solid #1a1a1a; 
+    padding: 15px 0; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
+  }
+
   .k-dropdown.is-open .k-drop-menu { display: block; animation: kSlideUp 0.25s ease forwards; }
   
-  .k-menu-label { display: block; padding: 12px 20px 5px; color: var(--k-cyan); font-size: 8px; letter-spacing: 1px; text-transform: uppercase; border-top: 1px solid #1a1a1a; margin-top: 5px; }
-  .k-item { display: flex !important; align-items: center; justify-content: space-between; padding: 12px 20px; text-decoration: none; transition: background 0.2s ease; border: none; background: transparent; width: 100%; text-align: left; cursor: pointer; }
-  .k-item:hover { background: rgba(0, 209, 255, 0.08); }
-  .k-item-title { color: #fff; font-size: 9px; text-transform: uppercase; font-family: var(--k-font); }
-  .k-item-sub { color: #666; font-size: 9px; font-family: sans-serif; margin-top: 2px; } /* Subtítulo en sans-serif para lectura */
-  
+  .k-item { 
+    display: flex !important; 
+    padding: 12px 20px; 
+    text-decoration: none; 
+    background: transparent; 
+    width: 100%; 
+  }
+
+  .k-item-title { color: #fff; font-size: 9px; text-transform: uppercase; }
+
   @keyframes kSlideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   @media (max-width: 900px) { .k-nav-main { display: none; } }
 </style>
 
 <header class="k-header-wrapper">
   <div class="k-header-container">
-    <div class="k-logo"><a href="/">KIESLECTECT</a></div>
+    
+    <a href="/" class="k-logo-container">
+      <div class="k-icon-css"></div>
+      <span class="k-logo-text">IESLECT</span>
+    </a>
+
     <nav class="k-nav-main">
-      <a href="/" class="k-drop-trigger" style="text-decoration:none;">Inicio</a>
+      <a href="/" class="k-drop-trigger" style="text-decoration:none;">INICIO</a>
+      
       {% assign menu_items = "Productos,Comunidad,Soporte" | split: "," %}
       {% for m_title in menu_items %}
         <div class="k-dropdown js-drop">
@@ -76,25 +148,17 @@
           <div class="k-drop-menu">
             {% for block in section.blocks %}
               {% if block.settings.parent == m_title %}
-                {% case block.type %}
-                  {% when 'seccion' %}
-                    <span class="k-menu-label">{{ block.settings.title }}</span>
-                  {% when 'enlace' %}
-                    <a href="{{ block.settings.url }}" class="k-item" {% if block.settings.download %}download{% endif %}>
-                      <div class="k-item-info">
-                        <span class="k-item-title">{{ block.settings.title }}</span>
-                        {% if block.settings.sub != blank %}<span class="k-item-sub">{{ block.settings.sub }}</span>{% endif %}
-                      </div>
-                    </a>
-                {% endcase %}
+                <a href="{{ block.settings.url }}" class="k-item">
+                  <span class="k-item-title">{{ block.settings.title }}</span>
+                </a>
               {% endif %}
             {% endfor %}
           </div>
         </div>
       {% endfor %}
     </nav>
-    <div class="k-actions-spacer"></div>
-  </div>
+
+    <div style="width: 150px;"></div> </div>
 </header>
 
 <script>
@@ -117,21 +181,12 @@
   "settings": [],
   "blocks": [
     {
-      "type": "seccion",
-      "name": "Título de Sección",
-      "settings": [
-        { "type": "select", "id": "parent", "label": "Menú", "options": [{"value": "Productos", "label": "Productos"},{"value": "Comunidad", "label": "Comunidad"},{"value": "Soporte", "label": "Soporte"}]},
-        { "type": "text", "id": "title", "label": "Texto", "default": "CATEGORÍA" }
-      ]
-    },
-    {
       "type": "enlace",
-      "name": "Link o Archivo",
+      "name": "Link de Menú",
       "settings": [
-        { "type": "select", "id": "parent", "label": "Menú", "options": [{"value": "Productos", "label": "Productos"},{"value": "Comunidad", "label": "Comunidad"},{"value": "Soporte", "label": "Soporte"}]},
-        { "type": "text", "id": "title", "label": "Título", "default": "Enlace" },
-        { "type": "text", "id": "sub", "label": "Subtítulo" },
-        { "type": "url", "id": "url", "label": "URL" }
+        { "type": "select", "id": "parent", "label": "Menú Padre", "options": [{"value":"Productos","label":"Productos"},{"value":"Comunidad","label":"Comunidad"},{"value":"Soporte","label":"Soporte"}]},
+        { "type": "text", "id": "title", "label": "Nombre del link" },
+        { "type": "url", "id": "url", "label": "Link" }
       ]
     }
   ],
