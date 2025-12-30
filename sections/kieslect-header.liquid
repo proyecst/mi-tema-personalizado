@@ -1,8 +1,8 @@
 <style>
-  /* 1. FUENTE TÉCNICA */
+  /* 1. IMPORTACIÓN DE FUENTE */
   @font-face {
     font-family: 'Ethnocentric';
-    src: url('URL_DE_TU_ARCHIVO') format('opentype');
+    src: url('URL_DE_TU_ARCHIVO_OTF') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -11,10 +11,11 @@
   :root { 
     --k-cyan: #00D1FF; 
     --k-bg: #0a0a0a; 
-    --k-font: 'Ethnocentric', sans-serif;
     --k-red: #ff0000;
+    --k-font: 'Ethnocentric', sans-serif;
   }
 
+  /* --- HEADER STYLES --- */
   .k-header-wrapper { 
     width: 100%; 
     background: #000; 
@@ -26,7 +27,7 @@
   }
 
   .k-header-container { 
-    max-width: 1300px; 
+    max-width: 1400px; 
     height: 80px; 
     margin: 0 auto; 
     display: flex; 
@@ -35,161 +36,147 @@
     padding: 0 20px; 
   }
 
-  /* --- LOGO KIESLECT ESTILIZADO --- */
-  .k-logo-container {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #fff;
-    font-size: 24px;
-    letter-spacing: 1px;
-  }
-
-  .k-icon-css {
+  /* LOGO ANIMADO */
+  .k-logo-container { display: flex; align-items: center; text-decoration: none; }
+  
+  .k-icon-k {
     position: relative;
     width: 20px;
     height: 24px;
     margin-right: 6px;
+    animation: kPulse 3s infinite ease-in-out;
   }
-
-  /* Palo vertical de la K */
-  .k-icon-css::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 5px;
-    height: 100%;
-    background-color: var(--k-red);
+  .k-icon-k::before {
+    content: ""; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: var(--k-red);
   }
-
-  /* Flecha/Diagonal de la K */
-  .k-icon-css::after {
-    content: "";
-    position: absolute;
-    left: 1px;
-    top: 1px;
-    width: 14px;
-    height: 14px;
-    border-top: 5px solid var(--k-red);
-    border-right: 5px solid var(--k-red);
-    transform: rotate(45deg);
-    transform-origin: top left;
+  .k-icon-k::after {
+    content: ""; position: absolute; left: 1px; top: 1px; width: 14px; height: 14px;
+    border-top: 5px solid var(--k-red); border-right: 5px solid var(--k-red);
+    transform: rotate(45deg); transform-origin: top left;
   }
 
   .k-logo-text {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 22px;
+    background: linear-gradient(120deg, transparent 30%, #fff 50%, transparent 70%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: kShine 4s infinite linear;
     line-height: 1;
-    margin-top: 2px;
   }
 
-  /* --- NAVEGACIÓN --- */
   .k-nav-main { display: flex; gap: 10px; }
-  .k-dropdown { position: relative; }
-  
   .k-drop-trigger { 
-    background: transparent; 
-    color: #fff; 
-    border: none; 
-    padding: 10px 15px; 
-    font-size: 10px; 
-    text-transform: uppercase; 
-    cursor: pointer; 
-    display: flex; 
-    align-items: center; 
-    gap: 6px; 
-    font-family: var(--k-font);
+    background: transparent; color: #fff; border: none; padding: 10px;
+    font-size: 10px; text-transform: uppercase; cursor: pointer; font-family: var(--k-font);
   }
 
-  .k-drop-trigger:hover { color: var(--k-cyan); }
+  /* --- TRUST BAR STYLES --- */
+  .trust-bar-section { background: #000; padding: 40px 0; border-top: 1px solid #1a1a1a; }
+  .trust-bar-grid { 
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; 
+    max-width: 1400px; margin: 0 auto; padding: 0 20px; 
+  }
+
+  .trust-item-wrapper { 
+    background: #050505; border: 1px solid #1a1a1a; transition: 0.3s; overflow: hidden; border-radius: 4px;
+  }
+  .trust-item-wrapper.is-active { border-color: var(--k-cyan); box-shadow: 0 0 15px rgba(0, 209, 255, 0.1); }
   
-  .k-drop-menu { 
-    display: none; 
-    position: absolute; 
-    top: 100%; 
-    left: 0; 
-    background: var(--k-bg); 
-    min-width: 260px; 
-    border: 1px solid #1a1a1a; 
-    padding: 15px 0; 
-    box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
-  }
-
-  .k-dropdown.is-open .k-drop-menu { display: block; animation: kSlideUp 0.25s ease forwards; }
+  .trust-header { display: flex; align-items: center; gap: 10px; padding: 15px; cursor: pointer; }
+  .trust-title { color: #fff; font-family: var(--k-font); font-size: 9px; text-transform: uppercase; }
+  .trust-subtitle { color: #666; font-size: 10px; font-family: sans-serif; margin-top: 4px; }
   
-  .k-item { 
-    display: flex !important; 
-    padding: 12px 20px; 
-    text-decoration: none; 
-    background: transparent; 
-    width: 100%; 
+  .trust-content { max-height: 0; overflow: hidden; transition: 0.3s ease-out; background: #080808; padding: 0 15px; }
+  .trust-item-wrapper.is-active .trust-content { max-height: 500px; padding: 15px; border-top: 1px solid #1a1a1a; }
+
+  .trust-input { 
+    background: #111; border: 1px solid #222; color: #fff; padding: 10px; width: 100%; 
+    margin-bottom: 8px; font-size: 11px; box-sizing: border-box;
+  }
+  .trust-btn { 
+    background: var(--k-cyan); color: #000; border: none; width: 100%; padding: 12px;
+    font-family: var(--k-font); font-size: 8px; cursor: pointer; text-transform: uppercase;
   }
 
-  .k-item-title { color: #fff; font-size: 9px; text-transform: uppercase; }
+  /* KEYFRAMES ANIMACIONES */
+  @keyframes kShine { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  @keyframes kPulse { 0%, 100% { filter: drop-shadow(0 0 2px var(--k-red)); } 50% { filter: drop-shadow(0 0 8px var(--k-red)); } }
 
-  @keyframes kSlideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  @media (max-width: 900px) { .k-nav-main { display: none; } }
+  @media (max-width: 1000px) { .trust-bar-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .trust-bar-grid { grid-template-columns: 1fr; } .k-nav-main { display: none; } }
 </style>
 
 <header class="k-header-wrapper">
   <div class="k-header-container">
-    
     <a href="/" class="k-logo-container">
-      <div class="k-icon-css"></div>
+      <div class="k-icon-k"></div>
       <span class="k-logo-text">IESLECT</span>
     </a>
-
     <nav class="k-nav-main">
       <a href="/" class="k-drop-trigger" style="text-decoration:none;">INICIO</a>
-      
-      {% assign menu_items = "Productos,Comunidad,Soporte" | split: "," %}
-      {% for m_title in menu_items %}
-        <div class="k-dropdown js-drop">
-          <button class="k-drop-trigger" onclick="kToggle(this)">{{ m_title }}</button>
-          <div class="k-drop-menu">
-            {% for block in section.blocks %}
-              {% if block.settings.parent == m_title %}
-                <a href="{{ block.settings.url }}" class="k-item">
-                  <span class="k-item-title">{{ block.settings.title }}</span>
-                </a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      {% endfor %}
+      <button class="k-drop-trigger">PRODUCTOS</button>
+      <button class="k-drop-trigger">SOPORTE</button>
     </nav>
-
-    <div style="width: 150px;"></div> </div>
+  </div>
 </header>
 
+<section class="trust-bar-section">
+  <div class="trust-bar-grid">
+    
+    <div class="trust-item-wrapper">
+      <div class="trust-header" onclick="toggleTrust(this)">
+        <div style="width:20px; color:var(--k-cyan)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 11l4 4L19 7"></path></svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">{{ section.settings.title_1 | default: 'ENVÍO GRATIS' }}</span>
+          <br><span class="trust-subtitle">Rellena tus datos</span>
+        </div>
+      </div>
+      <div class="trust-content">
+        <form id="rea-form">
+          <input type="text" placeholder="Nombre completo" class="trust-input" required>
+          <input type="email" placeholder="Correo electrónico" class="trust-input" required>
+          <button type="submit" class="trust-btn">ENVIAR</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="trust-item-wrapper">
+      <div class="trust-header" onclick="toggleTrust(this)">
+        <div style="width:20px; color:var(--k-cyan)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg>
+        </div>
+        <div class="trust-text">
+          <span class="trust-title">PAGO SEGURO</span>
+          <br><span class="trust-subtitle">Transacción protegida</span>
+        </div>
+      </div>
+      <div class="trust-content">
+        <p style="color:#ccc; font-size:11px;">Aceptamos todas las tarjetas de crédito y transferencias seguras.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <script>
-  function kToggle(btn) {
-    const parent = btn.parentElement;
-    const wasOpen = parent.classList.contains('is-open');
-    document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
-    if (!wasOpen) parent.classList.add('is-open');
-  }
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.js-drop')) {
-      document.querySelectorAll('.js-drop').forEach(el => el.classList.remove('is-open'));
-    }
-  });
+function toggleTrust(element) {
+  const wrapper = element.closest('.trust-item-wrapper');
+  const isActive = wrapper.classList.contains('is-active');
+  document.querySelectorAll('.trust-item-wrapper').forEach(item => item.classList.remove('is-active'));
+  if (!isActive) wrapper.classList.add('is-active');
+}
 </script>
 
 {% schema %}
 {
-  "name": "Kieslect Header Pro V2",
-  "settings": [],
-  "blocks": [
-    {
-      "type": "enlace",
-      "name": "Link de Menú",
-      "settings": [
-        { "type": "select", "id": "parent", "label": "Menú Padre", "options": [{"value":"Productos","label":"Productos"},{"value":"Comunidad","label":"Comunidad"},{"value":"Soporte","label":"Soporte"}]},
-        { "type": "text", "id": "title", "label": "Nombre del link" },
-        { "type": "url", "id": "url", "label": "Link" }
-      ]
-    }
+  "name": "Kieslect Full Section",
+  "settings": [
+    { "type": "text", "id": "title_1", "label": "Título Bloque 1", "default": "ENVÍO GRATIS" }
   ],
-  "presets": [{ "name": "Kieslect Header Pro V2" }]
+  "presets": [{ "name": "Kieslect Full Section" }]
 }
 {% endschema %}
