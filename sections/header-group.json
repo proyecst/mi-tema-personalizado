@@ -81,6 +81,7 @@
         "feature_pceDdx": {
           "type": "feature",
           "settings": {
+            "feature_icon": "shopify://shop_images/sport_18669692.png",
             "feature_text": "100+ modos deportivos",
             "feature_link": "",
             "open_new_tab": false
