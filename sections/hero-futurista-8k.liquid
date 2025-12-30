@@ -1,184 +1,132 @@
-<section class="hero-8k-wrapper-{{ section.id }}">
-  <div class="glow-overlay"></div>
-  
+<section class="hero-8k-final">
   <div class="hero-8k-container">
-    <div class="hero-8k-content">
-      <div class="hero-badge" data-aos="fade-down">{{ section.settings.badge }}</div>
+    <div class="hero-8k-text">
+      <span class="badge-8k">{{ section.settings.badge }}</span>
+      <h1 class="title-8k">{{ section.settings.title_main }}</h1>
+      <h2 class="subtitle-8k">{{ section.settings.subtitle }}</h2>
+      <p class="desc-8k">{{ section.settings.description }}</p>
       
-      <h1 class="hero-title">
-        {{ section.settings.title_main }}
-      </h1>
-      
-      <div class="hero-premium-box">
-        <h2 class="hero-subtitle">{{ section.settings.subtitle }}</h2>
-        <p class="hero-description">{{ section.settings.description }}</p>
-      </div>
-
-      <div class="hero-actions">
-        <a href="{{ section.settings.button_link }}" class="btn-futuristic">
-          <span class="btn-text">{{ section.settings.button_label }}</span>
-          <span class="btn-glitch"></span>
+      <div class="actions-8k">
+        <a href="{{ section.settings.button_link }}" class="btn-8k">
+          {{ section.settings.button_label }}
         </a>
       </div>
       
-      <div class="hero-slogan-box">
-        <span class="slogan-line"></span>
-        <p class="hero-slogan">{{ section.settings.slogan }}</p>
-      </div>
+      <p class="slogan-8k"><span>//</span> {{ section.settings.slogan }}</p>
     </div>
 
-    <div class="hero-8k-image-box">
-      <div class="main-image-wrapper">
-        {% if section.settings.product_image != blank %}
-          <img src="{{ section.settings.product_image | image_url: width: 1200 }}" alt="Smartwatch Tech" class="floating-image">
-        {% else %}
-          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg futuristic-placeholder' }}
-        {% endif %}
-        <div class="image-scanner"></div>
-      </div>
-      <div class="outer-glow"></div>
+    <div class="hero-8k-visual">
+      {% if section.settings.product_image != blank %}
+        <img src="{{ section.settings.product_image | image_url: width: 1000 }}" class="img-8k">
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-8k' }}
+      {% endif %}
+      <div class="glow-8k"></div>
+      <div class="scan-line"></div>
     </div>
   </div>
 </section>
 
 <style>
-  /* IMPORTACIÓN DE FUENTE FUTURISTA */
   @import url('https://fonts.cdnfonts.com/css/ethnocentric');
-  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
 
-  .hero-8k-wrapper-{{ section.id }} {
-    position: relative;
-    background: #050505;
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: 60px 5%;
-    color: #ffffff;
+  .hero-8k-final {
+    background: #000;
+    color: #fff;
+    padding: 100px 5%;
     font-family: 'Rajdhani', sans-serif;
-  }
-
-  .glow-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 80% 20%, {{ section.settings.accent_color }}15 0%, transparent 40%);
-    pointer-events: none;
+    overflow: hidden;
+    position: relative;
   }
 
   .hero-8k-container {
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    z-index: 5;
-    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
   }
 
-  /* ESTILO DE TÍTULO ETHNOCENTRIC */
-  .hero-title {
+  .title-8k {
     font-family: 'ethnocentric', sans-serif;
-    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1;
     margin: 20px 0;
-    text-transform: uppercase;
     background: linear-gradient(to bottom, #fff, {{ section.settings.accent_color }});
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 10px {{ section.settings.accent_color }}44);
   }
 
-  .hero-badge {
+  .badge-8k {
     font-family: 'ethnocentric', sans-serif;
-    font-size: 0.7rem;
     color: {{ section.settings.accent_color }};
+    font-size: 0.7rem;
     letter-spacing: 3px;
-    border-left: 2px solid {{ section.settings.accent_color }};
-    padding-left: 15px;
-    margin-bottom: 10px;
   }
 
-  .hero-subtitle {
+  .subtitle-8k {
     font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
     text-transform: uppercase;
+    margin-bottom: 15px;
+    color: #eee;
   }
 
-  .hero-description {
+  .desc-8k {
     font-size: 1.1rem;
-    color: #cccccc;
-    line-height: 1.6;
-    max-width: 550px;
-    margin-bottom: 35px;
+    color: #aaa;
+    max-width: 500px;
+    margin-bottom: 40px;
   }
 
-  /* BOTÓN FUTURISTA 8K */
-  .btn-futuristic {
-    position: relative;
-    padding: 20px 45px;
-    background: transparent;
+  .btn-8k {
+    display: inline-block;
+    font-family: 'ethnocentric', sans-serif;
+    padding: 20px 40px;
+    border: 1px solid {{ section.settings.accent_color }};
     color: #fff;
     text-decoration: none;
-    font-family: 'ethnocentric', sans-serif;
     font-size: 0.8rem;
-    border: 1px solid {{ section.settings.accent_color }};
-    transition: 0.3s;
-    display: inline-block;
-    letter-spacing: 2px;
+    transition: 0.4s;
+    box-shadow: 0 0 15px {{ section.settings.accent_color }}44;
   }
 
-  .btn-futuristic:hover {
+  .btn-8k:hover {
     background: {{ section.settings.accent_color }};
-    box-shadow: 0 0 30px {{ section.settings.accent_color }};
     color: #000;
+    box-shadow: 0 0 30px {{ section.settings.accent_color }};
   }
 
-  .hero-slogan-box {
+  .slogan-8k {
     margin-top: 40px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .slogan-line {
-    width: 50px;
-    height: 1px;
-    background: {{ section.settings.accent_color }};
-  }
-
-  .hero-slogan {
     font-style: italic;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
-  /* IMAGEN Y ANIMACIÓN */
-  .hero-8k-image-box { position: relative; display: flex; justify-content: center; }
+  .slogan-8k span { color: {{ section.settings.accent_color }}; }
+
+  .hero-8k-visual { position: relative; text-align: center; }
   
-  .floating-image {
+  .img-8k {
     width: 100%;
     max-width: 500px;
-    filter: drop-shadow(0 0 60px {{ section.settings.accent_color }}33);
-    animation: float8K 6s ease-in-out infinite;
+    animation: float 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px {{ section.settings.accent_color }}33);
   }
 
-  @keyframes float8K {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-30px) scale(1.02); }
-  }
-
-  .image-scanner {
+  .scan-line {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 5px;
+    top: 0; left: 10%; width: 80%; height: 2px;
     background: {{ section.settings.accent_color }};
-    box-shadow: 0 0 20px {{ section.settings.accent_color }};
-    opacity: 0.3;
+    box-shadow: 0 0 15px {{ section.settings.accent_color }};
     animation: scan 4s linear infinite;
-    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
   }
 
   @keyframes scan {
@@ -186,27 +134,26 @@
     100% { top: 100%; }
   }
 
-  @media (max-width: 990px) {
+  @media (max-width: 768px) {
     .hero-8k-container { grid-template-columns: 1fr; text-align: center; }
-    .hero-description { margin: 0 auto 30px; }
-    .hero-slogan-box { justify-content: center; }
+    .desc-8k { margin: 0 auto 30px; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Hero Futurista 8K",
+  "name": "Hero 8K Futurista",
   "settings": [
-    { "type": "color", "id": "accent_color", "label": "Color Neón Acento", "default": "#00f2ff" },
-    { "type": "text", "id": "badge", "label": "Tag Superior", "default": "PREMIUM TECH 2024" },
+    { "type": "color", "id": "accent_color", "label": "Color Neón", "default": "#00f2ff" },
+    { "type": "text", "id": "badge", "label": "Tag Superior", "default": "PREMIUM TECH" },
     { "type": "text", "id": "title_main", "label": "Título", "default": "Relojes Smartwatch" },
     { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Tecnología Premium para tu Estilo" },
     { "type": "textarea", "id": "description", "label": "Descripción", "default": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7." },
-    { "type": "text", "id": "button_label", "label": "Texto Botón", "default": "EXPLORAR AHORA" },
+    { "type": "text", "id": "button_label", "label": "Texto Botón", "default": "COMPRAR AHORA" },
     { "type": "url", "id": "button_link", "label": "Link Botón" },
     { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj inteligente." },
-    { "type": "image_picker", "id": "product_image", "label": "Imagen del Reloj (PNG)" }
+    { "type": "image_picker", "id": "product_image", "label": "Imagen del Producto" }
   ],
-  "presets": [{ "name": "Hero Futurista 8K" }]
+  "presets": [{ "name": "Hero 8K Futurista" }]
 }
 {% endschema %}
