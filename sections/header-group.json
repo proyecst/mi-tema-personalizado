@@ -107,6 +107,48 @@
       "name": "Barra de Confianza",
       "settings": {}
     },
+    "caracteristicas_futuristas_RgDcUW": {
+      "type": "caracteristicas-futuristas",
+      "blocks": {
+        "feature_BYmDNQ": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Pantallas AMOLED curvas"
+          }
+        },
+        "feature_8EUxVx": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Llamadas Bluetooth ultra claras"
+          }
+        },
+        "feature_ixUBUJ": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Monitoreo de salud 24/7"
+          }
+        },
+        "feature_pceDdx": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "100+ modos deportivos"
+          }
+        }
+      },
+      "block_order": [
+        "feature_BYmDNQ",
+        "feature_8EUxVx",
+        "feature_ixUBUJ",
+        "feature_pceDdx"
+      ],
+      "name": "Características 8K",
+      "settings": {
+        "bg_color": "#000000",
+        "accent_color": "#00f2ff",
+        "section_title": "Características",
+        "speed": 20
+      }
+    },
     "hero_tech_yAaWMa": {
       "type": "hero-tech-",
       "name": "Banner Tech Premium",
@@ -476,53 +518,13 @@
         "btn_more_label": "VER MAS",
         "btn_more_link": ""
       }
-    },
-    "caracteristicas_futuristas_RgDcUW": {
-      "type": "caracteristicas-futuristas",
-      "blocks": {
-        "feature_BYmDNQ": {
-          "type": "feature",
-          "settings": {
-            "feature_text": "Pantallas AMOLED curvas"
-          }
-        },
-        "feature_8EUxVx": {
-          "type": "feature",
-          "settings": {
-            "feature_text": "Llamadas Bluetooth ultra claras"
-          }
-        },
-        "feature_ixUBUJ": {
-          "type": "feature",
-          "settings": {
-            "feature_text": "Monitoreo de salud 24/7"
-          }
-        },
-        "feature_pceDdx": {
-          "type": "feature",
-          "settings": {
-            "feature_text": "100+ modos deportivos"
-          }
-        }
-      },
-      "block_order": [
-        "feature_BYmDNQ",
-        "feature_8EUxVx",
-        "feature_ixUBUJ",
-        "feature_pceDdx"
-      ],
-      "name": "Características 8K",
-      "settings": {
-        "bg_color": "#000000",
-        "accent_color": "#00f2ff",
-        "section_title": "Características"
-      }
     }
   },
   "order": [
     "kieslect_header_7Bj6Gk",
     "main_hero_banner_BCgJTy",
     "trust_bar_v3_ahJkw9",
+    "caracteristicas_futuristas_RgDcUW",
     "hero_animado_kieslect_6NKX9X",
     "trust_bar_7X8Kwh",
     "hero_tech_yAaWMa",
@@ -536,7 +538,6 @@
     "kieslect_tech_footer_WpP4Vm",
     "kieslect_ai_assistant_6Npar6",
     "chatbot_kieslect_kdMWME",
-    "hero_final_premium_Dtb439",
-    "caracteristicas_futuristas_RgDcUW"
+    "hero_final_premium_Dtb439"
   ]
 }
