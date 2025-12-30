@@ -1,24 +1,35 @@
-<section class="hero-smartwatch-section" style="background-color: {{ section.settings.bg_color }};">
-  <div class="hero-container">
+<section class="shopify-section-hero-smartwatch" style="background: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+  <div class="hero-smartwatch-container">
     
-    <div class="hero-content">
-      <h1 class="hero-title">{{ section.settings.title }}</h1>
-      <div class="hero-description">
+    <div class="hero-smartwatch-content">
+      <h1 class="hero-smartwatch-title">
+        {{ section.settings.title_main }}
+      </h1>
+      
+      <h2 class="hero-smartwatch-subtitle">
+        {{ section.settings.subtitle }}
+      </h2>
+      
+      <p class="hero-smartwatch-description">
         {{ section.settings.description }}
+      </p>
+
+      <div class="hero-smartwatch-actions">
+        {% if section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="hero-btn-main">
+            {{ section.settings.button_label }}
+          </a>
+        {% endif %}
       </div>
       
-      {% if section.settings.button_label != blank %}
-        <a href="{{ section.settings.button_link }}" class="hero-button">
-          {{ section.settings.button_label }}
-        </a>
-      {% endif %}
-      
-      <p class="hero-slogan">{{ section.settings.slogan }}</p>
+      <p class="hero-smartwatch-slogan">
+        {{ section.settings.slogan }}
+      </p>
     </div>
 
-    <div class="hero-image">
-      {% if section.settings.image != blank %}
-        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="Smartwatch">
+    <div class="hero-smartwatch-image">
+      {% if section.settings.product_image != blank %}
+        <img src="{{ section.settings.product_image | image_url: width: 800 }}" alt="Smartwatch Premium">
       {% else %}
         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}
@@ -27,120 +38,101 @@
   </div>
 </section>
 
-{% schema %}
-{
-  "name": "Hero Smartwatch",
-  "settings": [
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Color de fondo",
-      "default": "#0f172a"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Título",
-      "default": "Relojes Smartwatch para Mujer y Hombre"
-    },
-    {
-      "type": "richtext",
-      "id": "description",
-      "label": "Descripción",
-      "default": "<p>Tecnología Premium para tu Estilo. Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7.</p>"
-    },
-    {
-      "type": "text",
-      "id": "slogan",
-      "label": "Slogan inferior",
-      "default": "Tu estilo, tu reloj inteligente."
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Imagen del Producto"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Texto del botón",
-      "default": "Comprar Ahora"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Enlace del botón"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Hero Smartwatch",
-      "category": "Custom"
-    }
-  ]
-}
-{% endschema %}
-
 <style>
-  .hero-smartwatch-section {
-    padding: 60px 20px;
-    color: #ffffff;
+  .shopify-section-hero-smartwatch {
+    padding: 80px 5%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    min-height: 500px;
+    justify-content: center;
+    min-height: 600px;
   }
-  .hero-container {
+  .hero-smartwatch-container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
   }
-  .hero-content {
+  .hero-smartwatch-content {
     flex: 1;
-    min-width: 300px;
+    min-width: 320px;
   }
-  .hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+  .hero-smartwatch-title {
+    font-size: 3rem;
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .hero-smartwatch-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-bottom: 20px;
+    color: {{ section.settings.accent_color }};
   }
-  .hero-description {
+  .hero-smartwatch-description {
     font-size: 1.1rem;
-    color: #cbd5e1;
+    line-height: 1.6;
     margin-bottom: 30px;
+    opacity: 0.9;
   }
-  .hero-description strong { color: white; }
-  .hero-button {
+  .hero-btn-main {
     display: inline-block;
-    background-color: #2563eb;
-    color: white;
-    padding: 15px 35px;
-    border-radius: 50px;
+    background-color: {{ section.settings.accent_color }};
+    color: #fff;
+    padding: 15px 40px;
+    border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
-    transition: transform 0.3s ease;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
   }
-  .hero-button:hover { transform: scale(1.05); }
-  .hero-slogan {
+  .hero-btn-main:hover {
+    transform: scale(1.05);
+  }
+  .hero-smartwatch-slogan {
     margin-top: 25px;
     font-style: italic;
-    color: #94a3b8;
+    font-size: 1rem;
+    border-left: 3px solid {{ section.settings.accent_color }};
+    padding-left: 15px;
   }
-  .hero-image {
+  .hero-smartwatch-image {
     flex: 1;
+    min-width: 320px;
     text-align: center;
-    min-width: 300px;
   }
-  .hero-image img {
+  .hero-smartwatch-image img {
     max-width: 100%;
     height: auto;
-    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.2));
   }
   @media (max-width: 768px) {
-    .hero-content { text-align: center; }
+    .shopify-section-hero-smartwatch { text-align: center; padding: 40px 20px; }
+    .hero-smartwatch-container { flex-direction: column; }
+    .hero-smartwatch-slogan { border-left: none; padding-left: 0; }
   }
 </style>
+
+{% schema %}
+{
+  "name": "Hero Smartwatch Premium",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Color de Fondo", "default": "#1a1a1a" },
+    { "type": "color", "id": "text_color", "label": "Color de Texto", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Color de Acento (Botón)", "default": "#007bff" },
+    { "type": "text", "id": "title_main", "label": "Título Principal", "default": "Relojes Smartwatch para Mujer y Hombre" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Tecnología Premium para tu Estilo" },
+    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7." },
+    { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj inteligente." },
+    { "type": "text", "id": "button_label", "label": "Texto del Botón", "default": "Ver Colección" },
+    { "type": "url", "id": "button_link", "label": "Link del Botón" },
+    { "type": "image_picker", "id": "product_image", "label": "Imagen del Reloj" }
+  ],
+  "presets": [
+    {
+      "name": "Hero Smartwatch Premium"
+    }
+  ]
+}
+{% endschema %}
