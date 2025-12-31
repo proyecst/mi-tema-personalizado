@@ -20,9 +20,9 @@
             {% when 'button' %}
               {% if block.settings.btn_link != blank %}
                 <a href="{{ block.settings.btn_link }}" 
-                   class="hero-btn-v2 {% if block.settings.style == 'primary' %}main-btn{% else %}secondary-btn{% endif %}" 
+                   class="hero-btn-v2 btn-{{ block.settings.style }}" 
                    {{ block.shopify_attributes }}>
-                  {{ block.settings.btn_label }}
+                  <span>{{ block.settings.btn_label }}</span>
                 </a>
               {% endif %}
           {% endcase %}
@@ -36,7 +36,7 @@
 
     <div class="hero-image-v2">
       {% if section.settings.image != blank %}
-        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="Smartwatch">
+        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="Smartwatch Premium">
       {% else %}
         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}
@@ -52,34 +52,37 @@
   }
 
   .hero-smart-v2 {
-    padding: 60px 5%;
+    padding: 80px 5%;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 600px;
+    min-height: 700px;
     overflow: hidden;
+    position: relative;
   }
+
   .hero-wrapper-v2 {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 40px;
+    gap: 60px;
+    z-index: 2;
   }
 
+  /* TÍTULO CON EFECTO SHINE NEÓN */
   .hero-title-v2 {
     font-family: 'Ethnocentric', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 3.5rem);
-    line-height: 1.1;
-    margin-bottom: 20px;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    margin-bottom: 25px;
     text-transform: uppercase;
-    /* Efecto modificado a escala de grises y blanco */
-    background: linear-gradient(90deg, #888888, #ffffff, #888888);
+    background: linear-gradient(90deg, {{ section.settings.accent_color }}, #ffffff, {{ section.settings.accent_color }});
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shineNeonV2 3s linear infinite;
+    animation: shineNeonV2 4s linear infinite;
   }
 
   @keyframes shineNeonV2 {
@@ -87,100 +90,126 @@
   }
 
   .hero-subtitle-v2 {
-    font-size: 1.4rem;
-    /* Cambiado de azul a gris claro */
-    color: #cccccc; 
-    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: {{ section.settings.accent_color }}; 
+    margin-bottom: 20px;
     font-weight: 700;
+    letter-spacing: 2px;
+    font-family: 'Orbitron', sans-serif;
   }
 
-  .hero-desc-v2 { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.8; }
+  .hero-desc-v2 { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.8; max-width: 500px; }
 
-  .hero-actions-v2 {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-  }
+  /* BOTONES CON EFECTO ESCANEO (LIGHT SWEEP) */
+  .hero-actions-v2 { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
 
   .hero-btn-v2 {
-    display: inline-block;
-    padding: 15px 35px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
+    position: relative;
+    padding: 16px 35px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
     text-transform: uppercase;
-    transition: 0.3s ease;
+    text-decoration: none;
+    letter-spacing: 1px;
     font-size: 0.9rem;
-    text-align: center;
+    overflow: hidden;
+    transition: 0.4s;
+    border-radius: 2px;
   }
 
-  .main-btn {
-    /* El botón mantiene su lógica de color neón del panel, o puedes cambiarlo a gris en el panel de Shopify */
-    background-color: {{ section.settings.accent_color }};
+  .hero-btn-v2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-25deg);
+    transition: 0s;
+  }
+
+  .hero-btn-v2:hover::before {
+    left: 150%;
+    transition: 0.7s;
+  }
+
+  .btn-primary {
+    background: {{ section.settings.accent_color }};
     color: #000;
     border: 2px solid {{ section.settings.accent_color }};
   }
 
-  .secondary-btn {
-    background-color: transparent;
+  .btn-secondary {
+    background: transparent;
     color: #fff;
     border: 2px solid #fff;
   }
 
   .hero-btn-v2:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px {{ section.settings.accent_color }};
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px {{ section.settings.accent_color | color_modify: 'alpha', 0.6 }};
   }
 
   .hero-slogan-v2 {
-    margin-top: 25px;
     font-style: italic;
-    /* Borde cambiado a gris */
-    border-left: 3px solid #888888; 
-    padding-left: 15px;
-    color: #cccccc;
+    border-left: 4px solid {{ section.settings.accent_color }}; 
+    padding-left: 20px;
+    color: {{ section.settings.accent_color }};
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
   }
+
+  /* IMAGEN CON FLOTACIÓN */
+  .hero-image-v2 { flex: 1; display: flex; justify-content: center; }
 
   .hero-image-v2 img {
     max-width: 100%;
     height: auto;
-    filter: drop-shadow(0 0 25px {{ section.settings.accent_color }}44);
+    filter: drop-shadow(0 0 40px {{ section.settings.accent_color }}55);
+    animation: floatWatch 5s ease-in-out infinite;
   }
 
-  @media (max-width: 768px) {
-    .hero-wrapper-v2 { flex-direction: column; text-align: center; }
+  @keyframes floatWatch {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+  }
+
+  @media (max-width: 992px) {
+    .hero-wrapper-v2 { flex-direction: column; text-align: center; justify-content: center; }
+    .hero-content-v2 { display: flex; flex-direction: column; align-items: center; }
     .hero-actions-v2 { justify-content: center; }
-    .hero-slogan-v2 { border-left: none; padding-left: 0; }
+    .hero-slogan-v2 { border-left: none; padding-left: 0; border-top: 2px solid {{ section.settings.accent_color }}; padding-top: 10px; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "A-Hero Futurista",
+  "name": "Kieslect Hero Pro",
   "settings": [
-    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
-    { "type": "color", "id": "txt_color", "label": "Texto", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Color Neon Botón", "default": "#00f2ff" },
-    { "type": "text", "id": "title_main", "label": "Titulo", "default": "Relojes Smartwatch" },
-    { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnología Premium" },
-    { "type": "textarea", "id": "description", "label": "Info", "default": "Pantallas AMOLED de alta resolución." },
-    { "type": "text", "id": "slogan", "label": "Eslogan", "default": "Tu estilo, tu reloj." },
-    { "type": "image_picker", "id": "image", "label": "Imagen" }
+    { "type": "color", "id": "bg_color", "label": "Color de Fondo", "default": "#000000" },
+    { "type": "color", "id": "txt_color", "label": "Color de Texto", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Color de Acento (Neón)", "default": "#00f2ff" },
+    { "type": "text", "id": "title_main", "label": "Título Principal", "default": "KIESLECT LORA 2" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "EVOLUCIÓN EN TU MUÑECA" },
+    { "type": "textarea", "id": "description", "label": "Descripción", "default": "Experimenta la máxima claridad con nuestra pantalla AMOLED de 1.3 pulgadas y llamadas Bluetooth de alta fidelidad." },
+    { "type": "text", "id": "slogan", "label": "Eslogan Inferior", "default": "REDEFINE TU ESTILO SMART" },
+    { "type": "image_picker", "id": "image", "label": "Imagen del Producto" }
   ],
   "blocks": [
     {
       "type": "button",
       "name": "Botón",
+      "limit": 2,
       "settings": [
-        { "type": "text", "id": "btn_label", "label": "Texto del Botón", "default": "VER MÁS" },
+        { "type": "text", "id": "btn_label", "label": "Texto del Botón", "default": "COMPRAR AHORA" },
         { "type": "url", "id": "btn_link", "label": "Enlace" },
         {
           "type": "select",
           "id": "style",
-          "label": "Estilo",
+          "label": "Estilo de Botón",
           "options": [
-            { "value": "primary", "label": "Color Neón" },
+            { "value": "primary", "label": "Neón Sólido" },
             { "value": "secondary", "label": "Borde Blanco" }
           ],
           "default": "primary"
@@ -190,10 +219,10 @@
   ],
   "presets": [
     {
-      "name": "A-Hero Futurista",
+      "name": "Kieslect Hero Pro",
       "blocks": [
-        { "type": "button", "settings": { "btn_label": "COMPRAR", "style": "primary" } },
-        { "type": "button", "settings": { "btn_label": "VER MÁS", "style": "secondary" } }
+        { "type": "button", "settings": { "style": "primary" } },
+        { "type": "button", "settings": { "style": "secondary", "btn_label": "VER DETALLES" } }
       ]
     }
   ]
