@@ -35,60 +35,6 @@
         "info_4": "Nuestro equipo está disponible para ayudarte."
       }
     },
-    "caracteristicas_futuristas_RgDcUW": {
-      "type": "caracteristicas-futuristas",
-      "blocks": {
-        "feature_BYmDNQ": {
-          "type": "feature",
-          "settings": {
-            "feature_icon": "shopify://shop_images/Kieslect-Lady-Calling-Smartwatch-Pure-1.webp",
-            "feature_text": "Pantallas AMOLED curvas",
-            "feature_link": "",
-            "open_new_tab": false
-          }
-        },
-        "feature_8EUxVx": {
-          "type": "feature",
-          "settings": {
-            "feature_icon": "shopify://shop_images/app_15645560.png",
-            "feature_text": "Llamadas Bluetooth ultra claras",
-            "feature_link": "",
-            "open_new_tab": false
-          }
-        },
-        "feature_ixUBUJ": {
-          "type": "feature",
-          "settings": {
-            "feature_icon": "shopify://shop_images/medical-report_6181431.png",
-            "feature_text": "Monitoreo de salud 24/7",
-            "feature_link": "",
-            "open_new_tab": false
-          }
-        },
-        "feature_pceDdx": {
-          "type": "feature",
-          "settings": {
-            "feature_icon": "shopify://shop_images/sport_18669692.png",
-            "feature_text": "100+ modos deportivos",
-            "feature_link": "",
-            "open_new_tab": false
-          }
-        }
-      },
-      "block_order": [
-        "feature_BYmDNQ",
-        "feature_8EUxVx",
-        "feature_ixUBUJ",
-        "feature_pceDdx"
-      ],
-      "name": "Características 8K",
-      "settings": {
-        "bg_color": "#000000",
-        "accent_color": "#00f2ff",
-        "section_title": "Características destacadas",
-        "speed": 20
-      }
-    },
     "hero_animado_kieslect_6NKX9X": {
       "type": "hero-animado-kieslect",
       "blocks": {
@@ -461,19 +407,6 @@
         "padding_bottom": 80
       }
     },
-    "main_hero_banner_BCgJTy": {
-      "type": "main-hero-banner",
-      "name": "Hero Smartwatch Premium",
-      "settings": {
-        "bg_color": "#000000",
-        "txt_color": "#ffffff",
-        "accent_color": "#007bff",
-        "title_main": "Relojes Smartwatch para Mujer y Hombre",
-        "subtitle": "Tecnología Premium para tu Estilo",
-        "description": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7.",
-        "slogan": "Tu estilo, tu reloj inteligente."
-      }
-    },
     "kieslect_tech_footer_WpP4Vm": {
       "type": "kieslect-tech-footer",
       "name": "Kieslect Footer Slim",
@@ -499,6 +432,73 @@
         "link_facebook": "https://www.facebook.com/KieslectOfficial/",
         "link_privacidad": "",
         "link_terminos": ""
+      }
+    },
+    "main_hero_banner_BCgJTy": {
+      "type": "main-hero-banner",
+      "name": "Hero Smartwatch Premium",
+      "settings": {
+        "bg_color": "#000000",
+        "txt_color": "#ffffff",
+        "accent_color": "#007bff",
+        "title_main": "Relojes Smartwatch para Mujer y Hombre",
+        "subtitle": "Tecnología Premium para tu Estilo",
+        "description": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7.",
+        "slogan": "Tu estilo, tu reloj inteligente."
+      }
+    },
+    "caracteristicas_futuristas_RgDcUW": {
+      "type": "caracteristicas-futuristas",
+      "blocks": {
+        "feature_BYmDNQ": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/Kieslect-Lady-Calling-Smartwatch-Pure-1.webp",
+            "feature_text": "Pantallas AMOLED curvas",
+            "feature_link": "",
+            "open_new_tab": false
+          }
+        },
+        "feature_8EUxVx": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/app_15645560.png",
+            "feature_text": "Llamadas Bluetooth ultra claras",
+            "feature_link": "",
+            "open_new_tab": false
+          }
+        },
+        "feature_ixUBUJ": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/medical-report_6181431.png",
+            "feature_text": "Monitoreo de salud 24/7",
+            "feature_link": "",
+            "open_new_tab": false
+          }
+        },
+        "feature_pceDdx": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/sport_18669692.png",
+            "feature_text": "100+ modos deportivos",
+            "feature_link": "",
+            "open_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "feature_BYmDNQ",
+        "feature_8EUxVx",
+        "feature_ixUBUJ",
+        "feature_pceDdx"
+      ],
+      "name": "Características 8K",
+      "settings": {
+        "bg_color": "#000000",
+        "accent_color": "#00f2ff",
+        "section_title": "Características destacadas",
+        "speed": 20
       }
     },
     "kieslect_ai_assistant_6Npar6": {
@@ -535,7 +535,6 @@
   "order": [
     "kieslect_header_7Bj6Gk",
     "trust_bar_v3_ahJkw9",
-    "caracteristicas_futuristas_RgDcUW",
     "hero_animado_kieslect_6NKX9X",
     "trust_bar_7X8Kwh",
     "hero_tech_yAaWMa",
@@ -548,6 +547,7 @@
     "kieslect_tech_newsletter_EMW4Nk",
     "kieslect_tech_footer_WpP4Vm",
     "main_hero_banner_BCgJTy",
+    "caracteristicas_futuristas_RgDcUW",
     "kieslect_ai_assistant_6Npar6",
     "chatbot_kieslect_kdMWME",
     "hero_final_premium_Dtb439"
