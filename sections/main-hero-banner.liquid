@@ -74,12 +74,13 @@
     line-height: 1.1;
     margin-bottom: 20px;
     text-transform: uppercase;
-    /* Efecto modificado a escala de grises y blanco */
-    background: linear-gradient(90deg, #888888, #ffffff, #888888);
+    /* Efecto unificado con el Azul Neón dinámico */
+    background: linear-gradient(90deg, {{ section.settings.accent_color }}, #ffffff, {{ section.settings.accent_color }});
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shineNeonV2 3s linear infinite;
+    text-shadow: 0 0 15px {{ section.settings.accent_color | color_modify: 'alpha', 0.3 }};
   }
 
   @keyframes shineNeonV2 {
@@ -88,13 +89,13 @@
 
   .hero-subtitle-v2 {
     font-size: 1.4rem;
-    /* Cambiado de azul a gris claro */
-    color: #cccccc; 
+    color: {{ section.settings.accent_color }}; 
     margin-bottom: 15px;
     font-weight: 700;
+    text-shadow: 0 0 10px {{ section.settings.accent_color | color_modify: 'alpha', 0.5 }};
   }
 
-  .hero-desc-v2 { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.8; }
+  .hero-desc-v2 { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
 
   .hero-actions-v2 {
     display: flex;
@@ -116,10 +117,10 @@
   }
 
   .main-btn {
-    /* El botón mantiene su lógica de color neón del panel, o puedes cambiarlo a gris en el panel de Shopify */
     background-color: {{ section.settings.accent_color }};
     color: #000;
     border: 2px solid {{ section.settings.accent_color }};
+    box-shadow: 0 0 15px {{ section.settings.accent_color | color_modify: 'alpha', 0.4 }};
   }
 
   .secondary-btn {
@@ -130,22 +131,22 @@
 
   .hero-btn-v2:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 20px {{ section.settings.accent_color }};
+    box-shadow: 0 0 25px {{ section.settings.accent_color }};
   }
 
   .hero-slogan-v2 {
     margin-top: 25px;
     font-style: italic;
-    /* Borde cambiado a gris */
-    border-left: 3px solid #888888; 
+    border-left: 3px solid {{ section.settings.accent_color }}; 
     padding-left: 15px;
-    color: #cccccc;
+    color: {{ section.settings.accent_color }};
+    text-shadow: 0 0 5px {{ section.settings.accent_color | color_modify: 'alpha', 0.3 }};
   }
 
   .hero-image-v2 img {
     max-width: 100%;
     height: auto;
-    filter: drop-shadow(0 0 25px {{ section.settings.accent_color }}44);
+    filter: drop-shadow(0 0 30px {{ section.settings.accent_color }}66);
   }
 
   @media (max-width: 768px) {
@@ -157,11 +158,11 @@
 
 {% schema %}
 {
-  "name": "A-Hero Futurista",
+  "name": "A-Hero Futurista Azul",
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
-    { "type": "color", "id": "txt_color", "label": "Texto", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Color Neon Botón", "default": "#00f2ff" },
+    { "type": "color", "id": "txt_color", "label": "Texto General", "default": "#ffffff" },
+    { "type": "color", "id": "accent_color", "label": "Color Azul Neón", "default": "#00f2ff" },
     { "type": "text", "id": "title_main", "label": "Titulo", "default": "Relojes Smartwatch" },
     { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnología Premium" },
     { "type": "textarea", "id": "description", "label": "Info", "default": "Pantallas AMOLED de alta resolución." },
@@ -190,7 +191,7 @@
   ],
   "presets": [
     {
-      "name": "A-Hero Futurista",
+      "name": "A-Hero Futurista Azul",
       "blocks": [
         { "type": "button", "settings": { "btn_label": "COMPRAR", "style": "primary" } },
         { "type": "button", "settings": { "btn_label": "VER MÁS", "style": "secondary" } }
