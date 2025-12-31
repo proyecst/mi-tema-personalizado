@@ -2,11 +2,11 @@
 
 <style>
   :root {
-    --f-red: #ff0000;
-    --f-glow: #00f2ff;
+    --f-cyan: #00f2ff; /* El azul neón de Kieslect */
+    --f-cyan-glow: rgba(0, 242, 255, 0.5);
     --f-white: #ffffff;
-    --f-dark: #050505;
-    --f-gray: #1a1a1a;
+    --f-dark: #000000;
+    --f-gray: #0a0a0a;
     --f-font-main: 'Orbitron', sans-serif;
     --f-font-body: 'Rajdhani', sans-serif;
   }
@@ -14,7 +14,8 @@
   /* Contenedor Principal */
   .k-header-wrapper {
     background-color: var(--f-dark);
-    border-bottom: 2px solid var(--f-red); /* Estilo AddBlock/Borde */
+    border-bottom: 2px solid var(--f-cyan);
+    box-shadow: 0 0 15px var(--f-cyan-glow);
     padding: 15px 4%;
     position: sticky;
     top: 0;
@@ -30,7 +31,7 @@
     margin: 0 auto;
   }
 
-  /* LOGO: K ROJA, RESTO BLANCO */
+  /* LOGO: EFECTO NEÓN AZUL */
   .k-logo {
     font-family: var(--f-font-main);
     font-size: 26px;
@@ -43,12 +44,12 @@
   }
 
   .k-logo span {
-    color: var(--f-red);
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    margin-right: 1px;
+    color: var(--f-cyan);
+    text-shadow: 0 0 10px var(--f-cyan), 0 0 20px var(--f-cyan);
+    margin-right: 2px;
   }
 
-  /* NAVEGACIÓN PRINCIPAL */
+  /* NAVEGACIÓN */
   .k-nav {
     display: flex;
     list-style: none;
@@ -57,39 +58,35 @@
     padding: 0;
   }
 
-  .k-nav-item {
-    position: relative;
-  }
-
   .k-nav-link {
     text-decoration: none;
-    color: var(--f-white);
+    color: #cccccc;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     transition: 0.3s;
     padding: 10px 0;
     display: block;
   }
 
   .k-nav-link:hover {
-    color: var(--f-red);
+    color: var(--f-cyan);
+    text-shadow: 0 0 8px var(--f-cyan);
   }
 
-  /* MEGA MENÚ */
+  /* MEGA MENÚ AZUL */
   .k-mega-menu {
     position: absolute;
     top: 100%;
     left: -50px;
     background: var(--f-gray);
-    border: 1px solid #333;
-    border-top: 3px solid var(--f-red);
+    border: 1px solid var(--f-cyan);
     display: none;
     grid-template-columns: 250px 200px;
     padding: 25px;
     gap: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
     min-width: 500px;
   }
 
@@ -99,83 +96,65 @@
 
   .mega-col h4 {
     font-family: var(--f-font-main);
-    color: var(--f-red);
-    font-size: 12px;
+    color: var(--f-cyan);
+    font-size: 11px;
     margin-bottom: 15px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid rgba(0, 242, 255, 0.3);
     padding-bottom: 5px;
   }
 
-  .mega-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .mega-col li a {
-    color: #bbb;
-    text-decoration: none;
-    font-size: 14px;
-    line-height: 2.2;
-    transition: 0.2s;
-    display: block;
-  }
-
   .mega-col li a:hover {
-    color: var(--f-white);
-    padding-left: 5px;
-    border-left: 2px solid var(--f-red);
+    color: var(--f-cyan);
+    padding-left: 8px;
+    border-left: 2px solid var(--f-cyan);
+    background: rgba(0, 242, 255, 0.05);
   }
 
-  /* ACCIONES: BUSCADOR, CUENTA, CARRITO */
-  .k-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .k-search-box {
-    position: relative;
-  }
-
+  /* BUSCADOR */
   .k-search-input {
-    background: #111;
-    border: 1px solid #333;
+    background: #000;
+    border: 1px solid #444;
     color: white;
-    padding: 6px 15px;
-    border-radius: 4px;
-    font-family: var(--f-font-body);
+    padding: 8px 15px;
+    border-radius: 0px;
     width: 180px;
     outline: none;
     transition: 0.3s;
   }
 
   .k-search-input:focus {
-    border-color: var(--f-red);
-    box-shadow: 0 0 5px rgba(255,0,0,0.3);
+    border-color: var(--f-cyan);
+    box-shadow: 0 0 10px var(--f-cyan-glow);
   }
 
-  .action-icon {
+  /* CARRITO AZUL */
+  .cart-btn {
     text-decoration: none;
     color: var(--f-white);
-    font-size: 13px;
-    text-transform: uppercase;
+    font-size: 12px;
     font-weight: 700;
+    letter-spacing: 1px;
+    border: 1px solid var(--f-cyan);
+    padding: 7px 15px;
+    transition: 0.3s;
+  }
+
+  .cart-btn:hover {
+    background: var(--f-cyan);
+    color: #000;
+    box-shadow: 0 0 15px var(--f-cyan);
   }
 
   .cart-count {
-    background: var(--f-red);
-    color: white;
+    background: #fff;
+    color: #000;
     padding: 2px 6px;
     font-size: 10px;
-    border-radius: 50%;
     margin-left: 5px;
   }
 
-  /* MÓVIL: RESPONSIVO BÁSICO */
   @media (max-width: 768px) {
     .k-nav { display: none; }
-    .k-search-input { width: 100px; }
   }
 </style>
 
@@ -192,41 +171,23 @@
           <a href="/collections/all" class="k-nav-link">Tienda</a>
           <div class="k-mega-menu">
             <div class="mega-col">
-              <h4>Smartwatches</h4>
+              <h4>Modelos Pro</h4>
               <ul>
-                <li><a href="/collections/serie-amoled">Serie AMOLED</a></li>
-                <li><a href="/collections/llamadas-bluetooth">Llamadas Bluetooth</a></li>
-                <li><a href="/collections/deporte-fitness">Serie Deportiva & Fitness</a></li>
-                <li><a href="/collections/premium">Serie Premium</a></li>
-                <li><a href="/collections/economica">Serie Económica</a></li>
+                <li><a href="/collections/serie-amoled">Pantallas AMOLED</a></li>
+                <li><a href="/collections/llamadas-bluetooth">Llamadas BT</a></li>
               </ul>
             </div>
             <div class="mega-col">
-              <h4>Accesorios</h4>
+              <h4>Soporte</h4>
               <ul>
-                <li><a href="/collections/correas">Correas</a></li>
+                <li><a href="/pages/app">Descargar App</a></li>
+                <li><a href="/pages/contacto">Garantía</a></li>
               </ul>
             </div>
           </div>
         </li>
-
         <li><a href="/collections/novedades" class="k-nav-link">Novedades</a></li>
-        <li><a href="/collections/mas-vendidos" class="k-nav-link">Más Vendidos</a></li>
-
-        <li class="k-nav-item">
-          <a href="#" class="k-nav-link">Kieslect +</a>
-          <div class="k-mega-menu" style="min-width: 200px; grid-template-columns: 1fr;">
-            <div class="mega-col">
-              <h4>Información</h4>
-              <ul>
-                <li><a href="/pages/sobre-kieslect">Sobre Kieslect</a></li>
-                <li><a href="/blogs/news">Blog & Guías</a></li>
-                <li><a href="/pages/soporte-faq">Soporte / FAQ</a></li>
-                <li><a href="/pages/contacto">Contacto</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
+        <li><a href="/pages/sobre-kieslect" class="k-nav-link">Nosotros</a></li>
       </ul>
     </nav>
 
@@ -237,13 +198,7 @@
         </form>
       </div>
 
-      {% if shop.customer_accounts_enabled %}
-        <a href="{{ routes.account_url }}" class="action-icon">
-          {% if customer %}Cuenta{% else %}Login{% endif %}
-        </a>
-      {% endif %}
-
-      <a href="{{ routes.cart_url }}" class="action-icon" style="color: var(--f-red);">
+      <a href="{{ routes.cart_url }}" class="cart-btn">
         CARRITO <span class="cart-count">{{ cart.item_count }}</span>
       </a>
     </div>
