@@ -7,37 +7,37 @@
 
   .feat-cats-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
-    padding: 60px 4%;
+    padding: 80px 4%;
     font-family: 'Ethnocentric', sans-serif !important;
   }
 
-  /* CONTENEDOR PRINCIPAL: SPLIT DESIGN */
   .cats-split-layout {
     display: grid;
-    grid-template-columns: 1fr 1.5fr; /* Izquierda texto, derecha banner */
-    gap: 40px;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 50px;
     max-width: 1400px;
     margin: 0 auto;
     align-items: center;
   }
 
-  /* COLUMNA IZQUIERDA: SOLO TEXTOS */
+  /* IZQUIERDA: CATEGORÍAS */
   .cats-left-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
 
   .cat-text-link {
     text-decoration: none;
     color: #ffffff;
-    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-size: clamp(0.9rem, 2vw, 1.25rem);
     letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -48,17 +48,29 @@
     border-bottom-color: {{ section.settings.accent_color }};
   }
 
-  /* COLUMNA DERECHA: BANNER DE OFERTA */
+  .cat-text-link::after {
+    content: '→';
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  .cat-text-link:hover::after {
+    opacity: 1;
+    transform: translateX(10px);
+  }
+
+  /* DERECHA: BANNER OFERTA */
   .offer-banner-right {
     position: relative;
     width: 100%;
-    min-height: 450px;
-    border: 1px solid {{ section.settings.accent_color }};
+    min-height: 500px;
+    border: 2px solid {{ section.settings.accent_color }};
     overflow: hidden;
     display: flex;
-    align-items: flex-end; /* Texto abajo */
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    box-shadow: 0 0 20px {{ section.settings.accent_color | color_modify: 'alpha', 0.2 }};
+    box-shadow: 0 0 30px {{ section.settings.accent_color | color_modify: 'alpha', 0.2 }};
   }
 
   .offer-bg-img {
@@ -66,46 +78,76 @@
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
-    opacity: 0.6;
-    transition: 0.6s ease;
+    opacity: 0.5;
+    transition: 1s ease;
   }
 
   .offer-banner-right:hover .offer-bg-img {
-    transform: scale(1.05);
-    opacity: 0.8;
+    transform: scale(1.1);
+    opacity: 0.7;
   }
 
   .offer-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
+    text-align: center;
     padding: 40px;
-    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
-    width: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+    max-width: 80%;
   }
 
-  .offer-tag {
+  .offer-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: red;
+    color: white;
+    padding: 5px 15px;
     font-size: 0.7rem;
-    color: {{ section.settings.accent_color }};
-    margin-bottom: 10px;
-    display: block;
+    z-index: 4;
+    animation: pulse-red 2s infinite;
+  }
+
+  @keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
   }
 
   .offer-title {
     color: #fff;
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    margin: 0;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 10px 0 25px 0;
+    line-height: 1.2;
+    text-shadow: 0 0 15px {{ section.settings.accent_color }};
+  }
+
+  /* BOTÓN LLAMADA A LA ACCIÓN */
+  .offer-cta-btn {
+    display: inline-block;
+    background: transparent;
+    color: {{ section.settings.accent_color }};
+    border: 2px solid {{ section.settings.accent_color }};
+    padding: 15px 35px;
+    font-size: 0.8rem;
     letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+
+  .offer-cta-btn:hover {
+    background: {{ section.settings.accent_color }};
+    color: #000;
+    box-shadow: 0 0 20px {{ section.settings.accent_color }};
   }
 
   /* MOBILE */
   @media (max-width: 900px) {
-    .cats-split-layout {
-      grid-template-columns: 1fr;
-    }
-    .offer-banner-right {
-      min-height: 300px;
-      order: -1; /* Banner arriba en móvil */
-    }
+    .cats-split-layout { grid-template-columns: 1fr; }
+    .offer-banner-right { min-height: 350px; order: -1; }
   }
 {%- endstyle -%}
 
@@ -113,6 +155,7 @@
   <div class="cats-split-layout">
     
     <div class="cats-left-list">
+      <h2 style="color:{{ section.settings.accent_color }}; font-size: 0.8rem; margin-bottom: 20px; opacity: 0.7;">// CATEGORÍAS_</h2>
       {% for block in section.blocks %}
         {% if block.type == 'category' %}
           <a href="{{ block.settings.link }}" class="cat-text-link" {{ block.shopify_attributes }}>
@@ -124,15 +167,19 @@
 
     {% for block in section.blocks %}
       {% if block.type == 'offer_block' %}
-        <a href="{{ block.settings.link }}" class="offer-banner-right" {{ block.shopify_attributes }}>
+        <div class="offer-banner-right">
+          <div class="offer-badge">OFERTA ACTIVA</div>
           {% if block.settings.image != blank %}
-            <img src="{{ block.settings.image | image_url: width: 1200 }}" class="offer-bg-img" loading="lazy">
+            <img src="{{ block.settings.image | image_url: width: 1400 }}" class="offer-bg-img" loading="lazy">
           {% endif %}
           <div class="offer-content">
-            <span class="offer-tag">{{ block.settings.tag }}</span>
+            <span style="color: {{ section.settings.accent_color }}; font-size: 0.7rem;">{{ block.settings.tag }}</span>
             <h3 class="offer-title">{{ block.settings.offer_title }}</h3>
+            <a href="{{ block.settings.link }}" class="offer-cta-btn">
+              ADQUIRIR AHORA_
+            </a>
           </div>
-        </a>
+        </div>
       {% endif %}
     {% endfor %}
 
@@ -141,7 +188,7 @@
 
 {% schema %}
 {
-  "name": "Categorías Split",
+  "name": "Categorías Split Pro",
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "accent_color", "label": "Color Neón", "default": "#00f2ff" }
@@ -151,29 +198,28 @@
       "type": "category",
       "name": "Categoría (Texto)",
       "settings": [
-        { "type": "text", "id": "title", "label": "Nombre de Categoría", "default": "MUJER" },
+        { "type": "text", "id": "title", "label": "Nombre", "default": "MUJER" },
         { "type": "url", "id": "link", "label": "Link" }
       ]
     },
     {
       "type": "offer_block",
-      "name": "Banner Oferta (Derecha)",
+      "name": "Banner Oferta",
       "limit": 1,
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Imagen Banner" },
-        { "type": "text", "id": "tag", "label": "Etiqueta", "default": "EXCLUSIVE DEALS" },
-        { "type": "text", "id": "offer_title", "label": "Título", "default": "KIESLECT LADY SERIES" },
-        { "type": "url", "id": "link", "label": "Link" }
+        { "type": "text", "id": "tag", "label": "Subtítulo", "default": "EDICIÓN LIMITADA" },
+        { "type": "text", "id": "offer_title", "label": "Título Oferta", "default": "KIESLECT SMARTWATCHES -30%" },
+        { "type": "url", "id": "link", "label": "Link Botón" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Categorías Split",
+      "name": "Categorías Split Pro",
       "blocks": [
         { "type": "category", "settings": { "title": "SMARTWATCH MUJER" } },
         { "type": "category", "settings": { "title": "SMARTWATCH HOMBRE" } },
-        { "type": "category", "settings": { "title": "PREMIUM TECH" } },
         { "type": "offer_block" }
       ]
     }
