@@ -16,19 +16,6 @@
       "name": "Kieslect Header",
       "settings": {}
     },
-    "main_hero_banner_BCgJTy": {
-      "type": "main-hero-banner",
-      "name": "Hero Smartwatch Premium",
-      "settings": {
-        "bg_color": "#000000",
-        "txt_color": "#ffffff",
-        "accent_color": "#007bff",
-        "title_main": "Relojes Smartwatch para Mujer y Hombre",
-        "subtitle": "Tecnología Premium para tu Estilo",
-        "description": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7.",
-        "slogan": "Tu estilo, tu reloj inteligente."
-      }
-    },
     "trust_bar_v3_ahJkw9": {
       "type": "trust-bar-v3",
       "name": "Barra de Confianza V3",
@@ -474,6 +461,19 @@
         "padding_bottom": 80
       }
     },
+    "main_hero_banner_BCgJTy": {
+      "type": "main-hero-banner",
+      "name": "Hero Smartwatch Premium",
+      "settings": {
+        "bg_color": "#000000",
+        "txt_color": "#ffffff",
+        "accent_color": "#007bff",
+        "title_main": "Relojes Smartwatch para Mujer y Hombre",
+        "subtitle": "Tecnología Premium para tu Estilo",
+        "description": "Descubre smartwatches diseñados para tu día a día: pantallas AMOLED, batería de larga duración, llamadas Bluetooth y monitoreo de salud 24/7.",
+        "slogan": "Tu estilo, tu reloj inteligente."
+      }
+    },
     "kieslect_tech_footer_WpP4Vm": {
       "type": "kieslect-tech-footer",
       "name": "Kieslect Footer Slim",
@@ -534,7 +534,6 @@
   },
   "order": [
     "kieslect_header_7Bj6Gk",
-    "main_hero_banner_BCgJTy",
     "trust_bar_v3_ahJkw9",
     "caracteristicas_futuristas_RgDcUW",
     "hero_animado_kieslect_6NKX9X",
@@ -548,6 +547,7 @@
     "kieslect_edu_center_4MnPmH",
     "kieslect_tech_newsletter_EMW4Nk",
     "kieslect_tech_footer_WpP4Vm",
+    "main_hero_banner_BCgJTy",
     "kieslect_ai_assistant_6Npar6",
     "chatbot_kieslect_kdMWME",
     "hero_final_premium_Dtb439"
