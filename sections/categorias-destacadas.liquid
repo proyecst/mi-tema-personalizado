@@ -1,0 +1,226 @@
+{%- style -%}
+  /* 1. CARGA DE FUENTES */
+  @font-face {
+    font-family: 'Ethnocentric';
+    src: url('https://db.onlinewebfonts.com/t/625330384ef8f0607921389809635532.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  /* 2. ESTILOS GENERALES DE LA SECCIÓN */
+  .feat-cats-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: 60px 4%;
+    overflow: hidden;
+  }
+
+  .feat-cats-title {
+    font-family: 'Ethnocentric', sans-serif !important;
+    color: #ffffff;
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    margin-bottom: 50px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px {{ section.settings.accent_color | color_modify: 'alpha', 0.5 }};
+  }
+
+  /* 3. GRID DE CATEGORÍAS */
+  .cats-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .cat-card {
+    background: #0a0a0a;
+    border: 1px solid {{ section.settings.accent_color | color_modify: 'alpha', 0.2 }};
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+  }
+
+  .cat-card:hover {
+    border-color: {{ section.settings.accent_color }};
+    box-shadow: 0 0 25px {{ section.settings.accent_color | color_modify: 'alpha', 0.3 }};
+    transform: translateY(-8px);
+    background: rgba(0, 242, 255, 0.05);
+  }
+
+  /* ICONOS ARRIBA */
+  .cat-icon-box {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ section.settings.accent_color }};
+  }
+
+  .cat-svg {
+    width: 40px;
+    height: 40px;
+    stroke: currentColor;
+    filter: drop-shadow(0 0 8px {{ section.settings.accent_color }});
+  }
+
+  .cat-label {
+    font-family: 'Ethnocentric', sans-serif !important;
+    font-size: 0.85rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  /* 4. BLOQUE DE OFERTA (BANNER) */
+  .offer-banner-wrap {
+    grid-column: 1 / -1; /* Ocupa toda la fila */
+    position: relative;
+    min-height: 250px;
+    border: 2px solid {{ section.settings.accent_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 20px;
+    text-decoration: none;
+  }
+
+  .offer-bg-img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.5;
+    transition: 0.5s;
+  }
+
+  .offer-banner-wrap:hover .offer-bg-img {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+
+  .offer-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .offer-tag {
+    font-family: 'Ethnocentric', sans-serif;
+    background: {{ section.settings.accent_color }};
+    color: #000;
+    padding: 5px 15px;
+    font-size: 0.7rem;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  .offer-title {
+    font-family: 'Ethnocentric', sans-serif;
+    color: #fff;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin: 0;
+    text-shadow: 0 0 15px {{ section.settings.accent_color }};
+  }
+
+  @media (max-width: 768px) {
+    .cats-grid-container { grid-template-columns: 1fr 1fr; }
+    .offer-banner-wrap { grid-column: span 2; }
+  }
+{%- endstyle -%}
+
+<section class="feat-cats-{{ section.id }}">
+  <h2 class="feat-cats-title">{{ section.settings.title }}</h2>
+
+  <div class="cats-grid-container">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        
+        {% when 'category' %}
+          <a href="{{ block.settings.link }}" class="cat-card" {{ block.shopify_attributes }}>
+            <div class="cat-icon-box">
+              {% if block.settings.custom_icon != blank %}
+                <img src="{{ block.settings.custom_icon | image_url: width: 80 }}" style="width:100%; height:auto;">
+              {% else %}
+                {%- assign title_low = block.settings.title | downcase -%}
+                {% if title_low contains 'mujer' %}
+                  <svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 12l-4-4m4 4l4-4M4 17h16a2 2 0 012 2v2H2v-2a2 2 0 012-2z"></path></svg>
+                {% elsif title_low contains 'hombre' %}
+                  <svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                {% else %}
+                  <svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                {% endif %}
+              {% endif %}
+            </div>
+            <span class="cat-label">{{ block.settings.title }}</span>
+          </a>
+
+        {% when 'offer_block' %}
+          <a href="{{ block.settings.link }}" class="offer-banner-wrap" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 1400 }}" class="offer-bg-img">
+            {% endif %}
+            <div class="offer-content">
+              <span class="offer-tag">{{ block.settings.tag }}</span>
+              <h3 class="offer-title">{{ block.settings.offer_title }}</h3>
+            </div>
+          </a>
+
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Categorías Futuristas",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título Sección", "default": "EXPLORA CATEGORÍAS" },
+    { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
+    { "type": "color", "id": "accent_color", "label": "Color Neón", "default": "#00f2ff" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoría",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Nombre (Mujer / Hombre...)", "default": "MUJER" },
+        { "type": "url", "id": "link", "label": "Link de Colección" },
+        { "type": "image_picker", "id": "custom_icon", "label": "Icono opcional" }
+      ]
+    },
+    {
+      "type": "offer_block",
+      "name": "Banner Oferta (Add Block)",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen Banner" },
+        { "type": "text", "id": "tag", "label": "Etiqueta", "default": "SALE -30%" },
+        { "type": "text", "id": "offer_title", "label": "Título Oferta", "default": "PREMIUM TECH DEALS" },
+        { "type": "url", "id": "link", "label": "Link del Banner" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categorías Futuristas",
+      "blocks": [
+        { "type": "category", "settings": { "title": "MUJER" } },
+        { "type": "category", "settings": { "title": "HOMBRE" } },
+        { "type": "category", "settings": { "title": "PREMIUM" } },
+        { "type": "offer_block" }
+      ]
+    }
+  ]
+}
+{% endschema %}
