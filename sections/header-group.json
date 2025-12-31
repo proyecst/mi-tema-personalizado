@@ -453,8 +453,8 @@
         "feature_BYmDNQ": {
           "type": "feature",
           "settings": {
-            "feature_icon": "shopify://shop_images/Kieslect-Lady-Calling-Smartwatch-Pure-1.webp",
             "feature_text": "Pantallas AMOLED curvas",
+            "feature_icon": "shopify://shop_images/Kieslect-Lady-Calling-Smartwatch-Pure-1.webp",
             "feature_link": "",
             "open_new_tab": false
           }
@@ -462,8 +462,8 @@
         "feature_8EUxVx": {
           "type": "feature",
           "settings": {
-            "feature_icon": "shopify://shop_images/app_15645560.png",
             "feature_text": "Llamadas Bluetooth ultra claras",
+            "feature_icon": "shopify://shop_images/app_15645560.png",
             "feature_link": "",
             "open_new_tab": false
           }
@@ -471,8 +471,8 @@
         "feature_ixUBUJ": {
           "type": "feature",
           "settings": {
-            "feature_icon": "shopify://shop_images/medical-report_6181431.png",
             "feature_text": "Monitoreo de salud 24/7",
+            "feature_icon": "shopify://shop_images/medical-report_6181431.png",
             "feature_link": "",
             "open_new_tab": false
           }
@@ -480,8 +480,8 @@
         "feature_pceDdx": {
           "type": "feature",
           "settings": {
-            "feature_icon": "shopify://shop_images/sport_18669692.png",
             "feature_text": "100+ modos deportivos",
+            "feature_icon": "shopify://shop_images/sport_18669692.png",
             "feature_link": "",
             "open_new_tab": false
           }
@@ -530,6 +530,52 @@
         "btn_more_label": "VER MAS",
         "btn_more_link": ""
       }
+    },
+    "categorias_destacadas_8U4fzT": {
+      "type": "categorias-destacadas",
+      "blocks": {
+        "category_VXf6Eh": {
+          "type": "category",
+          "settings": {
+            "title": "MUJER",
+            "link": ""
+          }
+        },
+        "category_K6PhKD": {
+          "type": "category",
+          "settings": {
+            "title": "HOMBRE",
+            "link": ""
+          }
+        },
+        "category_rNtFnJ": {
+          "type": "category",
+          "settings": {
+            "title": "PREMIUM",
+            "link": ""
+          }
+        },
+        "offer_block_3kD4p8": {
+          "type": "offer_block",
+          "settings": {
+            "tag": "SALE -30%",
+            "offer_title": "PREMIUM TECH DEALS",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_VXf6Eh",
+        "category_K6PhKD",
+        "category_rNtFnJ",
+        "offer_block_3kD4p8"
+      ],
+      "name": "Categorías Futuristas",
+      "settings": {
+        "title": "EXPLORA CATEGORÍAS",
+        "bg_color": "#000000",
+        "accent_color": "#00f2ff"
+      }
     }
   },
   "order": [
@@ -550,6 +596,7 @@
     "caracteristicas_futuristas_RgDcUW",
     "kieslect_ai_assistant_6Npar6",
     "chatbot_kieslect_kdMWME",
-    "hero_final_premium_Dtb439"
+    "hero_final_premium_Dtb439",
+    "categorias_destacadas_8U4fzT"
   ]
 }
