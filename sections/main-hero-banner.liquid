@@ -74,7 +74,8 @@
     line-height: 1.1;
     margin-bottom: 20px;
     text-transform: uppercase;
-    background: linear-gradient(90deg, #ffffff, {{ section.settings.accent_color }}, #ffffff);
+    /* Efecto modificado a escala de grises y blanco */
+    background: linear-gradient(90deg, #888888, #ffffff, #888888);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -87,7 +88,8 @@
 
   .hero-subtitle-v2 {
     font-size: 1.4rem;
-    color: {{ section.settings.accent_color }};
+    /* Cambiado de azul a gris claro */
+    color: #cccccc; 
     margin-bottom: 15px;
     font-weight: 700;
   }
@@ -114,6 +116,7 @@
   }
 
   .main-btn {
+    /* El botón mantiene su lógica de color neón del panel, o puedes cambiarlo a gris en el panel de Shopify */
     background-color: {{ section.settings.accent_color }};
     color: #000;
     border: 2px solid {{ section.settings.accent_color }};
@@ -133,8 +136,10 @@
   .hero-slogan-v2 {
     margin-top: 25px;
     font-style: italic;
-    border-left: 3px solid {{ section.settings.accent_color }};
+    /* Borde cambiado a gris */
+    border-left: 3px solid #888888; 
     padding-left: 15px;
+    color: #cccccc;
   }
 
   .hero-image-v2 img {
@@ -156,7 +161,7 @@
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "txt_color", "label": "Texto", "default": "#ffffff" },
-    { "type": "color", "id": "accent_color", "label": "Color Neon", "default": "#00f2ff" },
+    { "type": "color", "id": "accent_color", "label": "Color Neon Botón", "default": "#00f2ff" },
     { "type": "text", "id": "title_main", "label": "Titulo", "default": "Relojes Smartwatch" },
     { "type": "text", "id": "subtitle", "label": "Subtitulo", "default": "Tecnología Premium" },
     { "type": "textarea", "id": "description", "label": "Info", "default": "Pantallas AMOLED de alta resolución." },
@@ -193,4 +198,4 @@
     }
   ]
 }
-{% endschema %} 
+{% endschema %}
