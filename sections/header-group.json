@@ -538,7 +538,7 @@
           "type": "category",
           "settings": {
             "title": "MUJER",
-            "link": ""
+            "link": "https://www.kieslect.com/es/categoria-producto/smartwatch/lady-series/"
           }
         },
         "category_K6PhKD": {
@@ -573,7 +573,6 @@
       ],
       "name": "Categorías Futuristas",
       "settings": {
-        "title": "EXPLORA CATEGORÍAS",
         "bg_color": "#000000",
         "accent_color": "#00f2ff"
       }
