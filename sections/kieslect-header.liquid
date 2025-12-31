@@ -1,26 +1,28 @@
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-
 <style>
+  /* IMPORTACIÓN DE FUENTES */
+  @font-face {
+    font-family: 'Ethnocentric';
+    src: url('https://db.onlinewebfonts.com/t/625330384ef8f0607921389809635532.woff2') format('woff2');
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
   :root {
-    --f-cyan: #00f2ff; /* El azul neón de Kieslect */
-    --f-cyan-glow: rgba(0, 242, 255, 0.5);
+    --f-cyan: #00f2ff; 
+    --f-cyan-glow: rgba(0, 242, 255, 0.6);
     --f-white: #ffffff;
     --f-dark: #000000;
-    --f-gray: #0a0a0a;
-    --f-font-main: 'Orbitron', sans-serif;
-    --f-font-body: 'Rajdhani', sans-serif;
+    --font-futurista: 'Ethnocentric', sans-serif;
+    --font-secondary: 'Orbitron', sans-serif;
   }
 
-  /* Contenedor Principal */
   .k-header-wrapper {
     background-color: var(--f-dark);
     border-bottom: 2px solid var(--f-cyan);
-    box-shadow: 0 0 15px var(--f-cyan-glow);
+    box-shadow: 0 4px 20px rgba(0, 242, 255, 0.15);
     padding: 15px 4%;
     position: sticky;
     top: 0;
     z-index: 9999;
-    font-family: var(--f-font-body);
   }
 
   .k-container {
@@ -31,11 +33,10 @@
     margin: 0 auto;
   }
 
-  /* LOGO: EFECTO NEÓN AZUL */
+  /* LOGO CON ETNOCENTRIC */
   .k-logo {
-    font-family: var(--f-font-main);
-    font-size: 26px;
-    font-weight: 700;
+    font-family: var(--font-futurista);
+    font-size: 22px;
     text-decoration: none;
     letter-spacing: 2px;
     color: var(--f-white);
@@ -45,29 +46,28 @@
 
   .k-logo span {
     color: var(--f-cyan);
-    text-shadow: 0 0 10px var(--f-cyan), 0 0 20px var(--f-cyan);
+    text-shadow: 0 0 10px var(--f-cyan);
     margin-right: 2px;
   }
 
-  /* NAVEGACIÓN */
+  /* NAVEGACIÓN CON ETNOCENTRIC */
   .k-nav {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 25px;
     margin: 0;
     padding: 0;
   }
 
   .k-nav-link {
+    font-family: var(--font-futurista);
     text-decoration: none;
-    color: #cccccc;
+    color: #bbbbbb;
     text-transform: uppercase;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 1.5px;
+    font-size: 11px; /* Ethnocentric es ancha, bajamos el tamaño para legibilidad */
+    letter-spacing: 1px;
     transition: 0.3s;
     padding: 10px 0;
-    display: block;
   }
 
   .k-nav-link:hover {
@@ -75,51 +75,18 @@
     text-shadow: 0 0 8px var(--f-cyan);
   }
 
-  /* MEGA MENÚ AZUL */
-  .k-mega-menu {
-    position: absolute;
-    top: 100%;
-    left: -50px;
-    background: var(--f-gray);
-    border: 1px solid var(--f-cyan);
-    display: none;
-    grid-template-columns: 250px 200px;
-    padding: 25px;
-    gap: 20px;
-    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
-    min-width: 500px;
-  }
-
-  .k-nav-item:hover .k-mega-menu {
-    display: grid;
-  }
-
-  .mega-col h4 {
-    font-family: var(--f-font-main);
-    color: var(--f-cyan);
-    font-size: 11px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid rgba(0, 242, 255, 0.3);
-    padding-bottom: 5px;
-  }
-
-  .mega-col li a:hover {
-    color: var(--f-cyan);
-    padding-left: 8px;
-    border-left: 2px solid var(--f-cyan);
-    background: rgba(0, 242, 255, 0.05);
-  }
-
   /* BUSCADOR */
   .k-search-input {
-    background: #000;
-    border: 1px solid #444;
+    background: #111;
+    border: 1px solid #333;
     color: white;
     padding: 8px 15px;
-    border-radius: 0px;
+    font-family: var(--font-secondary);
+    font-size: 12px;
     width: 180px;
     outline: none;
     transition: 0.3s;
+    text-transform: uppercase;
   }
 
   .k-search-input:focus {
@@ -127,16 +94,18 @@
     box-shadow: 0 0 10px var(--f-cyan-glow);
   }
 
-  /* CARRITO AZUL */
+  /* CARRITO CON ETNOCENTRIC */
   .cart-btn {
+    font-family: var(--font-futurista);
     text-decoration: none;
     color: var(--f-white);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-size: 10px;
     border: 1px solid var(--f-cyan);
-    padding: 7px 15px;
+    padding: 8px 18px;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .cart-btn:hover {
@@ -148,13 +117,12 @@
   .cart-count {
     background: #fff;
     color: #000;
-    padding: 2px 6px;
-    font-size: 10px;
-    margin-left: 5px;
+    padding: 1px 5px;
+    font-weight: bold;
   }
 
-  @media (max-width: 768px) {
-    .k-nav { display: none; }
+  @media (max-width: 1024px) {
+    .k-nav { display: none; } /* Ocultar en tablets/móvil para evitar desborde */
   }
 </style>
 
@@ -167,39 +135,22 @@
 
     <nav>
       <ul class="k-nav">
-        <li class="k-nav-item">
-          <a href="/collections/all" class="k-nav-link">Tienda</a>
-          <div class="k-mega-menu">
-            <div class="mega-col">
-              <h4>Modelos Pro</h4>
-              <ul>
-                <li><a href="/collections/serie-amoled">Pantallas AMOLED</a></li>
-                <li><a href="/collections/llamadas-bluetooth">Llamadas BT</a></li>
-              </ul>
-            </div>
-            <div class="mega-col">
-              <h4>Soporte</h4>
-              <ul>
-                <li><a href="/pages/app">Descargar App</a></li>
-                <li><a href="/pages/contacto">Garantía</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
+        <li><a href="/collections/all" class="k-nav-link">Tienda</a></li>
         <li><a href="/collections/novedades" class="k-nav-link">Novedades</a></li>
-        <li><a href="/pages/sobre-kieslect" class="k-nav-link">Nosotros</a></li>
+        <li><a href="/pages/sobre-kieslect" class="k-nav-link">Tech</a></li>
+        <li><a href="/pages/contacto" class="k-nav-link">Soporte</a></li>
       </ul>
     </nav>
 
     <div class="k-actions">
       <div class="k-search-box">
         <form action="{{ routes.search_url }}" method="get">
-          <input type="text" name="q" class="k-search-input" placeholder="BUSCAR TECH...">
+          <input type="text" name="q" class="k-search-input" placeholder="SEARCH_">
         </form>
       </div>
 
       <a href="{{ routes.cart_url }}" class="cart-btn">
-        CARRITO <span class="cart-count">{{ cart.item_count }}</span>
+        CART <span class="cart-count">{{ cart.item_count }}</span>
       </a>
     </div>
 
