@@ -1,5 +1,4 @@
 {%- style -%}
-  /* 1. CARGA DE FUENTE FUTURISTA */
   @font-face {
     font-family: 'Ethnocentric';
     src: url('https://db.onlinewebfonts.com/t/625330384ef8f0607921389809635532.woff2') format('woff2');
@@ -8,92 +7,58 @@
 
   .feat-cats-{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
-    padding: 80px 4%;
-    overflow: hidden;
+    padding: 60px 4%;
     font-family: 'Ethnocentric', sans-serif !important;
   }
 
-  /* TÍTULO SECCIÓN */
-  .feat-cats-title {
-    font-family: 'Ethnocentric', sans-serif !important;
-    color: #ffffff;
-    text-align: center;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    margin-bottom: 50px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-shadow: 0 0 15px {{ section.settings.accent_color | color_modify: 'alpha', 0.6 }};
-  }
-
-  /* GRID */
-  .cats-grid-container {
+  /* CONTENEDOR PRINCIPAL: SPLIT DESIGN */
+  .cats-split-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
+    grid-template-columns: 1fr 1.5fr; /* Izquierda texto, derecha banner */
+    gap: 40px;
     max-width: 1400px;
     margin: 0 auto;
+    align-items: center;
   }
 
-  /* TARJETAS DE CATEGORÍA */
-  .cat-card {
-    background: #080808;
-    border: 1px solid {{ section.settings.accent_color | color_modify: 'alpha', 0.25 }};
-    padding: 45px 20px;
+  /* COLUMNA IZQUIERDA: SOLO TEXTOS */
+  .cats-left-list {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    gap: 20px;
+  }
+
+  .cat-text-link {
     text-decoration: none;
-    transition: all 0.4s ease;
-    position: relative;
-  }
-
-  .cat-card:hover {
-    border-color: {{ section.settings.accent_color }};
-    box-shadow: 0 0 30px {{ section.settings.accent_color | color_modify: 'alpha', 0.4 }};
-    transform: translateY(-10px);
-    background: rgba(0, 242, 255, 0.08);
-  }
-
-  .cat-icon-box {
-    width: 65px;
-    height: 65px;
-    margin-bottom: 25px;
-    color: {{ section.settings.accent_color }};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .cat-svg {
-    width: 45px;
-    height: 45px;
-    stroke: currentColor;
-    filter: drop-shadow(0 0 10px {{ section.settings.accent_color }});
-  }
-
-  .cat-label {
-    font-family: 'Ethnocentric', sans-serif !important;
-    font-size: 0.8rem;
     color: #ffffff;
-    text-transform: uppercase;
+    font-size: clamp(1rem, 2vw, 1.4rem);
     letter-spacing: 2px;
-    text-align: center;
-  }
-
-  /* BANNER DE OFERTA (ADD BLOCK) */
-  .offer-banner-wrap {
-    grid-column: 1 / -1;
-    position: relative;
-    min-height: 280px;
-    border: 2px solid {{ section.settings.accent_color }};
+    text-transform: uppercase;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    justify-content: center;
+  }
+
+  .cat-text-link:hover {
+    color: {{ section.settings.accent_color }};
+    padding-left: 15px;
+    text-shadow: 0 0 10px {{ section.settings.accent_color }};
+    border-bottom-color: {{ section.settings.accent_color }};
+  }
+
+  /* COLUMNA DERECHA: BANNER DE OFERTA */
+  .offer-banner-right {
+    position: relative;
+    width: 100%;
+    min-height: 450px;
+    border: 1px solid {{ section.settings.accent_color }};
     overflow: hidden;
-    margin-top: 30px;
+    display: flex;
+    align-items: flex-end; /* Texto abajo */
     text-decoration: none;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+    box-shadow: 0 0 20px {{ section.settings.accent_color | color_modify: 'alpha', 0.2 }};
   }
 
   .offer-bg-img {
@@ -101,131 +66,114 @@
     top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
-    opacity: 0.4;
-    transition: 0.8s ease;
+    opacity: 0.6;
+    transition: 0.6s ease;
   }
 
-  .offer-banner-wrap:hover .offer-bg-img {
-    opacity: 0.6;
-    transform: scale(1.1);
+  .offer-banner-right:hover .offer-bg-img {
+    transform: scale(1.05);
+    opacity: 0.8;
   }
 
   .offer-content {
     position: relative;
     z-index: 2;
-    text-align: center;
     padding: 40px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
     width: 100%;
   }
 
   .offer-tag {
-    font-family: 'Ethnocentric', sans-serif !important;
-    background: {{ section.settings.accent_color }};
-    color: #000;
-    padding: 6px 20px;
     font-size: 0.7rem;
-    display: inline-block;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+    color: {{ section.settings.accent_color }};
+    margin-bottom: 10px;
+    display: block;
   }
 
   .offer-title {
-    font-family: 'Ethnocentric', sans-serif !important;
     color: #fff;
-    font-size: clamp(1.4rem, 5vw, 2.8rem);
+    font-size: clamp(1.2rem, 3vw, 2rem);
     margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    text-shadow: 0 0 20px {{ section.settings.accent_color }};
+    letter-spacing: 2px;
   }
 
-  @media (max-width: 768px) {
-    .cats-grid-container { grid-template-columns: 1fr; }
-    .cat-card { padding: 35px 15px; }
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .cats-split-layout {
+      grid-template-columns: 1fr;
+    }
+    .offer-banner-right {
+      min-height: 300px;
+      order: -1; /* Banner arriba en móvil */
+    }
   }
 {%- endstyle -%}
 
 <section class="feat-cats-{{ section.id }}">
-  <h2 class="feat-cats-title">{{ section.settings.title }}</h2>
+  <div class="cats-split-layout">
+    
+    <div class="cats-left-list">
+      {% for block in section.blocks %}
+        {% if block.type == 'category' %}
+          <a href="{{ block.settings.link }}" class="cat-text-link" {{ block.shopify_attributes }}>
+            {{ block.settings.title }}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
 
-  <div class="cats-grid-container">
     {% for block in section.blocks %}
-      {% case block.type %}
-        
-        {% when 'category' %}
-          <a href="{{ block.settings.link }}" class="cat-card" {{ block.shopify_attributes }}>
-            <div class="cat-icon-box">
-              {% if block.settings.custom_icon != blank %}
-                <img src="{{ block.settings.custom_icon | image_url: width: 100 }}" style="width:100%; height:auto; filter: drop-shadow(0 0 5px {{ section.settings.accent_color }});">
-              {% else %}
-                {%- assign title_low = block.settings.title | downcase -%}
-                {% if title_low contains 'mujer' %}
-                  <svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 14c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zM12 14v7M9 18h6"></path></svg>
-                {% elsif title_low contains 'hombre' %}
-                  <svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"></path></svg>
-                {% elsif title_low contains 'premium' %}
-                  <svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-                {% else %}
-                  <svg class="cat-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                {% endif %}
-              {% endif %}
-            </div>
-            <span class="cat-label">{{ block.settings.title }}</span>
-          </a>
-
-        {% when 'offer_block' %}
-          <a href="{{ block.settings.link }}" class="offer-banner-wrap" {{ block.shopify_attributes }}>
-            {% if block.settings.image != blank %}
-              <img src="{{ block.settings.image | image_url: width: 1600 }}" class="offer-bg-img" loading="lazy">
-            {% endif %}
-            <div class="offer-content">
-              <span class="offer-tag">{{ block.settings.tag }}</span>
-              <h3 class="offer-title">{{ block.settings.offer_title }}</h3>
-            </div>
-          </a>
-
-      {% endcase %}
+      {% if block.type == 'offer_block' %}
+        <a href="{{ block.settings.link }}" class="offer-banner-right" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width: 1200 }}" class="offer-bg-img" loading="lazy">
+          {% endif %}
+          <div class="offer-content">
+            <span class="offer-tag">{{ block.settings.tag }}</span>
+            <h3 class="offer-title">{{ block.settings.offer_title }}</h3>
+          </div>
+        </a>
+      {% endif %}
     {% endfor %}
+
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Categorías Futuristas",
+  "name": "Categorías Split",
   "settings": [
-    { "type": "text", "id": "title", "label": "Título Sección", "default": "CATEGORÍAS DESTACADAS" },
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "accent_color", "label": "Color Neón", "default": "#00f2ff" }
   ],
   "blocks": [
     {
       "type": "category",
-      "name": "Categoría",
+      "name": "Categoría (Texto)",
       "settings": [
-        { "type": "text", "id": "title", "label": "Nombre (Mujer, Hombre, Premium...)", "default": "MUJER" },
-        { "type": "url", "id": "link", "label": "Link de Colección" },
-        { "type": "image_picker", "id": "custom_icon", "label": "Icono opcional" }
+        { "type": "text", "id": "title", "label": "Nombre de Categoría", "default": "MUJER" },
+        { "type": "url", "id": "link", "label": "Link" }
       ]
     },
     {
       "type": "offer_block",
-      "name": "Banner Oferta (Add Block)",
+      "name": "Banner Oferta (Derecha)",
       "limit": 1,
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Imagen Banner" },
-        { "type": "text", "id": "tag", "label": "Etiqueta", "default": "PROMO 2025" },
-        { "type": "text", "id": "offer_title", "label": "Título Oferta", "default": "KIESLECT PREMIUM SERIES" },
-        { "type": "url", "id": "link", "label": "Link del Banner" }
+        { "type": "text", "id": "tag", "label": "Etiqueta", "default": "EXCLUSIVE DEALS" },
+        { "type": "text", "id": "offer_title", "label": "Título", "default": "KIESLECT LADY SERIES" },
+        { "type": "url", "id": "link", "label": "Link" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Categorías Futuristas",
+      "name": "Categorías Split",
       "blocks": [
-        { "type": "category", "settings": { "title": "MUJER" } },
-        { "type": "category", "settings": { "title": "HOMBRE" } },
-        { "type": "category", "settings": { "title": "PREMIUM" } },
+        { "type": "category", "settings": { "title": "SMARTWATCH MUJER" } },
+        { "type": "category", "settings": { "title": "SMARTWATCH HOMBRE" } },
+        { "type": "category", "settings": { "title": "PREMIUM TECH" } },
         { "type": "offer_block" }
       ]
     }
