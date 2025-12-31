@@ -113,87 +113,6 @@
       "name": "Barra Efectiva",
       "settings": {}
     },
-    "galerias_de_series_WJ9CdX": {
-      "type": "galerias-de-series",
-      "blocks": {
-        "bloque_serie_aTpW4e": {
-          "type": "bloque_serie",
-          "settings": {
-            "image": "shopify://shop_images/kieslect-calling-watch-ks-3-2.webp",
-            "title": "KS3",
-            "desc": "<p>GPS：Precision GPS Positioning & 6 Satellite Systems.</p><p>2.1 Adaptive Curved AMOLED Display.</p><p>Clear and Stable Bluetooth Calling.</p><p>Resistente al agua hasta 5 ATM.</p><p>Más de 150 modos deportivos.</p><p>Spin Navigation Wheel:Seamlessly scroll menus,adjust volume,and multitask with ease.</p><p>3D Floating Interface: Swipe the homepage to the right to see application cardslong-press to display the 3D rotation effect(all applicationcards arega un resumen aquí.</p>",
-            "id_link": ""
-          }
-        },
-        "bloque_serie_qnigEQ": {
-          "type": "bloque_serie",
-          "settings": {
-            "image": "shopify://shop_images/lora2-gold_3.jpg",
-            "title": "LORA 3",
-            "desc": "<p><strong>Pantalla:</strong> AMOLED de <strong>1.32 pulgadas</strong> (Circular).</p><p><strong>Resolución:</strong> $466 \\times 466$ píxeles con una densidad muy alta (imagen súper nítida).</p><p><strong>Fluidez:</strong> <strong>60 Hz</strong> (esto es clave, ya que se siente tan rápido como un celular moderno).</p><p><strong>Brillo:</strong> 850 nits (perfecto para ver la hora bajo el sol).</p><p><strong>Construcción:</strong> Cuerpo de aluminio con <strong>bisel de acero inoxidable</strong> (mucho más resistente que el plástico). un resumen aquí.</p>",
-            "id_link": ""
-          }
-        },
-        "bloque_serie_A3LdWx": {
-          "type": "bloque_serie",
-          "settings": {
-            "image": "shopify://shop_images/LoraM-00.png",
-            "title": "LORA RENO  3",
-            "desc": "<p></p><p><strong>Pantalla:</strong> AMOLED de 1.32 pulgadas con resolución HD ($466 \\times 466$ px).</p><p><strong>Fluidez:</strong> 60 Hz (animaciones suaves).</p><p><strong>Brillo:</strong> 850 nits (se ve bien bajo el sol).</p><p><strong>Cuerpo:</strong> Marco de aluminio ligero con bisel de acero inoxidable (resistente a rayones).</p><p><strong>Peso:</strong> Muy ligero, solo 27 gramos.</p>",
-            "id_link": ""
-          }
-        },
-        "bloque_serie_bjRzpL": {
-          "type": "bloque_serie",
-          "settings": {
-            "image": "shopify://shop_images/KR3_dorado.jpg",
-            "title": "KR3",
-            "desc": "<h3></h3><ul><li><strong>Pantalla:</strong> AMOLED de <strong>1.43 pulgadas</strong> (Circular).</li><li><strong>Resolución:</strong> 466 x 466 píxeles (Imagen muy nítida).</li><li><strong>Llamadas:</strong> Bluetooth 5.3 (Micrófono y altavoz para contestar desde el reloj).</li><li><strong>Procesador:</strong> Chip Dual Core (Navegación fluida a 60 FPS).</li><li><strong>Salud:</strong> Sensor de frecuencia cardíaca, SpO2 (oxígeno), estrés y monitoreo de sueño.</li><li><strong>Deporte:</strong> Más de 100 modos deportivos.</li><li><strong>Batería:</strong> Hasta <strong>5-7 días</strong> de uso típico.</li><li><strong>Resistencia:</strong> Certificación <strong>IP68</strong> (Resistente a salpicaduras y polvo).</li><li><strong>Función especial:</strong> Always-On Display (Pantalla siempre encendida).</li></ul>",
-            "id_link": ""
-          }
-        },
-        "bloque_serie_GppCVQ": {
-          "type": "bloque_serie",
-          "settings": {
-            "image": "shopify://shop_images/Kieslect-Lady-Calling-Smartwatch-Pure-1.webp",
-            "title": "PURA",
-            "desc": "<p>Agrega un re1.19\" Crystal-Clear AMOLED Display.</p><p>Elegant and Streamlined Frame Design.</p><p>Dual Strap.</p><p>BT5.2 Calling.</p><p>IP68 Waterproof.</p><p>100+Sport Modes.sumen aquí.</p>",
-            "id_link": ""
-          }
-        },
-        "bloque_serie_3FzQNh": {
-          "type": "bloque_serie",
-          "settings": {
-            "image": "shopify://shop_images/Kieslect_Smart_Calling_Watch_Actor_Leading-Negro-Frontal.png",
-            "title": "ACTOR LEADING",
-            "desc": "<ul><li>World Biggest 1.6\" LTPO Display</li><li>Premium Stainless Steel Buttons and Strap</li><li>La esencia del bisel cerámico</li><li>Clear & Stable Bluetooth Phone Call</li><li>Dual-Band GPS & 6 Satellites Positioning Systems</li><li>150+ Sports Modes</li><li>5 ATM Waterproof</li><li>24H Health Monitoring</li><li>Compatible with iOS & Android</li><li>Message Reminder</li></ul>",
-            "id_link": ""
-          }
-        },
-        "bloque_serie_RAnyy6": {
-          "type": "bloque_serie",
-          "settings": {
-            "image": "shopify://shop_images/KS2G-02.png",
-            "title": "KS2",
-            "desc": "<p>2.01-inch FHD AMOLED display</p><p>Dual core, triple speed</p><p>Pantalla súper dinámica GPU 2.5D</p><p>Sensores biométricos avanzados</p><p>24/7 health management</p><p>Test 3 health indicators with one click</p><p>More than 100 sports modes</p><p>Reconocimiento de movimiento inteligente</p><p>3ATM resistente al agua</p><p>Music playback and control</p><p>Always on display</p><p>Editable dynamic watch face</p><p><br/><br/></p>",
-            "id_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "bloque_serie_aTpW4e",
-        "bloque_serie_qnigEQ",
-        "bloque_serie_A3LdWx",
-        "bloque_serie_bjRzpL",
-        "bloque_serie_GppCVQ",
-        "bloque_serie_3FzQNh",
-        "bloque_serie_RAnyy6"
-      ],
-      "name": "Galería de Series",
-      "settings": {
-        "title": "Galería de Series"
-      }
-    },
     "series_ia_HmgFFW": {
       "type": "series-ia",
       "blocks": {
@@ -545,7 +464,7 @@
           "type": "category",
           "settings": {
             "title": "HOMBRE",
-            "link": ""
+            "link": "https://www.kieslect.com/es/producto/kieslect-ai-smartwatch-elite2/"
           }
         },
         "category_rNtFnJ": {
@@ -576,6 +495,88 @@
         "bg_color": "#000000",
         "accent_color": "#00f2ff"
       }
+    },
+    "galerias_de_series_WJ9CdX": {
+      "type": "galerias-de-series",
+      "blocks": {
+        "bloque_serie_aTpW4e": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/kieslect-calling-watch-ks-3-2.webp",
+            "title": "KS3",
+            "desc": "<p>GPS：Precision GPS Positioning & 6 Satellite Systems.</p><p>2.1 Adaptive Curved AMOLED Display.</p><p>Clear and Stable Bluetooth Calling.</p><p>Resistente al agua hasta 5 ATM.</p><p>Más de 150 modos deportivos.</p><p>Spin Navigation Wheel:Seamlessly scroll menus,adjust volume,and multitask with ease.</p><p>3D Floating Interface: Swipe the homepage to the right to see application cardslong-press to display the 3D rotation effect(all applicationcards arega un resumen aquí.</p>",
+            "id_link": ""
+          }
+        },
+        "bloque_serie_qnigEQ": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/lora2-gold_3.jpg",
+            "title": "LORA 3",
+            "desc": "<p><strong>Pantalla:</strong> AMOLED de <strong>1.32 pulgadas</strong> (Circular).</p><p><strong>Resolución:</strong> $466 \\times 466$ píxeles con una densidad muy alta (imagen súper nítida).</p><p><strong>Fluidez:</strong> <strong>60 Hz</strong> (esto es clave, ya que se siente tan rápido como un celular moderno).</p><p><strong>Brillo:</strong> 850 nits (perfecto para ver la hora bajo el sol).</p><p><strong>Construcción:</strong> Cuerpo de aluminio con <strong>bisel de acero inoxidable</strong> (mucho más resistente que el plástico). un resumen aquí.</p>",
+            "id_link": ""
+          }
+        },
+        "bloque_serie_A3LdWx": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/LoraM-00.png",
+            "title": "LORA RENO  3",
+            "desc": "<p></p><p><strong>Pantalla:</strong> AMOLED de 1.32 pulgadas con resolución HD ($466 \\times 466$ px).</p><p><strong>Fluidez:</strong> 60 Hz (animaciones suaves).</p><p><strong>Brillo:</strong> 850 nits (se ve bien bajo el sol).</p><p><strong>Cuerpo:</strong> Marco de aluminio ligero con bisel de acero inoxidable (resistente a rayones).</p><p><strong>Peso:</strong> Muy ligero, solo 27 gramos.</p>",
+            "id_link": ""
+          }
+        },
+        "bloque_serie_bjRzpL": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/KR3_dorado.jpg",
+            "title": "KR3",
+            "desc": "<h3></h3><ul><li><strong>Pantalla:</strong> AMOLED de <strong>1.43 pulgadas</strong> (Circular).</li><li><strong>Resolución:</strong> 466 x 466 píxeles (Imagen muy nítida).</li><li><strong>Llamadas:</strong> Bluetooth 5.3 (Micrófono y altavoz para contestar desde el reloj).</li><li><strong>Procesador:</strong> Chip Dual Core (Navegación fluida a 60 FPS).</li><li><strong>Salud:</strong> Sensor de frecuencia cardíaca, SpO2 (oxígeno), estrés y monitoreo de sueño.</li><li><strong>Deporte:</strong> Más de 100 modos deportivos.</li><li><strong>Batería:</strong> Hasta <strong>5-7 días</strong> de uso típico.</li><li><strong>Resistencia:</strong> Certificación <strong>IP68</strong> (Resistente a salpicaduras y polvo).</li><li><strong>Función especial:</strong> Always-On Display (Pantalla siempre encendida).</li></ul>",
+            "id_link": ""
+          }
+        },
+        "bloque_serie_GppCVQ": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/Kieslect-Lady-Calling-Smartwatch-Pure-1.webp",
+            "title": "PURA",
+            "desc": "<p>Agrega un re1.19\" Crystal-Clear AMOLED Display.</p><p>Elegant and Streamlined Frame Design.</p><p>Dual Strap.</p><p>BT5.2 Calling.</p><p>IP68 Waterproof.</p><p>100+Sport Modes.sumen aquí.</p>",
+            "id_link": ""
+          }
+        },
+        "bloque_serie_3FzQNh": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/Kieslect_Smart_Calling_Watch_Actor_Leading-Negro-Frontal.png",
+            "title": "ACTOR LEADING",
+            "desc": "<ul><li>World Biggest 1.6\" LTPO Display</li><li>Premium Stainless Steel Buttons and Strap</li><li>La esencia del bisel cerámico</li><li>Clear & Stable Bluetooth Phone Call</li><li>Dual-Band GPS & 6 Satellites Positioning Systems</li><li>150+ Sports Modes</li><li>5 ATM Waterproof</li><li>24H Health Monitoring</li><li>Compatible with iOS & Android</li><li>Message Reminder</li></ul>",
+            "id_link": ""
+          }
+        },
+        "bloque_serie_RAnyy6": {
+          "type": "bloque_serie",
+          "settings": {
+            "image": "shopify://shop_images/KS2G-02.png",
+            "title": "KS2",
+            "desc": "<p>2.01-inch FHD AMOLED display</p><p>Dual core, triple speed</p><p>Pantalla súper dinámica GPU 2.5D</p><p>Sensores biométricos avanzados</p><p>24/7 health management</p><p>Test 3 health indicators with one click</p><p>More than 100 sports modes</p><p>Reconocimiento de movimiento inteligente</p><p>3ATM resistente al agua</p><p>Music playback and control</p><p>Always on display</p><p>Editable dynamic watch face</p><p><br/><br/></p>",
+            "id_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "bloque_serie_aTpW4e",
+        "bloque_serie_qnigEQ",
+        "bloque_serie_A3LdWx",
+        "bloque_serie_bjRzpL",
+        "bloque_serie_GppCVQ",
+        "bloque_serie_3FzQNh",
+        "bloque_serie_RAnyy6"
+      ],
+      "disabled": true,
+      "name": "Galería de Series",
+      "settings": {
+        "title": "Galería de Series"
+      }
     }
   },
   "order": [
@@ -585,7 +586,6 @@
     "trust_bar_7X8Kwh",
     "hero_tech_yAaWMa",
     "barra_efectiva_ty7y9a",
-    "galerias_de_series_WJ9CdX",
     "series_ia_HmgFFW",
     "kieslect_tech_testimonials_3nkryh",
     "kieslect_tech_comparator_4r3fhy",
@@ -597,6 +597,7 @@
     "kieslect_ai_assistant_6Npar6",
     "chatbot_kieslect_kdMWME",
     "hero_final_premium_Dtb439",
-    "categorias_destacadas_8U4fzT"
+    "categorias_destacadas_8U4fzT",
+    "galerias_de_series_WJ9CdX"
   ]
 }
