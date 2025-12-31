@@ -11,25 +11,27 @@
           {% for block in section.blocks %}
             
             {%- capture item_content -%}
-              <div class="feat-icon-box">
-                {% if block.settings.feature_icon != blank %}
-                  <img src="{{ block.settings.feature_icon | image_url: width: 50 }}" class="feat-custom-icon">
-                {% else %}
-                  {%- assign text_down = block.settings.feature_text | downcase -%}
-                  {%- if text_down contains 'salud' or text_down contains 'corazón' or text_down contains 'ritmo' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-svg-icon"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
-                  {%- elsif text_down contains 'gym' or text_down contains 'deporte' or text_down contains 'entrenamiento' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-svg-icon"><path d="M6 7.5l-2 2V13l2 2m12-7.5l2 2V13l2 2M12 7v10M8 7v10m8-10v10"></path></svg>
-                  {%- elsif text_down contains 'batería' or text_down contains 'carga' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-svg-icon"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"></rect><line x1="22" y1="11" x2="22" y2="13"></line></svg>
-                  {%- elsif text_down contains 'agua' or text_down contains 'ip68' -%}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-svg-icon"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
-                  {%- else -%}
-                    <span class="feat-dot">●</span>
-                  {%- endif -%}
-                {% endif %}
+              <div class="feat-stack">
+                <div class="feat-icon-box">
+                  {% if block.settings.feature_icon != blank %}
+                    <img src="{{ block.settings.feature_icon | image_url: width: 60 }}" class="feat-custom-icon">
+                  {% else %}
+                    {%- assign text_down = block.settings.feature_text | downcase -%}
+                    {%- if text_down contains 'salud' or text_down contains 'corazón' or text_down contains 'ritmo' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-svg-icon"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                    {%- elsif text_down contains 'gym' or text_down contains 'deporte' or text_down contains 'entrenamiento' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-svg-icon"><path d="M6 7.5l-2 2V13l2 2m12-7.5l2 2V13l2 2M12 7v10M8 7v10m8-10v10"></path></svg>
+                    {%- elsif text_down contains 'batería' or text_down contains 'carga' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-svg-icon"><rect x="2" y="7" width="16" height="10" rx="2" ry="2"></rect><line x1="22" y1="11" x2="22" y2="13"></line></svg>
+                    {%- elsif text_down contains 'agua' or text_down contains 'ip68' -%}
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feat-svg-icon"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                    {%- else -%}
+                      <span class="feat-dot">●</span>
+                    {%- endif -%}
+                  {% endif %}
+                </div>
+                <span class="feat-text-futuristic">{{ block.settings.feature_text }}</span>
               </div>
-              <span class="feat-text-futuristic">{{ block.settings.feature_text }}</span>
             {%- endcapture -%}
 
             <div class="marquee-feat-item" style="color: {{ section.settings.accent_color }};">
@@ -60,20 +62,21 @@
 
   .marquee-feat-title {
     font-family: 'Ethnocentric', sans-serif !important;
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-size: 1.2rem;
     color: #ffffff;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     text-transform: uppercase;
     letter-spacing: 3px;
     text-align: center;
+    opacity: 0.8;
   }
 
   .marquee-feat-container {
     display: flex;
     overflow: hidden;
     white-space: nowrap;
-    background: rgba(0, 242, 255, 0.03);
-    padding: 25px 0;
+    background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.05), transparent);
+    padding: 35px 0;
   }
 
   .marquee-feat-content {
@@ -83,28 +86,48 @@
   }
 
   .marquee-feat-item {
-    font-family: 'Ethnocentric', sans-serif !important;
-    font-size: 0.9rem;
     display: inline-flex;
+    padding: 0 45px;
+    vertical-align: middle;
+  }
+
+  .feat-stack {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 0 50px;
+    gap: 12px; /* Espacio entre icono y texto */
+  }
+
+  .feat-text-futuristic {
+    font-family: 'Ethnocentric', sans-serif !important;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-align: center;
   }
 
   .feat-link {
     text-decoration: none;
     color: inherit;
-    display: flex;
-    align-items: center;
   }
 
   .feat-svg-icon {
-    width: 24px;
-    height: 24px;
+    width: 32px; /* Iconos un poco más grandes al ir arriba */
+    height: 32px;
     stroke: {{ section.settings.accent_color }};
+    filter: drop-shadow(0 0 10px {{ section.settings.accent_color }});
+    transition: 0.3s;
+  }
+
+  .feat-custom-icon {
+    width: 35px;
+    height: 35px;
     filter: drop-shadow(0 0 8px {{ section.settings.accent_color }});
-    margin-right: 12px;
+  }
+
+  .marquee-feat-item:hover .feat-svg-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px {{ section.settings.accent_color }});
   }
 
   @keyframes scrollLinear {
@@ -115,17 +138,19 @@
   .marquee-feat-container:hover .marquee-feat-content { animation-play-state: paused; }
 
   @media (max-width: 768px) {
-    .marquee-feat-item { font-size: 0.7rem; padding: 0 25px; }
+    .marquee-feat-item { padding: 0 25px; }
+    .feat-svg-icon { width: 24px; height: 24px; }
+    .feat-text-futuristic { font-size: 0.65rem; }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Tech Scroll",
+  "name": "Tech Scroll Vertical",
   "settings": [
     { "type": "color", "id": "bg_color", "label": "Fondo", "default": "#000000" },
     { "type": "color", "id": "accent_color", "label": "Color Neón", "default": "#00f2ff" },
-    { "type": "text", "id": "section_title", "label": "Título", "default": "KIESLECT TECH" },
+    { "type": "text", "id": "section_title", "label": "Título", "default": "KIESLECT ECOSYSTEM" },
     { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 5, "unit": "s", "label": "Velocidad", "default": 25 }
   ],
   "blocks": [
@@ -142,10 +167,11 @@
   ],
   "presets": [
     {
-      "name": "Tech Scroll",
+      "name": "Tech Scroll Vertical",
       "blocks": [
         { "type": "feature", "settings": { "feature_text": "SALUD" } },
-        { "type": "feature", "settings": { "feature_text": "GYM" } }
+        { "type": "feature", "settings": { "feature_text": "GYM" } },
+        { "type": "feature", "settings": { "feature_text": "BATERÍA" } }
       ]
     }
   ]
