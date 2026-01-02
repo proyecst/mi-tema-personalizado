@@ -587,34 +587,60 @@
       "blocks": {
         "feature_pzC86F": {
           "type": "feature",
-          "settings": {}
+          "settings": {
+            "text": "Nombre del archivo o beneficio",
+            "link": ""
+          }
+        },
+        "feature_pWCMdi": {
+          "type": "feature",
+          "settings": {
+            "text": "Nombre del archivo o beneficio",
+            "link": ""
+          }
         },
         "feature_BfaPed": {
           "type": "feature",
-          "settings": {}
+          "settings": {
+            "text": "Nombre del archivo o beneficio",
+            "link": ""
+          }
         },
         "feature_7xbwjL": {
           "type": "feature",
-          "settings": {}
+          "settings": {
+            "text": "Nombre del archivo o beneficio",
+            "link": ""
+          }
         },
         "feature_8bqE6Y": {
           "type": "feature",
-          "settings": {}
+          "settings": {
+            "text": "Nombre del archivo o beneficio",
+            "link": ""
+          }
         },
         "feature_d4c7nH": {
           "type": "feature",
-          "settings": {}
+          "settings": {
+            "text": "Nombre del archivo o beneficio",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "feature_pzC86F",
+        "feature_pWCMdi",
         "feature_BfaPed",
         "feature_7xbwjL",
         "feature_8bqE6Y",
         "feature_d4c7nH"
       ],
       "name": "Kieselect - Beneficios Grid",
-      "settings": {}
+      "settings": {
+        "title_es": "POR QUÉ ELEGIR KIESELECT",
+        "title_en": "WHY CHOOSE KIESELECT"
+      }
     }
   },
   "order": [
