@@ -1,0 +1,105 @@
+{% comment %}
+  SECCIÓN: KIESELECT CLEAN LIST (CORREGIDA)
+  Solución al error de validación de presets de Shopify.
+{% endcomment %}
+
+<section class="ks-clean-list" id="ks-list-{{ section.id }}">
+  <div class="ks-list-wrapper">
+    
+    <div class="ks-list-header">
+      <h2 class="ks-list-title">
+        ⭐ {{ section.settings.title_es }} / {{ section.settings.title_en }}
+      </h2>
+    </div>
+
+    <div class="ks-lang-label">
+      <span>Español</span>
+    </div>
+
+    <div class="ks-items-container">
+      {% for block in section.blocks %}
+        <div class="ks-list-item" {{ block.shopify_attributes }}>
+          <span class="ks-list-bullet">●</span>
+          <div class="ks-list-content">
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}" class="ks-list-link">
+                {{ block.settings.text }}
+              </a>
+            {% else %}
+              <span class="ks-list-text">{{ block.settings.text }}</span>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ks-clean-list {
+    background-color: #ffffff;
+    padding: 50px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #000000;
+  }
+  .ks-list-wrapper { max-width: 700px; margin: 0 auto; }
+  .ks-list-title { font-size: 18px; font-weight: bold; margin-bottom: 25px; }
+  .ks-lang-label { margin-bottom: 15px; font-size: 16px; color: #444; }
+  .ks-items-container { display: flex; flex-direction: column; gap: 10px; }
+  .ks-list-item { display: flex; align-items: flex-start; gap: 15px; }
+  .ks-list-bullet { font-size: 12px; margin-top: 4px; }
+  .ks-list-text, .ks-list-link { font-size: 15px; line-height: 1.4; color: #000; text-decoration: none; }
+  .ks-list-link:hover { color: #D4AF37; text-decoration: underline; }
+</style>
+
+{% schema %}
+{
+  "name": "Kieselect - Lista Clean",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_es",
+      "label": "Título (Español)",
+      "default": "POR QUÉ ELEGIR KIESELECT"
+    },
+    {
+      "type": "text",
+      "id": "title_en",
+      "label": "Título (Inglés)",
+      "default": "WHY CHOOSE KIESELECT"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto del beneficio",
+          "default": "Marca global con más de 10M usuarios"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Enlace (Opcional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kieselect - Lista Clean",
+      "blocks": [
+        { "type": "benefit", "settings": { "text": "Marca global con más de 10M usuarios" } },
+        { "type": "benefit", "settings": { "text": "Relojes inteligentes con diseño premium" } },
+        { "type": "benefit", "settings": { "text": "2 años de garantía oficial en México" } },
+        { "type": "benefit", "settings": { "text": "App Da Fit y aplicaciones para smartwatch" } },
+        { "type": "benefit", "settings": { "text": "Envío rápido y soporte local" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
