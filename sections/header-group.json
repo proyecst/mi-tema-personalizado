@@ -408,16 +408,19 @@
     },
     "kieslect_ai_assistant_6Npar6": {
       "type": "kieslect-ai-assistant",
+      "disabled": true,
       "name": "Kieslect AI Assistant",
       "settings": {}
     },
     "chatbot_kieslect_kdMWME": {
       "type": "chatbot-kieslect",
+      "disabled": true,
       "name": "Chatbot Kieslect",
       "settings": {}
     },
     "hero_final_premium_Dtb439": {
       "type": "hero-final-premium",
+      "disabled": true,
       "name": "A-Hero Futurista",
       "settings": {
         "bg_color": "#000000",
