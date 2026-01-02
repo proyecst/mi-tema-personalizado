@@ -1,164 +1,91 @@
 <style>
-  /* Importar fuente futurista similar a Futura/Orbitron */
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Montserrat:wght@300;700&display=swap');
 
-  .cyber-section {
+  .ad-cyber-section {
     background-color: #000000;
     color: #ffffff;
-    padding: 100px 5%;
+    padding: 80px 5%;
     overflow: hidden;
     font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: center;
-    position: relative;
+    border-bottom: 1px solid #222;
   }
 
-  /* Animación de entrada para todo el bloque */
-  .cyber-container {
+  .ad-cyber-container {
     max-width: 1200px;
     width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 50px;
     opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1.2s forwards ease-out;
+    transform: translateX(-30px);
+    animation: fadeInRight 1.2s forwards ease-out;
   }
 
-  /* BLOQUE IZQUIERDA: TEXTO FUTURISTA */
-  .cyber-content-left {
-    flex: 1.2;
-    z-index: 2;
-  }
-
-  .cyber-title {
+  .ad-cyber-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 900;
-    line-height: 1;
+    line-height: 1.1;
     margin: 0 0 20px 0;
     color: #ffffff;
     text-transform: uppercase;
-    /* EFECTO GLOW NEÓN */
-    text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
-    animation: pulseGlow 3s infinite alternate;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
   }
 
-  .cyber-description {
+  /* Color específico para diferenciar secciones */
+  .title-mujer { text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; }
+  .title-hombre { text-shadow: 0 0 15px #00d4ff, 0 0 30px #00d4ff; }
+
+  .ad-cyber-description {
     font-size: 1.2rem;
     color: #b0b0b0;
     line-height: 1.6;
-    margin-bottom: 40px;
-    max-width: 550px;
+    margin-bottom: 30px;
+    max-width: 800px;
   }
 
-  .cyber-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
+  .ad-cyber-keywords {
+    font-size: 0.8rem;
+    color: #555;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 
-  .cyber-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 15px;
-    border-left: 3px solid #ff00ff;
-    transition: 0.3s;
+  @keyframes fadeInRight {
+    to { opacity: 1; transform: translateX(0); }
   }
 
-  .cyber-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(10px);
-    box-shadow: -5px 0 15px #ff00ff;
-  }
-
-  .cyber-item h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.9rem;
-    margin: 0;
-    color: #ffffff;
-    letter-spacing: 2px;
-  }
-
-  /* BLOQUE DERECHA: IMAGEN CON ANIMACIÓN FLOATING */
-  .cyber-media-right {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-  }
-
-  .cyber-media-right img {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 10px;
-    filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.3));
-    animation: floating 4s infinite ease-in-out;
-  }
-
-  /* KEYFRAMES DE ANIMACIONES */
-  @keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes pulseGlow {
-    from { text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff; }
-    to { text-shadow: 0 0 20px #fff, 0 0 40px #ff00ff, 0 0 60px #ff00ff; }
-  }
-
-  @keyframes floating {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
-
-  /* RESPONSIVO */
-  @media (max-width: 990px) {
-    .cyber-container { flex-direction: column; text-align: center; }
-    .cyber-grid { grid-template-columns: 1fr; }
-    .cyber-item { text-align: left; }
-    .cyber-title { font-size: 3rem; }
+  @media (max-width: 768px) {
+    .ad-cyber-section { text-align: center; padding: 50px 20px; }
   }
 </style>
 
-<section class="cyber-section">
-  <div class="cyber-container">
-    
-    <div class="cyber-content-left">
-      <h1 class="cyber-title">Smartwatch<br>Mujer</h1>
-      <p class="cyber-description">
-        Encuentra <strong>smartwatches mujer</strong> con pantallas AMOLED, funciones de salud, GPS y diseños elegantes. 
-        Tecnología futurista para tu vida diaria.
-      </p>
+<section class="ad-cyber-section">
+  <div class="ad-cyber-container">
+    <h2 class="ad-cyber-title title-mujer">Relojes Smartwatch Mujer – Tecnología que se Ajusta a Tu Estilo</h2>
+    <p class="ad-cyber-description">
+      Encuentra <strong>smartwatches mujer</strong> con pantallas AMOLED, funciones de salud, GPS, notificaciones y diseños elegantes. Perfectos para deporte, trabajo y vida diaria.
+    </p>
+    <p class="ad-cyber-keywords">Keywords: smartwatch mujer, smartwatches mujer, smart watch mujer, reloj smartwatch mujer precio</p>
+  </div>
+</section>
 
-      <div class="cyber-grid">
-        <div class="cyber-item">
-          <h3>DISEÑO ELÉGANTE</h3>
-        </div>
-        <div class="cyber-item">
-          <h3>SALUD (RITMO/SUEÑO)</h3>
-        </div>
-        <div class="cyber-item">
-          <h3>COMPATIBLE DA FIT</h3>
-        </div>
-        <div class="cyber-item">
-          <h3>SMARTWATCH GPS</h3>
-        </div>
-      </div>
-    </div>
-
-    <div class="cyber-media-right">
-       <img src="https://i.imgur.com/vHq0G6O.png" alt="Reloj Futurista Mujer">
-    </div>
-
+<section class="ad-cyber-section">
+  <div class="ad-cyber-container" style="animation-delay: 0.3s;">
+    <h2 class="ad-cyber-title title-hombre">Relojes Smartwatch Hombre – Potencia, Rendimiento y Estilo</h2>
+    <p class="ad-cyber-description">
+      <strong>Smartwatches hombre</strong> con batería de larga duración, GPS, llamadas Bluetooth, monitoreo deportivo y diseño resistente. Rendimiento extremo en tu muñeca.
+    </p>
+    <p class="ad-cyber-keywords">Keywords: smartwatch hombre, smartwatches hombre, relojes smartwatch hombre, smart watch hombre</p>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Cyber Smartwatch Mujer",
+  "name": "Add Block Mujer y Hombre",
   "settings": [],
   "presets": [
     {
-      "name": "Cyber Smartwatch Mujer"
+      "name": "Add Block Mujer y Hombre"
     }
   ]
 }

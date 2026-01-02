@@ -550,6 +550,11 @@
       "type": "luxury-smartwatch-mujer",
       "name": "Luxury Smartwatch Mujer",
       "settings": {}
+    },
+    "cyber_smartwatch_mujer_qEKBDK": {
+      "type": "cyber-smartwatch-mujer",
+      "name": "Cyber Smartwatch Mujer",
+      "settings": {}
     }
   },
   "order": [
@@ -574,6 +579,7 @@
     "kieselect_features_grid_y8DrQM",
     "contenido_smartwatch_BKNBQq",
     "product_luxury_template_xEKHPW",
-    "luxury_smartwatch_mujer_bYA9me"
+    "luxury_smartwatch_mujer_bYA9me",
+    "cyber_smartwatch_mujer_qEKBDK"
   ]
 }
