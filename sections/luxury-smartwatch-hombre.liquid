@@ -15,38 +15,73 @@
     max-width: 1200px;
     width: 100%;
     display: flex;
-    align-items: center;
-    gap: 60px;
+    align-items: stretch;
+    gap: 40px; /* Espacio para el Add Block */
   }
 
-  /* BLOQUE IZQUIERDA: CONTENIDO */
+  /* CONTENIDO PRINCIPAL */
   .luxury-content-left {
-    flex: 1.2;
+    flex: 2;
     text-align: left;
   }
 
   .luxury-glow-title {
-    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     text-transform: uppercase;
     font-weight: 800;
     line-height: 1.1;
     margin: 0 0 25px 0;
-    /* COLOR AZUL PARA HOMBRE */
     color: #ffffff;
     text-shadow: 0 0 10px #00d4ff, 0 0 30px rgba(0, 212, 255, 0.6);
     letter-spacing: -1px;
   }
 
   .luxury-intro-text {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #e0e0e0;
     line-height: 1.6;
     margin-bottom: 40px;
     max-width: 700px;
-    text-transform: none;
   }
 
-  /* RESALTADO EN ROSADO PARA EL "CÓDIGO" O KEYWORDS */
+  /* ADD BLOCK (EL ANUNCIO) */
+  .add-block-sidebar {
+    flex: 0.8;
+    background: rgba(255, 0, 255, 0.05);
+    border: 1px dashed #ff00ff;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .add-block-tag {
+    position: absolute;
+    top: -10px;
+    background: #ff00ff;
+    color: #000;
+    padding: 2px 10px;
+    font-weight: 900;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+  }
+
+  .add-block-sidebar h4 {
+    color: #ff00ff;
+    font-family: monospace;
+    margin: 0 0 10px 0;
+    text-shadow: 0 0 8px #ff00ff;
+  }
+
+  .add-block-sidebar p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  /* RESALTADO EN ROSADO */
   .code-highlight {
     color: #ff00ff;
     font-family: monospace;
@@ -57,33 +92,25 @@
   .luxury-grid-features {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 25px;
   }
 
   .feature-item {
-    border-left: 2px solid #00d4ff; /* Borde azul */
+    border-left: 2px solid #00d4ff;
     padding-left: 15px;
   }
 
   .feature-item h3 {
-    font-size: 1rem;
-    text-transform: uppercase;
-    margin: 0 0 8px 0;
-    color: #ffffff;
-    letter-spacing: 1px;
-  }
-
-  .feature-item p {
     font-size: 0.9rem;
-    color: #999;
-    margin: 0;
-    text-transform: none;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+    color: #ffffff;
   }
 
   .luxury-btn-hombre {
     display: inline-block;
-    margin-top: 40px;
-    padding: 15px 45px;
+    margin-top: 30px;
+    padding: 12px 35px;
     background-color: transparent;
     color: #00d4ff;
     border: 2px solid #00d4ff;
@@ -91,36 +118,17 @@
     font-weight: bold;
     text-transform: uppercase;
     transition: 0.3s;
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
   }
 
   .luxury-btn-hombre:hover {
     background-color: #00d4ff;
     color: #000;
-    box-shadow: 0 0 25px #00d4ff;
+    box-shadow: 0 0 20px #00d4ff;
   }
 
-  /* RESPONSIVO */
   @media (max-width: 990px) {
-    .luxury-container {
-      flex-direction: column;
-      text-align: center;
-    }
-    .luxury-content-left {
-      text-align: center;
-    }
-    .luxury-grid-features {
-      grid-template-columns: 1fr;
-    }
-    .feature-item {
-      border-left: none;
-      border-bottom: 1px solid #333;
-      padding: 0 0 15px 0;
-    }
-    .luxury-intro-text {
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .luxury-container { flex-direction: column; }
+    .add-block-sidebar { order: -1; margin-bottom: 30px; }
   }
 </style>
 
@@ -131,25 +139,17 @@
       <h1 class="luxury-glow-title">Relojes Smartwatch Hombre – Potencia, Rendimiento y Estilo</h1>
       
       <p class="luxury-intro-text">
-        <strong>Smartwatches hombre</strong> con batería de larga duración, GPS, llamadas Bluetooth, monitoreo deportivo y diseño resistente. Rendimiento extremo en cada aventura.
+        <strong>Smartwatches hombre</strong> con batería de larga duración, GPS, llamadas Bluetooth, monitoreo deportivo y diseño resistente.
       </p>
 
       <div class="luxury-grid-features">
         <div class="feature-item">
           <h3>Potencia Extrema</h3>
-          <p>Batería optimizada para días de uso continuo.</p>
+          <p style="font-size:0.8rem; color:#999;">Batería para uso continuo.</p>
         </div>
         <div class="feature-item">
           <h3>GPS de Precisión</h3>
-          <p>Rastreo exacto para tus rutas de entrenamiento.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Llamadas Bluetooth</h3>
-          <p>Contesta desde tu muñeca con total claridad.</p>
-        </div>
-        <div class="feature-item">
-          <h3>Diseño Resistente</h3>
-          <p>Materiales premium listos para cualquier entorno.</p>
+          <p style="font-size:0.8rem; color:#999;">Rastreo exacto en rutas.</p>
         </div>
       </div>
 
@@ -157,16 +157,21 @@
         <a href="{{ section.settings.link_hombre }}" class="luxury-btn-hombre">Explorar Colección</a>
       {% endif %}
 
-      <div style="margin-top: 50px; border-top: 1px solid #222; padding-top: 20px;">
+      <div style="margin-top: 40px; border-top: 1px solid #222; padding-top: 20px;">
         <p style="font-size: 0.7rem; color: #444; letter-spacing: 1px;">
           KEYWORDS_INDEX: 
           <span class="code-highlight">smartwatch hombre</span>, 
-          <span class="code-highlight">smartwatches hombre</span>, 
-          <span class="code-highlight">relojes smartwatch hombre</span>, 
-          <span class="code-highlight">smart watch hombre</span>
+          <span class="code-highlight">smartwatches hombre</span>
         </p>
       </div>
     </div>
+
+    <aside class="add-block-sidebar">
+      <div class="add-block-tag">Publicidad / Oferta</div>
+      <h4>FLASH_SALE_INIT</h4>
+      <p>Envío Gratis en todos los pedidos de hoy.</p>
+      <div class="code-highlight" style="font-size: 1.5rem;">-20% OFF</div>
+    </aside>
 
   </div>
 </section>
