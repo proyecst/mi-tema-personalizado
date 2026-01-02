@@ -548,6 +548,7 @@
     },
     "luxury_smartwatch_mujer_bYA9me": {
       "type": "luxury-smartwatch-mujer",
+      "disabled": true,
       "name": "Luxury Smartwatch Mujer",
       "settings": {}
     },
