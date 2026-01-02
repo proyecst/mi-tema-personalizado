@@ -19,14 +19,14 @@
     gap: 40px;
   }
 
-  /* --- CONTENIDO PRINCIPAL (IZQUIERDA) --- */
+  /* --- CONTENIDO PRINCIPAL --- */
   .luxury-content-main {
-    flex: 1.5;
+    flex: 1.2;
     text-align: left;
   }
 
   .luxury-glow-title {
-    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     text-transform: uppercase;
     font-weight: 800;
     line-height: 1.1;
@@ -35,83 +35,66 @@
     text-shadow: 0 0 10px #00d4ff, 0 0 30px rgba(0, 212, 255, 0.6);
   }
 
-  /* --- EL ADD BLOCK (ANUNCIO DERECHA) --- */
-  .system-add-block {
-    flex: 0.8;
-    background: rgba(255, 0, 255, 0.03);
-    border: 2px solid #ff00ff;
-    padding: 40px 20px;
-    text-align: center;
+  /* --- ADD BLOCK PARA IMÁGENES --- */
+  .image-add-block {
+    flex: 1;
     position: relative;
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
-    /* Animación de parpadeo suave tipo Cyberpunk */
-    animation: pulse-border 3s infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .add-block-tag {
+  .image-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    border: 2px solid #ff00ff; /* Borde rosado neón */
+    padding: 10px;
+    background: rgba(255, 0, 255, 0.02);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+    transition: 0.5s;
+  }
+
+  .image-container:hover {
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.6);
+    transform: scale(1.02);
+  }
+
+  .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.2));
+  }
+
+  .promo-badge {
     position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: -15px;
+    right: -15px;
     background: #ff00ff;
     color: #000;
-    font-size: 0.7rem;
-    padding: 2px 15px;
-    font-weight: bold;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
-  .add-block-content h4 {
-    color: #fff;
-    font-size: 1.5rem;
-    margin: 0 0 10px 0;
-    font-family: monospace;
-    text-shadow: 0 0 10px #ff00ff;
-  }
-
-  .add-block-promo {
-    font-size: 2.5rem;
+    padding: 10px 15px;
     font-weight: 900;
-    color: #ff00ff;
-    display: block;
-    margin: 10px 0;
+    font-family: monospace;
+    transform: rotate(5deg);
+    box-shadow: 0 0 15px #ff00ff;
+    z-index: 2;
   }
 
   /* ESTILO CÓDIGO ROSADO */
   .code-pink {
     color: #ff00ff;
     font-family: monospace;
-    text-transform: uppercase;
     font-weight: bold;
     text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
   }
 
-  .luxury-grid-features {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-top: 30px;
-  }
-
-  .feature-item {
-    border-left: 2px solid #00d4ff;
-    padding-left: 15px;
-  }
-
-  .feature-item h3 {
-    font-size: 1rem;
-    margin: 0;
-    color: #ffffff;
-  }
-
   .luxury-btn-hombre {
     display: inline-block;
-    margin-top: 40px;
-    padding: 15px 45px;
-    background-color: transparent;
-    color: #00d4ff;
+    margin-top: 30px;
+    padding: 15px 40px;
     border: 2px solid #00d4ff;
+    color: #00d4ff;
     text-decoration: none;
     font-weight: bold;
     text-transform: uppercase;
@@ -119,19 +102,14 @@
   }
 
   .luxury-btn-hombre:hover {
-    background-color: #00d4ff;
+    background: #00d4ff;
     color: #000;
-    box-shadow: 0 0 25px #00d4ff;
-  }
-
-  @keyframes pulse-border {
-    0%, 100% { border-color: #ff00ff; box-shadow: 0 0 20px rgba(255, 0, 255, 0.2); }
-    50% { border-color: #ffffff; box-shadow: 0 0 30px rgba(255, 0, 255, 0.5); }
+    box-shadow: 0 0 20px #00d4ff;
   }
 
   @media (max-width: 990px) {
-    .luxury-container { flex-direction: column; }
-    .system-add-block { width: 100%; margin-top: 50px; }
+    .luxury-container { flex-direction: column; text-align: center; }
+    .image-add-block { margin-top: 50px; }
   }
 </style>
 
@@ -139,41 +117,34 @@
   <div class="luxury-container">
     
     <div class="luxury-content-main">
-      <h1 class="luxury-glow-title">Relojes Smartwatch Hombre – Potencia, Rendimiento y Estilo</h1>
-      
-      <p style="font-size: 1.2rem; line-height: 1.6; color: #ccc;">
-        <strong>Smartwatches hombre</strong> con batería de larga duración, GPS, llamadas Bluetooth, monitoreo deportivo y diseño resistente. Rendimiento extremo.
+      <h1 class="luxury-glow-title">Smartwatch Hombre: Potencia & Estilo</h1>
+      <p style="font-size: 1.1rem; color: #ccc; margin-bottom: 30px;">
+        Descubre la colección de <strong>smartwatches hombre</strong> con GPS, llamadas y batería de larga duración.
       </p>
 
-      <div class="luxury-grid-features">
-        <div class="feature-item">
-          <h3>BATERÍA 15 DÍAS</h3>
-          <p style="font-size: 0.8rem; color: #888;">Optimización de energía.</p>
-        </div>
-        <div class="feature-item">
-          <h3>SISTEMA GPS</h3>
-          <p style="font-size: 0.8rem; color: #888;">Rastreo global preciso.</p>
-        </div>
+      <div style="margin-bottom: 30px;">
+        <p class="code-pink">> STATUS: HIGH_PERFORMANCE</p>
+        <p class="code-pink">> BATERÍA: 15 DÍAS_ACTIVA</p>
       </div>
 
       {% if section.settings.link_hombre != blank %}
-        <a href="{{ section.settings.link_hombre }}" class="luxury-btn-hombre">Acceder a Catálogo</a>
+        <a href="{{ section.settings.link_hombre }}" class="luxury-btn-hombre">Ver Catálogo</a>
       {% endif %}
-
-      <div style="margin-top: 40px; border-top: 1px solid #222; padding-top: 20px;">
-        <span class="code-pink" style="font-size: 0.8rem;">
-          DATABASE_KEYWORDS: smartwatch hombre, smartwatches hombre, smart watch hombre
-        </span>
-      </div>
     </div>
 
-    <div class="system-add-block">
-      <div class="add-block-tag">Publicidad de Sistema</div>
-      <div class="add-block-content">
-        <h4>OFERTA_LIMITADA</h4>
-        <span class="add-block-promo">-30% OFF</span>
-        <p style="font-size: 0.9rem; color: #fff;">Solo por tiempo limitado en modelos seleccionados.</p>
-        <p class="code-pink" style="margin-top: 20px;">CÓDIGO: HOMBRE_2026</p>
+    <div class="image-add-block">
+      <div class="image-container">
+        <div class="promo-badge">HOT DEAL</div>
+        
+        {% if section.settings.ad_image != blank %}
+          <img src="{{ section.settings.ad_image | image_url: width: 800 }}" alt="Promo Smartwatch">
+        {% else %}
+          <img src="https://i.imgur.com/vHq0G6O.png" alt="Reloj Futurista">
+        {% endif %}
+
+        <div style="margin-top: 15px; text-align: center;">
+          <p class="code-pink" style="font-size: 0.8rem;">[ SISTEMA_PROMO: {{ section.settings.promo_text }} ]</p>
+        </div>
       </div>
     </div>
 
@@ -182,17 +153,28 @@
 
 {% schema %}
 {
-  "name": "Luxury Smartwatch Hombre",
+  "name": "Add Block con Imagen",
   "settings": [
     {
       "type": "url",
       "id": "link_hombre",
-      "label": "Enlace del Botón"
+      "label": "Link del Botón"
+    },
+    {
+      "type": "image_picker",
+      "id": "ad_image",
+      "label": "Imagen Publicitaria (Add Block)"
+    },
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Texto de Código Rosado",
+      "default": "ENVÍO_GRATIS_2026"
     }
   ],
   "presets": [
     {
-      "name": "Luxury Smartwatch Hombre"
+      "name": "Add Block con Imagen"
     }
   ]
 }
