@@ -1,163 +1,202 @@
 {% comment %}
-  SECCIÓN: KIESELECT WHY CHOOSE - GRID DINÁMICO
-  Diseño Premium con soporte para links y bloques editables.
+  SECCIÓN: KIESELECT FUTURISTIC LIST
+  Diseño: Lista futurista azul cian, tipografía moderna e imagen lateral.
 {% endcomment %}
 
-<div class="ks-features-section" id="ks-{{ section.id }}">
+<div class="ks-futuristic-section" id="ks-{{ section.id }}">
   <div class="ks-container">
-    <div class="ks-header">
-      <h2 class="ks-main-title">{{ section.settings.main_title }}</h2>
-      <p class="ks-subtitle">{{ section.settings.sub_title }}</p>
-    </div>
-
-    <div class="ks-features-grid">
-      {% for block in section.blocks %}
-        <div class="ks-feature-card" {{ block.shopify_attributes }}>
-          <div class="ks-card-content">
-            <div class="ks-icon-box">
-              <span class="ks-bullet-gold">●</span>
-            </div>
-            <div class="ks-info-box">
-              <h3 class="ks-feature-text">{{ block.settings.feature_text }}</h3>
-              {% if block.settings.button_link != blank %}
-                <a href="{{ block.settings.button_link }}" class="ks-action-link">
-                  {{ block.settings.button_label | default: 'Ver detalles' }} 
-                  <span class="ks-arrow">→</span>
-                </a>
-              {% endif %}
-            </div>
-          </div>
+    
+    <div class="ks-layout-wrapper">
+      
+      <div class="ks-content-side">
+        <div class="ks-header-futuristic">
+          <h2 class="ks-glitch-title" data-text="{{ section.settings.main_title }}">
+            ⭐ {{ section.settings.main_title }}
+          </h2>
+          <p class="ks-sub-cyber">{{ section.settings.sub_title }}</p>
         </div>
-      {% endfor %}
+
+        <div class="ks-vertical-list">
+          {% for block in section.blocks %}
+            <div class="ks-list-card" {{ block.shopify_attributes }}>
+              <div class="ks-card-glow"></div>
+              <div class="ks-card-inner">
+                <span class="ks-cyber-bullet"></span>
+                <div class="ks-text-group">
+                  <h3 class="ks-benefit-desc">{{ block.settings.feature_text }}</h3>
+                  {% if block.settings.button_link != blank %}
+                    <a href="{{ block.settings.button_link }}" class="ks-neon-link">
+                      {{ block.settings.button_label }} <span class="ks-scan-line"></span>
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="ks-image-side">
+        <div class="ks-image-frame">
+          {% if section.settings.side_image != blank %}
+            {{ section.settings.side_image | image_url: width: 800 | image_tag: class: 'ks-img-fluid', loading: 'lazy' }}
+          {% else %}
+            <div class="ks-placeholder-img">KIESELECT TECH</div>
+          {% endif %}
+          <div class="ks-frame-corner top-left"></div>
+          <div class="ks-frame-corner bottom-right"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 
 <style>
-  /* Variables de Marca Kieselect */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap');
+
   :root {
-    --ks-gold: #D4AF37;
-    --ks-black: #000000;
-    --ks-dark-grey: #1A1A1A;
-    --ks-text-light: #F4F4F4;
-    --ks-text-muted: #A0A0A0;
+    --ks-cyan-neon: #00f2ff;
+    --ks-blue-deep: #0a0e17;
+    --ks-blue-glow: rgba(0, 242, 255, 0.3);
+    --font-cyber: 'Orbitron', sans-serif;
+    --font-main: 'Rajdhani', sans-serif;
   }
 
-  .ks-features-section {
-    background-color: var(--ks-black);
-    padding: 80px 24px;
-    font-family: 'Inter', -apple-system, sans-serif;
+  .ks-futuristic-section {
+    background-color: var(--ks-blue-deep);
+    padding: 100px 24px;
+    overflow: hidden;
+    color: #ffffff;
   }
 
-  .ks-container {
-    max-width: 1200px;
-    margin: 0 auto;
+  .ks-container { max-width: 1300px; margin: 0 auto; }
+
+  .ks-layout-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
   }
 
-  .ks-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
+  .ks-content-side { flex: 1; min-width: 350px; }
+  .ks-image-side { flex: 0.8; min-width: 350px; position: relative; }
 
-  .ks-main-title {
-    color: var(--ks-text-light);
-    font-size: clamp(24px, 4vw, 32px);
-    letter-spacing: 2px;
-    font-weight: 800;
-    margin-bottom: 10px;
+  /* Títulos Futuristas */
+  .ks-glitch-title {
+    font-family: var(--font-cyber);
+    font-size: clamp(22px, 3vw, 30px);
+    color: var(--ks-cyan-neon);
+    text-shadow: 0 0 15px var(--ks-blue-glow);
+    margin-bottom: 5px;
     text-transform: uppercase;
   }
 
-  .ks-subtitle {
-    color: var(--ks-gold);
+  .ks-sub-cyber {
+    font-family: var(--font-main);
+    color: #888;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
     font-size: 14px;
-    letter-spacing: 1px;
-    font-weight: 600;
   }
 
-  .ks-features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-  }
+  /* Lista de Cartas con Neón */
+  .ks-vertical-list { display: flex; flex-direction: column; gap: 20px; }
 
-  .ks-feature-card {
-    background: var(--ks-dark-grey);
-    border: 1px solid #333;
-    border-radius: 16px;
-    padding: 30px;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  .ks-list-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid var(--ks-cyan-neon);
+    padding: 25px;
+    transition: 0.4s;
     cursor: pointer;
   }
 
-  .ks-feature-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--ks-gold);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+  .ks-list-card:hover {
+    background: rgba(0, 242, 255, 0.07);
+    transform: translateX(10px);
   }
 
-  .ks-card-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
+  .ks-card-inner { display: flex; align-items: center; gap: 20px; }
+
+  .ks-cyber-bullet {
+    width: 12px;
+    height: 12px;
+    background: var(--ks-cyan-neon);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    box-shadow: 0 0 10px var(--ks-cyan-neon);
   }
 
-  .ks-bullet-gold {
-    color: var(--ks-gold);
-    font-size: 24px;
-    line-height: 1;
-    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
-  }
-
-  .ks-feature-text {
-    color: var(--ks-text-light);
-    font-size: 17px;
+  .ks-benefit-desc {
+    font-family: var(--font-main);
+    font-size: 18px;
     font-weight: 500;
-    line-height: 1.4;
-    margin: 0 0 12px 0;
+    margin: 0;
+    letter-spacing: 0.5px;
   }
 
-  .ks-action-link {
-    color: var(--ks-gold);
+  .ks-neon-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: var(--font-cyber);
+    font-size: 10px;
+    color: var(--ks-cyan-neon);
     text-decoration: none;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 1px;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
+    opacity: 0.7;
   }
 
-  .ks-arrow {
-    transition: transform 0.3s ease;
+  /* Imagen con Marco Tecnológico */
+  .ks-image-frame {
+    position: relative;
+    padding: 20px;
+    border: 1px solid rgba(0, 242, 255, 0.1);
   }
 
-  .ks-action-link:hover .ks-arrow {
-    transform: translateX(5px);
+  .ks-img-fluid {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.2));
+    border-radius: 4px;
   }
 
-  @media (max-width: 768px) {
-    .ks-features-section { padding: 50px 20px; }
-    .ks-features-grid { grid-template-columns: 1fr; }
+  .ks-frame-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--ks-cyan-neon);
+  }
+
+  .top-left { top: 0; left: 0; border-right: none; border-bottom: none; }
+  .bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+  @media (max-width: 990px) {
+    .ks-layout-wrapper { flex-direction: column-reverse; text-align: center; }
+    .ks-card-inner { justify-content: center; }
+    .ks-list-card:hover { transform: translateY(-5px); }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Kieselect - Why Choose",
+  "name": "Kieselect - Tech List",
   "settings": [
     {
       "type": "text",
       "id": "main_title",
       "label": "Título Principal",
-      "default": "⭐ POR QUÉ ELEGIR KIESELECT"
+      "default": "POR QUÉ ELEGIR KIESELECT"
     },
     {
       "type": "text",
       "id": "sub_title",
       "label": "Subtítulo",
-      "default": "WHY CHOOSE KIESELECT"
+      "default": "FUTURE TECH ECOSYSTEM"
+    },
+    {
+      "type": "image_picker",
+      "id": "side_image",
+      "label": "Imagen Lateral"
     }
   ],
   "blocks": [
@@ -179,14 +218,14 @@
           "type": "text",
           "id": "button_label",
           "label": "Etiqueta del Link",
-          "default": "Saber más"
+          "default": "SABER MÁS"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Kieselect - Beneficios Grid",
+      "name": "Kieselect - Tech List",
       "blocks": [
         { "type": "feature", "settings": { "feature_text": "Marca global con más de 10M usuarios" } },
         { "type": "feature", "settings": { "feature_text": "Relojes inteligentes con diseño premium" } },

@@ -545,6 +545,100 @@
       "settings": {
         "title": "Galería de Series"
       }
+    },
+    "asistente_virtual_yqjWGj": {
+      "type": "asistente-virtual",
+      "blocks": {
+        "link_invitation_iDQUUJ": {
+          "type": "link_invitation",
+          "settings": {
+            "text": "Ver nueva colección",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "link_invitation_iDQUUJ"
+      ],
+      "disabled": true,
+      "name": "Asistente Virtual Pro",
+      "settings": {
+        "bg_color": "#1a1a1a",
+        "text_color": "#ffffff",
+        "accent_color": "#00ffcc"
+      }
+    },
+    "kieslect_tech_comparator_p8UT44": {
+      "type": "kieslect-tech-comparator",
+      "disabled": true,
+      "name": "Kieslect Comparator V3",
+      "settings": {
+        "title": "COMPARATIVA TÉCNICA",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "cta_text": "EXPLORAR TODOS",
+        "cta_link": "",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "kieselect_features_grid_y8DrQM": {
+      "type": "kieselect-features-grid",
+      "blocks": {
+        "feature_pzC86F": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Marca global con más de 10M usuarios",
+            "button_link": "",
+            "button_label": "Saber más"
+          }
+        },
+        "feature_BfaPed": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Relojes inteligentes con diseño premium",
+            "button_link": "",
+            "button_label": "Saber más"
+          }
+        },
+        "feature_7xbwjL": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "2 años de garantía oficial en México",
+            "button_link": "",
+            "button_label": "Saber más"
+          }
+        },
+        "feature_8bqE6Y": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "App Da Fit y aplicaciones para smartwatch",
+            "button_link": "",
+            "button_label": "Saber más"
+          }
+        },
+        "feature_d4c7nH": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Envío rápido y soporte local",
+            "button_link": "",
+            "button_label": "Saber más"
+          }
+        }
+      },
+      "block_order": [
+        "feature_pzC86F",
+        "feature_BfaPed",
+        "feature_7xbwjL",
+        "feature_8bqE6Y",
+        "feature_d4c7nH"
+      ],
+      "disabled": true,
+      "name": "Kieselect - Beneficios Grid",
+      "settings": {
+        "main_title": "⭐ POR QUÉ ELEGIR KIESELECT",
+        "sub_title": "WHY CHOOSE KIESELECT"
+      }
     }
   },
   "order": [
@@ -566,6 +660,9 @@
     "chatbot_kieslect_kdMWME",
     "hero_final_premium_Dtb439",
     "categorias_destacadas_8U4fzT",
-    "galerias_de_series_WJ9CdX"
+    "galerias_de_series_WJ9CdX",
+    "asistente_virtual_yqjWGj",
+    "kieslect_tech_comparator_p8UT44",
+    "kieselect_features_grid_y8DrQM"
   ]
 }
