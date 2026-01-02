@@ -1,0 +1,171 @@
+<style>
+  /* Base del Template */
+  .pr-luxury-wrapper {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "Futura", "Trebuchet MS", sans-serif;
+    padding: 60px 5%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pr-luxury-container {
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+  }
+
+  /* BLOQUE IZQUIERDA: INFORMACIÓN */
+  .pr-luxury-info {
+    flex: 1;
+    text-align: left;
+  }
+
+  .pr-luxury-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-transform: uppercase;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1;
+    /* EFECTO GLOW */
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+
+  .pr-luxury-meta {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #cccccc;
+    text-transform: none;
+    line-height: 1.6;
+  }
+
+  .pr-luxury-price {
+    font-size: 2rem;
+    margin: 20px 0;
+    font-weight: bold;
+    display: block;
+    color: #ffffff;
+  }
+
+  /* Lista de beneficios */
+  .pr-luxury-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+  }
+
+  .pr-luxury-list li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+  }
+
+  .pr-luxury-list li::before {
+    content: "•";
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+  }
+
+  /* BLOQUE DERECHA: IMAGEN */
+  .pr-luxury-media {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pr-luxury-media img {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+  }
+
+  /* BOTÓN DE COMPRA */
+  .pr-luxury-btn {
+    display: inline-block;
+    background: #ffffff;
+    color: #000000;
+    padding: 18px 50px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s ease;
+  }
+
+  .pr-luxury-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+  }
+
+  /* RESPONSIVO */
+  @media (max-width: 768px) {
+    .pr-luxury-container {
+      flex-direction: column;
+      text-align: center;
+    }
+    .pr-luxury-info {
+      order: 2;
+      text-align: center;
+    }
+    .pr-luxury-media {
+      order: 1;
+    }
+    .pr-luxury-list li {
+      justify-content: center;
+    }
+  }
+</style>
+
+<section class="pr-luxury-wrapper">
+  <div class="pr-luxury-container">
+    
+    <div class="pr-luxury-info">
+      <h1 class="pr-luxury-title">{{ product.title }}</h1>
+      
+      <div class="pr-luxury-meta">
+        {{ product.description | truncatewords: 30 }}
+      </div>
+
+      <span class="pr-luxury-price">{{ product.price | money }}</span>
+
+      <ul class="pr-luxury-list">
+        <li>Diseño elegante y moderno</li>
+        <li>Seguimiento de salud avanzado</li>
+        <li>Compatible con aplicaciones Da Fit</li>
+        <li>Smartwatch GPS integrado</li>
+      </ul>
+
+      <form action="/cart/add" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        <button type="submit" class="pr-luxury-btn">Añadir al Carrito</button>
+      </form>
+    </div>
+
+    <div class="pr-luxury-media">
+      {% if product.featured_image != blank %}
+        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}">
+      {% else %}
+        <img src="https://i.imgur.com/r62Kq3i.png" alt="Imagen no disponible">
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Luxury Product Detail",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Luxury Product Detail"
+    }
+  ]
+}
+{% endschema %}
