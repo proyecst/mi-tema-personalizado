@@ -540,10 +540,7 @@
       "type": "contenido-smartwatch",
       "disabled": true,
       "name": "Contenido Smartwatch",
-      "settings": {
-        "url_mujer": "",
-        "url_hombre": ""
-      }
+      "settings": {}
     },
     "product_luxury_template_xEKHPW": {
       "type": "product-luxury-template",
@@ -563,6 +560,25 @@
       "disabled": true,
       "name": "Cyber Smartwatch Mujer",
       "settings": {}
+    },
+    "smartwatch_hero_section_GJGkxR": {
+      "type": "smartwatch-hero-section",
+      "disabled": true,
+      "name": "Add Block Smartwatch",
+      "settings": {
+        "bg_color": "#000000",
+        "title": "Smartwatch Mujer",
+        "description": "Tecnología que se ajusta a tu estilo. Encuentra smartwatches con pantallas AMOLED y funciones de salud.",
+        "btn_text": "DESCUBRIR",
+        "link": ""
+      }
+    },
+    "luxury_smartwatch_hombre_BrAdDG": {
+      "type": "luxury-smartwatch-hombre",
+      "name": "Luxury Smartwatch Hombre",
+      "settings": {
+        "link_hombre": ""
+      }
     }
   },
   "order": [
@@ -588,6 +604,8 @@
     "contenido_smartwatch_BKNBQq",
     "product_luxury_template_xEKHPW",
     "luxury_smartwatch_mujer_bYA9me",
-    "cyber_smartwatch_mujer_qEKBDK"
+    "cyber_smartwatch_mujer_qEKBDK",
+    "smartwatch_hero_section_GJGkxR",
+    "luxury_smartwatch_hombre_BrAdDG"
   ]
 }
