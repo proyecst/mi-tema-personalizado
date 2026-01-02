@@ -1,104 +1,132 @@
 <style>
-  /* Configuración General */
-  .hero-ad-block {
-    background-color: #000000;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 60px 10%;
-    font-family: "Futura", "Trebuchet MS", sans-serif;
-    gap: 40px;
-    overflow: hidden;
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Rajdhani:wght@500;700&display=swap');
+
+  .cb-wrapper {
+    background-color: #000;
+    padding: 60px 5%;
+    font-family: 'Rajdhani', sans-serif;
   }
 
-  /* Contenedor de Texto */
-  .hero-text-content {
-    flex: 1;
-    z-index: 2;
-  }
-
-  .hero-text-content h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: #ffffff;
-    text-transform: uppercase;
-    margin: 0;
-    line-height: 1;
-    /* EFECTO GLOW / RESPLANDOR */
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.3);
-  }
-
-  .hero-text-content p {
-    font-size: 1.2rem;
-    color: #cccccc;
-    margin-top: 20px;
-    text-transform: none;
-    letter-spacing: 0.5px;
-  }
-
-  /* Contenedor de Imagen (El "Add Block") */
-  .hero-image-block {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+  .cb-block {
+    max-width: 1200px;
+    margin: 0 auto 80px auto;
+    border-left: 5px solid #fff;
+    padding: 20px 0 20px 40px;
     position: relative;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: cb-slideIn 0.8s forwards ease-out;
   }
 
-  .hero-image-block img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 4px;
-    /* Efecto de borde iluminado para la imagen */
-    box-shadow: 0 0 20px rgba(255,255,255,0.1);
-    transition: transform 0.5s ease;
-  }
-  
-  .hero-image-block img:hover {
-    transform: scale(1.02);
+  /* ESTILO CYBER MUJER */
+  .cb-mujer { border-color: #ff00ff; box-shadow: -10px 0 20px rgba(255, 0, 255, 0.2); }
+  .cb-mujer .cb-title { color: #fff; text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; }
+  .cb-mujer .cb-btn { background: #ff00ff; color: #fff; }
+
+  /* ESTILO CYBER HOMBRE */
+  .cb-hombre { border-color: #00f2ff; box-shadow: -10px 0 20px rgba(0, 242, 255, 0.2); animation-delay: 0.3s; }
+  .cb-hombre .cb-title { color: #fff; text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff; }
+  .cb-hombre .cb-btn { background: #00f2ff; color: #000; }
+
+  .cb-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    text-transform: uppercase;
+    margin: 0 0 15px 0;
+    letter-spacing: 2px;
   }
 
-  /* Cuadrícula de características inferior */
-  .features-line {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 30px 10%;
-    background: #000;
-    border-top: 1px solid #222;
+  .cb-text {
+    font-size: 1.3rem;
+    color: #e0e0e0;
+    max-width: 800px;
+    line-height: 1.4;
+    margin-bottom: 25px;
   }
 
-  .feature-item {
-    border-left: 2px solid #ffffff;
-    padding-left: 15px;
+  .cb-keywords {
+    font-size: 10px;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
   }
 
-  .feature-item h3 {
-    font-size: 0.9rem;
-    margin: 0;
-    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+  .cb-btn {
+    display: inline-block;
+    padding: 12px 40px;
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    transition: 0.3s;
   }
 
-  /* Adaptación para Móviles */
+  .cb-btn:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    box-shadow: 0 0 20px currentColor;
+  }
+
+  @keyframes cb-slideIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
   @media (max-width: 768px) {
-    .hero-ad-block {
-      flex-direction: column;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .hero-text-content h1 {
-      font-size: 2.5rem;
-    }
-    .hero-image-block img {
-      max-width: 300px;
-    }
-    .feature-item {
-      border-left: none;
-      border-bottom: 1px solid #222;
-      padding: 0 0 15px 0;
-    }
+    .cb-block { padding-left: 20px; border-left-width: 3px; }
   }
 </style>
 
-<div class="hero-ad-block">
-  <div class="hero-text-content">
+<div class="cb-wrapper">
+
+  <div class="cb-block cb-mujer">
+    <h2 class="cb-title">Relojes Smartwatch Mujer – Tecnología que se Ajusta a Tu Estilo</h2>
+    <p class="cb-text">
+      Encuentra <strong>smartwatches mujer</strong> con pantallas AMOLED, funciones de salud, GPS, notificaciones y diseños elegantes. Perfectos para deporte, trabajo y vida diaria.
+    </p>
+    
+    {% if section.settings.url_mujer != blank %}
+      <a href="{{ section.settings.url_mujer }}" class="cb-btn">Ver Colección</a>
+    {% endif %}
+
+    <div class="cb-keywords">smartwatch mujer, smartwatches mujer, smart watch mujer, reloj smartwatch mujer precio</div>
+  </div>
+
+  <div class="cb-block cb-hombre">
+    <h2 class="cb-title">Relojes Smartwatch Hombre – Potencia, Rendimiento y Estilo</h2>
+    <p class="cb-text">
+      <strong>Smartwatches hombre</strong> con batería de larga duración, GPS, llamadas Bluetooth, monitoreo deportivo y diseño resistente.
+    </p>
+
+    {% if section.settings.url_hombre != blank %}
+      <a href="{{ section.settings.url_hombre }}" class="cb-btn">Ver Colección</a>
+    {% endif %}
+
+    <div class="cb-keywords">smartwatch hombre, smartwatches hombre, relojes smartwatch hombre, smart watch hombre</div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Add Block Cyberpunk",
+  "settings": [
+    {
+      "type": "url",
+      "id": "url_mujer",
+      "label": "Link Colección Mujer"
+    },
+    {
+      "type": "url",
+      "id": "url_hombre",
+      "label": "Link Colección Hombre"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Add Block Cyberpunk"
+    }
+  ]
+}
+{% endschema %}
