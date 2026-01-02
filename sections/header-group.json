@@ -545,6 +545,11 @@
       "disabled": true,
       "name": "Luxury Product Detail",
       "settings": {}
+    },
+    "luxury_smartwatch_mujer_bYA9me": {
+      "type": "luxury-smartwatch-mujer",
+      "name": "Luxury Smartwatch Mujer",
+      "settings": {}
     }
   },
   "order": [
@@ -568,6 +573,7 @@
     "categorias_destacadas_8U4fzT",
     "kieselect_features_grid_y8DrQM",
     "contenido_smartwatch_BKNBQq",
-    "product_luxury_template_xEKHPW"
+    "product_luxury_template_xEKHPW",
+    "luxury_smartwatch_mujer_bYA9me"
   ]
 }

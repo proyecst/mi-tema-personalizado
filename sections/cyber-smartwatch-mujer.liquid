@@ -1,0 +1,165 @@
+<style>
+  /* Importar fuente futurista similar a Futura/Orbitron */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Montserrat:wght@300;700&display=swap');
+
+  .cyber-section {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 100px 5%;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* Animación de entrada para todo el bloque */
+  .cyber-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.2s forwards ease-out;
+  }
+
+  /* BLOQUE IZQUIERDA: TEXTO FUTURISTA */
+  .cyber-content-left {
+    flex: 1.2;
+    z-index: 2;
+  }
+
+  .cyber-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1;
+    margin: 0 0 20px 0;
+    color: #ffffff;
+    text-transform: uppercase;
+    /* EFECTO GLOW NEÓN */
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+    animation: pulseGlow 3s infinite alternate;
+  }
+
+  .cyber-description {
+    font-size: 1.2rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 550px;
+  }
+
+  .cyber-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  .cyber-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-left: 3px solid #ff00ff;
+    transition: 0.3s;
+  }
+
+  .cyber-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+    box-shadow: -5px 0 15px #ff00ff;
+  }
+
+  .cyber-item h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: 2px;
+  }
+
+  /* BLOQUE DERECHA: IMAGEN CON ANIMACIÓN FLOATING */
+  .cyber-media-right {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cyber-media-right img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.3));
+    animation: floating 4s infinite ease-in-out;
+  }
+
+  /* KEYFRAMES DE ANIMACIONES */
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulseGlow {
+    from { text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff; }
+    to { text-shadow: 0 0 20px #fff, 0 0 40px #ff00ff, 0 0 60px #ff00ff; }
+  }
+
+  @keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* RESPONSIVO */
+  @media (max-width: 990px) {
+    .cyber-container { flex-direction: column; text-align: center; }
+    .cyber-grid { grid-template-columns: 1fr; }
+    .cyber-item { text-align: left; }
+    .cyber-title { font-size: 3rem; }
+  }
+</style>
+
+<section class="cyber-section">
+  <div class="cyber-container">
+    
+    <div class="cyber-content-left">
+      <h1 class="cyber-title">Smartwatch<br>Mujer</h1>
+      <p class="cyber-description">
+        Encuentra <strong>smartwatches mujer</strong> con pantallas AMOLED, funciones de salud, GPS y diseños elegantes. 
+        Tecnología futurista para tu vida diaria.
+      </p>
+
+      <div class="cyber-grid">
+        <div class="cyber-item">
+          <h3>DISEÑO ELÉGANTE</h3>
+        </div>
+        <div class="cyber-item">
+          <h3>SALUD (RITMO/SUEÑO)</h3>
+        </div>
+        <div class="cyber-item">
+          <h3>COMPATIBLE DA FIT</h3>
+        </div>
+        <div class="cyber-item">
+          <h3>SMARTWATCH GPS</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="cyber-media-right">
+       <img src="https://i.imgur.com/vHq0G6O.png" alt="Reloj Futurista Mujer">
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cyber Smartwatch Mujer",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Cyber Smartwatch Mujer"
+    }
+  ]
+}
+{% endschema %}
