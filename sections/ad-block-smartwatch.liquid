@@ -1,0 +1,159 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;700&display=swap');
+
+  .ad-cyber-wrapper {
+    background-color: #000;
+    color: #fff;
+    padding: 60px 5%;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .ad-block-item {
+    max-width: 1100px;
+    margin: 0 auto 100px auto;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideIn 1s forwards ease-out;
+  }
+
+  .ad-block-item:last-child { margin-bottom: 0; }
+
+  /* COLORES GLOW DIFERENCIADOS */
+  .glow-mujer { color: #fff; text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; border-left: 4px solid #ff00ff; }
+  .glow-hombre { color: #fff; text-shadow: 0 0 15px #00d4ff, 0 0 30px #00d4ff; border-left: 4px solid #00d4ff; }
+
+  .ad-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+    text-transform: uppercase;
+  }
+
+  .ad-intro {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 30px;
+    max-width: 800px;
+    padding-left: 24px;
+  }
+
+  /* GRID DE SECCIONES DETALLADAS */
+  .ad-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+    padding-left: 24px;
+  }
+
+  .feature-node {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border: 1px solid #222;
+    transition: 0.3s;
+  }
+
+  .feature-node:hover { background: rgba(255, 255, 255, 0.07); border-color: #444; }
+
+  .feature-node h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    margin: 0 0 5px 0;
+    letter-spacing: 1px;
+  }
+
+  .ad-link {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 24px;
+    padding: 12px 35px;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: 0.3s;
+  }
+
+  .ad-link:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+
+  .ad-keywords {
+    font-size: 11px;
+    color: #444;
+    margin-top: 30px;
+    padding-left: 24px;
+    text-transform: uppercase;
+  }
+
+  @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+
+  @media (max-width: 768px) {
+    .ad-title { font-size: 1.8rem; }
+    .ad-features-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="ad-cyber-wrapper">
+
+  <div class="ad-block-item">
+    <h2 class="ad-title glow-mujer">Relojes Smartwatch Mujer – Tecnología que se Ajusta a Tu Estilo</h2>
+    <p class="ad-intro">Encuentra <strong>smartwatches mujer</strong> con pantallas AMOLED, funciones de salud, GPS, notificaciones y diseños elegantes. Perfectos para deporte, trabajo y vida diaria.</p>
+    
+    <div class="ad-features-grid">
+      <div class="feature-node"><h4>DISEÑO ELEGANTE</h4><span>Moderno y sofisticado</span></div>
+      <div class="feature-node"><h4>SALUD</h4><span>Ritmo, sueño y estrés</span></div>
+      <div class="feature-node"><h4>APP DA FIT</h4><span>Sincronización total</span></div>
+      <div class="feature-node"><h4>GPS & PRECIO</h4><span>Calidad al mejor precio</span></div>
+    </div>
+
+    {% if section.settings.link_mujer != blank %}
+      <a href="{{ section.settings.link_mujer }}" class="ad-link">Explorar Mujer</a>
+    {% endif %}
+    
+    <div class="ad-keywords">Keywords: smartwatch mujer, smartwatches mujer, smart watch mujer, reloj smartwatch mujer precio</div>
+  </div>
+
+  <div class="ad-block-item" style="animation-delay: 0.4s;">
+    <h2 class="ad-title glow-hombre">Relojes Smartwatch Hombre – Potencia, Rendimiento y Estilo</h2>
+    <p class="ad-intro"><strong>Smartwatches hombre</strong> con batería de larga duración, GPS, llamadas Bluetooth, monitoreo deportivo y diseño resistente. Rendimiento extremo en tu muñeca.</p>
+
+    <div class="ad-features-grid">
+      <div class="feature-node"><h4>RESISTENCIA</h4><span>Construcción robusta</span></div>
+      <div class="feature-node"><h4>DEPORTE</h4><span>Monitoreo profesional</span></div>
+      <div class="feature-node"><h4>LLAMADAS</h4><span>Conexión Bluetooth</span></div>
+      <div class="feature-node"><h4>BATERÍA</h4><span>Larga duración</span></div>
+    </div>
+
+    {% if section.settings.link_hombre != blank %}
+      <a href="{{ section.settings.link_hombre }}" class="ad-link" style="background: #00d4ff; color: #000;">Explorar Hombre</a>
+    {% endif %}
+
+    <div class="ad-keywords">Keywords: smartwatch hombre, smartwatches hombre, relojes smartwatch hombre, smart watch hombre</div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Add Block Info Completa",
+  "settings": [
+    {
+      "type": "url",
+      "id": "link_mujer",
+      "label": "Link Colección Mujer"
+    },
+    {
+      "type": "url",
+      "id": "link_hombre",
+      "label": "Link Colección Hombre"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Add Block Info Completa"
+    }
+  ]
+}
+{% endschema %}
