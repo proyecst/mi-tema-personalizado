@@ -588,42 +588,35 @@
         "feature_pzC86F": {
           "type": "feature",
           "settings": {
-            "text": "Nombre del archivo o beneficio",
+            "text": "    Marca global con más de 10M usuarios",
             "link": ""
           }
         },
         "feature_pWCMdi": {
           "type": "feature",
           "settings": {
-            "text": "Nombre del archivo o beneficio",
+            "text": " Relojes inteligentes con diseñopremium vo o beneficio",
             "link": ""
           }
         },
         "feature_BfaPed": {
           "type": "feature",
           "settings": {
-            "text": "Nombre del archivo o beneficio",
+            "text": "2 años de garantía oficialen Méxicohivo o beneficio",
             "link": ""
           }
         },
         "feature_7xbwjL": {
           "type": "feature",
           "settings": {
-            "text": "Nombre del archivo o beneficio",
+            "text": "  App Da Fit y aplicaciones para smartwatch ",
             "link": ""
           }
         },
         "feature_8bqE6Y": {
           "type": "feature",
           "settings": {
-            "text": "Nombre del archivo o beneficio",
-            "link": ""
-          }
-        },
-        "feature_d4c7nH": {
-          "type": "feature",
-          "settings": {
-            "text": "Nombre del archivo o beneficio",
+            "text": "    Envío rápido y soportelocal",
             "link": ""
           }
         }
@@ -633,8 +626,7 @@
         "feature_pWCMdi",
         "feature_BfaPed",
         "feature_7xbwjL",
-        "feature_8bqE6Y",
-        "feature_d4c7nH"
+        "feature_8bqE6Y"
       ],
       "name": "Kieselect - Beneficios Grid",
       "settings": {
