@@ -1,6 +1,3 @@
-{% comment %}
-  KIESELECT TECH - MINIFICADO Y CORREGIDO
-{% endcomment %}
 <div class="ks-tech" id="ks-{{section.id}}"><div class="ks-cont"><div class="ks-wrap"><div class="ks-col-txt"><div class="ks-head"><h2 class="ks-tit">⭐ {{section.settings.title_es}}</h2><p class="ks-sub">{{section.settings.title_en}}</p><div class="ks-line"></div></div><div class="ks-list">{%for block in section.blocks%}<div class="ks-row" {{block.shopify_attributes}}><div class="ks-mark"><div class="ks-dot"></div></div><div class="ks-body"><p class="ks-txt">{{block.settings.text}}</p>{%if block.settings.link != blank%}<a href="{{block.settings.link}}" class="ks-lnk">CONNECTING...</a>{%endif%}</div></div>{%endfor%}</div></div><div class="ks-col-img"><div class="ks-frame">{%if section.settings.side_image != blank%}{{section.settings.side_image|image_url:width:800|image_tag:class:'ks-img',loading:'lazy'}}{%else%}<div class="ks-ph"><span>TECH_01</span></div>{%endif%}<div class="ks-scan"></div><div class="ks-c c1"></div><div class="ks-c c2"></div></div></div></div></div></div>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap');
@@ -25,7 +22,7 @@
 </style>
 {% schema %}
 {
-  "name": "Kieselect - Tech Min",
+  "name": "Kieselect - Tech Fixed",
   "settings": [
     {"type":"text","id":"title_es","label":"Título ES","default":"POR QUÉ ELEGIR KIESELECT"},
     {"type":"text","id":"title_en","label":"Título EN","default":"WHY CHOOSE KIESELECT"},
@@ -33,7 +30,7 @@
   ],
   "blocks": [
     {
-      "type": "benefit",
+      "type": "feature",
       "name": "Item",
       "settings": [
         {"type":"text","id":"text","label":"Texto","default":"Beneficio Kieselect"},
@@ -43,11 +40,11 @@
   ],
   "presets": [
     {
-      "name": "Kieselect - Tech Min",
+      "name": "Kieselect - Tech Fixed",
       "blocks": [
-        { "type": "benefit" },
-        { "type": "benefit" },
-        { "type": "benefit" }
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
       ]
     }
   ]

@@ -587,43 +587,23 @@
       "blocks": {
         "feature_pzC86F": {
           "type": "feature",
-          "settings": {
-            "feature_text": "Marca global con más de 10M usuarios",
-            "button_link": "",
-            "button_label": "Saber más"
-          }
+          "settings": {}
         },
         "feature_BfaPed": {
           "type": "feature",
-          "settings": {
-            "feature_text": "Relojes inteligentes con diseño premium",
-            "button_link": "",
-            "button_label": "Saber más"
-          }
+          "settings": {}
         },
         "feature_7xbwjL": {
           "type": "feature",
-          "settings": {
-            "feature_text": "2 años de garantía oficial en México",
-            "button_link": "",
-            "button_label": "Saber más"
-          }
+          "settings": {}
         },
         "feature_8bqE6Y": {
           "type": "feature",
-          "settings": {
-            "feature_text": "App Da Fit y aplicaciones para smartwatch",
-            "button_link": "",
-            "button_label": "Saber más"
-          }
+          "settings": {}
         },
         "feature_d4c7nH": {
           "type": "feature",
-          "settings": {
-            "feature_text": "Envío rápido y soporte local",
-            "button_link": "",
-            "button_label": "Saber más"
-          }
+          "settings": {}
         }
       },
       "block_order": [
@@ -633,12 +613,8 @@
         "feature_8bqE6Y",
         "feature_d4c7nH"
       ],
-      "disabled": true,
       "name": "Kieselect - Beneficios Grid",
-      "settings": {
-        "main_title": "⭐ POR QUÉ ELEGIR KIESELECT",
-        "sub_title": "WHY CHOOSE KIESELECT"
-      }
+      "settings": {}
     }
   },
   "order": [
