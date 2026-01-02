@@ -539,6 +539,12 @@
       "disabled": true,
       "name": "Contenido Smartwatch",
       "settings": {}
+    },
+    "product_luxury_template_xEKHPW": {
+      "type": "product-luxury-template",
+      "disabled": true,
+      "name": "Luxury Product Detail",
+      "settings": {}
     }
   },
   "order": [
@@ -561,6 +567,7 @@
     "hero_final_premium_Dtb439",
     "categorias_destacadas_8U4fzT",
     "kieselect_features_grid_y8DrQM",
-    "contenido_smartwatch_BKNBQq"
+    "contenido_smartwatch_BKNBQq",
+    "product_luxury_template_xEKHPW"
   ]
 }
