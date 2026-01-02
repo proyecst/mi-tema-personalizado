@@ -1,25 +1,27 @@
-<div class="ks-tech" id="ks-{{ section.id }}">
-  <div class="ks-cont">
-    <div class="ks-wrap">
-      <div class="ks-col-txt">
-        <div class="ks-head">
-          <h2 class="ks-tit">⭐ {{ section.settings.title_es }}</h2>
-          <p class="ks-sub">{{ section.settings.title_en }}</p>
-          <div class="ks-line"></div>
+<div class="ks-tech-container" id="ks-{{ section.id }}">
+  <div class="ks-main-card">
+    <div class="ks-layout-grid">
+      
+      <div class="ks-info-pane">
+        <div class="ks-top-bar">
+          <h2 class="ks-glitch-h2">⭐ {{ section.settings.title_es }}</h2>
+          <span class="ks-tagline">{{ section.settings.title_en }}</span>
+          <div class="ks-decor-line"></div>
         </div>
-        <div class="ks-list">
+
+        <div class="ks-tech-list">
           {% for block in section.blocks %}
-            <div class="ks-row" {{ block.shopify_attributes }}>
-              <div class="ks-mark"><div class="ks-dot"></div></div>
-              <div class="ks-body">
-                <p class="ks-txt">{{ block.settings.text }}</p>
-                <div class="ks-actions">
+            <div class="ks-tech-item" {{ block.shopify_attributes }}>
+              <div class="ks-indicator"></div>
+              <div class="ks-item-content">
+                <p class="ks-main-txt">{{ block.settings.text }}</p>
+                <div class="ks-btn-group">
                   {% if block.settings.link != blank %}
-                    <a href="{{ block.settings.link }}" class="ks-lnk">URL</a>
+                    <a href="{{ block.settings.link }}" class="ks-ui-btn">VIEW_LINK</a>
                   {% endif %}
                   {% if block.settings.document != blank %}
-                    <a href="{{ block.settings.document | image_url }}" class="ks-download" download>
-                      <span class="ks-blink">_</span>FILE
+                    <a href="{{ block.settings.document | image_url }}" class="ks-ui-btn ks-download-style" download>
+                      <span>📥</span> DOWNLOAD_FILE
                     </a>
                   {% endif %}
                 </div>
@@ -28,79 +30,113 @@
           {% endfor %}
         </div>
       </div>
-      <div class="ks-col-img">
-        <div class="ks-frame">
+
+      <div class="ks-visual-pane">
+        <div class="ks-border-frame">
           {% if section.settings.side_image != blank %}
-            {{ section.settings.side_image | image_url: width: 600 | image_tag: class: 'ks-img', loading: 'lazy' }}
+            {{ section.settings.side_image | image_url: width: 700 | image_tag: class: 'ks-main-gfx', loading: 'lazy' }}
           {% else %}
-            <div class="ks-ph"><span class="ks-glitch-text">DATA_STREAM</span></div>
+            <div class="ks-gfx-ph"><span>KIESELECT_CORE</span></div>
           {% endif %}
-          <div class="ks-scan"></div>
-          <div class="ks-c c-tl"></div>
-          <div class="ks-c c-br"></div>
+          <div class="ks-laser-scan"></div>
+          <div class="ks-angle a1"></div>
+          <div class="ks-angle a2"></div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap');
-.ks-tech{background:#03070d;color:#fff;padding:40px 0;font-family:'Rajdhani',sans-serif;overflow:hidden}.ks-cont{max-width:1000px;margin:0 auto;padding:0 20px}.ks-wrap{display:flex;align-items:center;gap:30px;background:rgba(0,242,255,.02);border:1px solid rgba(0,242,255,.1);padding:30px;border-radius:4px;position:relative}.ks-col-txt{flex:1.2}.ks-tit{font-family:'Orbitron',sans-serif;color:#00f2ff;font-size:20px;margin:0;text-shadow:0 0 10px rgba(0,242,255,.5)}.ks-sub{font-family:'Orbitron',sans-serif;font-size:9px;color:rgba(0,242,255,.4);margin:2px 0 10px;letter-spacing:2px}.ks-line{height:2px;width:60px;background:linear-gradient(90deg,#00f2ff,transparent);margin-bottom:20px}.ks-list{display:flex;flex-direction:column;gap:12px}.ks-row{display:flex;gap:12px;padding:10px;border-bottom:1px solid rgba(0,242,255,.05);transition:.3s}.ks-row:hover{background:rgba(0,242,255,.08);transform:translateX(5px);border-bottom:1px solid #00f2ff}.ks-dot{width:7px;height:7px;background:#00f2ff;box-shadow:0 0 8px #00f2ff;transform:rotate(45deg);margin-top:6px}.ks-txt{font-size:15px;margin:0;font-weight:600;text-transform:uppercase}.ks-actions{display:flex;gap:12px;margin-top:8px}.ks-lnk,.ks-download{font-size:9px;color:#00f2ff;text-decoration:none;letter-spacing:1px;font-family:'Orbitron';text-transform:uppercase}.ks-download{background:rgba(0,242,255,.1);padding:3px 8px;border:1px solid #00f2ff;display:flex;align-items:center;gap:4px}.ks-download:hover{background:#00f2ff;color:#000}.ks-blink{animation:b .8s infinite}@keyframes b{0%,100%{opacity:1}50%{opacity:0}}.ks-col-img{flex:.8}.ks-frame{position:relative;border:1px solid rgba(0,242,255,.2);background:#000;padding:8px}.ks-img{width:100%;height:auto;display:block}.ks-ph{height:220px;background:#050b15;display:flex;align-items:center;justify-content:center;border:1px dashed rgba(0,242,255,.3)}.ks-glitch-text{font-family:'Orbitron';color:#00f2ff;font-size:10px}.ks-scan{position:absolute;top:0;left:0;right:0;height:2px;background:#00f2ff;box-shadow:0 0 10px #00f2ff;animation:s 4s linear infinite;z-index:2}.ks-c{position:absolute;width:12px;height:12px;border:2px solid #00f2ff}.c-tl{top:-2px;left:-2px;border-right:0;border-bottom:0}.c-br{bottom:-2px;right:-2px;border-left:0;border-top:0}@keyframes s{0%{top:0}100%{top:100%}}@media(max-width:768px){.ks-wrap{flex-direction:column;padding:20px}.ks-col-img{width:100%}}
+
+.ks-tech-container { background: #02060c; color: #fff; padding: 60px 20px; font-family: 'Rajdhani', sans-serif; }
+.ks-main-card { max-width: 1100px; margin: 0 auto; background: rgba(0, 242, 255, 0.03); border: 1px solid rgba(0, 242, 255, 0.1); padding: 40px; border-radius: 5px; }
+.ks-layout-grid { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+
+.ks-info-pane { flex: 1.2; min-width: 300px; }
+.ks-glitch-h2 { font-family: 'Orbitron'; color: #00f2ff; font-size: 24px; margin: 0; text-shadow: 0 0 10px rgba(0, 242, 255, 0.4); }
+.ks-tagline { font-family: 'Orbitron'; font-size: 10px; color: rgba(0, 242, 255, 0.5); letter-spacing: 3px; display: block; margin-top: 5px; }
+.ks-decor-line { height: 2px; width: 60px; background: #00f2ff; margin: 20px 0; box-shadow: 0 0 8px #00f2ff; }
+
+.ks-tech-list { display: flex; flex-direction: column; gap: 20px; }
+.ks-tech-item { display: flex; gap: 15px; padding: 10px; border-left: 2px solid rgba(0, 242, 255, 0.2); transition: 0.3s; }
+.ks-tech-item:hover { background: rgba(0, 242, 255, 0.07); border-left: 2px solid #00f2ff; transform: translateX(5px); }
+.ks-indicator { width: 8px; height: 8px; background: #00f2ff; margin-top: 6px; box-shadow: 0 0 5px #00f2ff; transform: rotate(45deg); }
+.ks-main-txt { font-size: 17px; margin: 0; font-weight: 600; text-transform: uppercase; }
+
+.ks-btn-group { display: flex; gap: 10px; margin-top: 10px; }
+.ks-ui-btn { font-family: 'Orbitron'; font-size: 9px; color: #00f2ff; text-decoration: none; border: 1px solid rgba(0, 242, 255, 0.3); padding: 4px 10px; transition: 0.3s; }
+.ks-ui-btn:hover { background: #00f2ff; color: #000; box-shadow: 0 0 10px #00f2ff; }
+.ks-download-style { background: rgba(0, 242, 255, 0.1); border-color: #00f2ff; font-weight: bold; }
+
+.ks-visual-pane { flex: 0.8; min-width: 300px; }
+.ks-border-frame { position: relative; border: 1px solid rgba(0, 242, 255, 0.2); padding: 10px; background: #000; }
+.ks-main-gfx { width: 100%; height: auto; display: block; }
+.ks-gfx-ph { height: 250px; display: flex; align-items: center; justify-content: center; color: #00f2ff; font-family: 'Orbitron'; border: 1px dashed #00f2ff; }
+
+.ks-laser-scan { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #00f2ff; box-shadow: 0 0 10px #00f2ff; animation: scan 4s linear infinite; }
+.ks-angle { position: absolute; width: 15px; height: 15px; border: 2px solid #00f2ff; }
+.a1 { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+.a2 { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+
+@keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
+@media (max-width: 768px) { .ks-layout-grid { flex-direction: column; } .ks-info-pane, .ks-visual-pane { width: 100%; } }
 </style>
 
 {% schema %}
 {
-  "name": "Kieselect - Tech Final",
+  "name": "Kieselect - Tech Ultra",
   "settings": [
     {
       "type": "text",
       "id": "title_es",
-      "label": "Título ES",
+      "label": "Título Español",
       "default": "POR QUÉ ELEGIR KIESELECT"
     },
     {
       "type": "text",
       "id": "title_en",
-      "label": "Título EN",
+      "label": "Título Inglés",
       "default": "WHY CHOOSE KIESELECT"
     },
     {
       "type": "image_picker",
       "id": "side_image",
-      "label": "Imagen Lateral"
+      "label": "Imagen Derecha"
     }
   ],
   "blocks": [
     {
       "type": "feature",
-      "name": "Item",
+      "name": "Item con Descarga",
       "settings": [
         {
           "type": "text",
           "id": "text",
           "label": "Texto",
-          "default": "Archivo de Sistema"
+          "default": "Nombre del archivo o beneficio"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Enlace URL"
+          "label": "Link Opcional"
         },
         {
           "type": "image_picker",
           "id": "document",
-          "label": "Archivo (Sube aquí tu PDF/Imagen)"
+          "label": "Archivo (Sube PDF o Imagen aquí)"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Kieselect - Tech Final",
+      "name": "Kieselect - Tech Ultra",
       "blocks": [
-        { "type": "feature" },
-        { "type": "feature" }
+        { "type": "feature", "settings": { "text": "Manual de usuario PDF" } },
+        { "type": "feature", "settings": { "text": "Certificación Global" } }
       ]
     }
   ]
