@@ -1,0 +1,200 @@
+{% comment %}
+  SECCIÓN: KIESELECT WHY CHOOSE - GRID DINÁMICO
+  Diseño Premium con soporte para links y bloques editables.
+{% endcomment %}
+
+<div class="ks-features-section" id="ks-{{ section.id }}">
+  <div class="ks-container">
+    <div class="ks-header">
+      <h2 class="ks-main-title">{{ section.settings.main_title }}</h2>
+      <p class="ks-subtitle">{{ section.settings.sub_title }}</p>
+    </div>
+
+    <div class="ks-features-grid">
+      {% for block in section.blocks %}
+        <div class="ks-feature-card" {{ block.shopify_attributes }}>
+          <div class="ks-card-content">
+            <div class="ks-icon-box">
+              <span class="ks-bullet-gold">●</span>
+            </div>
+            <div class="ks-info-box">
+              <h3 class="ks-feature-text">{{ block.settings.feature_text }}</h3>
+              {% if block.settings.button_link != blank %}
+                <a href="{{ block.settings.button_link }}" class="ks-action-link">
+                  {{ block.settings.button_label | default: 'Ver detalles' }} 
+                  <span class="ks-arrow">→</span>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Variables de Marca Kieselect */
+  :root {
+    --ks-gold: #D4AF37;
+    --ks-black: #000000;
+    --ks-dark-grey: #1A1A1A;
+    --ks-text-light: #F4F4F4;
+    --ks-text-muted: #A0A0A0;
+  }
+
+  .ks-features-section {
+    background-color: var(--ks-black);
+    padding: 80px 24px;
+    font-family: 'Inter', -apple-system, sans-serif;
+  }
+
+  .ks-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ks-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .ks-main-title {
+    color: var(--ks-text-light);
+    font-size: clamp(24px, 4vw, 32px);
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .ks-subtitle {
+    color: var(--ks-gold);
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  .ks-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+  }
+
+  .ks-feature-card {
+    background: var(--ks-dark-grey);
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+  }
+
+  .ks-feature-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--ks-gold);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+  }
+
+  .ks-card-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .ks-bullet-gold {
+    color: var(--ks-gold);
+    font-size: 24px;
+    line-height: 1;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+  }
+
+  .ks-feature-text {
+    color: var(--ks-text-light);
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+  }
+
+  .ks-action-link {
+    color: var(--ks-gold);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .ks-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .ks-action-link:hover .ks-arrow {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 768px) {
+    .ks-features-section { padding: 50px 20px; }
+    .ks-features-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Kieselect - Why Choose",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Título Principal",
+      "default": "⭐ POR QUÉ ELEGIR KIESELECT"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Subtítulo",
+      "default": "WHY CHOOSE KIESELECT"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Punto de Venta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Texto del Beneficio"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Enlace (URL)"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Etiqueta del Link",
+          "default": "Saber más"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kieselect - Beneficios Grid",
+      "blocks": [
+        { "type": "feature", "settings": { "feature_text": "Marca global con más de 10M usuarios" } },
+        { "type": "feature", "settings": { "feature_text": "Relojes inteligentes con diseño premium" } },
+        { "type": "feature", "settings": { "feature_text": "2 años de garantía oficial en México" } },
+        { "type": "feature", "settings": { "feature_text": "App Da Fit y aplicaciones para smartwatch" } },
+        { "type": "feature", "settings": { "feature_text": "Envío rápido y soporte local" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
