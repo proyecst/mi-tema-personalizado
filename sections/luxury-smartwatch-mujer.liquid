@@ -1,0 +1,177 @@
+<style>
+  @import url('https://fonts.cdnfonts.com/css/futura-pt'); /* Simulando Futura */
+
+  .luxury-section-wrapper {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 80px 5%;
+    font-family: 'Futura PT', 'Futura', sans-serif;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .luxury-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+
+  /* BLOQUE IZQUIERDA: CONTENIDO */
+  .luxury-content-left {
+    flex: 1.2;
+    text-align: left;
+  }
+
+  .luxury-glow-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    text-transform: uppercase;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 25px 0;
+    color: #ffffff;
+    /* EFECTO GLOW RESPLANDOR */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.3);
+    letter-spacing: -1px;
+  }
+
+  .luxury-intro-text {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 600px;
+    text-transform: none;
+  }
+
+  .luxury-grid-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .feature-item {
+    border-left: 2px solid #ffffff;
+    padding-left: 15px;
+  }
+
+  .feature-item h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
+    color: #ffffff;
+    letter-spacing: 1px;
+  }
+
+  .feature-item p {
+    font-size: 0.9rem;
+    color: #999;
+    margin: 0;
+    text-transform: none;
+  }
+
+  /* BLOQUE DERECHA: IMAGEN */
+  .luxury-media-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .luxury-media-right img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 2px;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
+    transition: transform 0.8s ease;
+  }
+
+  .luxury-media-right:hover img {
+    transform: scale(1.03);
+  }
+
+  /* RESPONSIVO */
+  @media (max-width: 990px) {
+    .luxury-container {
+      flex-direction: column;
+      text-align: center;
+    }
+    .luxury-content-left {
+      text-align: center;
+    }
+    .luxury-grid-features {
+      grid-template-columns: 1fr;
+    }
+    .feature-item {
+      border-left: none;
+      border-bottom: 1px solid #333;
+      padding: 0 0 15px 0;
+    }
+    .luxury-intro-text {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>
+
+<section class="luxury-section-wrapper">
+  <div class="luxury-container">
+    
+    <div class="luxury-content-left">
+      <h1 class="luxury-glow-title">Relojes Smartwatch Mujer – Tecnología que se Ajusta a Tu Estilo</h1>
+      
+      <p class="luxury-intro-text">
+        Encuentra <strong>smartwatches mujer</strong> con pantallas AMOLED, funciones de salud, GPS, notificaciones y diseños elegantes. 
+        Perfectos para deporte, trabajo y vida diaria.
+      </p>
+
+      <div class="luxury-grid-features">
+        <div class="feature-item">
+          <h3>Diseño elegante</h3>
+          <p>Estilo moderno y acabados premium para cada ocasión.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Salud Integral</h3>
+          <p>Seguimiento de ritmo cardíaco, sueño y estrés.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Compatibilidad</h3>
+          <p>Optimizado para aplicaciones y <strong>Smartwatch Da Fit</strong>.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Tecnología GPS</h3>
+          <p>Precisión en tus rutas y mejor <strong>reloj smartwatch mujer precio</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="luxury-media-right">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+      {% else %}
+        <img src="https://i.imgur.com/r62Kq3i.png" alt="Reloj Smartwatch Mujer">
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Luxury Smartwatch Mujer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagen de la Sección"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Smartwatch Mujer"
+    }
+  ]
+}
+{% endschema %}
