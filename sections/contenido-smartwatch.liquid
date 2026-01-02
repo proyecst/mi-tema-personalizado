@@ -1,115 +1,104 @@
 <style>
-  .smartwatch-container {
+  /* Configuración General */
+  .hero-ad-block {
     background-color: #000000;
     color: #ffffff;
-    padding: 60px 20px;
-    font-family: "Futura", "Trebuchet MS", sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .smartwatch-header {
-    text-align: left;
-    margin-bottom: 30px;
     display: flex;
     align-items: center;
-    gap: 30px;
-  }
-
-  .smartwatch-header h1 {
-    font-size: 2.5rem;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); /* Efecto Glow */
-    margin-bottom: 10px;
-  }
-
-  .smartwatch-header .hero-image {
-    max-width: 250px;
-    border-radius: 10px;
-    object-fit: cover;
-    box-shadow: 0 0 15px rgba(255,255,255,0.3);
-  }
-
-  .smartwatch-grid {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 20px;
-    margin-top: 30px;
+    padding: 60px 10%;
+    font-family: "Futura", "Trebuchet MS", sans-serif;
+    gap: 40px;
+    overflow: hidden;
   }
 
-  .smartwatch-card {
+  /* Contenedor de Texto */
+  .hero-text-content {
     flex: 1;
-    min-width: 250px;
-    border-left: 1px solid #333;
-    padding-left: 20px;
+    z-index: 2;
   }
 
-  .smartwatch-card h3 {
-    font-size: 1.1rem;
+  .hero-text-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
     color: #ffffff;
-    text-shadow: 0 0 8px rgba(255,255,255,0.6);
-    margin-bottom: 15px;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1;
+    /* EFECTO GLOW / RESPLANDOR */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.3);
   }
 
-  .smartwatch-card p {
-    font-size: 0.9rem;
+  .hero-text-content p {
+    font-size: 1.2rem;
     color: #cccccc;
-    line-height: 1.4;
+    margin-top: 20px;
     text-transform: none;
+    letter-spacing: 0.5px;
   }
 
+  /* Contenedor de Imagen (El "Add Block") */
+  .hero-image-block {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-image-block img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 4px;
+    /* Efecto de borde iluminado para la imagen */
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    transition: transform 0.5s ease;
+  }
+  
+  .hero-image-block img:hover {
+    transform: scale(1.02);
+  }
+
+  /* Cuadrícula de características inferior */
+  .features-line {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 30px 10%;
+    background: #000;
+    border-top: 1px solid #222;
+  }
+
+  .feature-item {
+    border-left: 2px solid #ffffff;
+    padding-left: 15px;
+  }
+
+  .feature-item h3 {
+    font-size: 0.9rem;
+    margin: 0;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+  }
+
+  /* Adaptación para Móviles */
   @media (max-width: 768px) {
-    .smartwatch-header {
+    .hero-ad-block {
       flex-direction: column;
       text-align: center;
-      margin-bottom: 20px;
+      padding: 40px 20px;
     }
-    .smartwatch-header .hero-image {
-      max-width: 180px;
-      margin-bottom: 20px;
+    .hero-text-content h1 {
+      font-size: 2.5rem;
     }
-    .smartwatch-grid {
-      flex-direction: column;
+    .hero-image-block img {
+      max-width: 300px;
     }
-    .smartwatch-card {
+    .feature-item {
       border-left: none;
-      border-bottom: 1px solid #333;
-      padding-bottom: 20px;
-      padding-left: 0;
+      border-bottom: 1px solid #222;
+      padding: 0 0 15px 0;
     }
   }
 </style>
 
-<div class="smartwatch-container">
-  <div class="smartwatch-header">
-    <img src="https://i.imgur.com/r62Kq3i.png" alt="Mujer joven con Smartwatch elegante" class="hero-image">
-    <div>
-      <h1>Smartwatch Mujer</h1>
-      <p>Tecnología que se Ajusta a Tu Estilo</p>
-    </div>
-  </div>
-
-  <div class="smartwatch-grid">
-    <div class="smartwatch-card">
-      <h3>Diseño Elegante</h3>
-      <p>Pantallas AMOLED y diseños que complementan tu estilo diario.</p>
-    </div>
-
-    <div class="smartwatch-card">
-      <h3>Salud & Deporte</h3>
-      <p>Seguimiento de ritmo, sueño, estrés y funciones GPS integradas.</p>
-    </div>
-
-    <div class="smartwatch-card">
-      <h3>Conectividad</h3>
-      <p>Compatible con aplicaciones y optimizado para Smartwatch Da Fit.</p>
-    </div>
-
-    <div class="smartwatch-card">
-      <h3>Precios</h3>
-      <p>El mejor reloj smartwatch mujer precio con tecnología de vanguardia.</p>
-    </div>
-  </div>
-</div>
-```http://googleusercontent.com/image_generation_content/1
+<div class="hero-ad-block">
+  <div class="hero-text-content">
