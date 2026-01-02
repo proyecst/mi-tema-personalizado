@@ -15,11 +15,11 @@
     max-width: 1200px;
     width: 100%;
     display: flex;
-    align-items: flex-start;
-    gap: 50px;
+    align-items: center;
+    gap: 40px;
   }
 
-  /* CONTENIDO PRINCIPAL (IZQUIERDA) */
+  /* --- CONTENIDO PRINCIPAL (IZQUIERDA) --- */
   .luxury-content-main {
     flex: 1.5;
     text-align: left;
@@ -33,73 +33,65 @@
     margin: 0 0 25px 0;
     color: #ffffff;
     text-shadow: 0 0 10px #00d4ff, 0 0 30px rgba(0, 212, 255, 0.6);
-    letter-spacing: -1px;
-  }
-
-  .luxury-intro-text {
-    font-size: 1.2rem;
-    color: #e0e0e0;
-    line-height: 1.6;
-    margin-bottom: 40px;
   }
 
   /* --- EL ADD BLOCK (ANUNCIO DERECHA) --- */
-  .cyber-add-block {
+  .system-add-block {
     flex: 0.8;
-    background: rgba(20, 20, 20, 0.8);
-    border: 1px solid #ff00ff;
-    padding: 30px;
+    background: rgba(255, 0, 255, 0.03);
+    border: 2px solid #ff00ff;
+    padding: 40px 20px;
+    text-align: center;
     position: relative;
-    box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
-    border-radius: 4px;
-    animation: flicker-border 2s infinite secondary;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+    /* Animación de parpadeo suave tipo Cyberpunk */
+    animation: pulse-border 3s infinite;
   }
 
-  .add-block-header {
-    background: #ff00ff;
-    color: #000;
-    font-weight: 900;
-    font-size: 0.7rem;
-    padding: 3px 10px;
+  .add-block-tag {
     position: absolute;
     top: -12px;
-    left: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff00ff;
+    color: #000;
+    font-size: 0.7rem;
+    padding: 2px 15px;
+    font-weight: bold;
     text-transform: uppercase;
-  }
-
-  .add-block-content {
-    font-family: monospace;
-    color: #ff00ff;
-    text-align: center;
+    white-space: nowrap;
   }
 
   .add-block-content h4 {
+    color: #fff;
     font-size: 1.5rem;
     margin: 0 0 10px 0;
-    color: #fff;
+    font-family: monospace;
     text-shadow: 0 0 10px #ff00ff;
   }
 
-  .add-block-price {
+  .add-block-promo {
     font-size: 2.5rem;
-    font-weight: bold;
+    font-weight: 900;
+    color: #ff00ff;
     display: block;
-    margin: 15px 0;
+    margin: 10px 0;
   }
 
-  /* ESTILO DE CÓDIGO ROSADO */
-  .code-highlight {
+  /* ESTILO CÓDIGO ROSADO */
+  .code-pink {
     color: #ff00ff;
     font-family: monospace;
-    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+    text-transform: uppercase;
     font-weight: bold;
-    font-size: 0.9rem;
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
   }
 
   .luxury-grid-features {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
+    margin-top: 30px;
   }
 
   .feature-item {
@@ -109,8 +101,7 @@
 
   .feature-item h3 {
     font-size: 1rem;
-    text-transform: uppercase;
-    margin: 0 0 8px 0;
+    margin: 0;
     color: #ffffff;
   }
 
@@ -133,15 +124,14 @@
     box-shadow: 0 0 25px #00d4ff;
   }
 
-  /* ANIMACIONES */
-  @keyframes flicker-border {
-    0%, 100% { border-color: #ff00ff; box-shadow: 0 0 15px rgba(255, 0, 255, 0.3); }
-    50% { border-color: #fff; box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); }
+  @keyframes pulse-border {
+    0%, 100% { border-color: #ff00ff; box-shadow: 0 0 20px rgba(255, 0, 255, 0.2); }
+    50% { border-color: #ffffff; box-shadow: 0 0 30px rgba(255, 0, 255, 0.5); }
   }
 
   @media (max-width: 990px) {
     .luxury-container { flex-direction: column; }
-    .cyber-add-block { width: 100%; margin-top: 40px; }
+    .system-add-block { width: 100%; margin-top: 50px; }
   }
 </style>
 
@@ -151,41 +141,41 @@
     <div class="luxury-content-main">
       <h1 class="luxury-glow-title">Relojes Smartwatch Hombre – Potencia, Rendimiento y Estilo</h1>
       
-      <p class="luxury-intro-text">
-        <strong>Smartwatches hombre</strong> con batería de larga duración, GPS, llamadas Bluetooth, monitoreo deportivo y diseño resistente. Rendimiento extremo en cada aventura.
+      <p style="font-size: 1.2rem; line-height: 1.6; color: #ccc;">
+        <strong>Smartwatches hombre</strong> con batería de larga duración, GPS, llamadas Bluetooth, monitoreo deportivo y diseño resistente. Rendimiento extremo.
       </p>
 
       <div class="luxury-grid-features">
         <div class="feature-item">
-          <h3>Potencia Extrema</h3>
-          <p style="font-size: 0.9rem; color: #999;">Batería para uso profesional.</p>
+          <h3>BATERÍA 15 DÍAS</h3>
+          <p style="font-size: 0.8rem; color: #888;">Optimización de energía.</p>
         </div>
         <div class="feature-item">
-          <h3>GPS Alta Precisión</h3>
-          <p style="font-size: 0.9rem; color: #999;">Rastreo exacto en tiempo real.</p>
+          <h3>SISTEMA GPS</h3>
+          <p style="font-size: 0.8rem; color: #888;">Rastreo global preciso.</p>
         </div>
       </div>
 
       {% if section.settings.link_hombre != blank %}
-        <a href="{{ section.settings.link_hombre }}" class="luxury-btn-hombre">Explorar Colección</a>
+        <a href="{{ section.settings.link_hombre }}" class="luxury-btn-hombre">Acceder a Catálogo</a>
       {% endif %}
 
-      <div style="margin-top: 50px; border-top: 1px solid #222; padding-top: 20px;">
-        <p class="code-highlight">
-          SYSTEM_INDEX: smartwatch hombre, smartwatches hombre, reloj smartwatch hombre precio, smart watch hombre
-        </p>
+      <div style="margin-top: 40px; border-top: 1px solid #222; padding-top: 20px;">
+        <span class="code-pink" style="font-size: 0.8rem;">
+          DATABASE_KEYWORDS: smartwatch hombre, smartwatches hombre, smart watch hombre
+        </span>
       </div>
     </div>
 
-    <aside class="cyber-add-block">
-      <div class="add-block-header">Offer_Available</div>
+    <div class="system-add-block">
+      <div class="add-block-tag">Publicidad de Sistema</div>
       <div class="add-block-content">
-        <h4>LIMITED EDITION</h4>
-        <p style="color: #888; font-size: 0.8rem;">Solo esta semana</p>
-        <span class="add-block-price">-25% OFF</span>
-        <p class="code-highlight">CODE: SMART_GEN_2026</p>
+        <h4>OFERTA_LIMITADA</h4>
+        <span class="add-block-promo">-30% OFF</span>
+        <p style="font-size: 0.9rem; color: #fff;">Solo por tiempo limitado en modelos seleccionados.</p>
+        <p class="code-pink" style="margin-top: 20px;">CÓDIGO: HOMBRE_2026</p>
       </div>
-    </aside>
+    </div>
 
   </div>
 </section>
@@ -197,7 +187,7 @@
     {
       "type": "url",
       "id": "link_hombre",
-      "label": "Link de Colección Hombre"
+      "label": "Enlace del Botón"
     }
   ],
   "presets": [
