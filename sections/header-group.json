@@ -651,6 +651,11 @@
         "title_es": "POR QUÉ ELEGIR KIESELECT",
         "title_en": "WHY CHOOSE KIESELECT"
       }
+    },
+    "contenido_smartwatch_BKNBQq": {
+      "type": "contenido-smartwatch",
+      "name": "Contenido Smartwatch",
+      "settings": {}
     }
   },
   "order": [
@@ -675,6 +680,7 @@
     "galerias_de_series_WJ9CdX",
     "asistente_virtual_yqjWGj",
     "kieslect_tech_comparator_p8UT44",
-    "kieselect_features_grid_y8DrQM"
+    "kieselect_features_grid_y8DrQM",
+    "contenido_smartwatch_BKNBQq"
   ]
 }

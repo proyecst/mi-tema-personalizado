@@ -1,37 +1,91 @@
-<div class="page-width">
-  <div style="padding: 40px 0; font-family: sans-serif;">
-    <h2 style="text-align: center; color: #333;">{{ section.settings.title }}</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-      
-      <div style="background: #f9f9f9; padding: 20px; border-radius: 10px;">
-        <h3>Diseño elegante</h3>
-        <p>Encuentra <strong>smartwatches mujer</strong> con pantallas AMOLED y diseños elegantes.</p>
-      </div>
+<style>
+  .smartwatch-container {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 60px 20px;
+    font-family: "Futura", "Trebuchet MS", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
 
-      <div style="background: #f9f9f9; padding: 20px; border-radius: 10px;">
-        <h3>Salud y GPS</h3>
-        <p>Funciones de salud y <strong>smartwatch GPS</strong> integrados para tu día a día.</p>
-      </div>
-      
-      </div>
+  .smartwatch-header {
+    text-align: left;
+    margin-bottom: 50px;
+  }
+
+  .smartwatch-header h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); /* Efecto Glow */
+    margin-bottom: 10px;
+  }
+
+  .smartwatch-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .smartwatch-card {
+    flex: 1;
+    min-width: 250px;
+    border-left: 1px solid #333;
+    padding-left: 20px;
+  }
+
+  .smartwatch-card h3 {
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.6);
+    margin-bottom: 15px;
+  }
+
+  .smartwatch-card p {
+    font-size: 0.9rem;
+    color: #cccccc;
+    line-height: 1.4;
+    text-transform: none; /* El texto largo se lee mejor en minúsculas */
+  }
+
+  @media (max-width: 768px) {
+    .smartwatch-grid {
+      flex-direction: column;
+    }
+    .smartwatch-card {
+      border-left: none;
+      border-bottom: 1px solid #333;
+      padding-bottom: 20px;
+      padding-left: 0;
+    }
+  }
+</style>
+
+<div class="smartwatch-container">
+  <div class="smartwatch-header">
+    <h1>Smartwatch Mujer</h1>
+    <p>Tecnología que se Ajusta a Tu Estilo</p>
+  </div>
+
+  <div class="smartwatch-grid">
+    <div class="smartwatch-card">
+      <h3>Diseño Elegante</h3>
+      <p>Pantallas AMOLED y diseños que complementan tu estilo diario.</p>
+    </div>
+
+    <div class="smartwatch-card">
+      <h3>Salud & Deporte</h3>
+      <p>Seguimiento de ritmo, sueño, estrés y funciones GPS integradas.</p>
+    </div>
+
+    <div class="smartwatch-card">
+      <h3>Conectividad</h3>
+      <p>Compatible con aplicaciones y optimizado para Smartwatch Da Fit.</p>
+    </div>
+
+    <div class="smartwatch-card">
+      <h3>Precios</h3>
+      <p>El mejor reloj smartwatch mujer precio con tecnología de vanguardia.</p>
+    </div>
   </div>
 </div>
-
-{% schema %}
-{
-  "name": "Contenido Smartwatch",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Título Principal",
-      "default": "Relojes Smartwatch Mujer"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Contenido Smartwatch"
-    }
-  ]
-}
-{% endschema %}
