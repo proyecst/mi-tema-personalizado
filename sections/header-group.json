@@ -577,7 +577,9 @@
       "type": "luxury-smartwatch-hombre",
       "name": "Luxury Smartwatch Hombre",
       "settings": {
-        "link_hombre": ""
+        "link_hombre": "",
+        "ad_image": "shopify://shop_images/imagen-lifestyle-con-smartwatch-kieslect.png",
+        "promo_text": "ENVÍO_GRATIS_2026"
       }
     }
   },
