@@ -1,8 +1,16 @@
-
 <div class="ks-tech-container" id="ks-{{ section.id }}">
   <div class="ks-main-card">
+    
+    <div class="ks-hero-header">
+      {% if section.settings.header_image != blank %}
+        {{ section.settings.header_image | image_url: width: 1200 | image_tag: class: 'ks-header-img', loading: 'lazy' }}
+      {% else %}
+        <div class="ks-header-ph"><span>KIESELECT_SYSTEM_ACTIVE</span></div>
+      {% endif %}
+      <div class="ks-header-overlay"></div>
+    </div>
+
     <div class="ks-layout-grid">
-      
       <div class="ks-info-pane">
         <div class="ks-top-bar">
           <h2 class="ks-glitch-h2">⭐ {{ section.settings.title_es }}</h2>
@@ -37,87 +45,96 @@
           {% if section.settings.side_image != blank %}
             {{ section.settings.side_image | image_url: width: 700 | image_tag: class: 'ks-main-gfx', loading: 'lazy' }}
           {% else %}
-            <div class="ks-gfx-ph"><span>KIESELECT_CORE</span></div>
+            <div class="ks-gfx-ph"><span>TECH_CORE</span></div>
           {% endif %}
-          <div class="ks-laser-scan"></div>
           <div class="ks-angle a1"></div>
           <div class="ks-angle a2"></div>
         </div>
       </div>
-
     </div>
+
   </div>
 </div>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;700&display=swap');
 
-.ks-tech-container { background: #02060c; color: #fff; padding: 60px 20px; font-family: 'Rajdhani', sans-serif; }
-.ks-main-card { max-width: 1100px; margin: 0 auto; background: rgba(0, 242, 255, 0.03); border: 1px solid rgba(0, 242, 255, 0.1); padding: 40px; border-radius: 5px; }
-.ks-layout-grid { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+.ks-tech-container { background: #02060c; color: #fff; padding: 40px 20px; font-family: 'Rajdhani', sans-serif; }
+.ks-main-card { max-width: 1100px; margin: 0 auto; background: rgba(0, 242, 255, 0.02); border: 1px solid rgba(0, 242, 255, 0.1); border-radius: 8px; overflow: hidden; }
 
+/* Estilo Imagen Horizontal */
+.ks-hero-header { width: 100%; height: 250px; position: relative; overflow: hidden; border-bottom: 2px solid #00f2ff; }
+.ks-header-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7) contrast(1.2); }
+.ks-header-ph { height: 100%; display: flex; align-items: center; justify-content: center; background: #050b15; color: #00f2ff; font-family: 'Orbitron'; font-size: 18px; letter-spacing: 5px; }
+.ks-header-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(2,6,12,1) 0%, rgba(2,6,12,0) 100%); }
+
+.ks-layout-grid { display: flex; align-items: flex-start; gap: 40px; padding: 40px; flex-wrap: wrap; }
 .ks-info-pane { flex: 1.2; min-width: 300px; }
-.ks-glitch-h2 { font-family: 'Orbitron'; color: #00f2ff; font-size: 24px; margin: 0; text-shadow: 0 0 10px rgba(0, 242, 255, 0.4); }
+.ks-glitch-h2 { font-family: 'Orbitron'; color: #00f2ff; font-size: 22px; margin: 0; }
 .ks-tagline { font-family: 'Orbitron'; font-size: 10px; color: rgba(0, 242, 255, 0.5); letter-spacing: 3px; display: block; margin-top: 5px; }
-.ks-decor-line { height: 2px; width: 60px; background: #00f2ff; margin: 20px 0; box-shadow: 0 0 8px #00f2ff; }
+.ks-decor-line { height: 2px; width: 60px; background: #00f2ff; margin: 20px 0; box-shadow: 0 0 10px #00f2ff; }
 
-.ks-tech-list { display: flex; flex-direction: column; gap: 20px; }
-.ks-tech-item { display: flex; gap: 15px; padding: 10px; border-left: 2px solid rgba(0, 242, 255, 0.2); transition: 0.3s; }
-.ks-tech-item:hover { background: rgba(0, 242, 255, 0.07); border-left: 2px solid #00f2ff; transform: translateX(5px); }
-.ks-indicator { width: 8px; height: 8px; background: #00f2ff; margin-top: 6px; box-shadow: 0 0 5px #00f2ff; transform: rotate(45deg); }
-.ks-main-txt { font-size: 17px; margin: 0; font-weight: 600; text-transform: uppercase; }
+.ks-tech-list { display: flex; flex-direction: column; gap: 15px; }
+.ks-tech-item { display: flex; gap: 15px; padding: 15px; background: rgba(0, 242, 255, 0.03); border-left: 3px solid rgba(0, 242, 255, 0.2); transition: 0.3s; }
+.ks-tech-item:hover { background: rgba(0, 242, 255, 0.1); border-left: 3px solid #00f2ff; transform: translateX(5px); }
+.ks-indicator { width: 8px; height: 8px; background: #00f2ff; margin-top: 6px; transform: rotate(45deg); }
+.ks-main-txt { font-size: 16px; margin: 0; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 
 .ks-btn-group { display: flex; gap: 10px; margin-top: 10px; }
-.ks-ui-btn { font-family: 'Orbitron'; font-size: 9px; color: #00f2ff; text-decoration: none; border: 1px solid rgba(0, 242, 255, 0.3); padding: 4px 10px; transition: 0.3s; }
-.ks-ui-btn:hover { background: #00f2ff; color: #000; box-shadow: 0 0 10px #00f2ff; }
-.ks-download-style { background: rgba(0, 242, 255, 0.1); border-color: #00f2ff; font-weight: bold; }
+.ks-ui-btn { font-family: 'Orbitron'; font-size: 9px; color: #00f2ff; text-decoration: none; border: 1px solid rgba(0, 242, 255, 0.3); padding: 5px 12px; transition: 0.3s; letter-spacing: 1px; }
+.ks-ui-btn:hover { background: #00f2ff; color: #000; font-weight: bold; }
+.ks-download-style { background: rgba(0, 242, 255, 0.1); border-color: #00f2ff; }
 
 .ks-visual-pane { flex: 0.8; min-width: 300px; }
-.ks-border-frame { position: relative; border: 1px solid rgba(0, 242, 255, 0.2); padding: 10px; background: #000; }
+.ks-border-frame { position: relative; border: 1px solid rgba(0, 242, 255, 0.1); padding: 10px; background: #000; }
 .ks-main-gfx { width: 100%; height: auto; display: block; }
-.ks-gfx-ph { height: 250px; display: flex; align-items: center; justify-content: center; color: #00f2ff; font-family: 'Orbitron'; border: 1px dashed #00f2ff; }
-
-.ks-laser-scan { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #00f2ff; box-shadow: 0 0 10px #00f2ff; animation: scan 4s linear infinite; }
 .ks-angle { position: absolute; width: 15px; height: 15px; border: 2px solid #00f2ff; }
 .a1 { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
 .a2 { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
 
-@keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
-@media (max-width: 768px) { .ks-layout-grid { flex-direction: column; } .ks-info-pane, .ks-visual-pane { width: 100%; } }
+@media (max-width: 768px) { 
+  .ks-layout-grid { flex-direction: column; padding: 20px; } 
+  .ks-hero-header { height: 180px; }
+}
 </style>
 
 {% schema %}
 {
-  "name": "Kieselect - Tech Ultra",
+  "name": "Kieselect - Tech Header",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "header_image",
+      "label": "Imagen Horizontal Superior"
+    },
     {
       "type": "text",
       "id": "title_es",
       "label": "Título Español",
-      "default": "POR QUÉ ELEGIR KIESELECT"
+      "default": "SISTEMA DE DESCARGAS"
     },
     {
       "type": "text",
       "id": "title_en",
       "label": "Título Inglés",
-      "default": "WHY CHOOSE KIESELECT"
+      "default": "KIESELECT TECH FILES"
     },
     {
       "type": "image_picker",
       "id": "side_image",
-      "label": "Imagen Derecha"
+      "label": "Imagen Lateral Apoyo"
     }
   ],
   "blocks": [
     {
       "type": "feature",
-      "name": "Item con Descarga",
+      "name": "Archivo",
       "settings": [
         {
           "type": "text",
           "id": "text",
-          "label": "Texto",
-          "default": "Nombre del archivo o beneficio"
+          "label": "Nombre del archivo",
+          "default": "MANUAL_USUARIO_LORA2.PDF"
         },
         {
           "type": "url",
@@ -127,17 +144,17 @@
         {
           "type": "image_picker",
           "id": "document",
-          "label": "Archivo (Sube PDF o Imagen aquí)"
+          "label": "Archivo (Sube PDF o Imagen)"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Kieselect - Tech Ultra",
+      "name": "Kieselect - Tech Header",
       "blocks": [
-        { "type": "feature", "settings": { "text": "Manual de usuario PDF" } },
-        { "type": "feature", "settings": { "text": "Certificación Global" } }
+        { "type": "feature" },
+        { "type": "feature" }
       ]
     }
   ]
