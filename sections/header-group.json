@@ -116,6 +116,35 @@
     "series_ia_HmgFFW": {
       "type": "series-ia",
       "blocks": {
+        "serie_JWcBwR": {
+          "type": "serie",
+          "settings": {
+            "image": "shopify://shop_images/Doc2_2.png",
+            "title": "KS MINI",
+            "link": ""
+          }
+        },
+        "serie_biM8fT": {
+          "type": "serie",
+          "settings": {
+            "title": "",
+            "link": ""
+          }
+        },
+        "serie_yBGHxY": {
+          "type": "serie",
+          "settings": {
+            "title": "",
+            "link": ""
+          }
+        },
+        "serie_UeheN4": {
+          "type": "serie",
+          "settings": {
+            "title": "",
+            "link": ""
+          }
+        },
         "serie_RB6hJb": {
           "type": "serie",
           "settings": {
@@ -174,6 +203,10 @@
         }
       },
       "block_order": [
+        "serie_JWcBwR",
+        "serie_biM8fT",
+        "serie_yBGHxY",
+        "serie_UeheN4",
         "serie_RB6hJb",
         "serie_KTfmwY",
         "serie_a8PdDV",
