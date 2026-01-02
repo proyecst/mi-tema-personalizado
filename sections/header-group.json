@@ -654,8 +654,17 @@
     },
     "contenido_smartwatch_BKNBQq": {
       "type": "contenido-smartwatch",
+      "disabled": true,
       "name": "Contenido Smartwatch",
       "settings": {}
+    },
+    "smartwatch_hero_section_PBYFRQ": {
+      "type": "smartwatch-hero-section",
+      "disabled": true,
+      "name": "Smartwatch Hero Block",
+      "settings": {
+        "bg_color": "#000000"
+      }
     }
   },
   "order": [
@@ -681,6 +690,7 @@
     "asistente_virtual_yqjWGj",
     "kieslect_tech_comparator_p8UT44",
     "kieselect_features_grid_y8DrQM",
-    "contenido_smartwatch_BKNBQq"
+    "contenido_smartwatch_BKNBQq",
+    "smartwatch_hero_section_PBYFRQ"
   ]
 }

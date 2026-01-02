@@ -1,125 +1,137 @@
 <style>
-  .smartwatch-hero-section {
+  /* Estenedor Principal del Anuncio */
+  .ad-block-wrapper {
     background-color: {{ section.settings.bg_color }};
-    color: {{ section.settings.text_color }};
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 60px 10%;
-    font-family: "Futura", "Trebuchet MS", sans-serif;
-    gap: 40px;
+    justify-content: center;
+    min-height: 500px;
+    padding: 60px 5%;
     overflow: hidden;
+    font-family: "Futura", "Trebuchet MS", sans-serif;
   }
 
-  .smartwatch-hero-text-content {
-    flex: 1;
+  .ad-block-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  /* BLOQUE IZQUIERDA: TEXTO */
+  .ad-block-left {
+    flex: 1.2;
+    text-align: left;
+    color: #ffffff;
     z-index: 2;
   }
 
-  .smartwatch-hero-text-content h2 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    color: {{ section.settings.heading_color }};
-    text-transform: uppercase;
-    margin: 0;
+  .ad-block-left h2 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     line-height: 1;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.3);
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 900;
+    /* EFECTO GLOW EN LETRAS */
+    text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.3);
   }
 
-  .smartwatch-hero-text-content p {
+  .ad-block-left p {
     font-size: 1.2rem;
-    color: {{ section.settings.paragraph_color }};
-    margin-top: 20px;
+    margin-top: 25px;
+    color: #cccccc;
+    max-width: 500px;
+    line-height: 1.5;
     text-transform: none;
   }
 
-  .smartwatch-hero-button {
+  .ad-block-button {
     display: inline-block;
-    background-color: {{ section.settings.button_bg_color }};
-    color: {{ section.settings.button_text_color }};
-    padding: 18px 35px;
-    margin-top: 30px;
+    margin-top: 35px;
+    padding: 15px 45px;
+    background-color: #ffffff;
+    color: #000000;
     text-decoration: none;
-    text-transform: uppercase;
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
     border-radius: 2px;
-    box-shadow: 0 0 15px {{ section.settings.button_bg_color | color_modify: 'alpha', 0.5 }};
   }
 
-  .smartwatch-hero-image-block {
+  .ad-block-button:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    transform: scale(1.05);
+  }
+
+  /* BLOQUE DERECHA: IMAGEN */
+  .ad-block-right {
     flex: 1;
     display: flex;
     justify-content: center;
+    position: relative;
   }
 
-  .smartwatch-hero-image-block img {
+  .ad-block-right img {
     width: 100%;
     max-width: 550px;
     height: auto;
-    border-radius: 5px;
-    box-shadow: 0 0 30px rgba(255,255,255,0.1);
+    object-fit: contain;
+    /* Resplandor sutil alrededor de la imagen */
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
   }
 
+  /* RESPONSIVO MÓVIL */
   @media (max-width: 768px) {
-    .smartwatch-hero-section {
+    .ad-block-container {
       flex-direction: column;
       text-align: center;
-      padding: 40px 20px;
+    }
+    .ad-block-left {
+      text-align: center;
+      order: 2;
+    }
+    .ad-block-right {
+      order: 1;
+      margin-bottom: 20px;
+    }
+    .ad-block-left p {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 </style>
 
-<div class="smartwatch-hero-section">
-  <div class="smartwatch-hero-text-content">
-    <h2>{{ section.settings.heading }}</h2>
-    <p>{{ section.settings.subheading }}</p>
-    {%- if section.settings.button_link != blank -%}
-      <a href="{{ section.settings.button_link }}" class="smartwatch-hero-button">
-        {{ section.settings.button_label }}
-      </a>
-    {%- endif -%}
-  </div>
+<section class="ad-block-wrapper">
+  <div class="ad-block-container">
+    
+    <div class="ad-block-left">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.description }}</p>
+      {% if section.settings.link != blank %}
+        <a href="{{ section.settings.link }}" class="ad-block-button">
+          {{ section.settings.btn_text }}
+        </a>
+      {% endif %}
+    </div>
 
-  <div class="smartwatch-hero-image-block">
-    {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
-    {%- else -%}
-      <img src="https://i.imgur.com/r62Kq3i.png" alt="Smartwatch Mujer">
-    {%- endif -%}
+    <div class="ad-block-right">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.title }}">
+      {% else %}
+        <img src="https://i.imgur.com/r62Kq3i.png" alt="Smartwatch Mujer">
+      {% endif %}
+    </div>
+
   </div>
-</div>
+</section>
 
 {% schema %}
 {
-  "name": "Smartwatch Hero Block",
+  "name": "Add Block Smartwatch",
   "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Título Principal",
-      "default": "Smartwatch Mujer"
-    },
-    {
-      "type": "textarea",
-      "id": "subheading",
-      "label": "Descripción",
-      "default": "Tecnología que se ajusta a tu estilo."
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Imagen de la Modelo"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Texto del Botón",
-      "default": "Comprar Ahora"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Enlace del Botón"
-    },
     {
       "type": "color",
       "id": "bg_color",
@@ -127,33 +139,37 @@
       "default": "#000000"
     },
     {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Color del Título",
-      "default": "#ffffff"
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Smartwatch Mujer"
     },
     {
-      "type": "color",
-      "id": "paragraph_color",
-      "label": "Color del Texto",
-      "default": "#cccccc"
+      "type": "textarea",
+      "id": "description",
+      "label": "Texto Izquierda",
+      "default": "Tecnología que se ajusta a tu estilo. Encuentra smartwatches con pantallas AMOLED y funciones de salud."
     },
     {
-      "type": "color",
-      "id": "button_bg_color",
-      "label": "Fondo del Botón",
-      "default": "#ffffff"
+      "type": "image_picker",
+      "id": "id_image",
+      "label": "Imagen Publicitaria"
     },
     {
-      "type": "color",
-      "id": "button_text_color",
+      "type": "text",
+      "id": "btn_text",
       "label": "Texto del Botón",
-      "default": "#000000"
+      "default": "DESCUBRIR"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Enlace del Botón"
     }
   ],
   "presets": [
     {
-      "name": "Smartwatch Hero Block"
+      "name": "Add Block Smartwatch"
     }
   ]
 }
