@@ -530,15 +530,20 @@
       ],
       "name": "Kieselect - Beneficios Grid",
       "settings": {
+        "header_image": "shopify://shop_images/Frame_24_2de4e223-f8dd-4cd3-ad63-c96e718c3c37.png",
         "title_es": "POR QUÉ ELEGIR KIESELECT",
-        "title_en": "WHY CHOOSE KIESELECT"
+        "title_en": "WHY CHOOSE KIESELECT",
+        "side_image": "shopify://shop_images/Frame_24.png"
       }
     },
     "contenido_smartwatch_BKNBQq": {
       "type": "contenido-smartwatch",
       "disabled": true,
       "name": "Contenido Smartwatch",
-      "settings": {}
+      "settings": {
+        "url_mujer": "",
+        "url_hombre": ""
+      }
     },
     "product_luxury_template_xEKHPW": {
       "type": "product-luxury-template",
@@ -548,12 +553,14 @@
     },
     "luxury_smartwatch_mujer_bYA9me": {
       "type": "luxury-smartwatch-mujer",
-      "disabled": true,
       "name": "Luxury Smartwatch Mujer",
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/istockphoto-1237011854-612x612.jpg"
+      }
     },
     "cyber_smartwatch_mujer_qEKBDK": {
       "type": "cyber-smartwatch-mujer",
+      "disabled": true,
       "name": "Cyber Smartwatch Mujer",
       "settings": {}
     }
